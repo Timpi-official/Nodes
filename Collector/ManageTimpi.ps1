@@ -1,7 +1,7 @@
 # Define paths and URLs for initial setup
 $setupUrl = "https://timpi.io/applications/windows/TimpiSetup.msi"
 $setupDownloadPath = "$env:USERPROFILE\Downloads\TimpiSetup.msi"
-$setupExtractPath = "$env:USERPROFILE\Downloads\TimpiSetup"  # Adjust if extraction is needed
+$setupExtractPath = "$env:ProgramFiles\Timpi"  # Main installation path
 $setupInstallerPath = $setupDownloadPath  # Directly using the MSI file
 $sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe" # URL for 7-Zip installer
 $sevenZipInstallerPath = "$env:USERPROFILE\Downloads\7z2201-x64.exe"
@@ -115,12 +115,9 @@ if (Test-Path -Path $updateDownloadPath) {
     # Extract the update file
     Extract-RarFile -filePath $updateDownloadPath -destinationPath $updateExtractPath
 
-    # Check for an installer or script in the update (you may need to adjust this)
-    $updateInstaller = "$updateExtractPath\updateInstaller.exe" # Adjust as needed
-    if (Test-Path -Path $updateInstaller) {
-        Write-Output "Running the update installer..."
-        Start-Process -FilePath $updateInstaller -ArgumentList "/quiet", "/norestart" -Wait
-    }
+    # Copy the extracted files over the existing installation
+    Write-Output "Copying updated files to the installation directory..."
+    Copy-Item -Path "$updateExtractPath\*" -Destination $setupExtractPath -Recurse -Force
 
     # Clean up the update files if desired
     Write-Output "Cleaning up..."

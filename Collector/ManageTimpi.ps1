@@ -113,9 +113,17 @@ if (Test-Path -Path $updateDownloadPath) {
     # Extract the update file
     Extract-RarFile -filePath $updateDownloadPath -destinationPath $updateExtractPath
 
+    # Log extracted files
+    Write-Output "Extracted files:"
+    Get-ChildItem -Path $updateExtractPath -Recurse | Write-Output
+
     # Copy the extracted files over the existing installation
     Write-Output "Copying updated files to the installation directory..."
     Copy-Item -Path "$updateExtractPath\*" -Destination $installationPath -Recurse -Force
+
+    # Log copied files to verify
+    Write-Output "Files in the installation directory after copying:"
+    Get-ChildItem -Path $installationPath -Recurse | Write-Output
 
     # Clean up the update files if desired
     Write-Output "Cleaning up..."

@@ -1,8 +1,7 @@
 # Define paths and URLs for initial setup
 $setupUrl = "https://timpi.io/applications/windows/TimpiSetup.msi"
 $setupDownloadPath = "$env:USERPROFILE\Downloads\TimpiSetup.msi"
-$setupExtractPath = "$env:ProgramFiles\Timpi"  # Main installation path
-$setupInstallerPath = $setupDownloadPath  # Directly using the MSI file
+$installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"  # Main installation path
 $sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe" # URL for 7-Zip installer
 $sevenZipInstallerPath = "$env:USERPROFILE\Downloads\7z2201-x64.exe"
 
@@ -82,14 +81,13 @@ if (Test-Path -Path $setupDownloadPath) {
     Write-Output "File downloaded successfully."
 
     # Run the installer directly
-    if (Test-Path -Path $setupInstallerPath) {
-        Write-Output "Installer found: ${setupInstallerPath}"
+    if (Test-Path -Path $setupDownloadPath) {
+        Write-Output "Installer found: ${setupDownloadPath}"
         Write-Output "Opening installer..."
-        Start-Process -FilePath $setupInstallerPath -Wait
+        Start-Process -FilePath $setupDownloadPath -Wait
         Write-Output "Initial installation completed."
     } else {
-        Write-Output "Installer not found at ${setupInstallerPath}. Checking extracted files..."
-        Get-ChildItem -Path $setupExtractPath -Recurse | Write-Output
+        Write-Output "Installer not found at ${setupDownloadPath}."
     }
 
     # Clean up the MSI file if desired
@@ -117,7 +115,7 @@ if (Test-Path -Path $updateDownloadPath) {
 
     # Copy the extracted files over the existing installation
     Write-Output "Copying updated files to the installation directory..."
-    Copy-Item -Path "$updateExtractPath\*" -Destination $setupExtractPath -Recurse -Force
+    Copy-Item -Path "$updateExtractPath\*" -Destination $installationPath -Recurse -Force
 
     # Clean up the update files if desired
     Write-Output "Cleaning up..."

@@ -134,7 +134,7 @@ if (Test-Path -Path $updateDownloadPath) {
     Write-Output "File download failed. ${updateDownloadPath} not found."
 }
 
-Write-Output "Script execution completed. You can now proceed with the Timpi installation."
+Write-Output "Script execution completed. You can now proceed with open up your browser and visit http://localhost:5001/."
 
 # Prompt to close the window
 Read-Host -Prompt 'Press Enter to close'

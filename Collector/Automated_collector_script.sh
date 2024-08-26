@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Fetch and run the script from GitHub with correct line endings
+curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
+
+# Exit the script early if it's being executed from this block
+exit 0
+
 # Define installation directory
 INSTALL_DIR="/opt/timpi"
 

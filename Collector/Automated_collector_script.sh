@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Fetch and run the script from GitHub with correct line endings
-curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
-
-# Exit the script early if it's being executed from this block
-exit 0
-
 # Define installation directory
 INSTALL_DIR="/opt/timpi"
 
@@ -14,6 +8,12 @@ handle_error() {
     echo "An error occurred. Exiting."
     exit 1
 }
+
+# Ensure the script is not already running
+if pidof -o %PPID -x "$(basename "$0")"; then
+   echo "Script is already running."
+   exit 1
+fi
 
 # Remove Previous Version Of Collector
 echo "Removing previous version of collector..."
@@ -26,6 +26,7 @@ echo "Updating and upgrading the system..."
 sudo apt update && sudo apt -y upgrade || handle_error
 
 # Create directory for Timpi
+echo "Creating installation directory..."
 sudo mkdir -p "$INSTALL_DIR" || handle_error
 
 # Download the collector 0.9.0
@@ -46,6 +47,7 @@ cd "$INSTALL_DIR" || handle_error
 sudo unzip TimpiCollector-0-9-0-beta.zip -d "$INSTALL_DIR" || handle_error
 
 # Setting execute rights
+echo "Setting execute permissions..."
 sudo chmod +x "$INSTALL_DIR/TimpiCollector" || handle_error
 sudo chmod +x "$INSTALL_DIR/TimpiUI" || handle_error
 
@@ -55,6 +57,7 @@ sudo mv "$INSTALL_DIR/collector.service" /etc/systemd/system/ || handle_error
 sudo mv "$INSTALL_DIR/collector_ui.service" /etc/systemd/system/ || handle_error
 
 # Enable and start services
+echo "Enabling and starting services..."
 sudo systemctl enable collector || handle_error
 sudo systemctl enable collector_ui || handle_error
 sudo systemctl start collector || handle_error

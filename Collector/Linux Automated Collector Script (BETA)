@@ -5,7 +5,7 @@ Quickly set up the Timpi Collector on your Linux system with this one-command in
 **Command to run:**
 ```bash
 sudo apt-get install -y dos2unix && curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
-```
+
 
 **Here's what happens:**
 1. **Prepares your system**: Installs `dos2unix` to ensure script compatibility.

@@ -6,7 +6,7 @@ We will also include installation scripts / instructions.
 0.9.0
 https://timpi.io/applications/linux/TimpiCollector-0-9-0-Linux.zip
 
-0.9.1
+0.9.3
 https://timpi.io/applications/linux/TimpiCollector-0-9-3-Linux-update.zip
 
 # Windows
@@ -14,5 +14,5 @@ https://timpi.io/applications/linux/TimpiCollector-0-9-3-Linux-update.zip
 0.9.0 
 https://timpi.io/applications/windows/TimpiSetup.msi
 
-0.9.1
+0.9.3
 https://timpi.io/applications/windows/TimpiWindowsUpdate-0.9.3.rar

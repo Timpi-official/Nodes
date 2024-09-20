@@ -48,11 +48,6 @@ echo "Installing Collector service..."
 sudo mv "$INSTALL_DIR/collector.service" /etc/systemd/system/ || handle_error
 sudo mv "$INSTALL_DIR/collector_ui.service" /etc/systemd/system/ || handle_error
 
-# Enable and start services
-sudo systemctl enable collector || handle_error
-sudo systemctl enable collector_ui || handle_error
-sudo systemctl start collector || handle_error
-sudo systemctl start collector_ui || handle_error
 
 # Download the collector 0.9.3
 echo "Downloading the collector 0.9.3..."
@@ -78,6 +73,12 @@ sudo chmod 755 "$INSTALL_DIR/TimpiUI" || handle_error
 
 # Clean up by removing the temporary unpacked folder
 sudo rm -rf "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update" || handle_error
+
+# Enable and start services
+sudo systemctl enable collector || handle_error
+sudo systemctl enable collector_ui || handle_error
+sudo systemctl start collector || handle_error
+sudo systemctl start collector_ui || handle_error
 
 # Restart the collector UI service
 echo "Restarting the collector UI service..."

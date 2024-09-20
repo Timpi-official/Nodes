@@ -80,9 +80,6 @@ sudo systemctl enable collector_ui || handle_error
 sudo systemctl start collector || handle_error
 sudo systemctl start collector_ui || handle_error
 
-# Restart the collector UI service
-echo "Restarting the collector UI service..."
-sudo systemctl restart collector_ui || handle_error
 
 echo "Installation and upgrade completed. You can now open your browser and use http://localhost:5015/collector"
 echo "NOTE: If the collector is not running, please remove the timpi.config file in $INSTALL_DIR"

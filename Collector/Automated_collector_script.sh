@@ -48,10 +48,9 @@ echo "Installing Collector service..."
 sudo mv "$INSTALL_DIR/collector.service" /etc/systemd/system/ || handle_error
 sudo mv "$INSTALL_DIR/collector_ui.service" /etc/systemd/system/ || handle_error
 
-
-# Download the collector 0.9.3
-echo "Downloading the collector 0.9.3..."
-sudo wget https://timpi.io/applications/linux/TimpiCollector-0-9-3-Linux-update.rar -O "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update.rar" || handle_error
+# Download the latest collector version (0.9.3)
+echo "Downloading the latest collector version (0.9.3)..."
+sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest.rar -O "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
 
 # Install Unrar if not already installed
 echo "Installing unrar..."
@@ -59,12 +58,12 @@ sudo apt install -y unrar || handle_error
 
 # Unpack The RAR Files To Timpi Directory For Upgrade
 echo "Upgrading to the collector version 0.9.3..."
-sudo unrar x "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update.rar" "$INSTALL_DIR" || handle_error
+sudo unrar x "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" "$INSTALL_DIR" || handle_error
 
 # Move the TimpiCollector and TimpiUI files to the correct directory
 echo "Moving TimpiCollector and TimpiUI to $INSTALL_DIR..."
-sudo mv "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update/TimpiCollector" "$INSTALL_DIR/" || handle_error
-sudo mv "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update/TimpiUI" "$INSTALL_DIR/" || handle_error
+sudo mv "$INSTALL_DIR/TimpiCollectorLinuxLatest/TimpiCollector" "$INSTALL_DIR/" || handle_error
+sudo mv "$INSTALL_DIR/TimpiCollectorLinuxLatest/TimpiUI" "$INSTALL_DIR/" || handle_error
 
 # Setting correct permissions for TimpiCollector and TimpiUI
 echo "Setting execute permissions for TimpiCollector and TimpiUI..."
@@ -72,14 +71,13 @@ sudo chmod 755 "$INSTALL_DIR/TimpiCollector" || handle_error
 sudo chmod 755 "$INSTALL_DIR/TimpiUI" || handle_error
 
 # Clean up by removing the temporary unpacked folder
-sudo rm -rf "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update" || handle_error
+sudo rm -rf "$INSTALL_DIR/TimpiCollectorLinuxLatest" || handle_error
 
 # Enable and start services
 sudo systemctl enable collector || handle_error
 sudo systemctl enable collector_ui || handle_error
 sudo systemctl start collector || handle_error
 sudo systemctl start collector_ui || handle_error
-
 
 echo "Installation and upgrade completed. You can now open your browser and use http://localhost:5015/collector"
 echo "NOTE: If the collector is not running, please remove the timpi.config file in $INSTALL_DIR"

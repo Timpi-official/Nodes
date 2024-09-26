@@ -5,10 +5,10 @@ $installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"  # Main in
 $sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe" # URL for 7-Zip installer
 $sevenZipInstallerPath = "$env:USERPROFILE\Downloads\7z2201-x64.exe"
 
-# New update URL and paths
-$updateUrl = "https://timpi.io/applications/windows/TimpiWindowsUpdate-0.9.1.rar"
-$updateDownloadPath = "$env:USERPROFILE\Downloads\TimpiWindowsUpdate-0.9.1.rar"
-$updateExtractPath = "$env:USERPROFILE\Downloads\TimpiWindowsUpdate"
+# New update URL and paths (0.9.3)
+$updateUrl = "https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.rar"
+$updateDownloadPath = "$env:USERPROFILE\Downloads\TimpiCollectorWindowsLatest.rar"
+$updateExtractPath = "$env:USERPROFILE\Downloads\TimpiWindowsUpdate-0.9.3"
 
 # Function to download a file from a URL
 function Download-File {
@@ -98,8 +98,8 @@ if (Test-Path -Path $setupDownloadPath) {
     Write-Output "File download failed. ${setupDownloadPath} not found."
 }
 
-# Download and extract the update
-Write-Output "Downloading the Timpi update..."
+# Download and extract the 0.9.3 update
+Write-Output "Downloading the Timpi 0.9.3 update..."
 Download-File -url $updateUrl -outputPath $updateDownloadPath
 
 if (Test-Path -Path $updateDownloadPath) {
@@ -119,7 +119,9 @@ if (Test-Path -Path $updateDownloadPath) {
 
     # Copy the extracted files over the existing installation
     Write-Output "Copying updated files to the installation directory..."
-    Copy-Item -Path "$updateExtractPath\*" -Destination $installationPath -Recurse -Force
+    Copy-Item -Path "$updateExtractPath\TimpiWindowsUpdate-0.9.3\TimpiCollector.exe" -Destination "$installationPath\TimpiCollector.exe" -Force
+    Copy-Item -Path "$updateExtractPath\TimpiWindowsUpdate-0.9.3\TimpiUI.exe" -Destination "$installationPath\TimpiUI.exe" -Force
+    Copy-Item -Path "$updateExtractPath\TimpiWindowsUpdate-0.9.3\0.9.3.txt" -Destination "$installationPath\0.9.3.txt" -Force
 
     # Log copied files to verify
     Write-Output "Files in the installation directory after copying:"
@@ -134,7 +136,7 @@ if (Test-Path -Path $updateDownloadPath) {
     Write-Output "File download failed. ${updateDownloadPath} not found."
 }
 
-Write-Output "Script execution completed. Start TimpiManager.exe, right click timpi icon from systemtray and Start collector and Start UI and then open up your browser and visit http://localhost:5001/."
+Write-Output "Script execution completed. Start TimpiManager.exe, right click timpi icon from system tray and Start collector and Start UI, then open your browser and visit http://localhost:5001/."
 
 # Prompt to close the window
 Read-Host -Prompt 'Press Enter to close'

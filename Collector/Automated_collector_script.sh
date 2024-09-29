@@ -58,13 +58,13 @@ sudo apt install -y unrar || handle_error
 
 # Unpack The RAR Files To Timpi Directory For Upgrade
 echo "Upgrading to the collector version 0.9.3..."
-sudo unrar x "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" -d "$INSTALL_DIR" || handle_error
+sudo unrar e "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" -d "$INSTALL_DIR" || handle_error
 
 # Move the extracted files (TimpiCollector, TimpiUI) to the correct directory
 echo "Moving TimpiCollector and TimpiUI to $INSTALL_DIR..."
-sudo mv "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update/TimpiCollector" "$INSTALL_DIR/" || handle_error
-sudo mv "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update/TimpiUI" "$INSTALL_DIR/" || handle_error
-sudo mv "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update/0.9.3.txt" "$INSTALL_DIR/" || handle_error
+sudo mv "$INSTALL_DIR/TimpiCollector" "$INSTALL_DIR/" || handle_error
+sudo mv "$INSTALL_DIR/TimpiUI" "$INSTALL_DIR/" || handle_error
+sudo mv "$INSTALL_DIR/0.9.3.txt" "$INSTALL_DIR/" || handle_error
 
 # Setting correct permissions for TimpiCollector and TimpiUI
 echo "Setting execute permissions for TimpiCollector and TimpiUI..."
@@ -73,7 +73,6 @@ sudo chmod 755 "$INSTALL_DIR/TimpiUI" || handle_error
 
 # Clean up by removing the temporary unpacked folder and old archives
 echo "Cleaning up..."
-sudo rm -rf "$INSTALL_DIR/TimpiCollector-0-9-3-Linux-update" || handle_error
 sudo rm -rf "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
 sudo rm -rf "$INSTALL_DIR/TimpiCollector-0-9-0-Linux.zip" || handle_error
 

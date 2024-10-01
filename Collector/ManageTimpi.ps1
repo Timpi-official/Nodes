@@ -5,10 +5,10 @@ $installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"  # Main in
 $sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe" # URL for 7-Zip installer
 $sevenZipInstallerPath = "$env:USERPROFILE\Downloads\7z2201-x64.exe"
 
-# New update URL and paths (0.9.3)
+# New update URL and paths (Latest Build)
 $updateUrl = "https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.rar"
 $updateDownloadPath = "$env:USERPROFILE\Downloads\TimpiCollectorWindowsLatest.rar"
-$updateExtractPath = "$env:USERPROFILE\Downloads\TimpiCollectorWindowsLatest"
+$updateExtractPath = "$env:USERPROFILE\Downloads\TempExtractedUpdate"
 
 # Function to download a file from a URL
 function Download-File {
@@ -26,8 +26,8 @@ function Download-File {
     }
 }
 
-# Function to extract a .rar file
-function Extract-RarFile {
+# Function to extract a .rar file directly into the destination path
+function Extract-RarFileDirectly {
     param (
         [string]$filePath,
         [string]$destinationPath
@@ -39,7 +39,7 @@ function Extract-RarFile {
     }
     Write-Output "Extracting files from $filePath to $destinationPath..."
     try {
-        & "$7zipPath" x $filePath -o"$destinationPath" -y
+        & "$7zipPath" x $filePath -o"$destinationPath" -y  # Extracting everything to destination
         Write-Output "Extraction completed successfully."
     } catch {
         Write-Output "Failed to extract files from $filePath. $_"
@@ -98,8 +98,8 @@ if (Test-Path -Path $setupDownloadPath) {
     Write-Output "File download failed. ${setupDownloadPath} not found."
 }
 
-# Download and extract the 0.9.3 update
-Write-Output "Downloading the Timpi 0.9.3 update..."
+# Download and extract the Latest update
+Write-Output "Downloading the Timpi latest update..."
 Download-File -url $updateUrl -outputPath $updateDownloadPath
 
 if (Test-Path -Path $updateDownloadPath) {
@@ -110,21 +110,22 @@ if (Test-Path -Path $updateDownloadPath) {
         New-Item -ItemType Directory -Path $updateExtractPath | Out-Null
     }
 
-    # Extract the update file
-    Extract-RarFile -filePath $updateDownloadPath -destinationPath $updateExtractPath
+    # Extract the update file into the temporary directory
+    Extract-RarFileDirectly -filePath $updateDownloadPath -destinationPath $updateExtractPath
 
-    # Log extracted files
-    Write-Output "Extracted files:"
-    Get-ChildItem -Path $updateExtractPath -Recurse | Write-Output
+    # Check if there's a folder inside the extracted content
+    $extractedItems = Get-ChildItem -Path $updateExtractPath
+    if ($extractedItems.Count -eq 1 -and (Test-Path "$($extractedItems.FullName)\*")) {
+        Write-Output "Folder detected inside the extracted content. Moving its contents."
+        $folderPath = $extractedItems.FullName
+        Move-Item -Path "$folderPath\*" -Destination $installationPath -Force
+    } else {
+        Write-Output "No folder detected. Moving extracted files."
+        Move-Item -Path "$updateExtractPath\*" -Destination $installationPath -Force
+    }
 
-    # Copy the extracted files over the existing installation
-    Write-Output "Copying updated files to the installation directory..."
-    Copy-Item -Path "$updateExtractPath\TimpiCollectorWindowsLatest\TimpiCollector.exe" -Destination "$installationPath\TimpiCollector.exe" -Force
-    Copy-Item -Path "$updateExtractPath\TimpiCollectorWindowsLatest\TimpiUI.exe" -Destination "$installationPath\TimpiUI.exe" -Force
-    Copy-Item -Path "$updateExtractPath\TimpiCollectorWindowsLatest\0.9.3.txt" -Destination "$installationPath\0.9.3.txt" -Force
-
-    # Log copied files to verify
-    Write-Output "Files in the installation directory after copying:"
+    # Log files to verify
+    Write-Output "Files in the installation directory after extraction:"
     Get-ChildItem -Path $installationPath -Recurse | Write-Output
 
     # Clean up the update files if desired
@@ -135,3 +136,8 @@ if (Test-Path -Path $updateDownloadPath) {
 } else {
     Write-Output "File download failed. ${updateDownloadPath} not found."
 }
+
+Write-Output "Script execution completed. Start TimpiManager.exe, right click timpi icon from system tray and Start collector and Start UI and then open up your browser and visit http://localhost:5001/."
+
+# Prompt to close the window
+Read-Host -Prompt 'Press Enter to close'

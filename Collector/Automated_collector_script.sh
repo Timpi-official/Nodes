@@ -58,7 +58,7 @@ sudo apt install -y unrar || handle_error
 
 # Unpack The RAR Files To Timpi Directory For Upgrade, overwriting any existing files
 echo "Upgrading to the collector version 0.9.3..."
-sudo unrar e -y "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error  # Fixed the command
+sudo unrar e -y "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" "$INSTALL_DIR" || handle_error
 
 # Setting correct permissions for TimpiCollector and TimpiUI
 echo "Setting execute permissions for TimpiCollector and TimpiUI..."

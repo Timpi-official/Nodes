@@ -48,8 +48,8 @@ echo "Installing Collector service..."
 sudo mv "$INSTALL_DIR/collector.service" /etc/systemd/system/ || handle_error
 sudo mv "$INSTALL_DIR/collector_ui.service" /etc/systemd/system/ || handle_error
 
-# Download the latest collector version (0.9.3)
-echo "Downloading the latest collector version (0.9.3)..."
+# Download the latest collector version (0.9.4)
+echo "Downloading the latest collector version..."
 sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest.rar -O "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
 
 # Install Unrar if not already installed

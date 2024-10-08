@@ -1,5 +1,7 @@
 bash -c '{
   echo "Stopping and removing the Guardian Node Docker containers...";
+
+  # Stop and remove all containers using the image
   containers=$(sudo docker ps -q --filter "ancestor=timpiltd/timpi-guardian")
   if [ -n "$containers" ]; then
     sudo docker stop $containers
@@ -8,7 +10,7 @@ bash -c '{
     echo "No running Guardian containers to stop."
   fi
 
-  echo "Removing any stopped Guardian Node Docker containers...";
+  # Remove any stopped containers using the image
   stopped_containers=$(sudo docker ps -a -q --filter "ancestor=timpiltd/timpi-guardian")
   if [ -n "$stopped_containers" ]; then
     sudo docker rm $stopped_containers
@@ -16,12 +18,22 @@ bash -c '{
     echo "No stopped Guardian containers to remove."
   fi
 
+  # Force remove the image (including untagged images)
   echo "Removing the Guardian Node Docker image...";
-  if sudo docker images -q timpiltd/timpi-guardian | grep -q '.'; then
-    sudo docker rmi timpiltd/timpi-guardian
+  image_id=$(sudo docker images -q timpiltd/timpi-guardian)
+  if [ -n "$image_id" ]; then
+    sudo docker rmi -f $image_id
   else
     echo "No Guardian Docker image to remove."
   fi
+
+  # Remove Docker volumes associated with Guardian (optional)
+  echo "Removing any unused Docker volumes...";
+  sudo docker volume prune -f
+
+  # Remove Docker networks (optional, specific to guardian if any)
+  echo "Removing any unused Docker networks...";
+  sudo docker network prune -f
 
   echo "Removing persistent data folder...";
   GUARDIAN_STORAGE="$HOME/guardian-storage"

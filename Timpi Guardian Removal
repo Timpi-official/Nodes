@@ -1,0 +1,43 @@
+bash -c '{
+  echo "Stopping and removing the Guardian Node Docker containers...";
+  containers=$(sudo docker ps -q --filter "ancestor=timpiltd/timpi-guardian")
+  if [ -n "$containers" ]; then
+    sudo docker stop $containers
+    sudo docker rm $containers
+  else
+    echo "No running Guardian containers to stop."
+  fi
+
+  echo "Removing any stopped Guardian Node Docker containers...";
+  stopped_containers=$(sudo docker ps -a -q --filter "ancestor=timpiltd/timpi-guardian")
+  if [ -n "$stopped_containers" ]; then
+    sudo docker rm $stopped_containers
+  else
+    echo "No stopped Guardian containers to remove."
+  fi
+
+  echo "Removing the Guardian Node Docker image...";
+  if sudo docker images -q timpiltd/timpi-guardian | grep -q '.'; then
+    sudo docker rmi timpiltd/timpi-guardian
+  else
+    echo "No Guardian Docker image to remove."
+  fi
+
+  echo "Removing persistent data folder...";
+  GUARDIAN_STORAGE="$HOME/guardian-storage"
+  if [ -d "$GUARDIAN_STORAGE" ]; then
+    sudo rm -rf $GUARDIAN_STORAGE
+  else
+    echo "No Guardian storage directory to remove."
+  fi
+
+  echo "Uninstalling Docker...";
+  sudo apt-get purge -y docker-ce docker-ce-cli containerd.io
+  sudo apt-get autoremove -y
+  sudo apt-get clean
+
+  echo "Removing Docker repository...";
+  sudo rm /etc/apt/sources.list.d/docker.list
+
+  echo "Docker uninstallation complete.";
+}'

@@ -1,0 +1,64 @@
+bash -c '{
+  echo "Updating package list and installing prerequisites...";
+  sudo apt update && sudo apt install -y apt-transport-https ca-certificates curl software-properties-common;
+
+  echo "Adding Docker’s GPG key...";
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg;
+
+  echo "Adding Docker repository...";
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null;
+
+  echo "Updating package list again...";
+  sudo apt update;
+
+  echo "Installing Docker...";
+  sudo apt install -y docker-ce;
+
+  echo "Enabling Docker to start on boot...";
+  sudo systemctl enable docker;
+
+  echo "Installing default Java Runtime Environment...";
+  sudo apt install -y default-jre;
+
+  echo "Checking Docker status...";
+  sudo systemctl status docker --no-pager;
+
+  echo "Preparing the Guardian Docker environment...";
+  GUARDIAN_STORAGE="$HOME/guardian-storage";
+  mkdir -p $GUARDIAN_STORAGE/data;
+
+  echo "Pulling the Guardian Node Docker image...";
+  sudo docker pull timpiltd/timpi-guardian;
+
+  echo "";
+  echo "*******************************************";
+  echo "[YOUR GUID]";
+  echo "*******************************************";
+  echo "This MUST be the same GUID you have received when you registered the Guardian.";
+  echo "Make sure to enter it correctly.";
+  echo "";
+  read -p "Please enter your GUID: " GUID;
+
+  echo "";
+  echo "*******************************************";
+  echo "[THE GUARDIAN EXTERNAL IP OR DOMAIN]";
+  echo "*******************************************";
+  echo "This MUST be the same IP/Domain you have used for the registration.";
+  echo "The Guardian Docker container MUST be accessible from external over this IP/Domain.";
+  echo "Ensure the IP/Domain is correct and accessible.";
+  echo "";
+  read -p "Please enter your external IP or domain (SOLR_HOST): " SOLR_HOST;
+
+  echo "Running the Guardian Node Docker container...";
+  sudo docker run -d --restart unless-stopped --pull=always \
+    -p 8983:8983 \
+    -p 4005:4005 \
+    -v $GUARDIAN_STORAGE:/var/solr \
+    -e SOLR_PORT=8983 \
+    -e GUARDIAN_PORT=4005 \
+    -e SOLR_HOST=$SOLR_HOST \
+    -e GUID=$GUID \
+    timpiltd/timpi-guardian;
+
+  echo "Timpi Guardian Node setup is complete.";
+}'

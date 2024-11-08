@@ -5,6 +5,19 @@ import subprocess
 import requests
 import shutil
 
+# Introductory Message
+def display_intro():
+    print("\n")
+    print("=============================================")
+    print("Welcome to the Timpi Collector Installation!")
+    print("=============================================")
+    print("This script will set up the latest version of the Timpi Collector on your system.")
+    print("Timpi is dedicated to providing decentralized and high-quality data services.")
+    print("Please ensure this script is run with administrator privileges for a smooth setup.")
+    print("For more information about Timpi, visit our official website at https://timpi.io.")
+    print("=============================================\n")
+
+# Check for admin privileges
 def is_admin():
     return ctypes.windll.shell32.IsUserAnAdmin()
 
@@ -98,6 +111,8 @@ def extract_update():
 
 # Main execution
 if __name__ == "__main__":
+    display_intro()
+
     # Step 1: Download and install the main setup MSI
     download_file(setup_url, setup_download_path)
     install_setup()
@@ -109,5 +124,12 @@ if __name__ == "__main__":
     # Cleanup downloaded files
     os.remove(setup_download_path)
     os.remove(update_download_path)
-    print("Installation and update completed successfully.")
+
+    print("\n========================================================")
+    print("The Timpi Collector has been successfully installed!")
+    print("Start TimpiManager on your desktop start collector and UI")
+    print("You can now access the Timpi Collector dashboard at:")
+    print("http://localhost:5001/collector")
+    print("========================================================\n")
+
     input("Press Enter to exit...")

@@ -13,8 +13,8 @@ def display_intro():
     print("=============================================")
     print("This script will set up the latest version of the Timpi Collector on your system.")
     print("Timpi is dedicated to providing decentralized and high-quality data services.")
-    print("Please ensure this script is run with administrator privileges for a smooth setup.")
-    print("For more information about Timpi, visit our official website at https://timpi.io.")
+    print("This script ensures you running with administrator privileges for a smooth setup.")
+    print("For more information about Timpi, visit our official website at https://timpi.com.")
     print("=============================================\n")
 
 # Check for admin privileges

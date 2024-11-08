@@ -4,6 +4,42 @@ import ctypes
 import subprocess
 import requests
 import shutil
+import time
+
+# URLs for downloading dependencies
+python_installer_url = "https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe"
+seven_zip_url = "https://www.7-zip.org/a/7z2201-x64.exe"
+
+# Check if Python is installed; if not, download and install it
+def ensure_python_installed():
+    if shutil.which("python"):
+        print("Python is already installed.")
+        return True
+    print("Python not found. Downloading and installing Python...")
+    python_installer_path = os.path.join(os.environ["TEMP"], "python_installer.exe")
+    download_file(python_installer_url, python_installer_path)
+    try:
+        subprocess.run([python_installer_path, "/quiet", "InstallAllUsers=1", "PrependPath=1"], check=True)
+        print("Python installation completed.")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to install Python: {e}")
+        sys.exit(1)
+
+# Check if 7-Zip is installed; if not, download and install it
+def ensure_seven_zip_installed():
+    seven_zip_path = r"C:\Program Files\7-Zip\7z.exe"
+    if os.path.exists(seven_zip_path):
+        print("7-Zip is already installed.")
+        return True
+    print("7-Zip not found. Downloading and installing 7-Zip...")
+    seven_zip_installer_path = os.path.join(os.environ["TEMP"], "7z_installer.exe")
+    download_file(seven_zip_url, seven_zip_installer_path)
+    try:
+        subprocess.run([seven_zip_installer_path, "/S"], check=True)
+        print("7-Zip installation completed.")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to install 7-Zip: {e}")
+        sys.exit(1)
 
 # Introductory Message
 def display_intro():
@@ -113,6 +149,10 @@ def extract_update():
 if __name__ == "__main__":
     display_intro()
 
+    # Ensure dependencies
+    ensure_python_installed()
+    ensure_seven_zip_installed()
+
     # Step 1: Download and install the main setup MSI
     download_file(setup_url, setup_download_path)
     install_setup()
@@ -127,7 +167,6 @@ if __name__ == "__main__":
 
     print("\n========================================================")
     print("The Timpi Collector has been successfully installed!")
-    print("Start TimpiManager on your desktop start collector and UI")
     print("You can now access the Timpi Collector dashboard at:")
     print("http://localhost:5001/collector")
     print("========================================================\n")

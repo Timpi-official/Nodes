@@ -10,6 +10,7 @@ if (-not $pythonExists) {
     Write-Host "Python is not installed. Downloading Python installer..."
     Invoke-WebRequest -Uri $pythonInstallerUrl -OutFile $pythonInstallerPath
     Write-Host "Installing Python in silent mode..."
+    # Run Python installer silently
     Start-Process -FilePath $pythonInstallerPath -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
     Remove-Item $pythonInstallerPath
     Write-Host "Python installation completed."

@@ -13,4 +13,16 @@ if (-not $pythonExists) {
     # Run Python installer silently
     Start-Process -FilePath $pythonInstallerPath -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 
-    # Handle any permi
+    # Handle any permission issues when deleting the installer file
+    Try {
+        Remove-Item $pythonInstallerPath -ErrorAction Stop
+    }
+    Catch {
+        Write-Host "Could not delete the installer file due to permission issues. Continuing..."
+    }
+
+    Write-Host "Python installation completed."
+}
+
+# Refresh session environment
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")

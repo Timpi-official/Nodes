@@ -1,1 +1,10 @@
-n
+$script1 = "https://raw.githubusercontent.com/YourGitHubUser/YourRepo/main/PythonInstaller.ps1"
+$script2 = "https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/WindowsCollectorLatest-081124.py"
+$path1 = "$env:TEMP\PythonInstaller.ps1"
+$path2 = "$env:TEMP\WindowsCollectorLatest.py"
+
+# Download and execute PythonInstaller.ps1
+Invoke-WebRequest -Uri $script1 -OutFile $path1; powershell -ExecutionPolicy Bypass -File $path1
+
+# Download and execute WindowsCollectorLatest.py using Python
+Invoke-WebRequest -Uri $script2 -OutFile $path2; python $path2

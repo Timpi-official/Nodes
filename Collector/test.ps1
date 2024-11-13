@@ -12,9 +12,5 @@ if (-not $pythonExists) {
     Write-Host "Installing Python in silent mode..."
     # Run Python installer silently
     Start-Process -FilePath $pythonInstallerPath -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
-    Remove-Item $pythonInstallerPath
-    Write-Host "Python installation completed."
-}
 
-# Refresh session environment
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
+    # Handle any permi

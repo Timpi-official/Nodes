@@ -22,18 +22,28 @@ function Ensure-PythonInstalled {
         Start-Process -FilePath $pythonInstallerPath -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
         Remove-Item $pythonInstallerPath -ErrorAction SilentlyContinue
         Write-Output "Python installation completed."
+        
+        # Refresh environment variables so Python is recognized immediately
+        $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
     }
 }
 
 # Install requests module if it is not installed
 function Install-RequestsModule {
+    # Check for Python executable path
+    $pythonPath = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $pythonPath) {
+        # Check the common installation path as a fallback
+        $pythonPath = "C:\Program Files\Python310\python.exe"
+    }
+    
     try {
-        python -m pip show requests | Out-Null
-        if ($?) {
+        & $pythonPath -m pip show requests | Out-Null
+        if ($LASTEXITCODE -eq 0) {
             Write-Output "Requests module is already installed."
         } else {
             Write-Output "Installing requests module..."
-            python -m pip install requests
+            & $pythonPath -m pip install requests
             Write-Output "Requests module installed successfully."
         }
     } catch {
@@ -45,8 +55,15 @@ function Install-RequestsModule {
 # Run the main Python script
 function Run-PythonScript {
     Download-File -url $pythonScriptUrl -outputPath $pythonScriptPath
+
+    # Run the Python script with the detected or fallback path
+    $pythonPath = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $pythonPath) {
+        $pythonPath = "C:\Program Files\Python310\python.exe"
+    }
+
     Write-Output "Running the Python script..."
-    python $pythonScriptPath
+    & $pythonPath $pythonScriptPath
 }
 
 # Main execution

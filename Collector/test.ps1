@@ -1,9 +1,6 @@
-# Wrapper script that downloads and runs test.ps1 with retry and network checks
-
+# Maximum number of retries
 $maxRetries = 3
 $retryCount = 0
-$downloadUrl = "https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/test.ps1"
-$localFilePath = "$env:TEMP\test.ps1"
 
 # Function to check network connectivity to GitHub
 function Check-NetworkConnectivity {
@@ -11,41 +8,37 @@ function Check-NetworkConnectivity {
     $pingResult = Test-Connection -ComputerName github.com -Count 1 -Quiet
     if (-not $pingResult) {
         Write-Output "Network connectivity to GitHub is unavailable. Check your internet connection."
-        return $false
+        Exit
     } else {
         Write-Output "Network connectivity to GitHub verified."
-        return $true
     }
 }
 
+# Run the network check before proceeding
+Check-NetworkConnectivity
+
 # Retry loop for downloading and executing the script
 do {
-    if (Check-NetworkConnectivity) {
-        try {
-            Write-Output "Attempting to download and run the script (Attempt $($retryCount + 1) of $maxRetries)..."
+    try {
+        Write-Output "Attempting to download and run the script (Attempt $($retryCount + 1) of $maxRetries)..."
 
-            # Clear any existing file in the temp location to ensure a fresh download
-            Remove-Item $localFilePath -ErrorAction SilentlyContinue
+        # Clear any existing file in the temp location to ensure a fresh download
+        Remove-Item "$env:TEMP\test.ps1" -ErrorAction SilentlyContinue
 
-            # Download the script from GitHub
-            Invoke-WebRequest -Uri $downloadUrl -OutFile $localFilePath -ErrorAction Stop
+        # Download the script from GitHub
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/test.ps1" -OutFile "$env:TEMP\test.ps1" -ErrorAction Stop
 
-            # Execute the downloaded script
-            powershell -ExecutionPolicy Bypass -File $localFilePath
+        # Execute the downloaded script
+        powershell -ExecutionPolicy Bypass -File "$env:TEMP\test.ps1"
 
-            # If execution reaches this point, the script ran successfully
-            $success = $true
-        }
-        catch {
-            # Catch any errors and retry
-            Write-Output "Attempt failed. Retrying..."
-            $success = $false
-            Start-Sleep -Seconds 2  # Wait a moment before retrying
-        }
-    } else {
-        Write-Output "Network connectivity check failed. Retrying..."
+        # If execution reaches this point, the script ran successfully
+        $success = $true
+    }
+    catch {
+        # Catch any errors and retry
+        Write-Output "Attempt failed. Retrying..."
         $success = $false
-        Start-Sleep -Seconds 2
+        Start-Sleep -Seconds 2  # Wait a moment before retrying
     }
 
     # Increment retry count

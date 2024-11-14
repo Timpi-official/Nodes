@@ -45,35 +45,8 @@ function Download-File {
         [string]$outputPath
     )
 
-    # Start the download and display progress
     Write-Output "Starting download from $url..."
-
-    $response = Invoke-WebRequest -Uri $url -UseBasicParsing -Method Head
-    $totalSize = [math]::Round($response.Headers['Content-Length'] / 1MB, 2) # Total size in MB for display
-    $totalBytes = $response.Headers['Content-Length'] # Total size in bytes
-
-    $webRequest = [System.Net.HttpWebRequest]::Create($url)
-    $webRequest.Method = "GET"
-    $responseStream = $webRequest.GetResponse().GetResponseStream()
-    $fileStream = [System.IO.File]::Create($outputPath)
-    $buffer = New-Object byte[] 8192 # Buffer size (8 KB)
-    $totalDownloaded = 0
-    $percentComplete = 0
-
-    while (($read = $responseStream.Read($buffer, 0, $buffer.Length)) -gt 0) {
-        $fileStream.Write($buffer, 0, $read)
-        $totalDownloaded += $read
-        $newPercentComplete = [math]::Floor(($totalDownloaded / $totalBytes) * 100)
-
-        if ($newPercentComplete -ne $percentComplete) {
-            $percentComplete = $newPercentComplete
-            # Print progress in the same line
-            Write-Host -NoNewline -ForegroundColor Cyan "`rDownloading: $percentComplete% Complete"
-        }
-    }
-
-    $fileStream.Close()
-    $responseStream.Close()
+    Invoke-WebRequest -Uri $url -OutFile $outputPath -UseBasicParsing
     Write-Output "`nDownload completed to $outputPath"
 }
 
@@ -99,21 +72,35 @@ function Install-Setup {
     Write-Output "Main setup installation completed successfully."
 }
 
-# Extract update files to a temporary folder and move them to the installation path
+# Extract update files to a temporary folder and verify extraction
 function Extract-Update {
     Write-Output "Extracting update files from $updateDownloadPath to temporary folder..."
 
-    # Create the temporary extraction folder if it doesn't exist
+    # Ensure the temporary extraction folder is created
     if (!(Test-Path $tempExtractionPath)) {
+        New-Item -ItemType Directory -Path $tempExtractionPath | Out-Null
+    } else {
+        # Clear the folder if it already exists
+        Remove-Item -Path $tempExtractionPath -Recurse -Force
         New-Item -ItemType Directory -Path $tempExtractionPath | Out-Null
     }
 
     # Extract the files to the temporary folder
     Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$tempExtractionPath`" -y" -Wait
-    Write-Output "Update extraction to temporary folder completed successfully."
+    Write-Output "Update extraction to temporary folder completed."
 
-    # Move extracted files from the temporary folder to the installation path
-    Write-Output "Moving files from temporary folder to $installationPath..."
+    # Verify that files were extracted
+    $extractedFiles = Get-ChildItem -Path $tempExtractionPath -Recurse
+    if ($extractedFiles.Count -eq 0) {
+        Write-Output "No files were extracted. Please check the archive."
+        Exit 1
+    } else {
+        Write-Output "Files successfully extracted to the temporary folder:"
+        $extractedFiles | ForEach-Object { Write-Output " - $($_.FullName)" }
+    }
+
+    # Move files from temporary folder to the installation path
+    Write-Output "Moving files from the temporary folder to $installationPath..."
     Get-ChildItem -Path $tempExtractionPath -Recurse | ForEach-Object {
         $destinationPath = Join-Path -Path $installationPath -ChildPath $_.Name
 

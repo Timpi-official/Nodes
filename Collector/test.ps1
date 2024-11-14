@@ -98,7 +98,7 @@ function Install-Setup {
     Write-Output "Main setup installation completed successfully."
 }
 
-# Extract update files and move them to installation path
+# Updated Extract-Update function
 function Extract-Update {
     Write-Output "Extracting update files from $updateDownloadPath to $installationPath..."
     if (-not (Test-Path $sevenZipPath)) {
@@ -106,6 +106,7 @@ function Extract-Update {
         Exit 1
     }
 
+    # Extract files using 7-Zip
     Start-Process -FilePath $sevenZipPath -ArgumentList "x $updateDownloadPath -o$installationPath -y" -Wait
     Write-Output "Update extraction completed successfully."
 
@@ -113,7 +114,23 @@ function Extract-Update {
     $subfolderPath = Join-Path -Path $installationPath -ChildPath "TimpiCollectorWindowsLatest"
     if (Test-Path $subfolderPath) {
         Write-Output "Moving files from $subfolderPath to $installationPath..."
-        Get-ChildItem -Path $subfolderPath -Recurse | Move-Item -Destination $installationPath
+
+        # Loop through each item in the subfolder and move it individually
+        Get-ChildItem -Path $subfolderPath -Recurse | ForEach-Object {
+            $destinationPath = Join-Path -Path $installationPath -ChildPath $_.Name
+
+            # Remove existing files in the destination if they already exist
+            if (Test-Path $destinationPath) {
+                Write-Output "Overwriting existing file: $destinationPath"
+                Remove-Item -Path $destinationPath -Force -Recurse
+            }
+
+            # Move the item to the destination path
+            Move-Item -Path $_.FullName -Destination $installationPath -Force -ErrorAction Stop
+            Write-Output "Moved: $($_.FullName) -> $installationPath"
+        }
+
+        # Remove the subfolder after moving the files
         Remove-Item -Path $subfolderPath -Recurse
         Write-Output "Subfolder removed successfully."
     }

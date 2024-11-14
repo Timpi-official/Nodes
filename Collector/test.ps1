@@ -38,7 +38,7 @@ $updateDownloadPath = "$downloadsFolder\TimpiCollectorWindowsLatest.rar"
 $sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
 $tempExtractionPath = "$env:TEMP\TimpiCollectorExtract"
 
-# Function to download files with inline progress feedback
+# Function to download files with a custom progress bar
 function Download-File {
     param (
         [string]$url,
@@ -46,8 +46,32 @@ function Download-File {
     )
 
     Write-Output "Starting download from $url..."
-    Invoke-WebRequest -Uri $url -OutFile $outputPath -UseBasicParsing
-    Write-Output "`nDownload completed to $outputPath"
+    $webClient = New-Object System.Net.WebClient
+
+    # Track the download progress
+    $webClient.DownloadProgressChanged += {
+        param($sender, $e)
+        # Display custom progress percentage
+        Write-Host -NoNewline -ForegroundColor Cyan "`rDownloading: $($e.ProgressPercentage)% Complete"
+    }
+
+    # Download completion message
+    $webClient.DownloadFileCompleted += {
+        Write-Output "`nDownload completed to $outputPath"
+    }
+
+    try {
+        $webClient.DownloadFileAsync([Uri]$url, $outputPath)
+
+        # Wait until the download is complete
+        while ($webClient.IsBusy) {
+            Start-Sleep -Milliseconds 500
+        }
+    }
+    catch {
+        Write-Output "Error downloading $url: $_"
+        Exit 1
+    }
 }
 
 # Ensure 7-Zip is installed, otherwise download and install it
@@ -72,35 +96,21 @@ function Install-Setup {
     Write-Output "Main setup installation completed successfully."
 }
 
-# Extract update files to a temporary folder and verify extraction
+# Extract update files to a temporary folder and move them to the installation path
 function Extract-Update {
     Write-Output "Extracting update files from $updateDownloadPath to temporary folder..."
 
-    # Ensure the temporary extraction folder is created
+    # Create the temporary extraction folder if it doesn't exist
     if (!(Test-Path $tempExtractionPath)) {
-        New-Item -ItemType Directory -Path $tempExtractionPath | Out-Null
-    } else {
-        # Clear the folder if it already exists
-        Remove-Item -Path $tempExtractionPath -Recurse -Force
         New-Item -ItemType Directory -Path $tempExtractionPath | Out-Null
     }
 
     # Extract the files to the temporary folder
     Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$tempExtractionPath`" -y" -Wait
-    Write-Output "Update extraction to temporary folder completed."
+    Write-Output "Update extraction to temporary folder completed successfully."
 
-    # Verify that files were extracted
-    $extractedFiles = Get-ChildItem -Path $tempExtractionPath -Recurse
-    if ($extractedFiles.Count -eq 0) {
-        Write-Output "No files were extracted. Please check the archive."
-        Exit 1
-    } else {
-        Write-Output "Files successfully extracted to the temporary folder:"
-        $extractedFiles | ForEach-Object { Write-Output " - $($_.FullName)" }
-    }
-
-    # Move files from temporary folder to the installation path
-    Write-Output "Moving files from the temporary folder to $installationPath..."
+    # Move extracted files from the temporary folder to the installation path
+    Write-Output "Moving files from temporary folder to $installationPath..."
     Get-ChildItem -Path $tempExtractionPath -Recurse | ForEach-Object {
         $destinationPath = Join-Path -Path $installationPath -ChildPath $_.Name
 

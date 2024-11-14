@@ -62,7 +62,7 @@ function Download-File {
         Write-Output "`nDownload completed to $outputPath"
     }
     catch {
-        Write-Output "Error downloading $url: $($_)"
+        Write-Output "Error downloading $url: $($_.Exception.Message)"
         Exit 1
     }
 }

@@ -136,11 +136,12 @@ Extract-Update
 Remove-Item -Path $setupDownloadPath, $updateDownloadPath -ErrorAction SilentlyContinue
 
 # Final message
-Write-Output "========================================================"
+Write-Output "========================================================="
 Write-Output "The Timpi Collector has been successfully installed!"
+Write-Output "Start TimpiMamager go to systemtray start collector & UI:"
 Write-Output "You can now access the Timpi Collector dashboard at:"
 Write-Output "http://localhost:5001/collector"
-Write-Output "========================================================"
+Write-Output "========================================================="
 
 # Keep window open until user presses Enter
 Read-Host -Prompt "Press Enter to close this window"

@@ -101,21 +101,38 @@ function Install-Setup {
 # Extract update files and move them to installation path
 function Extract-Update {
     Write-Output "Extracting update files from $updateDownloadPath to $installationPath..."
+
+    # Check if 7-Zip is installed
     if (-not (Test-Path $sevenZipPath)) {
-        Write-Output "7-Zip is required for extraction but was not found."
+        Write-Output "7-Zip is required for extraction but was not found. Downloading and installing 7-Zip..."
+        Ensure-7ZipInstalled
+    }
+
+    # Verify that 7-Zip was successfully installed or exists
+    if (-not (Test-Path $sevenZipPath)) {
+        Write-Output "7-Zip could not be found or installed. Extraction cannot proceed."
         Exit 1
     }
 
-    Start-Process -FilePath $sevenZipPath -ArgumentList "x $updateDownloadPath -o$installationPath -y" -Wait
-    Write-Output "Update extraction completed successfully."
+    # Attempt to extract the update file using 7-Zip
+    try {
+        Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$installationPath`" -y" -Wait -NoNewWindow
+        Write-Output "Update extraction completed successfully."
+    }
+    catch {
+        Write-Output "Failed to extract the update file. Please check the update file path and ensure 7-Zip is correctly installed."
+        Exit 1
+    }
 
-    # Move files from subfolder if it exists
+    # Check and move files from the subfolder if it exists
     $subfolderPath = Join-Path -Path $installationPath -ChildPath "TimpiCollectorWindowsLatest"
     if (Test-Path $subfolderPath) {
         Write-Output "Moving files from $subfolderPath to $installationPath..."
-        Get-ChildItem -Path $subfolderPath -Recurse | Move-Item -Destination $installationPath
-        Remove-Item -Path $subfolderPath -Recurse
+        Get-ChildItem -Path $subfolderPath -Recurse | Move-Item -Destination $installationPath -Force
+        Remove-Item -Path $subfolderPath -Recurse -Force
         Write-Output "Subfolder removed successfully."
+    } else {
+        Write-Output "No subfolder found. Update extraction might not have completed correctly."
     }
 }
 
@@ -136,12 +153,11 @@ Extract-Update
 Remove-Item -Path $setupDownloadPath, $updateDownloadPath -ErrorAction SilentlyContinue
 
 # Final message
-Write-Output "========================================================="
+Write-Output "========================================================"
 Write-Output "The Timpi Collector has been successfully installed!"
-Write-Output "Start TimpiMamager go to systemtray start collector & UI:"
 Write-Output "You can now access the Timpi Collector dashboard at:"
 Write-Output "http://localhost:5001/collector"
-Write-Output "========================================================="
+Write-Output "========================================================"
 
 # Keep window open until user presses Enter
 Read-Host -Prompt "Press Enter to close this window"

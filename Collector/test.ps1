@@ -38,41 +38,43 @@ $updateDownloadPath = "$downloadsFolder\TimpiCollectorWindowsLatest.rar"
 $sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
 $tempExtractionPath = "$env:TEMP\TimpiCollectorExtract"
 
-# Function to download files with a custom inline progress display
+# Function to download files with inline progress feedback
 function Download-File {
     param (
         [string]$url,
         [string]$outputPath
     )
 
+    # Start the download and display progress
     Write-Output "Starting download from $url..."
 
-    # Initialize the .NET WebClient for download with progress updates
-    $webClient = New-Object System.Net.WebClient
+    $response = Invoke-WebRequest -Uri $url -UseBasicParsing -Method Head
+    $totalSize = [math]::Round($response.Headers['Content-Length'] / 1MB, 2) # Total size in MB for display
+    $totalBytes = $response.Headers['Content-Length'] # Total size in bytes
+
+    $webRequest = [System.Net.HttpWebRequest]::Create($url)
+    $webRequest.Method = "GET"
+    $responseStream = $webRequest.GetResponse().GetResponseStream()
+    $fileStream = [System.IO.File]::Create($outputPath)
+    $buffer = New-Object byte[] 8192 # Buffer size (8 KB)
     $totalDownloaded = 0
-    $progress = 0
+    $percentComplete = 0
 
-    # Track the download progress
-    $webClient.DownloadProgressChanged += {
-        param($sender, $e)
+    while (($read = $responseStream.Read($buffer, 0, $buffer.Length)) -gt 0) {
+        $fileStream.Write($buffer, 0, $read)
+        $totalDownloaded += $read
+        $newPercentComplete = [math]::Floor(($totalDownloaded / $totalBytes) * 100)
 
-        # Update the custom progress bar
-        $newProgress = $e.ProgressPercentage
-        if ($newProgress -ne $progress) {
-            $progress = $newProgress
-            Write-Host -NoNewline -ForegroundColor Cyan "`rDownloading: $($progress)% Complete"
+        if ($newPercentComplete -ne $percentComplete) {
+            $percentComplete = $newPercentComplete
+            # Print progress in the same line
+            Write-Host -NoNewline -ForegroundColor Cyan "`rDownloading: $percentComplete% Complete"
         }
     }
 
-    # Start the download and wait for it to complete
-    try {
-        $webClient.DownloadFile($url, $outputPath)
-        Write-Output "`nDownload completed to $outputPath"
-    }
-    catch {
-        Write-Output "Error downloading $url: $($_)"
-        Exit 1
-    }
+    $fileStream.Close()
+    $responseStream.Close()
+    Write-Output "`nDownload completed to $outputPath"
 }
 
 # Ensure 7-Zip is installed, otherwise download and install it

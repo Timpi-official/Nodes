@@ -139,5 +139,5 @@ if (Test-Path -Path $updateDownloadPath) {
 
 Write-Output "Script execution completed. Start TimpiManager.exe, right click timpi icon from system tray and Start collector and Start UI and then open up your browser and visit http://localhost:5001/."
 
-# Prompt to close the window
+# Prompt to close the windows
 Read-Host -Prompt 'Press Enter to close'

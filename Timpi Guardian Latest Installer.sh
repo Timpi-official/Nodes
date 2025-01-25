@@ -47,27 +47,25 @@ else
     echo "No Guardian storage directory to remove."
 fi
 
-$SUDO apt-get purge -y docker-ce docker-ce-cli containerd.io
-$SUDO apt-get autoremove -y
-$SUDO apt-get clean
-
-$SUDO rm -f /etc/apt/sources.list.d/docker.list
 echo -e "${GREEN}Previous Guardian Node installation removed.${NC}"
 
 # Part 2: Installation of New Guardian Node
 echo -e "${GREEN}Starting Timpi Guardian Node Installation...${NC}"
 
 $SUDO apt update && $SUDO apt install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | $SUDO gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$($SUDO dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $($SUDO lsb_release -cs) stable" | $SUDO tee /etc/apt/sources.list.d/docker.list > /dev/null
-$SUDO apt update
-$SUDO apt install -y docker-ce
-$SUDO systemctl enable docker
-$SUDO systemctl start docker
-$SUDO apt install -y default-jre
-$SUDO systemctl start docker
-$SUDO systemctl status docker --no-pager
+if ! command -v docker &> /dev/null; then
+    echo -e "${YELLOW}Docker not found. Installing Docker...${NC}"
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | $SUDO gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo "deb [arch=$($SUDO dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $($SUDO lsb_release -cs) stable" | $SUDO tee /etc/apt/sources.list.d/docker.list > /dev/null
+    $SUDO apt update
+    $SUDO apt install -y docker-ce
+    $SUDO systemctl enable docker
+    $SUDO systemctl start docker
+else
+    echo -e "${GREEN}Docker is already installed. Skipping Docker installation.${NC}"
+fi
 
+$SUDO apt install -y default-jre
 mkdir -p $GUARDIAN_STORAGE/data
 
 # Port selection
@@ -100,8 +98,8 @@ read -p "Enter your external IP or domain (This MUST match your Guardian registr
 # Run the Guardian Node Docker container
 echo -e "${GREEN}Running the Guardian Node Docker container...${NC}"
 $SUDO docker run -d --restart unless-stopped --pull=always \
-    -p $SOLR_PORT:$SOLR_PORT \
-    -p $GUARDIAN_PORT:$GUARDIAN_PORT \
+    -p $GUARDIAN_PORT:4005 \
+    -p $SOLR_PORT:8983 \
     -v $GUARDIAN_STORAGE:/var/solr \
     -e SOLR_PORT=$SOLR_PORT \
     -e GUARDIAN_PORT=$GUARDIAN_PORT \

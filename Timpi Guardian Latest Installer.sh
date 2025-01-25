@@ -65,6 +65,7 @@ $SUDO apt install -y docker-ce
 $SUDO systemctl enable docker
 $SUDO systemctl start docker
 $SUDO apt install -y default-jre
+$SUDO systemctl start docker
 $SUDO systemctl status docker --no-pager
 
 mkdir -p $GUARDIAN_STORAGE/data

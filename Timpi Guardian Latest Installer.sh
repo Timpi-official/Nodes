@@ -63,6 +63,7 @@ echo "deb [arch=$($SUDO dpkg --print-architecture) signed-by=/usr/share/keyrings
 $SUDO apt update
 $SUDO apt install -y docker-ce
 $SUDO systemctl enable docker
+$SUDO systemctl start docker
 $SUDO apt install -y default-jre
 $SUDO systemctl status docker --no-pager
 

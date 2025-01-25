@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Script Name: Timpi Guardian Latest Installer.sh
+# Description: Guardian setup script
+# Revision: 1.0.1 # Initial version of the Synaptron setup script
+# Author: [Johno]
+# Last Updated: [2025-01-25]
+
+# Changelog:
+# v1.0.0 - Initial version of the Guardian setup script
+# v1.0.1 - Added Timpi logo, changed the installation of how docker was installed, added revision and changelog.
+
 # Display Timpi ASCII Logo
 echo "================================================================"
 echo "             ████████╗██╗███╗   ███╗██████╗ ██╗"

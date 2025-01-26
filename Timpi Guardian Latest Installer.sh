@@ -35,6 +35,11 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
+# Step 1: Update and Install Essentials
+echo "=== Step 1: Updating and Installing Essentials ==="
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
 # Welcome message
 echo -e "${GREEN}Starting Timpi Guardian Node Installation and Removal Script${NC}"
 echo -e "${YELLOW}Ensure you have your GUID and external IP/Domain handy.${NC}"
@@ -78,7 +83,9 @@ $SUDO apt update && $SUDO apt install -y apt-transport-https ca-certificates cur
 if ! command -v docker &> /dev/null; then
     echo -e "${YELLOW}Docker not found. Installing Docker...${NC}"
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | $SUDO gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    
     echo "deb [arch=$($SUDO dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $($SUDO lsb_release -cs) stable" | $SUDO tee /etc/apt/sources.list.d/docker.list > /dev/null
+    
     $SUDO apt update
     $SUDO apt install -y docker-ce
     $SUDO systemctl enable docker

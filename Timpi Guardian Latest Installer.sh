@@ -127,8 +127,8 @@ read -p "Enter your external IP or domain (This MUST match your Guardian registr
 # Run the Guardian Node Docker container
 echo -e "${GREEN}Running the Guardian Node Docker container...${NC}"
 $SUDO docker run -d --restart unless-stopped --pull=always \
-    -p $GUARDIAN_PORT:4005 \
-    -p $SOLR_PORT:8983 \
+    -p $GUARDIAN_PORT:$GUARDIAN_PORT \
+    -p $SOLR_PORT:$SOLR_PORT \
     -v $GUARDIAN_STORAGE:/var/solr \
     -e SOLR_PORT=$SOLR_PORT \
     -e GUARDIAN_PORT=$GUARDIAN_PORT \
@@ -138,3 +138,4 @@ $SUDO docker run -d --restart unless-stopped --pull=always \
 
 echo -e "${GREEN}Timpi Guardian Node setup is complete.${NC}"
 echo -e "${YELLOW}Guardian Port: $GUARDIAN_PORT, Solr Port: $SOLR_PORT${NC}"
+

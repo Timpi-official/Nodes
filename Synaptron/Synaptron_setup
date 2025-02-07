@@ -4,13 +4,14 @@
 # Description: # This script installs Docker, NVIDIA Docker, and deploys the Synaptron container.
 # Revision: 1.0.0 # Initial version of the Synaptron setup script
 # Author: [Johno]
-# Last Updated: [2025-02-05]
+# Last Updated: [2025-02-07]
 
 # Changelog:
 # v1.0.0 - Initial version of the Synaptron setup script
 # v1.0.1 - Changed how docker was installed
 # v1.1.0 - Added blue crystals and minor installation proccesess
 # v1.1.1 - Removed wget and docker load, Added docker pull timpiltd/timpi-synaptron:latest, Updated docker run command use new image name.
+# v1.1.2 - Changed the logic of minimum 16 characters to to actual 16 instead of 17.
 
 # Display Timpi ASCII Logo
 echo "================================================================"
@@ -75,13 +76,18 @@ sudo docker pull timpiltd/timpi-synaptron:latest
 echo "🔹 Setting up Synaptron container..."
 while true; do 
   read -p "Enter a unique node name (min. 16 characters): " node_name
-  [ ${#node_name} -ge 16 ] && break || echo "❌ Error: Node name must be at least 16 characters. Try again."
+  if [ ${#node_name} -ge 16 ]; then
+    break
+  else
+    echo "❌ Error: Node name must be at least 16 characters. Try again."
+  fi
 done
 
 read -p "Enter your GUID: " guid
 
 echo "🔹 Running Synaptron container..."
-sudo docker run --pull always --restart always -d -e NAME="$node_name" -e GUID="$guid" --gpus all timpiltd/timpi-synaptron:latest
+sudo docker run --pull=always --restart always -d -e NAME="$node_name" -e GUID="$guid" --gpus all timpiltd/timpi-synaptron:latest
+
 
 # Step 7: Verify Installation
 echo "🔹 Verifying installation..."

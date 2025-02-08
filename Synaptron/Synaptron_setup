@@ -75,11 +75,11 @@ sudo docker pull timpiltd/timpi-synaptron:latest
 # Step 6: Set Up Node Information and Run the Synaptron Container
 echo "🔹 Setting up Synaptron container..."
 while true; do 
-  read -p "Enter a unique node name (min. 16 characters): " node_name
-  if [ ${#node_name} -ge 16 ]; then
+  read -p "Enter a unique node name (min. 17 characters): " node_name
+  if [ ${#node_name} -ge 17 ]; then
     break
   else
-    echo "❌ Error: Node name must be at least 16 characters. Try again."
+    echo "❌ Error: Node name must be at least 17 characters. Try again."
   fi
 done
 

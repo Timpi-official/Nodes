@@ -22,10 +22,6 @@ sudo apt update && sudo apt -y upgrade || handle_error
 # Create directory for Timpi
 sudo mkdir -p "$INSTALL_DIR" || handle_error
 
-# Install Unzip if not already installed
-echo "Installing unzip..."
-sudo apt install -y unzip || handle_error
-
 # Install Unrar if not already installed
 echo "Installing unrar..."
 sudo apt install -y unrar || handle_error
@@ -43,20 +39,65 @@ echo "Setting execute permissions for TimpiCollector and TimpiUI..."
 sudo chmod 755 "$INSTALL_DIR/TimpiCollector" || handle_error
 sudo chmod 755 "$INSTALL_DIR/TimpiUI" || handle_error
 
-# Install Collector service
-echo "Installing Collector service..."
-sudo mv "$INSTALL_DIR/collector.service" /etc/systemd/system/ || handle_error
-sudo mv "$INSTALL_DIR/collector_ui.service" /etc/systemd/system/ || handle_error
+# Create Collector service file if it doesn't exist
+if [ ! -f /etc/systemd/system/collector.service ]; then
+    echo "Creating collector.service..."
+    sudo bash -c 'cat > /etc/systemd/system/collector.service <<EOF
+[Unit]
+Description=Timpi Collector Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/timpi
+ExecStart=/opt/timpi/TimpiCollector
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF'
+fi
+
+# Create Collector UI service file if it doesn't exist
+if [ ! -f /etc/systemd/system/collector_ui.service ]; then
+    echo "Creating collector_ui.service..."
+    sudo bash -c 'cat > /etc/systemd/system/collector_ui.service <<EOF
+[Unit]
+Description=Timpi Collector UI Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/timpi
+ExecStart=/opt/timpi/TimpiUI
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF'
+fi
 
 # Clean up by removing the old archives
 echo "Cleaning up..."
 sudo rm -rf "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
 
-# Enable and start services
+# Reload and enable services
+echo "Reloading and enabling services..."
+sudo systemctl daemon-reload || handle_error
 sudo systemctl enable collector || handle_error
 sudo systemctl enable collector_ui || handle_error
+
+# Start services
+echo "Starting services..."
 sudo systemctl start collector || handle_error
 sudo systemctl start collector_ui || handle_error
+
+# Check status of services
+echo "Checking service statuses..."
+sudo systemctl status collector
+sudo systemctl status collector_ui
 
 echo "Installation and upgrade completed. You can now open your browser and use http://localhost:5015/collector"
 echo "NOTE: If the collector is not running, please remove the timpi.config file in $INSTALL_DIR"

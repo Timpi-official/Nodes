@@ -101,10 +101,9 @@ echo "Starting services..."
 sudo systemctl start collector || handle_error
 sudo systemctl start collector_ui || handle_error
 
-# Check status of services
-echo "Checking service statuses..."
-sudo systemctl status collector
-sudo systemctl status collector_ui
-
-echo "Installation and upgrade completed. You can now open your browser and use http://localhost:5015/collector"
+echo "Installation and upgrade completed successfully!"
+echo "You can now open your browser and use http://localhost:5015/collector"
 echo "NOTE: If the collector is not running, please remove the timpi.config file in $INSTALL_DIR"
+echo "To check service status, use:"
+echo "  sudo systemctl status collector"
+echo "  sudo systemctl status collector_ui"

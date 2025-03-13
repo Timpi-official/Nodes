@@ -31,21 +31,21 @@ $updateUrl = "https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.
 $downloadsFolder = "$env:USERPROFILE\Downloads"
 $installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"
 $updateDownloadPath = "$downloadsFolder\TimpiCollectorWindowsLatest.rar"
+$tempExtractPath = "$env:TEMP\TimpiCollectorExtract"
 $sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
 
-# Function to download files with inline progress feedback
+# Function to download files
 function Download-File {
     param (
         [string]$url,
         [string]$outputPath
     )
-
     Write-Output "Starting download from $url..."
     Invoke-WebRequest -Uri $url -OutFile $outputPath
     Write-Output "`nDownload completed to $outputPath"
 }
 
-# Ensure 7-Zip is installed, otherwise download and install it
+# Ensure 7-Zip is installed
 function Ensure-7ZipInstalled {
     if (Test-Path $sevenZipPath) {
         Write-Output "7-Zip is already installed."
@@ -62,34 +62,27 @@ function Ensure-7ZipInstalled {
 
 # Extract and move update files
 function Extract-Update {
-    Write-Output "Extracting update files to $installationPath..."
+    Write-Output "Extracting update files to temporary directory..."
 
-    # Create the installation directory if it doesn't exist
-    if (!(Test-Path -Path $installationPath)) {
-        New-Item -ItemType Directory -Path $installationPath | Out-Null
-    }
-
-    # Extract files to a temporary directory first
-    $tempExtractPath = "$env:TEMP\TimpiCollectorExtract"
+    # Clean previous extraction if it exists
     if (Test-Path $tempExtractPath) {
         Remove-Item -Path $tempExtractPath -Recurse -Force
     }
     New-Item -ItemType Directory -Path $tempExtractPath | Out-Null
 
+    # Extract to temp directory
     Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$tempExtractPath`" -y" -Wait
 
-    # Move files from the inner folder if it exists
+    # Move content from the inner folder if exists
     $innerFolderPath = Join-Path $tempExtractPath "TimpiCollectorWindowsLatest"
     if (Test-Path $innerFolderPath) {
-        Get-ChildItem -Path $innerFolderPath | Move-Item -Destination $installationPath -Force
+        Get-ChildItem -Path $innerFolderPath -Recurse | Move-Item -Destination $installationPath -Force
     } else {
-        # Move all files if there is no inner folder
-        Get-ChildItem -Path $tempExtractPath | Move-Item -Destination $installationPath -Force
+        Get-ChildItem -Path $tempExtractPath -Recurse | Move-Item -Destination $installationPath -Force
     }
 
     # Clean up temporary directory
     Remove-Item -Path $tempExtractPath -Recurse -Force
-
     Write-Output "Extraction and file move completed successfully."
 }
 

@@ -107,6 +107,6 @@ Remove-Item -Path $updateDownloadPath -ErrorAction SilentlyContinue
 Write-Output "========================================================"
 Write-Output "The Timpi Collector has been successfully installed!"
 Write-Output "You can now access the Timpi Collector dashboard at:"
-Write-Output "http://localhost:5001/collector"
+Write-Output "http://localhost:5015/collector"
 Write-Output "========================================================"
 Read-Host -Prompt "Press Enter to close this window"

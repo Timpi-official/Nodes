@@ -30,9 +30,16 @@ sudo apt install -y unrar || handle_error
 echo "Downloading the latest collector version (0.9.5)..."
 sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest.rar -O "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
 
-# Unpack The RAR Files To Timpi Directory For Upgrade, overwriting any existing files
-echo "Upgrading to the latest collector version (0.9.5)..."
-sudo unrar e -y "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" "$INSTALL_DIR" || handle_error
+# Unpack The RAR Files Directly Into /opt/timpi
+echo "Extracting collector files..."
+cd "$INSTALL_DIR" || handle_error
+sudo unrar x -y "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
+
+# Move extracted files from the subfolder to /opt/timpi if needed
+if [ -d "$INSTALL_DIR/TimpiCollectorLinuxLatest" ]; then
+    sudo mv "$INSTALL_DIR/TimpiCollectorLinuxLatest"/* "$INSTALL_DIR" || handle_error
+    sudo rm -rf "$INSTALL_DIR/TimpiCollectorLinuxLatest" || handle_error
+fi
 
 # Setting correct permissions for TimpiCollector and TimpiUI
 echo "Setting execute permissions for TimpiCollector and TimpiUI..."

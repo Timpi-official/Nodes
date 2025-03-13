@@ -1,143 +1,92 @@
-# Define paths and URLs for initial setup
-$setupUrl = "https://timpi.io/applications/windows/TimpiSetup.msi"
-$setupDownloadPath = "$env:USERPROFILE\Downloads\TimpiSetup.msi"
-$installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"  # Main installation path
-$sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe" # URL for 7-Zip installer
-$sevenZipInstallerPath = "$env:USERPROFILE\Downloads\7z2201-x64.exe"
+# Display introductory message
+Write-Output "============================================="
+Write-Output "Welcome to the Timpi Collector Installation!"
+Write-Output "============================================="
+Write-Output ""
+Write-Output "This script will set up the latest version of the Timpi Collector on your system."
+Write-Output "Timpi is dedicated to providing decentralized and high-quality data services."
+Write-Output "This script ensures you are running with administrator privileges for a smooth setup."
+Write-Output "For more information about Timpi, visit our official website at https://timpi.com."
+Write-Output "============================================="
+Write-Output ""
 
-# New update URL and paths (Latest Build)
+# Pause to ensure the user can read the introductory message
+Read-Host -Prompt "Press Enter to continue with the installation..."
+
+# Check if the script is running as admin
+function Check-AdminPrivileges {
+    if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+        Write-Output "Requesting admin privileges..."
+        Start-Process -FilePath "powershell" -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+        Exit
+    }
+}
+
+# Call the admin check function
+Check-AdminPrivileges
+
+# URLs and Paths
+$sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe"
 $updateUrl = "https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.rar"
-$updateDownloadPath = "$env:USERPROFILE\Downloads\TimpiCollectorWindowsLatest.rar"
-$updateExtractPath = "$env:USERPROFILE\Downloads\TempExtractedUpdate"
+$downloadsFolder = "$env:USERPROFILE\Downloads"
+$installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"
+$updateDownloadPath = "$downloadsFolder\TimpiCollectorWindowsLatest.rar"
+$sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
 
-# Function to download a file from a URL
+# Function to download files with inline progress feedback
 function Download-File {
     param (
         [string]$url,
         [string]$outputPath
     )
-    Write-Output "Downloading file from $url..."
-    try {
-        (New-Object System.Net.WebClient).DownloadFile($url, $outputPath)
-        Write-Output "File downloaded to $outputPath."
-    } catch {
-        Write-Output "Failed to download file from $url. $_"
-        exit
-    }
+
+    Write-Output "Starting download from $url..."
+    Invoke-WebRequest -Uri $url -OutFile $outputPath
+    Write-Output "`nDownload completed to $outputPath"
 }
 
-# Function to extract a .rar file directly into the destination path
-function Extract-RarFileDirectly {
-    param (
-        [string]$filePath,
-        [string]$destinationPath
-    )
-    $7zipPath = "C:\Program Files\7-Zip\7z.exe"
-    if (-not (Test-Path -Path $7zipPath)) {
-        Write-Output "7-Zip not found. Installing 7-Zip..."
-        Install-7Zip
+# Ensure 7-Zip is installed, otherwise download and install it
+function Ensure-7ZipInstalled {
+    if (Test-Path $sevenZipPath) {
+        Write-Output "7-Zip is already installed."
+        return
     }
-    Write-Output "Extracting files from $filePath to $destinationPath..."
-    try {
-        & "$7zipPath" x $filePath -o"$destinationPath" -y  # Extracting everything to destination
-        Write-Output "Extraction completed successfully."
-    } catch {
-        Write-Output "Failed to extract files from $filePath. $_"
-        exit
-    }
-}
 
-# Function to install 7-Zip
-function Install-7Zip {
-    Write-Output "Downloading 7-Zip installer..."
+    Write-Output "7-Zip not found. Downloading and installing 7-Zip..."
+    $sevenZipInstallerPath = "$env:TEMP\7z_installer.exe"
     Download-File -url $sevenZipUrl -outputPath $sevenZipInstallerPath
-
-    Write-Output "Installing 7-Zip..."
-    Start-Process -FilePath $sevenZipInstallerPath -ArgumentList "/S" -Wait -NoNewWindow
-
-    Write-Output "7-Zip installed successfully."
+    Start-Process -FilePath $sevenZipInstallerPath -ArgumentList "/S" -Wait
+    Remove-Item $sevenZipInstallerPath -ErrorAction SilentlyContinue
+    Write-Output "7-Zip installation completed."
 }
 
-# Check if the script is running with administrative privileges
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Output "The script is not running with administrative privileges. Restarting with elevated privileges..."
-    Start-Process powershell -Verb runAs -ArgumentList ("-NoProfile -ExecutionPolicy Bypass -File `"" + $MyInvocation.MyCommand.Path + "`"")
-    exit
+# Extract and move update files
+function Extract-Update {
+    Write-Output "Extracting update files to $installationPath..."
+
+    # Create the installation directory if it doesn't exist
+    if (!(Test-Path -Path $installationPath)) {
+        New-Item -ItemType Directory -Path $installationPath | Out-Null
+    }
+
+    # Extract files directly to the installation path
+    Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$installationPath`" -y" -Wait
+
+    Write-Output "Extraction completed successfully."
 }
 
 # Main execution
-
-# Check if 7-Zip is installed and install if necessary
-if (-not (Test-Path -Path "C:\Program Files\7-Zip\7z.exe")) {
-    Install-7Zip
-}
-
-# Download the initial setup (MSI file)
-Write-Output "Downloading the initial setup..."
-Download-File -url $setupUrl -outputPath $setupDownloadPath
-
-# Verify the download
-if (Test-Path -Path $setupDownloadPath) {
-    Write-Output "File downloaded successfully."
-
-    # Run the installer directly
-    if (Test-Path -Path $setupDownloadPath) {
-        Write-Output "Installer found: ${setupDownloadPath}"
-        Write-Output "Opening installer..."
-        Start-Process -FilePath $setupDownloadPath -Wait
-        Write-Output "Initial installation completed."
-    } else {
-        Write-Output "Installer not found at ${setupDownloadPath}."
-    }
-
-    # Clean up the MSI file if desired
-    Write-Output "Cleaning up..."
-    Remove-Item -Path $setupDownloadPath -ErrorAction SilentlyContinue
-    Write-Output "Cleanup completed."
-} else {
-    Write-Output "File download failed. ${setupDownloadPath} not found."
-}
-
-# Download and extract the Latest update
-Write-Output "Downloading the Timpi latest update..."
+Ensure-7ZipInstalled
 Download-File -url $updateUrl -outputPath $updateDownloadPath
+Extract-Update
 
-if (Test-Path -Path $updateDownloadPath) {
-    Write-Output "File downloaded successfully."
+# Cleanup downloaded files
+Remove-Item -Path $updateDownloadPath -ErrorAction SilentlyContinue
 
-    # Create extraction directory if it doesn't exist
-    if (-not (Test-Path -Path $updateExtractPath)) {
-        New-Item -ItemType Directory -Path $updateExtractPath | Out-Null
-    }
-
-    # Extract the update file into the temporary directory
-    Extract-RarFileDirectly -filePath $updateDownloadPath -destinationPath $updateExtractPath
-
-    # Check if there's a folder inside the extracted content
-    $extractedItems = Get-ChildItem -Path $updateExtractPath
-    if ($extractedItems.Count -eq 1 -and (Test-Path "$($extractedItems.FullName)\*")) {
-        Write-Output "Folder detected inside the extracted content. Moving its contents."
-        $folderPath = $extractedItems.FullName
-        Move-Item -Path "$folderPath\*" -Destination $installationPath -Force
-    } else {
-        Write-Output "No folder detected. Moving extracted files."
-        Move-Item -Path "$updateExtractPath\*" -Destination $installationPath -Force
-    }
-
-    # Log files to verify
-    Write-Output "Files in the installation directory after extraction:"
-    Get-ChildItem -Path $installationPath -Recurse | Write-Output
-
-    # Clean up the update files if desired
-    Write-Output "Cleaning up..."
-    Remove-Item -Path $updateDownloadPath -ErrorAction SilentlyContinue
-    Remove-Item -Path $updateExtractPath -Recurse -ErrorAction SilentlyContinue
-    Write-Output "Cleanup completed."
-} else {
-    Write-Output "File download failed. ${updateDownloadPath} not found."
-}
-
-Write-Output "Script execution completed. Start TimpiManager.exe, right click timpi icon from system tray and Start collector and Start UI and then open up your browser and visit http://localhost:5001/."
-
-# Prompt to close the window
-Read-Host -Prompt 'Press Enter to close'
+# Final message
+Write-Output "========================================================"
+Write-Output "The Timpi Collector has been successfully installed!"
+Write-Output "You can now access the Timpi Collector dashboard at:"
+Write-Output "http://localhost:5001/collector"
+Write-Output "========================================================"
+Read-Host -Prompt "Press Enter to close this window"

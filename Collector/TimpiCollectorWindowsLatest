@@ -69,10 +69,28 @@ function Extract-Update {
         New-Item -ItemType Directory -Path $installationPath | Out-Null
     }
 
-    # Extract files directly to the installation path
-    Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$installationPath`" -y" -Wait
+    # Extract files to a temporary directory first
+    $tempExtractPath = "$env:TEMP\TimpiCollectorExtract"
+    if (Test-Path $tempExtractPath) {
+        Remove-Item -Path $tempExtractPath -Recurse -Force
+    }
+    New-Item -ItemType Directory -Path $tempExtractPath | Out-Null
 
-    Write-Output "Extraction completed successfully."
+    Start-Process -FilePath $sevenZipPath -ArgumentList "x `"$updateDownloadPath`" -o`"$tempExtractPath`" -y" -Wait
+
+    # Move files from the inner folder if it exists
+    $innerFolderPath = Join-Path $tempExtractPath "TimpiCollectorWindowsLatest"
+    if (Test-Path $innerFolderPath) {
+        Get-ChildItem -Path $innerFolderPath | Move-Item -Destination $installationPath -Force
+    } else {
+        # Move all files if there is no inner folder
+        Get-ChildItem -Path $tempExtractPath | Move-Item -Destination $installationPath -Force
+    }
+
+    # Clean up temporary directory
+    Remove-Item -Path $tempExtractPath -Recurse -Force
+
+    Write-Output "Extraction and file move completed successfully."
 }
 
 # Main execution

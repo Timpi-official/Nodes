@@ -27,7 +27,7 @@ echo "Installing unrar..."
 sudo apt install -y unrar || handle_error
 
 # Download the latest collector version (0.9.5)
-echo "Downloading the latest collector version (0.9.5)..."
+echo "Downloading the latest collector version (0.9.5-C)..."
 sudo wget https://timpi.io/applications/linux/TimpiCollectorLinuxLatest.rar -O "$INSTALL_DIR/TimpiCollectorLinuxLatest.rar" || handle_error
 
 # Unpack The RAR Files Directly Into /opt/timpi

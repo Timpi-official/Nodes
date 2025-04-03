@@ -1,112 +1,108 @@
-# Display introductory message
-Write-Output "============================================="
-Write-Output "Welcome to the Timpi Collector Installation!"
-Write-Output "============================================="
-Write-Output ""
-Write-Output "This script will set up the latest version of the Timpi Collector on your system."
-Write-Output "Timpi is dedicated to providing decentralized and high-quality data services."
-Write-Output "This script ensures you are running with administrator privileges for a smooth setup."
-Write-Output "For more information about Timpi, visit our official website at https://timpi.com."
-Write-Output "============================================="
-Write-Output ""
+@echo off 
+SETLOCAL ENABLEDELAYEDEXPANSION
 
-# Pause to ensure the user can read the introductory message
-Read-Host -Prompt "Press Enter to continue with the installation..."
+:: ========= Intro =========
+echo =============================================
+echo       Welcome to the Timpi Collector Setup!
+echo =============================================
+echo.
+echo This script will install or update the Timpi Collector on your system.
+echo Make sure to run this script as Administrator.
+echo Learn more at: https://timpi.com
+echo =============================================
+echo.
 
-# Check if the script is running as admin
-function Check-AdminPrivileges {
-    if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-        Write-Output "Requesting admin privileges..."
-        Start-Process -FilePath "powershell" -ArgumentList "-ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
-        Exit
-    }
-}
+:: ========= Admin Check =========
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    echo ERROR: You must run this script as Administrator.
+    pause
+    exit /b
+)
 
-# Call the admin check function
-Check-AdminPrivileges
+:: ========= Variables =========
+set "INSTALLATION_PATH=C:\Program Files\Timpi Intl. LTD"
+set "DOWNLOADS_FOLDER=%USERPROFILE%\Downloads"
+set "UPDATE_URL=https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.rar"
+set "UPDATE_DOWNLOAD_PATH=%DOWNLOADS_FOLDER%\TimpiCollectorWindowsLatest.rar"
+set "TEMP_EXTRACT_PATH=%DOWNLOADS_FOLDER%\TimpiExtract"
+set "SEVENZIP_URL=https://www.7-zip.org/a/7z2201-x64.exe"
+set "SEVENZIP_PATH=C:\Program Files\7-Zip\7z.exe"
+set "TIMPI_MANAGER_PATH=%INSTALLATION_PATH%\TimpiManager.exe"
+set "SHORTCUT_PATH=%USERPROFILE%\Desktop\TimpiManager.lnk"
 
-# URLs and Paths
-$sevenZipUrl = "https://www.7-zip.org/a/7z2201-x64.exe"
-$updateUrl = "https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.rar"
-$downloadsFolder = "$env:USERPROFILE\Downloads"
-$installationPath = "C:\Program Files\Timpi Intl. LTD\TimpiCollector"
-$updateDownloadPath = "$downloadsFolder\TimpiCollectorWindowsLatest.rar"
-$sevenZipPath = "C:\Program Files\7-Zip\7z.exe"
+:: ========= Create Install Folder =========
+if not exist "%INSTALLATION_PATH%" (
+    echo Creating installation directory...
+    mkdir "%INSTALLATION_PATH%"
+)
 
-# Function to download files with inline progress feedback
-function Download-File {
-    param (
-        [string]$url,
-        [string]$outputPath
-    )
+:: ========= Install 7-Zip if missing =========
+if not exist "%SEVENZIP_PATH%" (
+    echo 7-Zip not found. Downloading...
+    powershell -Command "& {Invoke-WebRequest '%SEVENZIP_URL%' -OutFile '%DOWNLOADS_FOLDER%\7z_installer.exe'}"
+    echo Installing 7-Zip...
+    start /wait "" "%DOWNLOADS_FOLDER%\7z_installer.exe" /S
+    del "%DOWNLOADS_FOLDER%\7z_installer.exe"
+    echo 7-Zip installed successfully.
+) else (
+    echo 7-Zip is already installed.
+)
 
-    Write-Output "Starting download from $url..."
-    Invoke-WebRequest -Uri $url -OutFile $outputPath
-    Write-Output "`nDownload completed to $outputPath"
-}
+:: ========= Download Timpi Collector =========
+echo Downloading Latest Collector...
+powershell -Command "& {Invoke-WebRequest '%UPDATE_URL%' -OutFile '%UPDATE_DOWNLOAD_PATH%'}"
 
-# Ensure 7-Zip is installed, otherwise download and install it
-function Ensure-7ZipInstalled {
-    if (Test-Path $sevenZipPath) {
-        Write-Output "7-Zip is already installed."
-        return
-    }
+:: ========= Extract Files =========
+echo Extracting files...
+if exist "%TEMP_EXTRACT_PATH%" rd /s /q "%TEMP_EXTRACT_PATH%"
+mkdir "%TEMP_EXTRACT_PATH%"
+"%SEVENZIP_PATH%" x "%UPDATE_DOWNLOAD_PATH%" -o"%TEMP_EXTRACT_PATH%" -y
+del "%UPDATE_DOWNLOAD_PATH%"
+echo Extraction complete.
 
-    Write-Output "7-Zip not found. Downloading and installing 7-Zip..."
-    $sevenZipInstallerPath = "$env:TEMP\7z_installer.exe"
-    Download-File -url $sevenZipUrl -outputPath $sevenZipInstallerPath
-    Start-Process -FilePath $sevenZipInstallerPath -ArgumentList "/S" -Wait
-    Remove-Item $sevenZipInstallerPath -ErrorAction SilentlyContinue
-    Write-Output "7-Zip installation completed."
-}
+:: ========= Move Files =========
+echo Moving extracted files to install directory...
+xcopy /E /Y /C /H /R "%TEMP_EXTRACT_PATH%\*" "%INSTALLATION_PATH%\" >nul
+rd /s /q "%TEMP_EXTRACT_PATH%"
+echo Files moved.
 
-# Extract and move update files
-function Extract-Update {
-    Write-Output "Extracting update files to $installationPath..."
+:: ========= Set Permissions =========
+echo Setting full permissions...
+icacls "%INSTALLATION_PATH%" /grant Everyone:F /T /C /Q
 
-    # Create the installation directory if it doesn't exist
-    if (!(Test-Path -Path $installationPath)) {
-        New-Item -ItemType Directory -Path $installationPath | Out-Null
-    }
+:: ========= Remove Old Timpi Manager Service =========
+echo Removing Timpi Manager service if it exists...
+sc stop "TimpiManager" >nul 2>&1
+sc delete "TimpiManager" >nul 2>&1
 
-    # Extract files to a temporary directory first
-    $tempExtractPath = "$env:TEMP\TimpiCollectorExtract"
-    if (Test-Path $tempExtractPath) {
-        Remove-Item -Path $tempExtractPath -Recurse -Force
-    }
-    New-Item -ItemType Directory -Path $tempExtractPath | Out-Null
+:: ========= Create Timpi Collector Service =========
+echo Installing Timpi Collector service...
+sc stop "Timpi Collector" >nul 2>&1
+sc delete "Timpi Collector" >nul 2>&1
+sc create "Timpi Collector" binPath= "\"C:\Program Files\Timpi Intl. LTD\TimpiService.exe\"" start= auto obj= "LocalSystem"
+sc failure "Timpi Collector" reset= 0 actions= restart/60000
+echo Timpi Collector service created successfully.
 
-    # Properly quote paths for 7-Zip
-    Start-Process -FilePath "`"$sevenZipPath`"" -ArgumentList "x `"$updateDownloadPath`" -o`"$tempExtractPath`" -y" -Wait
+:: ========= Start Timpi Collector Service =========
+echo Starting Timpi Collector service...
+net start "Timpi Collector"
+if %ERRORLEVEL% NEQ 0 (
+    echo ERROR: Could not start the service. You may start it manually via services.msc.
+    pause
+    exit /b
+)
 
-    # Move files from the extracted directory
-    if (Test-Path "$tempExtractPath\TimpiCollectorWindowsLatest") {
-        Get-ChildItem -Path "$tempExtractPath\TimpiCollectorWindowsLatest" | Move-Item -Destination $installationPath -Force
-    } elseif (Test-Path $tempExtractPath) {
-        Get-ChildItem -Path $tempExtractPath | Move-Item -Destination $installationPath -Force
-    } else {
-        Write-Output "Extraction failed. Trying PowerShell's Expand-Archive..."
-        Expand-Archive -LiteralPath $updateDownloadPath -DestinationPath $installationPath -Force
-    }
+:: ========= Create Desktop Shortcut =========
+echo Creating shortcut for TimpiManager.exe on Desktop...
+powershell -Command "$WshShell = New-Object -ComObject WScript.Shell; $Shortcut = $WshShell.CreateShortcut('%SHORTCUT_PATH%'); $Shortcut.TargetPath = '%TIMPI_MANAGER_PATH%'; $Shortcut.WorkingDirectory = '%INSTALLATION_PATH%'; $Shortcut.IconLocation = '%TIMPI_MANAGER_PATH%'; $Shortcut.Save()"
+echo Shortcut created successfully!
 
-    # Clean up temporary directory
-    Remove-Item -Path $tempExtractPath -Recurse -Force
-
-    Write-Output "Extraction and file move completed successfully."
-}
-
-# Main execution
-Ensure-7ZipInstalled
-Download-File -url $updateUrl -outputPath $updateDownloadPath
-Extract-Update
-
-# Cleanup downloaded files
-Remove-Item -Path $updateDownloadPath -ErrorAction SilentlyContinue
-
-# Final message
-Write-Output "========================================================"
-Write-Output "The Timpi Collector has been successfully installed!"
-Write-Output "You can now access the Timpi Collector dashboard at:"
-Write-Output "http://localhost:5015/collector"
-Write-Output "========================================================"
-Read-Host -Prompt "Press Enter to close this window"
+:: ========= Done =========
+echo =============================================
+echo Timpi Collector has been successfully installed!
+echo Dashboard: http://localhost:5015/collector
+echo Shortcut for TimpiManager.exe has been created on your Desktop!
+echo =============================================
+pause
+exit

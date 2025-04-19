@@ -1,7 +1,7 @@
 # Here you will find all the different Linux and Windows versions for the collector. 
 We will also include installation scripts / instructions.
 
-# Linux
+# Linux Ubuntu +22.04.4 LTS
 
 0.9.5
 https://timpi.io/applications/linux/TimpiCollectorLinuxLatest.rar
@@ -46,7 +46,7 @@ sudo systemctl stop collector collector_ui || true; sudo systemctl disable colle
 ```
 
 
-# Windows
+# Windows 10/11
 
 0.9.5
 https://timpi.io/applications/windows/TimpiCollectorWindowsLatest.rar

@@ -1,14 +1,21 @@
 #!/bin/bash
 set -e
 
-TOTAL_CPUS=$(nproc)
+# Detect physical CPU cores
+TOTAL_CPUS=$(lscpu | awk '/^Core\(s\) per socket:/ {cores=$4} /^Socket\(s\):/ {sockets=$2} END {print cores * sockets}')
+# Detect total threads for reference
+TOTAL_THREADS=$(nproc)
+
+# Detect total memory in GB
 TOTAL_MEM_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 TOTAL_MEM_GB=$((TOTAL_MEM_KB / 1024 / 1024))
+
+# Set sensible defaults
 DEFAULT_CPU=$(( TOTAL_CPUS >= 4 ? 4 : TOTAL_CPUS ))
 DEFAULT_MEM=$(( TOTAL_MEM_GB >= 8 ? 8 : TOTAL_MEM_GB ))
 DEFAULT_SWAP=$DEFAULT_MEM
 
-echo "🧠 Detected: ${TOTAL_CPUS} CPU cores, ${TOTAL_MEM_GB} GB RAM"
+echo "🧠 Detected: ${TOTAL_CPUS} physical CPU cores (${TOTAL_THREADS} threads), ${TOTAL_MEM_GB} GB RAM"
 echo "💡 Default: ${DEFAULT_CPU} CPUs, ${DEFAULT_MEM}g RAM, ${DEFAULT_SWAP}g Swap"
 
 read -p "🛠️  CPUs to allocate? [default: ${DEFAULT_CPU}]: " CPU_INPUT

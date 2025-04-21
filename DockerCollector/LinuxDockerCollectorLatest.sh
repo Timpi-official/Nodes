@@ -10,10 +10,10 @@ TOTAL_THREADS=$(nproc)
 TOTAL_MEM_KB=$(grep MemTotal /proc/meminfo | awk '{print $2}')
 TOTAL_MEM_GB=$((TOTAL_MEM_KB / 1024 / 1024))
 
-# Set sensible defaults
-DEFAULT_CPU=$(( TOTAL_CPUS >= 4 ? 4 : TOTAL_CPUS ))
-DEFAULT_MEM=$(( TOTAL_MEM_GB >= 8 ? 8 : TOTAL_MEM_GB ))
-DEFAULT_SWAP=$DEFAULT_MEM
+# Fixed displayed defaults (not dynamic)
+DEFAULT_CPU=2
+DEFAULT_MEM=2
+DEFAULT_SWAP=4
 
 echo "🧠 Detected: ${TOTAL_CPUS} physical CPU cores (${TOTAL_THREADS} threads), ${TOTAL_MEM_GB} GB RAM"
 echo "💡 Default: ${DEFAULT_CPU} CPUs, ${DEFAULT_MEM}g RAM, ${DEFAULT_SWAP}g Swap"

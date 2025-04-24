@@ -28,7 +28,7 @@ SWAP_LIMIT="${SWAP_INPUT:-$DEFAULT_SWAP}g"
 
 echo "🚀 Launching container with your settings..."
 
-docker run -d \
+sudo docker run -d \
   --name timpi_collector \
   --restart unless-stopped \
   --net=host \

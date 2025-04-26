@@ -26,8 +26,8 @@ done
 LOCATION="$COUNTRY/$CITY"
 echo -e "\n✅ Location set to: $LOCATION"
 
-# Ensure the solrdocker directory exists
-mkdir -p ${HOME}/var/solrdocker
+# Ensure the volume directory exists
+sudo mkdir -p /var/solrdocker
 
 # Run the Docker container
 echo -e "\n🚀 Starting Timpi Guardian container..."
@@ -35,7 +35,7 @@ sudo docker run -d --pull=always --restart unless-stopped \
   --dns=100.42.180.116 --dns=212.28.186.105 --dns=8.8.8.8 \
   -p ${SOLR_PORT}:${SOLR_PORT} \
   -p ${GUARDIAN_PORT}:${GUARDIAN_PORT} \
-  -v ${HOME}/var/solrdocker:/var/solr \
+  -v /var/solrdocker:/var/solr \
   -e SOLR_PORT=${SOLR_PORT} \
   -e GUARDIAN_PORT=${GUARDIAN_PORT} \
   -e GUID="${GUID}" \

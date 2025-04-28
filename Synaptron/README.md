@@ -155,7 +155,9 @@ This guide will walk you through installing and setting up Synaptron on Windows,
 
 ### :pencil: Register Your Node:
 :one: Go to the [Timpi Node Management Page](https://timpi.com/node/management)
+
 :two: Connect your wallet and find your Node GUID
+
 :three: Use this GUID to register your Synaptron node in the application
 
 ### :mag: Troubleshooting & FAQ:

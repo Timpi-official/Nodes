@@ -1,8 +1,6 @@
 # 🧠 Timpi Nodes – All Node Types & Installers
 
 ![Last Commit](https://img.shields.io/github/last-commit/Timpi-official/Nodes)
-![Repo Size](https://img.shields.io/github/repo-size/Timpi-official/Nodes)
-![License](https://img.shields.io/github/license/Timpi-official/Nodes)
 
 Welcome to the official repository for **Timpi Node installations**.  
 Here you'll find everything you need to run Timpi’s decentralized infrastructure – from lightweight collectors to powerful AI-powered Synaptrons.

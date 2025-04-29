@@ -15,13 +15,13 @@ We provide:
 ## 🗂 Node Types
 
 1. 🔄 [Collector](https://github.com/Timpi-official/Nodes/tree/main/Collector)  
-   Collect and process decentralized search data.
+   Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
 
 2. 🛡️ [Guardian](https://github.com/Timpi-official/Nodes/tree/main/Guardian)  
-   Secure and support the integrity of the Timpi network.
+   Guardians are distributed storage nodes that archive the web, safeguarding data collected by Collectors. Guardians ensure data privacy and security without needing a static IP address or open ports.
 
 3. 🧬 [Synaptron](https://github.com/Timpi-official/Nodes/tree/main/Synaptron)  
-   High-performance AI node for advanced search intelligence.
+   At the forefront of AI advancement is the Synaptron node. This revolutionary architecture facilitates rapid information exchange, enabling AI models to learn, adapt, and generate responses with remarkable agility.
 
 ---
 

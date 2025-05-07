@@ -27,7 +27,7 @@ LOCATION="$COUNTRY/$CITY"
 echo -e "\n✅ Location set to: $LOCATION"
 
 # Ensure the solrdocker directory exists
-mkdir -p ${HOME}/var/solrdocker
+sudo mkdir -p ${HOME}/var/solrdocker
 
 # Run the Docker container
 echo -e "\n🚀 Starting Timpi Guardian container..."

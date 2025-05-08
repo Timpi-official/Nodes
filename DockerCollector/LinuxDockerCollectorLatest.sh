@@ -38,4 +38,4 @@ sudo docker run -d \
   --memory="${MEMORY_LIMIT}" \
   --memory-swap="${SWAP_LIMIT}" \
   -v /etc/localtime:/etc/localtime:ro \
-  johnolofs/timpi-collector:latest
+  timpiltd/timpi-collector:latest

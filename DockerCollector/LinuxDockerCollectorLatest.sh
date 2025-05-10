@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+# Install jq if not present
+if ! command -v jq &> /dev/null; then
+  echo "🔧 jq is not installed. Installing..."
+  sudo apt update && sudo apt install -y jq
+else
+  echo "✅ jq is already installed."
+fi
+
 # Detect physical CPU cores
 TOTAL_CPUS=$(lscpu | awk '/^Core\(s\) per socket:/ {cores=$4} /^Socket\(s\):/ {sockets=$2} END {print cores * sockets}')
 # Detect total threads for reference

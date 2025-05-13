@@ -45,3 +45,5 @@ powershell -Command "Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/T
 6. **📊 Open the Timpi Dashboard**  
    - Double-click the **Desktop Shortcut** to launch `TimpiManager.exe`.  
    - Visit the dashboard at: **http://localhost:5015/collector**
+   - Go to settings and paste your wallet addresss
+   - Can take up to 15 minutes before getting Key:  **Available**

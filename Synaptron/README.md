@@ -1,4 +1,4 @@
-# 🧬 Timpi Nodes – Synaptron Installers for Linux & Windows
+# 🧬 Timpi – Synaptron Installers for Linux & Windows
 
 Welcome to the official repository for **Timpi Synaptron installations**.  
 Here you'll find everything you need to run your Timpi Synaptron node on **Linux** or **Windows**, including setup instructions and system requirements.

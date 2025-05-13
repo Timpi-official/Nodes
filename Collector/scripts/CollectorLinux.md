@@ -1,6 +1,6 @@
 *Only Support for Ubuntu +22.04.4 LTS*
 
-# Here you will find all the different Linux versions for the collector. 
+# Here you will find all the latest Linux version for the collector. 
 We will also include installation scripts / instructions.
 
 # Linux Ubuntu +22.04.4 LTS

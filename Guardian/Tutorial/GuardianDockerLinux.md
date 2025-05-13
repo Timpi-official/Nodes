@@ -3,10 +3,13 @@
 ## :wastebasket: Remove Previous Guardian container before running anything below :warning: 
 Here's a brief text to include at the start:
 
-Before proceeding, ensure you remove the previous Guardian container to prevent conflicts:
+Before proceeding, ensure you remove the previous Guardian container & image to prevent conflicts:
 
 ```shell
 sudo docker rm -f $(sudo docker ps -aq --filter "ancestor=timpiltd/timpi-guardian")
+```
+```shell
+sudo docker rmi -f $(sudo docker images timpiltd/timpi-guardian -q)
 ```
 
 

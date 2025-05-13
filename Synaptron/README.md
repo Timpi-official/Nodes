@@ -1,3 +1,5 @@
+*Only Support · For Native Ubuntu +22.04.4 LTS*
+
 ---
 # Linux Synaptron
 ### :small_blue_diamond: How to Use the Automated Synaptron Installation Script tested on Ubuntu 22.04 LTS.

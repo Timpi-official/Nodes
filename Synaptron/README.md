@@ -1,3 +1,4 @@
+---
 # Linux Synaptron
 ### :small_blue_diamond: How to Use the Automated Synaptron Installation Script tested on Ubuntu 22.04 LTS.
 
@@ -141,9 +142,9 @@ You should see a running container.
 [Click Here](https://www.youtube.com/watch?v=nhfq0PAm_BE&t=6s)
 
 
-
+---
 # Windows Synaptron
-
+---
 ### :rocket: Synaptron Windows 10/11 Installation Guide :desktop:
 
 This guide will walk you through installing and setting up Synaptron on Windows, step by step. It includes downloading the required files, installing Synaptron, registering your node, and troubleshooting any issues.

@@ -1,6 +1,6 @@
 *Only Support · For Native Ubuntu +22.04.4 LTS*
 
-## :wastebasket: Remove Previous Guardian container before running anything below :warning: 
+## :wastebasket: Remove Previous Guardian container & image before running anything below :warning: 
 Here's a brief text to include at the start:
 
 Before proceeding, ensure you remove the previous Guardian container & image to prevent conflicts:

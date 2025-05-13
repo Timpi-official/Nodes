@@ -31,5 +31,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
-Have an improvement or a fix? Pull requests are welcome!  
-For major changes, please open an issue first to discuss what you’d like to change.
+Have a fix or idea for improvement? Pull requests are welcome!  
+For larger changes, please [open an issue](https://discord.com/channels/946982023245992006/1179427377844068493) to discuss it with us first.

@@ -8,7 +8,7 @@ We will also include installation scripts / instructions.
 
 https://timpi.io/applications/linux/TimpiCollectorLinuxLatest.rar
 
-Setup the Timpi Collector on your Linux system with this one-command installation. This  install version 0.9.5-C of the Collector and then automatically upgrade it, overwriting any previous files.
+### Setup the Timpi Collector on your Linux system with this one-command installation. This  install version 0.9.5-C of the Collector and then automatically upgrade it, overwriting any previous files.
 
 **Command to run:**
 ```shell

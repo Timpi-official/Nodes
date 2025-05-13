@@ -42,4 +42,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## 🤝 Contributing
 
 Have a fix or idea for improvement? Pull requests are welcome!  
-For larger changes, please [open an issue]([https://github.com/Timpi-official/Nodes/issues](https://discord.com/channels/946982023245992006/1179427377844068493) to discuss it with us first.
+For larger changes, please [open an issue](https://discord.com/channels/946982023245992006/1179427377844068493) to discuss it with us first.

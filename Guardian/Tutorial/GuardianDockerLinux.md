@@ -88,7 +88,7 @@ sudo mkdir -p ${HOME}/var/solrdocker
 Use the following Docker command to run your Guardian node:
 
 ```shell
-sudo docker run --pull=always --restart unless-stopped --dns=100.42.180.116 --dns=212.28.186.105 --dns=8.8.8.8 -d -p [SOLR_PORT]:[SOLR_PORT] -p [GUARDIAN_PORT]:[GUARDIAN_PORT] -v ${HOME}/var/solrdocker:/var/solr -e SOLR_PORT=[SOLR_PORT] -e GUARDIAN_PORT=[GUARDIAN_PORT] -e GUID=[YOUR_GUID] -e LOCATION="[COUNTRY]/[CITY]" timpiltd/timpi-guardian:latest
+sudo docker run --pull=always --restart unless-stopped --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 -d -p [SOLR_PORT]:[SOLR_PORT] -p [GUARDIAN_PORT]:[GUARDIAN_PORT] -v ${HOME}/var/solrdocker:/var/solr -e SOLR_PORT=[SOLR_PORT] -e GUARDIAN_PORT=[GUARDIAN_PORT] -e GUID=[YOUR_GUID] -e LOCATION="[COUNTRY]/[CITY]" timpiltd/timpi-guardian:latest
 ```
 
 ### :brain: Explanation of Each Part
@@ -112,7 +112,7 @@ You can use any available ports on your system.
 
 **Example using custom ports:**
 ```shell
-sudo docker run --pull=always --restart unless-stopped --dns=100.42.180.116 --dns=212.28.186.105 --dns=8.8.8.8 -d -p 9090:9090 -p 5000:5000 -v ${HOME}/var/solrdocker:/var/solr -e SOLR_PORT=9090 -e GUARDIAN_PORT=5000 -e GUID=your-guid-here -e LOCATION="Sweden/Stockholm" timpiltd/timpi-guardian:latest
+sudo docker run --pull=always --restart unless-stopped --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 -d -p 9090:9090 -p 5000:5000 -v ${HOME}/var/solrdocker:/var/solr -e SOLR_PORT=9090 -e GUARDIAN_PORT=5000 -e GUID=your-guid-here -e LOCATION="Sweden/Stockholm" timpiltd/timpi-guardian:latest
 ```
 
 > :brain: **Note**: Both the `-p` and `-e` variables must match your chosen ports.

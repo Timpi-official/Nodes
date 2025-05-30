@@ -39,7 +39,7 @@ Timpi also supports Docker for advanced users who want an isolated container set
 Docker setups are ideal for multi-node environments or headless installations.
 
 * 🐧 **[Linux Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**
-  Clean, containerized version for Ubuntu and.
+  Clean, containerized version for Ubuntu.
 
 * 🪟 ** COMING SOON - [Windows Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/WindowsDockerCollectorLatest.md)**
   Works with Docker Desktop on Windows 10/11.

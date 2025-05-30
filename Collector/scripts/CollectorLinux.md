@@ -31,9 +31,13 @@ sudo systemctl stop collector; sudo rm -f /opt/timpi/timpi.config; sudo systemct
 ```
 
 **Here's what happens:**
-1. **Prepares your system**: Installs `dos2unix` to ensure script compatibility.
-2. **Downloads and runs the setup script**: Fetches the latest setup script and executes it to install and configure the Timpi Collector.
-3. **Automatic upgrade**: Upgrades the installation to version 0.9.5-F, seamlessly overwriting previous installation files to ensure you're up-to-date.
+
+1. **Prepares your system**: Installs `dos2unix` and essential tools to ensure smooth script execution.
+2. **Downloads and runs the setup script**: Retrieves the latest installer and executes it to install and configure the Timpi Collector.
+3. **Performs a safe upgrade**: Stops any running collector, removes old files (if confirmed), and installs version **0.9.5-F** with correct permissions.
+4. **Applies memory limits**: Prompts you to set RAM usage, helping prevent overloads and improve stability — especially if you're running other Timpi services.
+5. **Registers and starts system services**: Automatically creates systemd services for the Collector and UI, enables them to start on boot, and launches both immediately.
+
 
 **After installation:**
 - Open your browser and visit http://localhost:5015/collector to access the Timpi Collector interface.

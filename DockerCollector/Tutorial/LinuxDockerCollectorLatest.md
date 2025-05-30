@@ -222,7 +222,7 @@ sudo docker exec -it timpi_collector vim /opt/timpi/CollectorSettings.json
 
 ```json
 {
-"LogLevel": "Verbose"
+"LogLevel": "Debug"
 }
 ```
 

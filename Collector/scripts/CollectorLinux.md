@@ -1,5 +1,23 @@
 *Only Support for Ubuntu +22.04.4 LTS*
 
+---
+
+## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.9.5-F
+
+**Timpi Collector v0.9.5-F** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
+
+> ⚠️ If you set worker/thread values too high, **your Collector can consume 100% of your internet bandwidth** — potentially choking your entire connection and affecting other nodes or services (e.g., Guardian, Validator, Synaptron).
+
+To help keep systems stable, the installer now includes **resource limits** such as memory usage caps. This gives the Collector more container-like behavior and protects your system from overload — especially useful on shared or home setups.
+
+**Be cautious** and adjust settings slowly starting with **1 Worker & 5 Threads** using the dashboard at:
+
+```
+http://localhost:5015/collector
+```
+
+---
+
 ### Setup the Timpi Collector on your Linux system with this one-command installation. This install version 0.9.5-F of the Collector and then automatically upgrade it, overwriting any previous files.
 
 **Quick Installation Command For The Latest Collector:**

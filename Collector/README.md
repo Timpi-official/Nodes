@@ -33,6 +33,19 @@ Includes a PowerShell one-liner for automated setup or a `.bat` file for manual 
 
 ---
 
+## 🐳 Docker-Based Collectors
+
+Timpi also supports Docker for advanced users who want an isolated container setup.
+Docker setups are ideal for multi-node environments or headless installations.
+
+* 🐧 **[Linux Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**
+  Clean, containerized version for Ubuntu and other Linux distributions.
+
+* 🪟 ** COMING SOON - [Windows Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/WindowsDockerCollectorLatest.md)**
+  Works with Docker Desktop on Windows 10/11.
+
+  ---
+
 ## 📜 License
 
 This project is licensed under the [MIT License](LICENSE).

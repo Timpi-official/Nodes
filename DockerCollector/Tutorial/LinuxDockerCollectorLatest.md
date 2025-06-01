@@ -1,4 +1,4 @@
-### **Only Support · For Native Ubuntu +22.04.4 LTS**
+*Only Support · For Native Ubuntu +22.04.4 LTS*
 
 
 ### :rocket: **Quick Start (if Docker is already installed)**

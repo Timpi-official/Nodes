@@ -144,7 +144,7 @@ sudo docker stats timpi_collector
 sudo docker pull timpiltd/timpi-collector:latest
 ```
 
-## :tools: **Inside the Container: Important Commands**
+## 🛠️ **Inside the Container: Important Commands**
 
 Before accessing the container, install essential tools:
 
@@ -180,7 +180,7 @@ tail -f /opt/timpi/TimpiCollectorLogs.log
 
 ## :fire: **Advanced Commands (Optional, for Advanced Users Only)**
 
-### :tools: **View Collector Data Every 2 Seconds with jq:**
+### 🛠️ **View Collector Data Every 2 Seconds with jq:**
 
 If `jq` is not installed, run:
 
@@ -194,7 +194,7 @@ Then, monitor key data:
 sudo watch -n 2 'docker exec timpi_collector cat /opt/timpi/UIData.txt | jq -r "\"Collected/sec: \(.CollectedPerSec) | Avg/5min: \(.AvgCollectedOverFiveMin) | URLs Done: \(.CurrentURLsDone) | Core Active: \(.CoreActive)\""'
 ```
 
-### :tools: **View Logs with More Detail:**
+### 🛠️ **View Logs with More Detail:**
 
 * To view the latest logs every 5 seconds:
 
@@ -229,7 +229,7 @@ sudo docker exec -it timpi_collector vim /opt/timpi/CollectorSettings.json
 * **No restart is required.**
 * If the container is restarted, it will reset to `Error`.
 
-### :tools: **Update Wallet Key:**
+### 🛠️ **Update Wallet Key:**
 
 To update your wallet key, open the `timpi.config` file:
 

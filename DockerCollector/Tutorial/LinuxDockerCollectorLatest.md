@@ -39,6 +39,87 @@ You will be asked:
 
 **Recommended:** Use max 75–80% of total available resources.
 
+
+---
+
+## 🧱 Want to Run More Than One Collector?
+
+> 🧠 You can run **multiple collectors** on the same machine using Docker – each one with its own **unique name and web port**.
+> You **don’t need to change any internal config** like `appsettings.json`.
+
+---
+
+### 🧩 Step-by-Step to Run More Collectors
+
+Let’s say you already have your first one running on port **5015**.
+
+#### 🚀 To start another one on port **5016**:
+
+```shell
+sudo docker run -d \
+  --name timpi_collector_5016 \
+  --restart unless-stopped \
+  --ulimit nofile=65536:65536 \
+  --cpus="2" \
+  --memory="2g" \
+  --memory-swap="4g" \
+  -p 5016:5015 \
+  -v /etc/localtime:/etc/localtime:ro \
+  timpiltd/timpi-collector:latest
+```
+
+📌 Now access it in your browser:
+**http\://<your-server-ip>:5016**
+
+✅ Repeat with any port:
+
+```shell
+-p 5017:5015 --name timpi_collector_5017
+```
+
+Each collector still uses **port 5015 inside the container**, but Docker maps it to a new **external port**.
+
+---
+
+> ⚠️ **Note about multiple collectors**  
+> The `Quick Start` script (`setup_timpi.sh`) is only for setting up your **first collector**.  
+> To run more collectors on the same machine, you need to use the manual `sudo docker run` command shown above — using **unique names** and **different external ports** like `5016`, `5017`, etc.  
+>  
+> 📌 **Don’t re-run the Quick Start script for additional collectors.**
+
+> 💡 **Customize Your Resource Limits (Optional)**  
+> You can increase the values for `--cpus`, `--memory`, and `--memory-swap` depending on your system.  
+> For example: `--cpus="3"` or `--memory="4g"` are valid.  
+>  
+> ⚠️ **Minimum required values**:
+> - `--cpus="2"`
+> - `--memory="2g"`
+> - `--memory-swap="4g"` (recommended if you’re near your RAM limit)  
+>  
+> Just make sure **not to use more than 75–80%** of your total system resources to keep your server stable.
+
+
+---
+
+### ⚠️ Important Tips
+
+* Always pick a **unique container name** (e.g., `timpi_collector_5016`, `timpi_collector_5017`)
+* Always map to a **new external port**
+* Don't touch `appsettings.json` — leave it at `"http_port": "5015"`
+
+---
+
+### 🛠 Example: 3 Collectors on One Machine
+
+| Name                   | Docker Command | Access UI at                                   |
+| ---------------------- | -------------- | ---------------------------------------------- |
+| timpi\_collector       | `-p 5015:5015` | [http://localhost:5015](http://localhost:5015) |
+| timpi\_collector\_5016 | `-p 5016:5015` | [http://localhost:5016](http://localhost:5016) |
+| timpi\_collector\_5017 | `-p 5017:5015` | [http://localhost:5017](http://localhost:5017) |
+
+---
+
+
 ### :exclamation: **Don't have Docker installed yet?**
 
 Run these commands first:

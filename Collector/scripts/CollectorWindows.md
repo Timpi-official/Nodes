@@ -54,7 +54,7 @@ Right-click the tray icon to:
 
 * ▶️ Start or Stop the **Collector**
 * 🌐 Start or Close the **UI**
-* ⚙️ Access Settings or Exit
+* ⚙️ Exit
 
 ---
 

@@ -48,7 +48,7 @@
 ### 🔹 4. Start the Collector
 
 * Double-click the Desktop icon: **TimpiManager**
-* You’ll see a small **blue Timpi icon** appear in the system tray (next to the clock)
+* You’ll see a small **Red Timpi icon** appear in the system tray (next to the clock)
 
 Right-click the tray icon to:
 

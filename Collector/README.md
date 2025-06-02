@@ -29,7 +29,7 @@ Supports one-command install and automatic upgrades to the latest version (curre
 ## 🪟 Windows Collector (Windows 10/11)
 
 👉 **[Collector Windows Guide & Installer](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorWindows.md)**  
-Includes a clean .exe installer for a native Windows setup with full system integration
+Includes a clean .exe installer for a native Windows setup with full system integration (currently `0.9.5-G`).
 
 ---
 

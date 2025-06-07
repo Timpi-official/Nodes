@@ -157,9 +157,10 @@ If successful, you will see:
 
 > **Hello from Docker!**
 
-📸 Expected output:
+📸 Expected output: *Hello from Docker!*
 
-*Hello from Docker*
+![image](https://github.com/user-attachments/assets/62aeca8f-fe3f-44c4-83e4-19920cc3ba66)
+
 
 ---
 

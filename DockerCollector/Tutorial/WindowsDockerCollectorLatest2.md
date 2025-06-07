@@ -122,7 +122,7 @@ Windows users **must log in to Docker Hub** via CLI or GUI.
 
    * Or create one: [https://hub.docker.com/signup](https://hub.docker.com/signup)
 
-### 🧭 Method B: Login via PowerShell (RECOMMENDED)
+### 🧭 Method B: Login via PowerShell (Required)
 
 ```powershell
 docker login

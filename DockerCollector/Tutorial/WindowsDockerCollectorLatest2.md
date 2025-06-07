@@ -129,7 +129,7 @@ To correctly save `.wslconfig`, ensure Windows shows file extensions:
 
 ## ✅ Step 6: Log In to Docker Hub (Required)
 
-Windows users **must log in to Docker Hub** via CLI or GUI.
+Windows users **must log in to Docker Hub** via CLI **and** GUI.
 
 ### 🧭 Method A: Login via Docker Desktop (GUI)
 

@@ -118,7 +118,7 @@ To correctly save `.wslconfig`, ensure Windows shows file extensions:
 3. Save as:
 
    ```
-   C:\Users\<YourUsername>\.wslconfig
+   C:\Users\YourUsername\.wslconfig
    ```
 
    ⚠️ It must be named exactly `.wslconfig` (with no `.txt` at the end).
@@ -135,7 +135,7 @@ Windows users **must log in to Docker Hub** via CLI or GUI.
 
 1. Open Docker Desktop
 2. Click your profile icon (top-right)
-3. Sign in with your Docker Hub account
+3. Sign in with your Docker Hub account ( Verification from email - Confirm)
 
    * Or create one: [https://hub.docker.com/signup](https://hub.docker.com/signup)
 

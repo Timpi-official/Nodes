@@ -4,6 +4,23 @@
 
 ---
 
+### 🧪 Optional Pre-check: See if Virtualization is Already Enabled
+
+Before entering BIOS, check if virtualization is already enabled:
+
+1. Press `Ctrl + Shift + Esc` to open Task Manager
+2. Go to the **Performance > CPU** tab
+3. Look for:
+
+```
+Virtualization: Enabled
+```
+![image](https://github.com/user-attachments/assets/cb2b34cd-9621-464c-9248-50c2576aed0c)
+
+✅ If enabled, you can skip entering BIOS.
+
+---
+
 ## ✅ Step 1: Enable Virtualization in BIOS
 
 1. Restart your PC

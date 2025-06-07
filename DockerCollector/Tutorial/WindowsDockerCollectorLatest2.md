@@ -188,6 +188,24 @@ http://localhost:5015/collector
 
 ---
 
+
+🧱 **Windows Defender Firewall may prompt you with a security alert.**
+
+### ✅ What to do:
+
+1. When prompted, allow Docker access on:
+
+   * ✅ **Private networks** (your home/work network)
+   * ❌ It’s OK to leave **Public networks** unchecked
+2. Click **Allow access**
+
+⚠️ If you accidentally denied it, you can fix it later:
+
+> `Control Panel > System and Security > Windows Defender Firewall > Allow an app through Firewall`
+> → Find **Docker Desktop** and make sure **Private** is enabled
+
+---
+
 ## 🧯 Common Issues & Fixes
 
 | Error                    | Fix                                                             |

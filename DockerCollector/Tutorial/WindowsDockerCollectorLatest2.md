@@ -57,13 +57,15 @@ You can enter BIOS without restarting manually:
 
 1. Open `Turn Windows features on or off`
 
-2. Enable:
+3. Enable:
 
    * ✅ Windows Subsystem for Linux
    * ✅ Virtual Machine Platform
    * ✅ Hyper-V
 
-3. Click **OK** and reboot when prompted
+     ![Screenshot 2025-06-08 171711](https://github.com/user-attachments/assets/176eab1d-17d8-4da5-a525-aac199b23b08)
+
+4. Click **OK** and reboot when prompted
 
 ---
 
@@ -90,6 +92,10 @@ To correctly save `.wslconfig`, ensure Windows shows file extensions:
 3. Under **View tab**:
 
    * ❌ Uncheck **“Hide extensions for known file types”**
+   * 
+![Screenshot 2025-06-08 172328](https://github.com/user-attachments/assets/51fe4bdf-cf9a-4d46-ad5f-1bcacaa6fd9c)
+
+     
 4. Click **Apply > OK**
 
 ---
@@ -121,6 +127,9 @@ To correctly save `.wslconfig`, ensure Windows shows file extensions:
    C:\Users\YourUsername\.wslconfig
    ```
 
+   ![Screenshot 2025-06-08 172635](https://github.com/user-attachments/assets/bc396c3c-52c8-45aa-8e60-58841d157fe3)
+
+
    ⚠️ It must be named exactly `.wslconfig` (with no `.txt` at the end).
 
 4. Reboot your PC again
@@ -144,11 +153,17 @@ Windows users **must log in to Docker Hub** via CLI **and** GUI.
 ```powershell
 docker login
 ```
+Follow onscreen instructions.
 
+![Screenshot 2025-06-08 173126](https://github.com/user-attachments/assets/88b59694-71c8-4806-8a5b-4ce12b06a270)
+
+
+```powershell
+docker login -u <username>
+```
 It will prompt:
 
 ```
-Username: <your Docker Hub username>
 Password: <your password>
 ```
 
@@ -157,6 +172,9 @@ Password: <your password>
 ```
 Login Succeeded
 ```
+
+![Screenshot 2025-06-08 173236](https://github.com/user-attachments/assets/203d3db9-83c4-4382-9fd2-aa26e2f509cf)
+
 
 > 🔐 This prevents the error: `401 Unauthorized – failed to fetch oauth token`
 

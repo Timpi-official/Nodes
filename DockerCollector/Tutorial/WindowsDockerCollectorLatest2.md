@@ -144,7 +144,13 @@ Windows users **must log in to Docker Hub** via CLI **and** GUI.
 
 1. Open Docker Desktop
 2. Click your profile icon (top-right)
-3. Sign in with your Docker Hub account ( Verification from email - Confirm)
+
+![Screenshot 2025-06-08 173714](https://github.com/user-attachments/assets/698631b4-9ae5-4d2a-b006-7c25adbc347e)
+
+ 4. Sign in with your Docker Hub account ( Verification from email - Confirm)
+
+![Screenshot 2025-06-08 173804](https://github.com/user-attachments/assets/623d283a-2fb1-4b05-b64b-894733bf5ec6)
+![Screenshot 2025-06-08 173831](https://github.com/user-attachments/assets/4d3186a8-2555-409e-b1c7-a34867af491f)
 
    * Or create one: [https://hub.docker.com/signup](https://hub.docker.com/signup)
 
@@ -214,16 +220,7 @@ docker run -d `
 -p 5015:5015 `
 timpiltd/timpi-collector:latest
 ```
-
-🌐 Visit:
-
-```
-http://localhost:5015/collector
-```
-
 ---
-
-
 🧱 **Windows Defender Firewall may prompt you with a security alert.**
 
 ### ✅ What to do:
@@ -238,6 +235,26 @@ http://localhost:5015/collector
 
 > `Control Panel > System and Security > Windows Defender Firewall > Allow an app through Firewall`
 > → Find **Docker Desktop** and make sure **Private** is enabled
+---
+
+![Screenshot 2025-06-08 174622](https://github.com/user-attachments/assets/c40f67da-d321-461a-800b-2603c8143746)
+
+
+🌐 Visit by pressing port 5015:5015 and your webbrowser will open up the dashboard:
+
+![Screenshot 2025-06-08 175257](https://github.com/user-attachments/assets/13982dd5-d64b-4ec6-b254-eabdbc903c08)
+
+
+```
+http://localhost:5015/collector
+```
+
+![Screenshot 2025-06-08 175627](https://github.com/user-attachments/assets/a77a5ff9-9a8c-4e7c-b774-e5867dcf713c)
+
+Paste your Wallet address:
+
+![Screenshot 2025-06-08 175718](https://github.com/user-attachments/assets/8cbf9002-98eb-44c8-9df3-186270809dd3)
+
 
 ---
 

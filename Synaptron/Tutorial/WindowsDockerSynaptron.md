@@ -215,7 +215,7 @@ Allow Docker access when prompted:
 
 ---
 
-## 📊 Monitor Your Synaptron
+## 📊 Monitor Your Synaptron By rinning These Commands In Powershell
 
 | Task                       | Command                          |
 | -------------------------- | -------------------------------- |

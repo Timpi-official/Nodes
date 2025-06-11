@@ -69,6 +69,51 @@ To enter BIOS without restarting:
 
 3. Reboot after installation
 
+   ## ✅ Step 3.5: Run `wsl --update` (Only if Prompted)
+
+If you see a **Docker Desktop error** like:
+
+> ❌ “WSL update failed”
+> Or a message about needing to update WSL manually
+
+You need to run the following command in **PowerShell (as Administrator)**:
+
+```powershell
+wsl --update
+```
+
+---
+
+### 💡 How to Do It:
+
+1. Search for `PowerShell`
+2. Right-click → **Run as administrator**
+3. Paste and run:
+
+```powershell
+wsl --update
+```
+
+If this fails with a URL like:
+
+```
+https://aka.ms/wsl2kernel
+```
+
+Then follow the link to **manually download and install the kernel update** (tiny MSI file, \~10 MB).
+
+Direct link (June 2025):
+🔗 [https://wslstorestorage.blob.core.windows.net/wslblob/wsl\_update\_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+
+---
+
+### 🧪 After WSL is updated:
+
+Reboot your PC.
+Then continue with:
+
+✅ Step 4: Fix File Extensions for `.wslconfig`
+
 ---
 
 ## ✅ Step 4: Fix File Extensions (.wslconfig)

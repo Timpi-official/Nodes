@@ -235,6 +235,10 @@ Hello from Docker!
 
 ## ✅ Step 8: Run Timpi Synaptron (Docker)
 
+📝 **Replace the placeholders below**:
+- `"YourNodeNameHere_Min17Characters"` → with your custom **node name** (must be at least 17 characters)  
+- `"YOUR-GUID"` → with your **registered GUID** from the [Node Management Portal](https://timpi.com/node/management)
+
 Paste this in **PowerShell**:
 
 ```powershell

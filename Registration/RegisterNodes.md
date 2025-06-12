@@ -25,8 +25,13 @@ Use this guide to register your **Timpi Node Access NFT** and receive a unique `
 ![Skärmavbild 2025-06-12 kl  17 36 25](https://github.com/user-attachments/assets/4ff73baa-7ab0-4ca9-b6ce-442bba6e97c6)
 
 6. 🆔 Click the **`Register Node`** button  
-   - This will generate your unique **GUID** linked to the NFT  
-7. 🔁 Repeat steps **1–4** for each NFT you own  
+   - This will generate your unique **GUID** linked to the NFT
+
+It will look similiar to this:
+    
+  > 101d7p35-ac5o-4b39-b34a-1c7d612452af 
+
+8. 🔁 Repeat steps **1–4** for each NFT you own  
    - 🔄 **Refresh the page between each registration**
 
 ---

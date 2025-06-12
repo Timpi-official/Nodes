@@ -33,7 +33,7 @@ Use this guide to register your **Timpi Node Access NFT** and receive a unique `
 
 ## ⚠️ Important Notes
 
-- 💼 **Collector Champion nodes** do **not** require registration with GUID.  
+- 💼 **Collector Hero, Collector Champion nodes** do **not** require registration with GUID.  
   → These nodes are automatically linked by **wallet address** during startup.
 - 🔐 Save your **GUID(s)** — you’ll need them when launching your node(s).
 - 🧠 Each NFT only needs to be registered **once** — don’t duplicate the process.

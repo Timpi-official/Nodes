@@ -24,7 +24,7 @@ We provide:
    At the forefront of AI advancement is the Synaptron node. This revolutionary architecture facilitates rapid information exchange, enabling AI models to learn, adapt, and generate responses with remarkable agility.
 
 ---
-## 📝 [Node Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration.md)
+## 📝 [Node Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
 Before you can run a Timpi node (except Collectors), you must **register your Node Access NFT** and receive your unique `GUID`.  
 This applies to:
@@ -34,7 +34,7 @@ This applies to:
 
 Collectors are linked directly via wallet address and **do not** require registration.
 
-👉 See the [Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration.md) for full instructions and screenshots.
+👉 See the [Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) for full instructions and screenshots.
 
 ---
 

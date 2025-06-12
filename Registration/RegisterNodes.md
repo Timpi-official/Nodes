@@ -1,5 +1,5 @@
 # 🧠 Timpi Node Registration Guide  
-_Applies to all nodes **except** Collector Champion_
+_Applies to all nodes **except** Collector Hero, Collector Champion_
 
 Use this guide to register your **Timpi Node Access NFT** and receive a unique `GUID`, which is required to run your node.
 

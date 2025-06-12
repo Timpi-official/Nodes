@@ -116,7 +116,7 @@ Then continue with:
 
 ---
 
-## ✅ Step 4: Fix File Extensions (.wslconfig)
+## ✅ Step 4: Fix File Extensions (.wslconfig) (REQUIRED)
 
 1. Open File Explorer (`Windows Key + E`)
 2. Go to **View > Options > View tab**

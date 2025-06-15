@@ -19,19 +19,28 @@ They require a compatible NVIDIA GPU and serve as the "brains" of the Timpi ecos
 
 ---
 
-## 🐧 Linux Synaptron (Ubuntu 22.04.4+)
+## 🐳 Docker-Based Synaptron
+
+Timpi also supports Docker for advanced users who want an isolated container setup.
+Docker setups are ideal for multi-node environments or headless installations.
 
 👉 **[Synaptron Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronLinux.md)**  
 Includes full instructions for GPU driver setup, Docker/NVIDIA Docker installation, and node deployment.
 
+👉 🪟 **[Windows Docker Synaptron Guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/WindowsDockerSynaptron.md)**
+  Works with Docker Desktop on Windows 10/11.
+
 ---
 
-## 🪟 Windows Synaptron (Windows 10/11)
+## 🪟 Windows Synaptron - Native (Windows 10/11)
 
 👉 **[Synaptron Windows Guide & Instructions](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronWindows.md)**  
 Covers installation, node registration, and troubleshooting in an easy-to-follow format.
 
 ---
+
+
+  ---
 
 ## 📜 License
 

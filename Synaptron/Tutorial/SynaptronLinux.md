@@ -41,7 +41,7 @@ chmod +x Synaptron_setup.sh
 ```
 
 ## :five:    Update, Synaptron
-### :small_blue_diamond: To update to the latest version when a new release is available, use the following command:
+### :small_blue_diamond: Before you update to the latest version remove previous container when a new release is available, use the following command:
 ```shell
 while true; do read -p "Enter a unique node name (min. 17 characters): " node_name; if [ ${#node_name} -ge 17 ]; then break; else echo "Error: Node name must be at least 17 characters. Please try again."; fi; done; read -p "Enter your GUID: " guid; sudo docker run --pull=always --restart always -d -e NAME="$node_name" -e GUID="$guid" --gpus all timpiltd/timpi-synaptron:latest
 ```

@@ -12,18 +12,6 @@ We provide:
 
 ---
 
-## 🗂 Node Types
-
-1. 🔄 [Collector](https://github.com/Timpi-official/Nodes/tree/main/Collector)  
-   Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
-
-2. 🛡️ [Guardian](https://github.com/Timpi-official/Nodes/tree/main/Guardian)  
-   Guardians are distributed storage nodes that archive the web, safeguarding data collected by Collectors. Guardians ensure data privacy and security without needing a static IP address or open ports.
-
-3. 🧬 [Synaptron](https://github.com/Timpi-official/Nodes/tree/main/Synaptron)  
-   At the forefront of AI advancement is the Synaptron node. This revolutionary architecture facilitates rapid information exchange, enabling AI models to learn, adapt, and generate responses with remarkable agility.
-
----
 ## 📝 [Node Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
 Before you can run a Timpi node (except Collectors), you must **register your Node Access NFT** and receive your unique `GUID`.  
@@ -37,6 +25,20 @@ Collectors are linked directly via wallet address and **do not** require registr
 👉 See the [Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) for full instructions and screenshots.
 
 ---
+
+## 🗂 Node Types
+
+1. 🔄 [Collector](https://github.com/Timpi-official/Nodes/tree/main/Collector)  
+   Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
+
+2. 🛡️ [Guardian](https://github.com/Timpi-official/Nodes/tree/main/Guardian)  
+   Guardians are distributed storage nodes that archive the web, safeguarding data collected by Collectors. Guardians ensure data privacy and security without needing a static IP address or open ports.
+
+3. 🧬 [Synaptron](https://github.com/Timpi-official/Nodes/tree/main/Synaptron)  
+   At the forefront of AI advancement is the Synaptron node. This revolutionary architecture facilitates rapid information exchange, enabling AI models to learn, adapt, and generate responses with remarkable agility.
+
+---
+
 
 ## 📜 License
 

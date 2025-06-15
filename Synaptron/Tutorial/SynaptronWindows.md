@@ -7,9 +7,9 @@ This guide will walk you through installing and setting up Synaptron on Windows,
 ### :inbox_tray: Download the full PDF guide [Click Here](https://timpi.io/wp-content/uploads/2025/02/Synaptron-Guide-v1.pdf)
 
 ### :package: Download the required files:
-:small_blue_diamond: [Synaptron installer](http://185.182.184.58/synaptron_win_latest.zip)
+:small_blue_diamond: [Synaptron installer](https://timpi.io/applications/windows/synaptron_win_latest.zip)
 
-:small_blue_diamond: [Synaptron update file](https://timpi.io/applications/windows/synaptron_win_latest.zip) Extract using [WinRAR](https://www.win-rar.com/start.html?&L=0)
+:small_blue_diamond: [Synaptron update file](https://timpi.io/applications/windows/synaptron_win_update-1.1.34.zip) Extract using [WinRAR](https://www.win-rar.com/start.html?&L=0)
 
 ### :pencil: Register Your Node:
 :one: Go to the [Timpi Node Management Page](https://timpi.com/node/management)

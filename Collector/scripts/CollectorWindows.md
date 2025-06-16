@@ -1,11 +1,11 @@
 # 🪟 Timpi Collector for Windows 10 & 11
 
-**Version:** `0.9.5-G`
+**Version:** `0.9.6`
 
 📦 **Installer type:** Native `.exe` (Windows Program)
 
 🔗 **Download:**
-👉 [TimpiCollectorSetup\_0.9.5-G.rar](https://timpi.io/applications/windows/TimpiCollectorSetup_0.9.5-G.rar)
+👉 [TimpiCollectorSetup\_0.9.6.rar](https://timpi.io/applications/windows/TimpiCollectorSetup_0.9.6.rar)
 
 ---
 
@@ -16,13 +16,13 @@
 * Click the link above to download the compressed `.rar` file.
 * Extract it using [7-Zip](https://www.7-zip.org/) or built-in Windows extraction tools.
 * Inside the archive, you’ll find the installer:
-  👉 `TimpiCollectorSetup_0.9.5-G.exe`
+  👉 `TimpiCollectorSetup_0.9.6.exe`
 
 ---
 
 ### 🔹 2. Run the Installer
 
-* **Right-click** `TimpiCollectorSetup_0.9.5-G.exe`
+* **Right-click** `TimpiCollectorSetup_0.9.6.exe`
 * Choose **“Run as Administrator”** to allow proper service installation.
 * Follow the installation wizard.
 

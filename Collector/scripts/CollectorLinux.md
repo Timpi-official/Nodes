@@ -4,7 +4,7 @@
 
 ## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.9.6
 
-**Timpi Collector v0.9.5-F** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
+**Timpi Collector v0.9.6** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
 
 > ⚠️ If you set worker/thread values too high, **your Collector can consume 100% of your internet bandwidth** — potentially choking your entire connection and affecting other nodes or services (e.g., Guardian, Validator, Synaptron).
 

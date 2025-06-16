@@ -2,7 +2,7 @@
 
 ---
 
-## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.9.5-F
+## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.9.6
 
 **Timpi Collector v0.9.5-F** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
 
@@ -18,7 +18,7 @@ http://localhost:5015/collector
 
 ---
 
-### Setup the Timpi Collector on your Linux system with this one-command installation. This install version 0.9.5-F of the Collector and then automatically upgrade it, overwriting any previous files.
+### Setup the Timpi Collector on your Linux system with this one-command installation. This install version 0.9.6 of the Collector and then automatically upgrade it, overwriting any previous files.
 
 **Quick Installation Command For The Latest Collector:**
 ```shell
@@ -61,7 +61,7 @@ sudo systemctl stop collector collector_ui || true; sudo systemctl disable colle
 
 ---
 # Linux Collector Manual Guide
-### **Quick Guide Ubuntu 22.04: Installing Timpi Collector 0.9.5-F**
+### **Quick Guide Ubuntu 22.04: Installing Timpi Collector 0.9.6**
 
 ### **Step 1: Remove Old Version**
 ```shell

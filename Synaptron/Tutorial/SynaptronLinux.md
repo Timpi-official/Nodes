@@ -9,7 +9,7 @@
 
 • 12GB RAM​
 
-• CUDA Compatible NVidia GPU (Min 6.1 (4 GB min) based on the Nvidia Compute Capability Index (https://developer.nvidia.com/cuda-gpus))​
+• CUDA Compatible NVidia GPU (Min 6.1 (4 GB min) based on the Nvidia Compute Capability Index (https://developer.nvidia.com/cuda-gpus )​
 
 • 250 GB free storage SSD / NVMe​
 

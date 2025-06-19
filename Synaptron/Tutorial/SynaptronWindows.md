@@ -15,8 +15,30 @@ This guide will walk you through installing and setting up Synaptron on Windows,
 
 ![Skärmavbild 2025-06-15 kl  19 32 29](https://github.com/user-attachments/assets/f57eadac-2833-4978-9ac6-bbd911eeac13)
 
-Extract it into installation path:
-`C:\Program Files\Synaptron\`
+---
+
+✅ Step-by-step Instructions:
+	1.	Close Synaptron if it’s currently running.
+ 
+	2.	Extract the downloaded .zip file using WinRAR or similar:
+Right-click the .zip → “Extract to synaptron_win_update-1.1.34\”
+
+
+	3.	Copy all extracted files into the Synaptron install directory:
+
+C:\Program Files\Synaptron\
+
+💡 Replace existing files if prompted.
+
+
+	4.	Run the update:
+	•	Right-click SynaptronUpdate.exe
+	•	Select “Run as administrator”
+ 
+🖥️ A black window will briefly appear and close automatically — that means the update is done.
+
+---
+
 
 ### :pencil: Register Your Node:
 :one: Go to the [Timpi Node Management Page](https://timpi.com/node/management)

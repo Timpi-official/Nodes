@@ -1,43 +1,137 @@
-*Only Support · For Native Ubuntu +22.04.4 LTS*
+# 🧠 Timpi Synaptron Node Setup (Linux)
+
+✅ *Tested on Ubuntu 22.04.4 LTS – Native Only*
+⚠️ *Requires Docker and NVIDIA GPU Drivers*
 
 ---
-# Linux Synaptron
-### :small_blue_diamond: How to Use the Automated Synaptron Installation Script tested on Ubuntu 22.04 LTS.
 
-## Minimum requirements
-• 4 Core CPU​
+![Timpi Logo](https://nft.timpi.io/assets/timpi_image/synaptron-hero.jpg)
 
-• 12GB RAM​
+## 📌 Minimum System Requirements
 
-• CUDA Compatible NVidia GPU (Min 6.1 (4 GB min) based on the Nvidia Compute Capability Index (https://developer.nvidia.com/cuda-gpus )​
+| Component    | Minimum                                                     |
+| ------------ | ----------------------------------------------------------- |
+| **CPU**      | 4 Cores                                                     |
+| **RAM**      | 12 GB                                                       |
+| **GPU**      | NVIDIA GPU with Compute Capability **6.1+**, min. 4 GB VRAM |
+| **Storage**  | 250 GB SSD/NVMe                                             |
+| **Internet** | Unlimited, stable                                           |
+| **OS**       | Ubuntu 22.04 64-bit                                         |
 
-• 250 GB free storage SSD / NVMe​
+> ❌ **Multi-GPU setups are not supported**
 
-• Good unlimited internet connection​
+---
 
-• Usage of multiple GPUs not supported
+## 🎮 Supported GPUs (Examples)
 
-## :warning: Important: Install Your Graphics Drivers First!
-Ensure you have installed the latest NVIDIA graphics drivers for your GPU.
+| Tier   | VRAM    | Cards                                            |
+| ------ | ------- | ------------------------------------------------ |
+| Tier 1 | 4–6 GB  | GTX 1050, GTX 1060, RTX 2050, RTX 2060, RTX 3050 |
+| Tier 2 | 8–16 GB | GTX 1080 Ti, RTX 2080 Ti, RTX 4060               |
 
-**:man_mage: Need to Install NVIDIA Drivers on Linux? Here's How!**  
+🔗 [Check your GPU Compatibility](https://developer.nvidia.com/cuda-gpus)
 
-## :one: **Follow NVIDIA’s official guide:**  
-:point_right: [NVIDIA Driver Installation Guide](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#ubuntu)  
+---
 
-## :two: **Find the right drivers for your system:**  
-Check this page and pick your **Ubuntu version** and **architecture** (most people need `x86_64`).  
-Example for Ubuntu 22.04:  
-:point_right: [Ubuntu 22.04 x86_64 repository](https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/)  
+## ⚙️ Step 1 – Install NVIDIA GPU Drivers
 
-## :three:    Verify NVIDIA Driver Installation
+You **must install** official NVIDIA drivers **before proceeding**.
 
-### :small_blue_diamond: Check if the GPU drivers is installed before proceeding the guide below:
+### 📥 Install Drivers
+
+Use the official guide:
+👉 [https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#ubuntu](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#ubuntu)
+
+### ✅ Verify Installation
+
+Run the following to confirm the drivers are working:
+
 ```shell
 nvidia-smi
 ```
-## :four: Now Proceed Script or Manual Setup
-### :pushpin: Automatic script Run the following commands in your terminal: 
+
+---
+
+## 🧱 Step 2 – Install Docker + NVIDIA Docker
+
+> These steps are required for both **manual** and **automatic** installation methods.
+
+### 🐳 Install Docker
+
+```shell
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg lsb-release
+```
+
+```shell
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+```shell
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+```shell
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo systemctl enable docker && sudo systemctl start docker
+```
+
+✅ Check Docker version:
+
+```shell
+sudo docker version
+```
+
+---
+
+### 🎮 Install NVIDIA Docker
+
+```shell
+sudo curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+```
+
+```shell
+sudo apt update
+sudo apt install -y nvidia-docker2
+sudo systemctl restart docker
+```
+
+✅ Confirm GPU is visible to Docker:
+
+```shell
+nvidia-smi
+```
+
+---
+
+## 🚀 Step 3 – Choose Your Installation Method
+
+You now have two options:
+
+| Option                 | Description                                   |
+| ---------------------- | --------------------------------------------- |
+| ✅ **Automatic Script** | Recommended – deploys everything via a script |
+| 🔧 **Manual Setup**    | Advanced – step-by-step, full control         |
+
+---
+
+## ✅ Option A: Automatic Installation
+
+> **Use this if Docker and NVIDIA drivers are installed.**
+
+This script will:
+
+* Confirm GPU is available
+* Ask for your **Node Name** and **GUID**
+* Deploy Synaptron automatically
 
 ```shell
 curl -sSL -o Synaptron_setup.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/Synaptron_setup
@@ -45,111 +139,80 @@ chmod +x Synaptron_setup.sh
 ./Synaptron_setup.sh
 ```
 
-## :five:    Update, Synaptron
-### :small_blue_diamond: Before you update to the latest version remove current container when a new release is available, use the following command:
+🕐 Takes \~30 minutes to download Synaptron data on first boot.
 
-Remove current container:
+---
+
+## 🔧 Option B: Manual Setup
+
+> Use this method if you prefer full control or to learn how it works behind the scenes.
+
+### 🛠️ Deploy the Synaptron Node Manually
+
+Paste this entire block into your terminal. It will:
+
+1. Ask you to enter a **unique node name** (minimum 17 characters).
+2. Ask for your **Guardian GUID** (you can find this in your Timpi dashboard).
+3. Start the Synaptron container with GPU acceleration enabled.
+
 ```shell
-sudo docker rm <Your Container ID>
-```
-
-```shell
-while true; do read -p "Enter a unique node name (min. 17 characters): " node_name; if [ ${#node_name} -ge 17 ]; then break; else echo "Error: Node name must be at least 17 characters. Please try again."; fi; done; read -p "Enter your GUID: " guid; sudo docker run --pull=always --restart always -d -e NAME="$node_name" -e GUID="$guid" --gpus all timpiltd/timpi-synaptron:latest
-```
-(Now it will take about 30 minutes until Synaptron have downloaded all necessary data before running)
-
-NOTE :notepad_spiral: 
-Update to latest synaptron repeat step :five:
-
-# Manual Installation
-
-## :one:  Verify NVIDIA Driver Installation
-
-### :small_blue_diamond: Check if the GPU drivers is installed before proceeding the guide below:
-```shell
-nvidia-smi
-```
-
-## :two: Install Docker and NVIDIA Docker
-
-### :small_blue_diamond: Update and Install Required Packages
-```shell
-sudo apt update
-sudo apt install -y ca-certificates curl gnupg lsb-release wget
-```
-### :small_blue_diamond: Add Docker Repository and Install Docker
-```bash
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-```
-```shell
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-```shell
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-```
-### :small_blue_diamond: Enable and Start Docker
-```shell
-sudo systemctl enable docker
-sudo systemctl start docker
+read -p "Enter a unique node name (min. 17 characters): " node_name
+read -p "Enter your GUID: " guid
+sudo docker run --pull=always --restart always -d \
+  -e NAME="$node_name" -e GUID="$guid" --gpus all \
+  timpiltd/timpi-synaptron:latest
 ```
 
-### :small_blue_diamond: Let’s take a look to see that your docker is installed before proceeding:
+> 🧠 **What this does:**
+>
+> * `--pull=always`: ensures the container always runs the latest version
+> * `--restart always`: container restarts automatically after reboot
+> * `--gpus all`: enables NVIDIA GPU usage inside the container
+> * `-e NAME=...` and `-e GUID=...`: passes your custom name and ID to the node
+> * `-d`: runs in the background (detached mode)
+
+---
+
+## 🔁 How to Update Synaptron
+
+When a new release is announced:
+
 ```shell
-sudo systemctl status docker
+sudo docker stop <container_id>
+sudo docker rm <container_id>
 ```
 
-### :small_blue_diamond: Install NVIDIA Docker
-```shell
-sudo curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-```
-```shell
-sudo apt-get update
-sudo apt-get install -y nvidia-docker2
-sudo systemctl restart docker
-```
+Then re-run the **docker run** command above with the same `node_name` and `guid`.
 
-## :three: Download and Deploy Synaptron
+---
 
-### :small_blue_diamond: Set Up Node Information and Run the Synaptron Container
-```shell
-while true; do read -p "Enter a unique node name (min. 17 characters): " node_name; if [ ${#node_name} -ge 17 ]; then break; else echo "Error: Node name must be at least 17 characters. Please try again."; fi; done; read -p "Enter your GUID: " guid; sudo docker run --pull=always --restart always -d -e NAME="$node_name" -e GUID="$guid" --gpus all timpiltd/timpi-synaptron:latest
-```
-(Now it will take about 30 minutes until Synaptron have downloaded all necessary data before running)
+## 🧪 Monitoring & Troubleshooting
 
-## NOTE
-When we make announcements about a new Synaptron update make sure you first stop the current container and remove it and then redo **only** step :three:.
+| Task                   | Command                                |
+| ---------------------- | -------------------------------------- |
+| See running containers | `sudo docker ps`                       |
+| View container logs    | `sudo docker logs -f <container_id>`   |
+| Restart a container    | `sudo docker start -ia <container_id>` |
+| Stop a container       | `sudo docker stop <container_id>`      |
+| Remove a container     | `sudo docker rm <container_id>`        |
+| Check GPU status       | `nvidia-smi`                           |
 
-### :small_blue_diamond: To monitor your setup, use the following commands:
-1. Check running containers:
-```shell
-sudo docker ps
-```
-2. To start a Synaptron container after an exit:
-```shell
-sudo docker start -ia <Your Container ID>
-```
-3. Check GPU status:
-```shell
-nvidia-smi
-```
-4. To watch the logs in real-time (like tail -f for files):
-```shell
-sudo docker logs -f <Your Container ID>
-```
-5. To stop container):
-```shell
-sudo docker stop <Your Container ID>
-```
-6. To remove current container:
-```shell
-sudo docker rm <Your Container ID>
-```
+---
 
-You should see a running container.
+## 🎥 Video Walkthrough
 
-### :tv: Check Out Our Linux Video Guide:
-[Click Here](https://www.youtube.com/watch?v=nhfq0PAm_BE&t=6s)
+📺 [Watch the Setup Video](https://www.youtube.com/watch?v=nhfq0PAm_BE&t=6s)
+
+---
+
+## 🙋 Support
+
+Having trouble or want help?
+
+* 💬 Ask in [Discord – Synaptron Channel](https://discord.com/channels/946982023245992006/1179480886455046264)
+* 🐛 Report bugs or suggestions: [Discord Support](https://discord.com/channels/946982023245992006/1179427377844068493)
+
+---
+
+**Built with ❤️ by the Timpi community**
+Powering a truly free and private internet 🌍

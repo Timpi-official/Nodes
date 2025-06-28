@@ -1,4 +1,9 @@
-*Only Support · For Native Ubuntu +22.04.4 LTS*
+# 🔄  Timpi Collector Node
+Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
+
+![Timpi Logo](https://nft.timpi.io/assets/timpi_image/collector-hero.jpg)
+
+
 
 ## ✅ Minimum System Requirements
 

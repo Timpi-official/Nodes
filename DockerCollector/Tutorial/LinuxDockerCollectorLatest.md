@@ -1,5 +1,50 @@
 *Only Support · For Native Ubuntu +22.04.4 LTS*
 
+## ✅ Minimum System Requirements
+
+* OS: Ubuntu 22.04.4 LTS (64-bit) or newer
+* CPU: 2 cores
+* RAM: 2 GB
+* Storage: 1 GB free
+* Internet: Stable & unlimited connection
+
+
+### :exclamation: **Don't have Docker installed yet?**
+
+Run these commands first:
+
+```shell
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+**Add Docker’s GPG key:**
+
+```shell
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+**Add Docker repo:**
+
+```shell
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
+https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+Then install Docker:
+
+```shell
+sudo apt update
+sudo apt install docker-ce
+```
+
+**Check Docker:**
+
+```shell
+sudo systemctl status docker
+```
+
+
 
 ### :rocket: **Quick Start (if Docker is already installed)**
 
@@ -120,40 +165,6 @@ Each collector still uses **port 5015 inside the container**, but Docker maps it
 ---
 
 
-### :exclamation: **Don't have Docker installed yet?**
-
-Run these commands first:
-
-```shell
-sudo apt update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-```
-
-**Add Docker’s GPG key:**
-
-```shell
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-```
-**Add Docker repo:**
-
-```shell
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
-https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
-sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-Then install Docker:
-
-```shell
-sudo apt update
-sudo apt install docker-ce
-```
-
-**Check Docker:**
-
-```shell
-sudo systemctl status docker
-```
 
 ### :globe_with_meridians: **Open the Web UI, paste your wallet key under settings:**
 

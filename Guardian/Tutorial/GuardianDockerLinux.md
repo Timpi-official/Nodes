@@ -28,6 +28,48 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 
 ---
 
+### 🛠️ Prerequisite: Install Docker & Java (Required for All Methods)
+
+Before running either the automatic or manual setup, Docker **must be installed** on your system. Java is also required.
+
+Run these **one line at a time** in your terminal on **Ubuntu 22.04.4 LTS**:
+
+```bash
+sudo apt update
+```
+
+```bash
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+```
+
+```bash
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+```bash
+sudo apt update
+```
+
+```bash
+sudo apt install -y docker-ce
+```
+
+```bash
+sudo apt install -y default-jre
+```
+
+```bash
+sudo systemctl status docker
+```
+
+> ✅ Docker must show `active (running)` before continuing.
+
+
+
 ## 🚀 Step 1 – Quick Start (Automatic Script)
 
 > ✅ **Recommended for most users**

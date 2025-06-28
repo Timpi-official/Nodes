@@ -37,6 +37,9 @@ Collectors are linked directly via wallet address and **do not** require registr
 3. 🧬 [Synaptron](https://github.com/Timpi-official/Nodes/tree/main/Synaptron)  
    At the forefront of AI advancement is the Synaptron node. This revolutionary architecture facilitates rapid information exchange, enabling AI models to learn, adapt, and generate responses with remarkable agility.
 
+3. 🌍 Geo-Core (coming soon)
+Geo-Core Nodes are strategically located worldwide, enhancing security and enabling fast, location-aware routing for accurate and efficient data queries. They serve as a backbone for global indexing and intelligent query distribution.
+
 ---
 
 

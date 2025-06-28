@@ -24,11 +24,11 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 | Network   | Stable 24/7 internet            |
 | Docker    | Required (see below)            |
 
-> ⚠️ Do not include ticket support: WSL, Proxmox LXC, Windows, macOS, or VM-limited environments.
+>  ⚠️ Timpi does **not officially support** WSL, Proxmox LXC, Windows, macOS, or VM-limited environments.
 
 ---
 
-### 🛠️ Prerequisite: Install Docker & Java (Required for All Methods)
+### 🛠️ Step 0 – Install Docker & Java (Required for All Methods)
 
 Before running either the automatic or manual setup, Docker **must be installed** on your system. Java is also required.
 
@@ -74,9 +74,6 @@ sudo systemctl status docker
 
 > ✅ **Recommended for most users**
 > 
-> ⚠️ **Only tested on Ubuntu 22.04.4 LTS (native)**
-> 
-> ❌ **Do not use** on macOS, Windows, WSL, Proxmox, or VMs
 >
 > This option guides you interactively and automates:
 >
@@ -154,43 +151,7 @@ Use this if you want full control over setup or prefer not to use the script.
 
 ---
 
-### 1. Install Docker & Java (line-by-line)
-
-Run **each command one at a time** to safely install Docker and Java.
-
-```bash
-sudo apt update
-```
-
-```bash
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-```
-
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-```
-
-```bash
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```
-
-```bash
-sudo apt update
-```
-
-```bash
-sudo apt install -y docker-ce
-```
-
-```bash
-sudo apt install -y default-jre
-```
-
-```bash
-sudo systemctl status docker
-```
-
-✅ If Docker is shown as "active (running)", you can continue.
+> 🚨 Docker & Java must be installed before continuing. If not done yet, go back to **Step 0**.
 
 ---
 

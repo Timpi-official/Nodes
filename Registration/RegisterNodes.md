@@ -49,7 +49,6 @@ It will look similiar to this:
 
 - Synaptron Hero Node Access  
 - Guardian Hero Node Access  
-- Collector Hero Node Access
 
 💡 Only the **Collector Hero, Collector Champion** is excluded from this process.
 

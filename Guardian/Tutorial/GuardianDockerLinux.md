@@ -293,16 +293,5 @@ Having trouble or want help?
 
 ---
 
-## 🤝 Contribute
-
-This is a community-powered project!
-If you see improvements or want to add features to this guide:
-
-* Fork this repo
-* Submit a pull request
-* Or just share feedback on Discord
-
----
-
 **Built with ❤️ by the Timpi community**
 Powering a truly free and private internet 🌍

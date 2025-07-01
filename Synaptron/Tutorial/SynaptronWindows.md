@@ -4,7 +4,7 @@
 
 This guide will walk you through installing and setting up Synaptron on Windows, step by step. It includes downloading the required files, installing Synaptron, registering your node, and troubleshooting any issues.
 
-### :inbox_tray: Download the full PDF guide [Click Here](https://timpi.io/wp-content/uploads/2025/02/Synaptron-Guide-v1.pdf)
+### :inbox_tray: Download the full PDF guide [Click Here](https://timpi.io/applications/instructions/Synaptron_Guide_v1_pages)
 
 ### :package: Download & Install the required files:
 

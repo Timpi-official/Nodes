@@ -4,6 +4,21 @@
 
 This guide will walk you through installing and setting up Synaptron on Windows, step by step. It includes downloading the required files, installing Synaptron, registering your node, and troubleshooting any issues.
 
+
+
+⚠️ Important Note About Synaptron Version Display
+
+🛠️ Heads up: Even if your Synaptron window shows version 1_1_30, your node might still be running the correct version (e.g. 1_1_34).
+
+This is a known issue — the version number displayed at the top of the Synaptron window hasn’t been updated yet.
+✅ To check your real running version, use the /synaptronchecker command in Discord with your GUID, like this:
+
+`
+/synaptronchecker guid_last12: jdu76hgb4g3k`
+
+🔄
+
+
 ### :inbox_tray: Download the full PDF guide [Click Here](https://timpi.io/applications/instructions/Synaptro_Guide_v1.1.pdf)
 
 ### :package: Download & Install the required files:

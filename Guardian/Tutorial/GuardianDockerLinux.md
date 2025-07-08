@@ -24,6 +24,8 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 | Network   | Stable 24/7 internet            |
 | Docker    | Required (see below)            |
 | Ports     | 🔓 Open required ports via UFW and your router.
+| static ip | ➕ not required, IP is handled by our DNS server
+
 
 
 >  ⚠️ Timpi does **not officially support** WSL, Proxmox LXC, Windows, macOS, or VM-limited environments.

@@ -23,6 +23,8 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 | Storage   | **1 TB+ free disk space**       |
 | Network   | Stable 24/7 internet            |
 | Docker    | Required (see below)            |
+| Ports     | 🔓 Open required ports via UFW and your router.
+
 
 >  ⚠️ Timpi does **not officially support** WSL, Proxmox LXC, Windows, macOS, or VM-limited environments.
 

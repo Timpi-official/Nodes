@@ -17,11 +17,11 @@ This is a known issue — the version number displayed at the top of the Synaptr
 
 /synaptronchecker guid_last12: jdu76hgb4g3k
 
-🔄 📥 How to Update Synaptron on Windows
+## 🔄 📥 How to Update Synaptron on Windows
 
 If you are running an older version and need to update, you must perform a clean reinstall:
 
-🔁 Update Steps:
+## 🔁 Update Steps:
 	1.	Remove the previous version:
 	•	Open Add or Remove Programs in Windows.
 	•	Search for Synaptron.

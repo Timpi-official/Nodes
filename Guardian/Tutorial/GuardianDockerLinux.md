@@ -20,7 +20,7 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 | OS        | **Ubuntu 22.04.4 LTS (native)** |
 | CPU       | 8+ cores                        |
 | RAM       | 12+ GB                           |
-| Storage   | **1 TB+ free disk space**       |
+| Storage   | **1 TB+ free disk space (OS excluded)**       |
 | Network   | Stable 24/7 internet            |
 | Docker    | Required (see below)            |
 | Ports     | 🔓 Open required ports via UFW and your router.

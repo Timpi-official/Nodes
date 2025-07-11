@@ -15,7 +15,7 @@ We provide:
 ## 🛡️ What Is a Guardian?
 
 Guardians are distributed storage nodes that archive web data collected by Timpi Collectors.  
-They ensure **data privacy**, **durability**, and **availability**, even across restarts or updates — **no static IP or port forwarding is required**, though open ports are recommended for TAP communication.
+They ensure **data privacy**, **durability**, and **availability**, even across restarts or updates — **no static IP is required**, **port forwarding is required** for TAP communication.
 
 ---
 

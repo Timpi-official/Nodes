@@ -6,18 +6,18 @@ This guide covers two separate methods for deploying Timpi Nodes
 
 ## 1. Deploying a Timpi Collector Node via FluxCloud
 
- Step 1: Install the TimpiCollector App
+Step 1: Install the TimpiCollector App
 Visit https://cloud.runonflux.com/
  
- 2. Click Sign In and sign in or up using
+2. Click Sign In and sign in or up using
     
- Google Account
+Google Account
  
- Apple
+Apple
  
- Zelcore
+Zelcore
  
- E-mail Address
+E-mail Address
 
 <img width="609" height="264" alt="Screenshot 2025-07-22 180001" src="https://github.com/user-attachments/assets/6b93db8a-e405-4edf-a33a-0a5fca9d48d6" />
 

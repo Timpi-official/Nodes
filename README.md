@@ -40,7 +40,7 @@ Collectors are linked directly via wallet address and **do not** require registr
 4. 🌍 Geo-Core (coming soon)
 Geo-Core Nodes are strategically located worldwide, enhancing security and enabling fast, location-aware routing for accurate and efficient data queries. They serve as a backbone for global indexing and intelligent query distribution.
 
-5. ☁️ [Flux Deployment](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/README.md)  
+5. ☁️ [Flux Deployment](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/README.md) (coming soon) 
    Use **FluxCloud** and **FluxEdge** to deploy Collector or Synaptron nodes in just a few clicks.
 ---
 

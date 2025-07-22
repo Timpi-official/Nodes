@@ -6,10 +6,10 @@ This guide covers two separate methods for deploying Timpi Nodes
 
 ## 1. Deploying a Timpi Collector Node via FluxCloud
 
-## Step 1: Install the TimpiCollector App
+ Step 1: Install the TimpiCollector App
 Visit https://cloud.runonflux.com/
  
-## 2. Click Sign In and sign in or up using
+ 2. Click Sign In and sign in or up using
     
  Google Account
  
@@ -22,36 +22,36 @@ Visit https://cloud.runonflux.com/
 <img width="609" height="264" alt="Screenshot 2025-07-22 180001" src="https://github.com/user-attachments/assets/6b93db8a-e405-4edf-a33a-0a5fca9d48d6" />
 
  
- ## 3. Once signed in Go to Marketplace → Blockchain using the left handed menu.
+  3. Once signed in Go to Marketplace → Blockchain using the left handed menu.
  
 <img width="600" height="283" alt="Screenshot 2025-07-22 180226" src="https://github.com/user-attachments/assets/8cb1a64c-f0ae-43b6-baad-8f7e0869b85e" />
 
-## 4. Search for the TimpiCollector App and click View App to review the README section (optional) or directly on Install Now.
+ 4. Search for the TimpiCollector App and click View App to review the README section (optional) or directly on Install Now.
 
 <img width="592" height="257" alt="Screenshot 2025-07-22 180323" src="https://github.com/user-attachments/assets/e803a831-669a-4578-9bd7-67f92cd32710" />
 
-## 5 Select your subscription plan, and adjust resources if desired. Any increase from the recommended Compute resources will affect pricing. Once everything here is specified click Next.
+ 5 Select your subscription plan, and adjust resources if desired. Any increase from the recommended Compute resources will affect pricing. Once everything here is specified click Next.
 
 <img width="604" height="243" alt="Screenshot 2025-07-22 180719" src="https://github.com/user-attachments/assets/2f7c0145-1acb-4a67-8847-4dfb695c2bcf" />
 
-## 6. On the next screen you can adjust Geolocation Allowed/Forbidden (recommended: leave default). Click Next.
+ 6. On the next screen you can adjust Geolocation Allowed/Forbidden (recommended: leave default). Click Next.
 
 <img width="606" height="240" alt="Screenshot 2025-07-22 180847" src="https://github.com/user-attachments/assets/55d38c42-b299-4095-9337-6ea13e708df6" />
 
 
-## 7. Now you can provide an email for expiration reminders. After you provided your email address, click on Next.
+ 7. Now you can provide an email for expiration reminders. After you provided your email address, click on Next.
 
 <img width="602" height="278" alt="Screenshot 2025-07-22 180933" src="https://github.com/user-attachments/assets/418f8759-8b6f-41cf-8596-178cfebc1a1c" />
 
-## 8. Click on the Launch App button.
+ 8. Click on the Launch App button.
 
 <img width="602" height="192" alt="Screenshot 2025-07-22 181010" src="https://github.com/user-attachments/assets/c47ceb2e-a5f5-4a06-83d9-73ba631bf73b" />
 
-## 9. Choose the payment method you want to use to pay for this app. We support Stripe (Card), PayPal, and Flux. Paying in Flux gives a 5% discount.
+ 9. Choose the payment method you want to use to pay for this app. We support Stripe (Card), PayPal, and Flux. Paying in Flux gives a 5% discount.
 
 <img width="602" height="280" alt="Screenshot 2025-07-22 181059" src="https://github.com/user-attachments/assets/af2f2ed1-5ba9-4754-b8ad-4261c910d785" />
 
-## 10. Once paid, click on Next, and then Finish. Your Timpi Collector node will now deploy — typically within 10–30 minutes.
+ 10. Once paid, click on Next, and then Finish. Your Timpi Collector node will now deploy — typically within 10–30 minutes.
 
 ## Step 2: Configure Your Node
 1. Go to **My Apps → Active Apps**

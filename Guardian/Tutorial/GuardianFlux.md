@@ -1,14 +1,18 @@
-This guide covers two separate methods for deploying Timpi Nodes
+# ⚡ Timpi Node Deployment Guide
+**Deploy and run your Timpi Collector or Synaptron nodes using Flux infrastructure**
 
- FluxCloud – for simplified and affordable Collector Node deployment via the Flux Marketplace
+This guide walks you through two ways of deploying Timpi nodes:
 
- FluxEdge – for advanced, customizable infrastructure with Synaptron and Collector nodes.
+🟢 **FluxCloud** – Beginner-friendly, fast deployment of Collector Nodes via the Flux Marketplace
 
-## 1. Deploying a Timpi Collector Node via FluxCloud
+🔵 **FluxEdge** – Customizable, advanced deployment for Synaptron Nodes and additional Collector Nodes
 
-Step 1: Install the TimpiCollector App
+
+
+# 🟢 Method 1: Deploy a Timpi Collector Node via FluxCloud
+
+1. Install the TimpiCollector App
 Visit https://cloud.runonflux.com/
- 
 2. Click Sign In and sign in or up using
     
 Google Account

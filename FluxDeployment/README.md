@@ -148,7 +148,8 @@ This guide walks you through two ways of deploying Timpi nodes:
 
 2. Sign in or create an account
    
-   ![](https://github.com/user-attachments/assets/7c17857d-ae3b-46ca-97b9-24e1a2fe9c2c)
+   <img width="2545" height="1303" alt="Screenshot 2025-07-23 164757" src="https://github.com/user-attachments/assets/106cc660-0b5c-47dc-86bd-0e1b58d4c41b" />
+
 
 4. Go to **Account Overview**, deposit funds via:
 
@@ -156,7 +157,8 @@ This guide walks you through two ways of deploying Timpi nodes:
    * 🅿️ PayPal
    * 🔷 Flux (🎁 5% bonus)
      
-     ![](https://github.com/user-attachments/assets/8f656ec4-ae82-4dd7-bc04-177e1fbf1ddd)
+     <img width="2545" height="1134" alt="Screenshot 2025-07-23 165034" src="https://github.com/user-attachments/assets/3e76fd06-4802-4e6e-b2f5-238ca8d46383" />
+
 
 5. Click **Deploy App → Explore All Templates**
 
@@ -164,7 +166,8 @@ This guide walks you through two ways of deploying Timpi nodes:
 
 7. Optionally read README → click **Builder** or **Continue**
    
-   ![](https://github.com/user-attachments/assets/29310fab-8387-4d6f-9299-10dc8a20848e)
+   <img width="2544" height="940" alt="Screenshot 2025-07-23 165410" src="https://github.com/user-attachments/assets/da4c48aa-56bb-46da-b56e-3c44b8812489" />
+
 
 8. Under **Environment Variables**, add:
 
@@ -175,15 +178,18 @@ This guide walks you through two ways of deploying Timpi nodes:
 
 9. Adjust machine specs or keep default
    
-   ![](https://github.com/user-attachments/assets/a2741fba-eef8-4d41-be23-760f4ad9a7d4)
+ <img width="2536" height="914" alt="Screenshot 2025-07-23 165322" src="https://github.com/user-attachments/assets/84625d5b-8252-4373-8303-ff89b3485fde" />
+
 
 10. Click **Rent Machine**, use filters (location, GPU, etc)
     
-   ![](https://github.com/user-attachments/assets/1b89d44e-9ded-4a88-b091-b492eadba932)
+  <img width="2559" height="1159" alt="Screenshot 2025-07-23 165631" src="https://github.com/user-attachments/assets/7e421592-5752-4d17-b618-88b8bee42d72" />
+
 
 11. Click **Rent**, then confirm
     
-    ![](https://github.com/user-attachments/assets/3cb78b2a-4d5b-412b-b0ca-909679538691)
+<img width="1240" height="1077" alt="Screenshot 2025-07-23 170155" src="https://github.com/user-attachments/assets/8400e665-c22b-4dfa-839a-1657f4f56f5c" />
+
 
 12. After deployment, your dashboard shows:
 

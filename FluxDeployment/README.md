@@ -1,7 +1,5 @@
 # ⚡ Timpi Node Deployment Guide
 
-![photo_2025-07-23_10-39-12](https://github.com/user-attachments/assets/ef4ffdbc-fef5-4788-b1c1-a3447e0d03f3)
-
 **Deploy and run your Timpi Collector or Synaptron nodes using Flux infrastructure**
 
 This guide walks you through two ways of deploying Timpi nodes:
@@ -43,32 +41,39 @@ This guide walks you through two ways of deploying Timpi nodes:
    * Zelcore
    * Email
 
-   ![](https://github.com/user-attachments/assets/6b93db8a-e405-4edf-a33a-0a5fca9d48d6)
+  <img width="2540" height="1296" alt="Screenshot 2025-07-23 164538" src="https://github.com/user-attachments/assets/644c1375-fc81-4f2a-a294-dbf26c87ca44" />
+
 
 3. On the sidebar: **Marketplace → Blockchain**
    
-   ![](https://github.com/user-attachments/assets/8cb1a64c-f0ae-43b6-baad-8f7e0869b85e)
+   <img width="2543" height="1207" alt="Screenshot 2025-07-23 164216" src="https://github.com/user-attachments/assets/3e00504b-8eb4-4ea7-b12f-aeee0cd67458" />
+
 
 5. Search for `TimpiCollector` → click **View App**
    
-   ![](https://github.com/user-attachments/assets/e803a831-669a-4578-9bd7-67f92cd32710)
+ <img width="2228" height="685" alt="Screenshot 2025-07-23 163422" src="https://github.com/user-attachments/assets/a8bee71b-4e31-4c06-aade-3a564deae5d8" />
+
 
 6. Choose a plan, adjust specs if needed → click **Next**
    💡 Higher compute = higher monthly cost
 
-   ![](https://github.com/user-attachments/assets/2f7c0145-1acb-4a67-8847-4dfb695c2bcf)
+  <img width="2211" height="982" alt="Screenshot 2025-07-23 163439" src="https://github.com/user-attachments/assets/d429c01a-a9e6-4125-9074-a2f55d2a50b5" />
+
 
 7. Optional: set geolocation filters → **Next**
    
-   ![](https://github.com/user-attachments/assets/55d38c42-b299-4095-9337-6ea13e708df6)
+   <img width="1163" height="580" alt="Screenshot 2025-07-23 163508" src="https://github.com/user-attachments/assets/41d4d7b2-0dcf-4b36-8d94-6559d32c8946" />
+
 
 8. Enter your **email** for alerts → **Next**
    
-   ![](https://github.com/user-attachments/assets/418f8759-8b6f-41cf-8596-178cfebc1a1c)
+   <img width="1151" height="576" alt="Screenshot 2025-07-23 163644" src="https://github.com/user-attachments/assets/90bc0f81-6198-403b-b436-e131cf33132d" />
+
 
 9. Click **Launch App**
    
-   ![](https://github.com/user-attachments/assets/c47ceb2e-a5f5-4a06-83d9-73ba631bf73b)
+  <img width="1175" height="628" alt="Screenshot 2025-07-23 163740" src="https://github.com/user-attachments/assets/bba1e804-f5af-4f66-b0a1-64ba17f46291" />
+
 
 10. Select payment method:
 
@@ -76,7 +81,8 @@ This guide walks you through two ways of deploying Timpi nodes:
    * 🅿️ PayPal
    * 🔷 Flux (🎁 5% discount!)
      
-     ![](https://github.com/user-attachments/assets/af2f2ed1-5ba9-4754-b8ad-4261c910d785)
+     <img width="1155" height="578" alt="Screenshot 2025-07-23 163755" src="https://github.com/user-attachments/assets/90f14d73-8d82-4e7f-bb09-bc853f3a4b9d" />
+
 
 11. Click **Next → Finish**
     🕒 Deployment takes **10–30 minutes**

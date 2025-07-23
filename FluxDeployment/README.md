@@ -1,5 +1,7 @@
 # ⚡ Timpi Node Deployment Guide
 
+![photo_2025-07-23_10-39-12](https://github.com/user-attachments/assets/ef4ffdbc-fef5-4788-b1c1-a3447e0d03f3)
+
 **Deploy and run your Timpi Collector or Synaptron nodes using Flux infrastructure**
 
 This guide walks you through two ways of deploying Timpi nodes:

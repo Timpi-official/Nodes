@@ -44,11 +44,7 @@ Before running your node, you need to **register your unique GeoCore GUID** on t
 
 Once registered, you’ll receive a **GUID** like:
 
-```shell
-
-2f7256b8-c275-429b-8077-01519cced572
-
-````
+**2f7256b8-c275-429b-8077-01519cced572**
 
 ---
 

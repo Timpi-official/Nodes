@@ -194,6 +194,9 @@ sudo docker run -d --pull=always --restart unless-stopped \
 
 ---
 
+## Upcoming Feature
+Geocore Online Checker Tool to be announced.
+
 ## 🙋 Community & Support
 
 * 💬 Ask in [Discord – GeoCore Channel](https://discord.com/channels/946982023245992006)

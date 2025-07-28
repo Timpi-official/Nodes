@@ -116,7 +116,7 @@ sudo docker run -d --pull=always --restart unless-stopped \
 Replace:
 
 * `your-guid-here` with your registered GUID
-* `Mid_Sweden` with your real location (e.g., `Germany/Berlin`, `US/Dallas`)
+* `Sweden/Stockholm` with your real location (e.g., `Germany/Berlin`, `US/Dallas`)
 
 ---
 

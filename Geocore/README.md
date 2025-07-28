@@ -161,7 +161,7 @@ geocorelog
 
 You can run multiple GeoCores on the same machine by:
 
-* Using a different **port**
+* Using a different **port** -p 4101:4101 \ and -e CONPORT=4101 \ (Needs to be the same port number).
 * Using a different **GUID**
 * (Optional) Mounting a separate volume
 

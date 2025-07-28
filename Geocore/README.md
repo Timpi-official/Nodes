@@ -109,14 +109,14 @@ sudo docker run -d --pull=always --restart unless-stopped \
   -v /var/timpi:/var/timpi \
   -e CONPORT=4100 \
   -e GUID="your-guid-here" \
-  -e LOCATION="Mid_Sweden" \
+  -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
 ```
 
 Replace:
 
 * `your-guid-here` with your registered GUID
-* `Mid_Sweden` with your real location (e.g., `Central_Germany`, `West_US`, `South_Africa`)
+* `Mid_Sweden` with your real location (e.g., `Germany/Berlin`, `US/Dallas`)
 
 ---
 
@@ -159,7 +159,7 @@ sudo docker run -d --pull=always --restart unless-stopped \
   -v /var/timpi2:/var/timpi \
   -e CONPORT=4101 \
   -e GUID="your-second-guid" \
-  -e LOCATION="North_Sweden" \
+  -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
 ```
 

@@ -128,6 +128,20 @@ Replace:
 sudo tail -f $(ls -t /var/timpi/GeoCore-log*.txt | head -n 1)
 ```
 
+### Output (note: using Custom port 4006):
+
+<img width="1054" height="203" alt="Skärmavbild 2025-07-28 kl  18 09 46" src="https://github.com/user-attachments/assets/ce17ee32-3251-438b-b0e4-a9c737a9de0a" />
+
+
+### View real-time logs from the latest GeoCore docker logs (Note: Using Custom Port 4006):
+
+```shell
+sudo docker logs -f --tail 50 <Container_ID>
+```
+
+<img width="883" height="385" alt="Skärmavbild 2025-07-28 kl  18 13 08" src="https://github.com/user-attachments/assets/02849db0-a000-42b9-96c1-a5a8f19f3870" />
+
+
 💡 **Optional shortcut** – add this to `~/.bashrc`:
 
 ```shell

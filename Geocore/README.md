@@ -27,7 +27,7 @@ GeoCore nodes are lightweight and easy to run — perfect for individuals who wa
 | RAM         | 8 GB                                   |
 | Storage     | 3 GB free disk space                   |
 | Bandwidth   | 50 Mbps up/down                        |
-| Uptime      | 98% minimum (penalties for downtime)   |
+| Uptime      | 95% minimum (penalties for downtime)   |
 | Network     | Port forwarding required               |
 | Docker      | ✅ Required                             |
 | Ports       | `4100/tcp` (default) — open in firewall and router |

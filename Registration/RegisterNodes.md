@@ -15,7 +15,7 @@ Use this guide to register your **Timpi Node Access NFT** and receive a unique `
 
 ## ✅ Registration Steps
 
-1. 🌐 Visit the [Timpi Node Management Portal](https://timpi.com/node/v2/management)  
+1. 🌐 Visit the [Timpi Node Management Portal V2](https://timpi.com/node/v2/management)  
 2. 🔐 Click **`Connect Keplr Wallet`**
 
 ![Skärmavbild 2025-06-12 kl  17 36 01](https://github.com/user-attachments/assets/24764e28-ec35-49f2-9574-77316c9515b0)

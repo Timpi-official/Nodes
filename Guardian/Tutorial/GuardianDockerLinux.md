@@ -3,7 +3,8 @@
 Run a Guardian Node to help decentralize the web and power Timpi’s search engine.
 Secure. Distributed. Community-powered.
 
-![Timpi Logo](https://nft.timpi.io/assets/timpi_image/guardian-hero.jpg)
+
+<img width="1509" height="850" alt="Screenshot_2025-07-23_182936_upscayl_3x_realesrgan-x4plus-anime" src="https://github.com/user-attachments/assets/f11e358c-15cc-4618-bca0-cfcdb615a65d" />
 
 ---
 

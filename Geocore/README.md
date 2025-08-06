@@ -95,10 +95,10 @@ bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-Aut
 
 - ✅ Check if Docker is running
 - 🔌 Prompt you for a GeoCore port (default: 4100)
--🆔 Ask for your GeoCore GUID
--📍 Ask for your location in format Country/City
--🐳 Launch the Docker container
--📡 Show how to monitor logs
+- 🆔 Ask for your GeoCore GUID
+- 📍 Ask for your location in format Country/City
+- 🐳 Launch the Docker container
+- 📡 Show how to monitor logs
 
 ---
 

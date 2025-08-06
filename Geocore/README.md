@@ -83,6 +83,53 @@ sudo systemctl status docker
 ✅ Docker must show `active (running)` before continuing.
 
 ---
+🛠️ Step 1B – Automatic GeoCore Installation
+You can install GeoCore with a single command:
+
+
+```shell
+bash <(curl -sSL https://raw.githubusercontent.com/johnolofs/Geocore/main/GC-AutoInstall.sh)
+```
+
+## ⚙️ This script will:
+
+- ✅ Check if Docker is running
+- 🔌 Prompt you for a GeoCore port (default: 4100)
+-🆔 Ask for your GeoCore GUID
+-📍 Ask for your location in format Country/City
+-🐳 Launch the Docker container
+-📡 Show how to monitor logs
+
+---
+
+### 📦 What happens under the hood?
+
+The script runs this:
+
+```shell
+sudo docker run -d --pull=always --restart unless-stopped \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  -p ${GEOCORE_PORT}:${GEOCORE_PORT} \
+  -v /var/timpi:/var/timpi \
+  -e CONPORT=${GEOCORE_PORT} \
+  -e GUID="${GUID}" \
+  -e LOCATION="${LOCATION}" \
+  timpiltd/timpi-geocore:latest
+```
+
+It also prints instructions to check your logs afterward:
+
+```shell
+# Real-time log file:
+sudo tail -f $(ls -t /var/timpi/GeoCore-log*.txt | head -n 1)
+
+# Docker logs:
+sudo docker logs -f --tail 50 <Container_ID>
+```
+
+> 💡 Tip: Press **Ctrl + C** to stop viewing logs.
+
+---
 
 ## 🔓 Step 2 – Open Required Ports
 
@@ -98,7 +145,7 @@ Forward external port `4100` to your server’s internal IP on port `4100` (TCP)
 
 ---
 
-## 🚀 Step 3 – Run in Production Mode (Background)
+## 🚀 Step 3 – Manual Installation - Run in Production Mode (Background)
 
 Once Docker is installed and your GUID is registered, you can run GeoCore in the background with auto-restart enabled:
 

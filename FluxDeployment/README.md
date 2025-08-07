@@ -1,248 +1,218 @@
-# ⚡ Timpi Node Deployment Guide
+# 🌐 Timpi Node Deployment Guide
 
-**Deploy and run your Timpi Collector or Synaptron nodes using Flux infrastructure**
+This guide covers two separate methods for deploying Timpi Nodes:
 
-This guide walks you through two ways of deploying Timpi nodes:
-
-* 🟢 **FluxCloud** – Beginner-friendly, fast deployment of **Collector Nodes** via the Flux Marketplace
-* 🔵 **FluxEdge** – Customizable, advanced deployment for **Synaptron Nodes** and multiple **Collector Nodes**
+* 🟢 **FluxCloud** – Simplified and affordable deployment of **Collector** and **Geocore** Nodes via the Flux Marketplace.
+* 🔵 **FluxEdge** – Advanced and customizable infrastructure for deploying **Synaptron** and **Collector** Nodes.
 
 ---
 
-## 📦 What’s Inside
+## 🚀 Part 1: Deploying a Timpi Collector or Geocore Node via FluxCloud
 
-* ✅ Step-by-step deployment walkthroughs
-* 🖼️ Screenshots of every step
-* 💳 Payment methods (Flux, Stripe, PayPal)
-* 🧠 Synaptron GPU requirements
-* 🔁 How to scale by adding Collectors
+### 🧩 Step 1: Install the TimpiCollector App
 
----
+1. **Visit** [home.runonflux.com](http://home.runonflux.com)
 
-## 📂 Node Types Covered
+2. **Sign in or create an account** with:
 
-| Node Type | FluxCloud | FluxEdge |
-| --------- | --------- | -------- |
-| Collector | ✅         | ✅        |
-| Synaptron | ❌         | ✅        |
-
----
-
-## 🟢 Method 1: Deploy a Timpi Collector Node via FluxCloud
-
-### 🧩 Step 1: Launch the TimpiCollector App
-
-1. Go to: [https://cloud.runonflux.com](https://cloud.runonflux.com)
-
-2. Click **Sign In**, and log in via:
-
+   * Apple ID
    * Google
-   * Apple
-   * Zelcore
    * Email
+   * Zelcore / SSP / MetaMask / other Web3 wallets
+     ![](https://github.com/user-attachments/assets/27a010ce-74a9-473b-9080-5125ed2991d5)
 
-  <img width="2540" height="1296" alt="Screenshot 2025-07-23 164538" src="https://github.com/user-attachments/assets/644c1375-fc81-4f2a-a294-dbf26c87ca44" />
+3. Go to **Applications → Marketplace**
+   → Search for **TimpiCollector** or **TimpiGeoCore** and click the desired app.
+   ![](https://github.com/user-attachments/assets/025047db-a6ac-4d7b-9830-2baeae5b2480)
 
+---
 
-3. On the sidebar: **Marketplace → Blockchain**
-   
-   <img width="2543" height="1207" alt="Screenshot 2025-07-23 164216" src="https://github.com/user-attachments/assets/3e00504b-8eb4-4ea7-b12f-aeee0cd67458" />
+### ⚙️ App Configuration
 
+#### 🟢 **TimpiCollector**
 
-5. Search for `TimpiCollector` → click **View App**
-   
- <img width="2228" height="685" alt="Screenshot 2025-07-23 163422" src="https://github.com/user-attachments/assets/a8bee71b-4e31-4c06-aade-3a564deae5d8" />
+1. Enter your email (optional)
+2. Select subscription period
+3. Agree to the Terms of Service
+4. Click **Start Launching Marketplace Application**
+   ![](https://github.com/user-attachments/assets/f8a48e8b-905e-4b1a-a964-8b188eaedcfd)
 
+#### 🔵 **TimpiGeoCore**
 
-6. Choose a plan, adjust specs if needed → click **Next**
-   💡 Higher compute = higher monthly cost
+1. Enter your email (optional)
+2. Select subscription period
+3. Enter your registered **GUID**
+4. Agree to the Terms
+5. Click **Start Launching Marketplace Application**
+   ![](https://github.com/user-attachments/assets/362ee1ba-43ca-4860-a67b-8bbf9bdcb207)
 
-  <img width="2211" height="982" alt="Screenshot 2025-07-23 163439" src="https://github.com/user-attachments/assets/d429c01a-a9e6-4125-9074-a2f55d2a50b5" />
+---
 
+### ✅ Sign & Register
 
-7. Optional: set geolocation filters → **Next**
-   
-   <img width="1163" height="580" alt="Screenshot 2025-07-23 163508" src="https://github.com/user-attachments/assets/41d4d7b2-0dcf-4b36-8d94-6559d32c8946" />
+5. Click **Next** on the registration confirmation screen
+   ![](https://github.com/user-attachments/assets/7deace26-5339-499d-aaa3-8ffa9083d26b)
 
+6. **Sign the message** depending on login method:
 
-8. Enter your **email** for alerts → **Next**
-   
-   <img width="1151" height="576" alt="Screenshot 2025-07-23 163644" src="https://github.com/user-attachments/assets/90bc0f81-6198-403b-b436-e131cf33132d" />
+   * Web3 Wallet: Click wallet icon
+   * Email Login: Click Flux SSO/Email
+     → Once auto-filled, click **Next**
+     ![](https://github.com/user-attachments/assets/70011e19-9687-46ca-b064-fb11c7c60f85)
 
+7. Confirm **Total Price + VAT** → click **Register**
+   → Green ✅ **DONE!** confirms successful broadcast
+   ![](https://github.com/user-attachments/assets/6778f235-b45c-4ec4-8551-3c09ff2dbe23)
 
-9. Click **Launch App**
-   
-  <img width="1175" height="628" alt="Screenshot 2025-07-23 163740" src="https://github.com/user-attachments/assets/bba1e804-f5af-4f66-b0a1-64ba17f46291" />
-
-
-10. Select payment method:
+8. Choose payment method:
 
    * 💳 Stripe
    * 🅿️ PayPal
-   * 🔷 Flux (🎁 5% discount!)
-     
-     <img width="1155" height="578" alt="Screenshot 2025-07-23 163755" src="https://github.com/user-attachments/assets/90f14d73-8d82-4e7f-bb09-bc853f3a4b9d" />
+   * 🔷 Flux (5% discount)
+     ![](https://github.com/user-attachments/assets/1e9c0ec0-8a80-44ee-9bb1-fb6efe0e4ebd)
 
-
-11. Click **Next → Finish**
-    🕒 Deployment takes **10–30 minutes**
+9. Click **Done**, then **Yes**
+   🕒 Deployment time: **10–30 minutes**
 
 ---
 
-### 🔧 Step 2: Configure Your Node
+### 🛠️ Step 2: Configure Your Collector Node
 
-1. Go to **My Apps → Active Apps**
+1. Go to **Applications → Management → My Active Apps**
+   → Click **Manage**, then confirm
+   ![](https://github.com/user-attachments/assets/f5271e09-8ea4-4f85-bd77-06b96349477e)
 
-2. Click **App Details**
-   
-   ![](https://github.com/user-attachments/assets/ef9cedf8-8d85-4ffa-a98b-8c08260ea9af)
+2. **FluxCloud runs 3 instances**
+   → You can run **up to 3 Collector Nodes** per deployment.
 
-4. Click the app’s **Auto-domain URL**
+3. Open the **Running Instances** tab
+   → Click the **App** button next to any IP
+   ![](https://github.com/user-attachments/assets/65e8943a-31b0-4832-b808-2548eeee975b)
 
-5. Set:
+4. In the node interface:
 
-   * **Wallet Address** *(must hold a Timpi NFT)*
-   * **Number of Workers**
+   * Click ⚙️ **Settings**
+   * Enter your **Timpi Wallet Address** (must hold NFT)
+   * Set **Number of Workers** (1–5)
    * Click **Save**
-     
-     ![](https://github.com/user-attachments/assets/b6c97357-eade-4d0d-9659-81c54fc1ad54)
-     
-     ![](https://github.com/user-attachments/assets/2ae1f04b-ca99-4493-987a-99c28c36be83)
+     ![](https://github.com/user-attachments/assets/91e3f515-7e75-47ba-a2d1-c72e510469ac)
 
-6. Click the **Collector** tab
-   ✅ Your node is now indexing
- 
-   ![](https://github.com/user-attachments/assets/b300a71f-f639-4719-85f8-5b4dc83e3856)
+5. Go to the **Collector** tab
+   ✅ Your node starts indexing
+   ![](https://github.com/user-attachments/assets/44ca58a4-71af-4579-8e1d-b6d455ab7ef5)
+
+📝 **Note:** FluxCloud may rotate server IPs. If redeployed, repeat steps 3–5 on the new IP.
 
 ---
 
-### 🔁 Manage or Renew Subscription
+### 🔁 Updating Your App Subscription
 
-1. Go to [https://cloud.runonflux.io](https://cloud.runonflux.io)
+1. Log in to [home.runonflux.com](https://home.runonflux.com)
 
-2. Go to **My Apps → Active Apps**
+2. Go to **Applications → Management → My Active Apps**
+   → Click **Manage**
 
-3. Click **App Details**
-   
-   ![](https://github.com/user-attachments/assets/e4e9541e-a183-4f5c-bbca-9887fc6b99ff)
+3. Open the **Update/Renew** tab:
 
-5. Click **Update App**
-   
-   ![](https://github.com/user-attachments/assets/5af685a1-523b-4549-8850-21f78b1a7dbc)
+   * Toggle on **Extend Subscription**
+   * Keep **Update Specifications** toggled **off**
+   * Select duration
+   * Accept ToS
+   * Click **Compute Update Message**
+     ![](https://github.com/user-attachments/assets/dd1c6010-6b0a-4bf5-9b75-4dc539665386)
 
-6. Enable **Subscription Plan**, choose duration → **Finish → Renew App**
-   
-   ![](https://github.com/user-attachments/assets/284a02bf-c278-43e6-87cb-0562be7430fc)
+4. **Sign the message** using your login method
+   → Then click **Update Application**
+   ![](https://github.com/user-attachments/assets/74fba599-0207-4d7d-a52b-1fc2f9444351)
 
-7. Choose payment method
-   
-   ![](https://github.com/user-attachments/assets/b090df6b-ef38-4488-a6cd-d613f8fa1fd4)
+5. Choose payment method and complete
+   ![](https://github.com/user-attachments/assets/97613910-a2ba-47a4-8777-3fa7bb5fff21)
 
 ---
 
-## 🔵 Method 2: Deploy a Timpi Node via FluxEdge
+## 💻 Part 2: Deploying Timpi Node via FluxEdge
 
 ### 🧠 Step 1: Deploy a Synaptron Node
 
-1. Go to: [https://console.fluxedge.ai](https://console.fluxedge.ai)
+1. Go to [https://console.fluxedge.ai](https://console.fluxedge.ai)
+   → Sign in or sign up
+   ![](https://github.com/user-attachments/assets/c48a6647-940d-4b32-b284-bccc24733bdd)
 
-2. Sign in or create an account
-   
-   <img width="2545" height="1303" alt="Screenshot 2025-07-23 164757" src="https://github.com/user-attachments/assets/106cc660-0b5c-47dc-86bd-0e1b58d4c41b" />
+2. Deposit funds under **Account Overview**
 
-
-4. Go to **Account Overview**, deposit funds via:
-
-   * 💳 Card
+   * 💳 Stripe / Card
    * 🅿️ PayPal
-   * 🔷 Flux (🎁 5% bonus)
-     
-     <img width="2545" height="1134" alt="Screenshot 2025-07-23 165034" src="https://github.com/user-attachments/assets/3e76fd06-4802-4e6e-b2f5-238ca8d46383" />
+   * 🔷 Flux (5% bonus)
+     ![](https://github.com/user-attachments/assets/9e4c56b8-8dbe-4380-8339-0be696dc5bf2)
 
+3. Click **Deploy App → Explore All Templates**
 
-5. Click **Deploy App → Explore All Templates**
+4. Search for **Timpi Synaptron** and click the app
 
-6. Search for **Timpi Synaptron** → click it
+5. (Optional) Read README → click **Builder** or **Continue**
+   ![](https://github.com/user-attachments/assets/418249c4-25fa-422f-87ba-2fa63c7a61ea)
 
-7. Optionally read README → click **Builder** or **Continue**
-   
-   <img width="2544" height="940" alt="Screenshot 2025-07-23 165410" src="https://github.com/user-attachments/assets/da4c48aa-56bb-46da-b56e-3c44b8812489" />
+6. Add required **Environment Variables**:
 
+   * `NAME` (min. 17 characters)
+   * `GUID` → [Get it here](https://timpi.com/node/register)
+     📘 [How to set up GUID (Linux)](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronLinux.md)
 
-8. Under **Environment Variables**, add:
+7. Adjust resources (or use defaults)
+   ![](https://github.com/user-attachments/assets/6011c5b7-ba7b-4421-8a45-c31219680c26)
 
-   * `NAME` (min 17 characters)
-   * `GUID`: [Get one here](https://timpi.com/node/register)
-     
-     📘 [Setup Guide (Linux)](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronLinux.md)
+8. Click **Rent Machine**
+   → Use filters like GPU, RAM, location, etc.
+   ![](https://github.com/user-attachments/assets/07be5908-f10b-40a8-b7a0-b5227a3fb11e)
 
-9. Adjust machine specs or keep default
-   
- <img width="2536" height="914" alt="Screenshot 2025-07-23 165322" src="https://github.com/user-attachments/assets/84625d5b-8252-4373-8303-ff89b3485fde" />
+9. Select a machine → click **Rent** and confirm
+   ![](https://github.com/user-attachments/assets/e7541468-b19a-4731-9d96-1a64f8e03ca8)
 
+10. After deployment, your Synaptron Dashboard provides:
 
-10. Click **Rent Machine**, use filters (location, GPU, etc)
-    
-  <img width="2559" height="1159" alt="Screenshot 2025-07-23 165631" src="https://github.com/user-attachments/assets/7e421592-5752-4d17-b618-88b8bee42d72" />
-
-
-11. Click **Rent**, then confirm
-    
-<img width="1240" height="1077" alt="Screenshot 2025-07-23 170155" src="https://github.com/user-attachments/assets/8400e665-c22b-4dfa-839a-1657f4f56f5c" />
-
-
-12. After deployment, your dashboard shows:
-
-* Runtime & costs
-* Logs and shell
-* Event monitor
-  
-  ![](https://github.com/user-attachments/assets/b398fe00-34ee-400c-9c50-8712156efa09)
+* App URL, cost, runtime
+* Logs, shell, monitoring
+  ![](https://github.com/user-attachments/assets/59896e32-5d17-47ce-b345-bcff562cbe97)
 
 ---
 
-### ➕ Step 2: Add Collector Nodes on Same Machine
+### ➕ Step 2: Add Collector Nodes (Same Machine)
 
-Take full advantage of your machine's resources by running **multiple Timpi Collector nodes** with your Synaptron.
+To maximize value, add **Collector Nodes** to your Synaptron machine:
 
-1. In your machine list, click `⋮` → **+ New Deployment**
+1. On your machine row, click `⋮` → **+ New Deployment**
 
-2. Search for `Timpi Collector` → click it
+2. Click **Explore All Templates** → search `Timpi Collector`
 
-3. Click **Builder** or **Continue**
+3. (Optional) Read README → click **Builder** or **Continue**
 
-4. Adjust specs → click **Deploy App**
+4. Adjust resources → click **Deploy App**
 
-5. Wait for **Running** status
+5. Wait for status **Running** → click **App URL**
 
-6. Open the app URL
-   → Go to **Settings**, enter:
+6. In the app:
 
-   * **Timpi Wallet Address** (holding NFT)
-   * **Number of Workers**
+   * Go to ⚙️ **Settings**
+   * Enter **Timpi Wallet Address** (must hold NFT)
+   * Set **Workers** (1–5)
    * Click **Save**
-     
-     ![](https://github.com/user-attachments/assets/d14a5993-382e-414b-8e90-82d6557500ef)
+     ![](https://github.com/user-attachments/assets/7ee5798e-7b8e-4915-b45d-2cb9d529dfcf)
 
-7. Switch to **Collector** tab
-   ✅ Your new collector starts indexing
-   
-   ![](https://github.com/user-attachments/assets/e8cdf91d-539a-4714-9dad-e9067fc04b9a)
+7. Go to the **Collector** tab
+   ✅ Indexing starts
+   ![](https://github.com/user-attachments/assets/b86e19fd-7d37-417c-a581-ce3c16b82d4c)
 
 ---
 
-## 🧠 Why Add Collectors with Synaptron?
 
-If you're already paying for a Synaptron GPU machine, it's **highly recommended** to deploy multiple Collectors on the same host.
-More Collectors = More indexing power using the same resources. ⚙️💡
+## 🙋 Community & Support
+
+* 💬 Ask questions in the [**Timpi Discord Channel**](https://discord.com/channels/946982023245992006)
+* 🛠️ Get help in [**#Create a support Ticket**](https://discord.com/channels/946982023245992006/1179427377844068493)
+* 📚 Generic Flux help: [**RunOnFlux Help Center**](https://help.runonflux.io/)
+* 🧾 Submit a ticket via [**Flux Support Portal**](https://support.runonflux.io/support/home)
 
 ---
 
-## 💬 Need Help?
-
-Join the [**Timpi Discord**](https://discord.com/channels/946982023245992006/1179480018292850830) for:
-
-* Tech support
-* Updates from the team
-
-📢 Let’s build the decentralized search engine of the future — together.
+**Built with 🧠 by the Timpi community**
+*Empowering a faster, fairer, and decentralized internet 🌍*

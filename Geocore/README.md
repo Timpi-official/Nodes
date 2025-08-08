@@ -85,7 +85,7 @@ sudo systemctl status docker
 ---
 ## 🛠️ Step 1B – Automatic GeoCore Installation
 
-### ⚠️ NOTE: Install docker before running script below!
+### ⚠️ NOTE: Install docker before running script below if it fails go to manual step 3!
 
 You can install GeoCore with a single command:
 

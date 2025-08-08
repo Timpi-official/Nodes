@@ -83,7 +83,7 @@ sudo systemctl status docker
 ✅ Docker must show `active (running)` before continuing.
 
 ---
-🛠️ Step 1B – Automatic GeoCore Installation
+## 🛠️ Step 1B – Automatic GeoCore Installation
 
 ### ⚠️ NOTE: Install docker before running script below!
 

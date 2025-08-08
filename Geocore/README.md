@@ -87,6 +87,20 @@ sudo systemctl status docker
 ✅ Docker must show `active (running)` before continuing.
 
 ---
+
+⚠️ Tip: Solve Common Docker Issues
+
+If Docker says it’s not running or not found after install, run:
+
+```shell
+sudo usermod -aG docker $USER
+```
+
+Then log out and log back in to apply the permissions.
+
+🧠 This step ensures your user can run Docker without sudo and helps avoid permission issues.
+
+---
 ## 🛠️ Step 1B – Automatic GeoCore Installation
 
 ### ⚠️ NOTE: Install docker before running script below if it fails go to manual step 3!

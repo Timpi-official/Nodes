@@ -236,7 +236,10 @@ You can run multiple GeoCores on the same machine by:
 ### Example:
 
 ```shell
-sudo docker run -d --pull=always --restart unless-stopped \
+sudo docker run -d --pull=always \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --restart unless-stopped \
+  -p 4100:4100 \
   -p 4101:4101 \
   -v /var/timpi2:/var/timpi \
   -e CONPORT=4101 \

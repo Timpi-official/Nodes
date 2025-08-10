@@ -141,8 +141,11 @@ sudo docker run -d --pull=always --restart unless-stopped \
 It also prints instructions to check your logs afterward:
 
 ```shell
-# Real-time log file:
+# Real-time log file 10 rows:
 sudo tail -f $(ls -t /var/timpi/GeoCore-log*.txt | head -n 1)
+
+# Real-time full log file
+sudo tail -n +1 -F $(ls -t /var/timpi/GeoCore-log*.txt | head -n 2)
 
 # Docker logs:
 sudo docker logs -f --tail 50 <Container_ID>

@@ -16,9 +16,10 @@ We provide:
 
 Before you can run a Timpi node (except Collectors), you must **register your Node Access NFT** and receive your unique `GUID`.  
 This applies to:
-- Synaptron Hero
-- Guardian Hero
-- Collector Hero
+- Synaptron
+- Guardian
+- Collector
+- Geocore
 
 Collectors are linked directly via wallet address and **do not** require registration.
 

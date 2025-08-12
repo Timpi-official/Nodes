@@ -171,13 +171,6 @@ Forward external port `4100` to your server’s internal IP on port `4100` (TCP)
 
 ## 🚀 Step 3 – Manual Installation - Run in Production Mode (Background)
 
-### Create Data Folder
-
-This folder stores your geocores data and logs:
-
-```bash
-sudo mkdir -p $HOME/timpi
-```
 
 Once Docker is installed and your GUID is registered, you can run GeoCore in the background with auto-restart enabled:
 
@@ -185,7 +178,7 @@ Once Docker is installed and your GUID is registered, you can run GeoCore in the
 sudo docker run -d --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4100:4100 \
-  -v $HOME/timpi:/var/timpi \
+  -v /var/timpi:/var/timpi \
   -e CONPORT=4100 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
@@ -240,13 +233,6 @@ geocorelog
 
 You can run multiple GeoCores on the same machine by:
 
-### Create Data Folder
-
-This folder stores your geocores data and logs:
-
-```bash
-sudo mkdir -p $HOME/timpi2
-```
 
 * Using a different **port** `-p 4101:4101 \` and `-e CONPORT=4101 \` (Needs to be the same port number).
 * Using a different **GUID**
@@ -260,7 +246,7 @@ sudo docker run -d --pull=always \
   --restart unless-stopped \
   -p 4100:4100 \
   -p 4101:4101 \
-  -v $HOME/timpi2:/var/timpi \
+  -v /var/timpi:/var/timpi \
   -e CONPORT=4101 \
   -e GUID="your-second-guid" \
   -e LOCATION="Sweden/Stockholm" \

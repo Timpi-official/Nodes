@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "\n🌐 Timpi GeoCore Setup 
+echo -e "\n🌐 Timpi GeoCore Setup"
 
 # 🔌 Prompt for GeoCore Port
 echo -e "\n➡️ Enter the port for GeoCore (Default: 4100)"
@@ -13,7 +13,7 @@ read -p "GUID: " GUID
 
 # 📍 Prompt for location (Country/City)
 unset COUNTRY CITY LOCATION
-echo -e "\n📍 Let's enter your **location**"
+echo -e "\n📍 Let's enter your location"
 while [[ -z "$COUNTRY" ]]; do
   read -p "🌍 Country (Example: Sweden, Germany, United States): " COUNTRY
 done
@@ -23,27 +23,41 @@ done
 LOCATION="$COUNTRY/$CITY"
 echo -e "\n✅ Location set to: $LOCATION"
 
+# 📁 Prepare data folder
+DATA_DIR="$HOME/timpi"
+echo -e "\n🗂️ Creating data folder at: $DATA_DIR"
+sudo mkdir -p "$DATA_DIR"
+sudo chown 1000:1000 "$DATA_DIR"
+
 # 🐳 Run GeoCore Docker container
 echo -e "\n🚀 Launching GeoCore container..."
-CONTAINER_ID=$(sudo docker run -d --pull=always --restart unless-stopped \
+sudo docker run -d --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p ${GEOCORE_PORT}:${GEOCORE_PORT} \
-  -v /var/timpi:/var/timpi \
+  -v ${DATA_DIR}:/var/timpi \
   -e CONPORT=${GEOCORE_PORT} \
   -e GUID="${GUID}" \
   -e LOCATION="${LOCATION}" \
-  timpiltd/timpi-geocore:latest)
+  timpiltd/timpi-geocore:latest
 
 echo -e "\n✅ GeoCore is now running on port ${GEOCORE_PORT}"
-echo -e "🧾 Container ID: ${CONTAINER_ID}"
 
-# 📄 Show how to check logs
-echo -e "\n📡 To view logs:\n"
-
-echo -e "1️⃣  Real-time log file:"
-echo -e "    \033[1msudo tail -f \$(ls -t /var/timpi/GeoCore-log*.txt | head -n 1)\033[0m"
-
-echo -e "\n2️⃣  Docker logs:"
-echo -e "    \033[1msudo docker logs -f --tail 50 ${CONTAINER_ID}\033[0m"
-
-echo -e "\n🧠 Tip: Press \033[1mCtrl + C\033[0m to stop viewing the logs.\n"
+# 📄 Show plain-text commands for later
+echo
+echo "📡 To view logs later:"
+echo "• Log files on host:"
+echo "  sudo tail -n +1 -F \"\$HOME/timpi/GeoCore-log*.txt\""
+echo
+echo "• Docker logs:"
+echo "  sudo docker logs -f --tail 50 <YOUR-CONTAINERID>"
+echo
+echo "• Restart / Stop:"
+echo "  sudo docker restart <YOUR-CONTAINERID>"
+echo "  sudo docker stop <YOUR-CONTAINERID>"
+echo
+echo "• Remove container:"
+echo "  sudo docker rm -f <YOUR-CONTAINERID>"
+echo
+echo "• Remove image:"
+echo "  sudo docker rmi timpiltd/timpi-geocore:latest"
+echo

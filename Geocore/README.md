@@ -171,6 +171,14 @@ Forward external port `4100` to your server’s internal IP on port `4100` (TCP)
 
 ## 🚀 Step 3 – Manual Installation - Run in Production Mode (Background)
 
+### Create Data Folder
+
+This folder stores your geocores data and logs:
+
+```bash
+sudo mkdir -p $HOME/timpi
+```
+
 Once Docker is installed and your GUID is registered, you can run GeoCore in the background with auto-restart enabled:
 
 ```shell

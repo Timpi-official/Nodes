@@ -41,24 +41,22 @@ sudo docker run -d --pull=always --restart unless-stopped \
 echo -e "\n✅ GeoCore is now running on port ${GEOCORE_PORT}"
 echo -e "🧾 Container Name: ${CONTAINER_NAME}"
 
-# 📄 Plain-text commands for users to copy
+# 📄 Show plain-text commands for later
 echo
 echo "📡 To view logs later:"
 echo "• Log files on host:"
-echo "  sudo tail -n +1 -F \"$HOME/timpi\"/GeoCore-log*.txt"
+echo "  sudo tail -n +1 -F \"${DATA_DIR}/GeoCore-log*.txt\""
 echo
 echo "• Docker logs:"
-echo "  sudo docker logs -f --tail 50 ${CONTAINER_NAME}"
+echo "  sudo docker logs -f --tail 50 <YOUR-CONTAINERID>"
 echo
 echo "• Restart / Stop:"
-echo "  sudo docker restart ${CONTAINER_NAME}"
-echo "  sudo docker stop ${CONTAINER_NAME}"
+echo "  sudo docker restart <YOUR-CONTAINERID>"
+echo "  sudo docker stop <YOUR-CONTAINERID>"
 echo
 echo "• Remove container:"
-echo "  sudo docker rm -f ${CONTAINER_NAME}"
+echo "  sudo docker rm -f <YOUR-CONTAINERID>"
 echo
 echo "• Remove image:"
 echo "  sudo docker rmi timpiltd/timpi-geocore:latest"
 echo
-echo "💡 Tip: List containers to confirm the name/ID:"
-echo "  sudo docker ps"

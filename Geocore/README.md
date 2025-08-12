@@ -240,6 +240,14 @@ geocorelog
 
 You can run multiple GeoCores on the same machine by:
 
+### Create Data Folder
+
+This folder stores your geocores data and logs:
+
+```bash
+sudo mkdir -p $HOME/timpi2
+```
+
 * Using a different **port** `-p 4101:4101 \` and `-e CONPORT=4101 \` (Needs to be the same port number).
 * Using a different **GUID**
 * (Mandatory) Mounting a separate volume
@@ -252,7 +260,7 @@ sudo docker run -d --pull=always \
   --restart unless-stopped \
   -p 4100:4100 \
   -p 4101:4101 \
-  -v /var/timpi2:/var/timpi \
+  -v $HOME/timpi2:/var/timpi \
   -e CONPORT=4101 \
   -e GUID="your-second-guid" \
   -e LOCATION="Sweden/Stockholm" \

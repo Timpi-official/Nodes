@@ -31,7 +31,7 @@ echo -e "\n🚀 Launching GeoCore container..."
 sudo docker run -d --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p ${GEOCORE_PORT}:${GEOCORE_PORT} \
-  -v ${DATA_DIR}:/var/timpi \
+  -v $HOME/timpi:/var/timpi \
   -e CONPORT=${GEOCORE_PORT} \
   -e GUID="${GUID}" \
   -e LOCATION="${LOCATION}" \
@@ -40,6 +40,9 @@ sudo docker run -d --pull=always --restart unless-stopped \
 
 echo -e "\n✅ GeoCore is now running on port ${GEOCORE_PORT}"
 echo -e "🧾 Container Name: ${CONTAINER_NAME}"
+echo -e "📦 Host data folder: $HOME/timpi (mounted to /var/timpi inside the container)"
+
+
 
 # 📄 Show plain-text commands for later
 echo

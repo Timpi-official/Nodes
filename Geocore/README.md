@@ -185,7 +185,7 @@ Once Docker is installed and your GUID is registered, you can run GeoCore in the
 sudo docker run -d --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p 4100:4100 \
-  -v /var/timpi:/var/timpi \
+  -v $HOME/timpi:/var/timpi \
   -e CONPORT=4100 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \

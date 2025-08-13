@@ -44,7 +44,7 @@ This guide covers two separate methods for deploying Timpi Nodes:
 3. Enter your registered **GUID**
 4. Agree to the Terms
 5. Click **Start Launching Marketplace Application**
-   ![](https://github.com/user-attachments/assets/362ee1ba-43ca-4860-a67b-8bbf9bdcb207)
+<img width="1435" height="805" alt="Skärmavbild 2025-08-13 kl  13 32 51" src="https://github.com/user-attachments/assets/996585d1-2fd0-4be4-bf83-8f3a3432cf11" />
 
 ---
 

@@ -9,13 +9,20 @@ This guide will walk you through installing and setting up Synaptron on Windows,
 
 ## ⚠️ Important Note About Synaptron Version Display
 
-🛠️ **Heads up:** Even if your Synaptron window shows version `1_1_30`, your node **might still be running the correct version** (e.g. `1_1_34`).
+🛠️ **Heads up:** Latest version is `1_1_35`
 
-This is a known issue — the version number displayed at the top of the Synaptron window hasn’t been updated yet.
+✅ To check your actual running version, use the `/synaptronchecker` command in Discord with your GUID, like this
 
-✅ To check your actual running version, use the `/synaptronchecker` command in Discord with your GUID, like this:
+/synaptronchecker
 
-/synaptronchecker guid_last12: jdu76hgb4g3k
+<img width="714" height="145" alt="Skärmavbild 2025-08-22 kl  18 14 09" src="https://github.com/user-attachments/assets/f1bcfd31-e8ef-460f-b210-996a90658d62" />
+
+<img width="431" height="284" alt="Skärmavbild 2025-08-22 kl  18 14 21" src="https://github.com/user-attachments/assets/8d8d958f-60e5-4a52-8582-386d2d68b8e7" />
+
+<img width="728" height="396" alt="Skärmavbild 2025-08-22 kl  18 15 22" src="https://github.com/user-attachments/assets/aec5c152-80d1-4af4-b258-e811092236f2" />
+
+As you can see here it tells you that you are on a previous version and you need to update it.
+
 
 ## 🔄 📥 How to Update Synaptron on Windows
 

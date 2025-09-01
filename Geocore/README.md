@@ -245,7 +245,7 @@ sudo docker run -d --pull=always \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   --restart unless-stopped \
   -p 4101:4101 \
-  -v /var/timpi:/var/timpi \
+  -v /var/timpi2:/var/timpi \
   -e CONPORT=4101 \
   -e GUID="your-second-guid" \
   -e LOCATION="Sweden/Stockholm" \

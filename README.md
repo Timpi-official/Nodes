@@ -45,6 +45,53 @@ Geo-Core Nodes are strategically located worldwide, enhancing security and enabl
    Use **FluxCloud** and **FluxEdge** to deploy Collector or Synaptron nodes in just a few clicks.
 ---
 
+## 📊 Node Reward Structures
+
+Timpi provides guaranteed minimum reward pools for different node types over fixed periods.  
+Rewards beyond the guaranteed period will continue, with values depending on the strength of the Timpi business.
+
+### 🛠️ Collectors
+| Reward Period                     | $NTMPI per Node / Month |
+|----------------------------------|--------------------------|
+| Till Aug 2025                     | 375                      |
+| Sep 2025 – Aug 2026               | 250                      |
+| Sep 2026 – Aug 2027               | 210                      |
+
+**Nodes on sale in July:** 150
+
+---
+
+### 🛡️ Guardians
+| Reward Period                     | $NTMPI per Node / Month |
+|----------------------------------|--------------------------|
+| Till Aug 2025                     | 667                      |
+| Sep 2025 – Aug 2026               | 500                      |
+| Sep 2026 – Aug 2027               | 375                      |
+
+**Nodes on sale in July:** 200
+
+---
+
+### 🧠 Synaptrons
+| Reward Period                     | Tier 1 ($NTMPI) | Tier 2 ($NTMPI) |
+|----------------------------------|----------------|----------------|
+| Till Dec 2025                     | 1400           | 1600           |
+| Jan 2026 – Dec 2026               | 800            | 1000           |
+| Jan 2027 – Dec 2027               | 500            | 700            |
+
+---
+
+### 🌍 Geo-Cores
+| Reward Period                     | $NTMPI per Node / Month |
+|----------------------------------|--------------------------|
+| Till Aug 2026                     | 800                      |
+| Sep 2026 – Aug 2027               | 400                      |
+| Sep 2027 – Aug 2028               | 300                      |
+
+**Nodes on sale in July:** 500
+
+---
+
 
 ## 📜 License
 

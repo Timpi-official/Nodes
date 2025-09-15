@@ -4,6 +4,8 @@ Welcome! This page contains the **latest version (v1 – 0.10.0)** of the Timpi 
 
 For previous versions (e.g. 0.9.6), check the legacy section in the main README.
 
+![ad8a3f9fbdba425e9334aa4f](https://github.com/user-attachments/assets/3b7007c2-165d-4939-9e38-ddc3baf5cfb7)
+
 ---
 
 ## 🔄 Timpi Collector Overview

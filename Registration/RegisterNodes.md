@@ -38,8 +38,6 @@ It will look similiar to this:
 
 ## ⚠️ Important Notes
 
-- 💼 **Collector Hero, Collector Champion nodes** do **not** require registration with GUID.  
-  → These nodes are automatically linked by **wallet address** during startup.
 - 🔐 Save your **GUID(s)** — you’ll need them when launching your node(s).
 - 🧠 Each NFT only needs to be registered **once** — don’t duplicate the process.
 

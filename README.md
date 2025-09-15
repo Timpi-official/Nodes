@@ -31,10 +31,6 @@ Collectors are linked directly via wallet address and **do not** require registr
 
 1. 🔄 [Collector](https://github.com/Timpi-official/Nodes/tree/main/Collector)  
    Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
-> 🆕 **New version released (v1 – 0.10.0 - SOON)!**  
-> 👉 [See the updated Collector Guides](https://github.com/Timpi-official/Nodes/blob/main/Collector/README2.md)
-
----
 
 2. 🛡️ [Guardian](https://github.com/Timpi-official/Nodes/tree/main/Guardian)  
    Guardians are distributed storage nodes that archive the web, safeguarding data collected by Collectors. Guardians ensure data privacy and security without needing a static IP address or open ports.

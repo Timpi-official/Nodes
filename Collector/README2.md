@@ -15,7 +15,7 @@ They do not expose any services to the internet, helping maintain high security 
 
 ## 🐳 Docker Collector (v1 – 0.10.0)
 
-* 🐧 **[Docker Guide v1](https://github.com/Timpi-official/Nodes/blob/main/Collector/Collector/Tutorial/CollectorDockerGuide-1v.md)**  
+* 🐧 **[Docker Guide v1](https://github.com/Timpi-official/Nodes/blob/main/Collector/Tutorial/CollectorDockerGuide-1v.md)**  
   For users who prefer a containerized setup.
 
 ---

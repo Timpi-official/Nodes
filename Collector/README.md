@@ -27,11 +27,6 @@ Docker setups are ideal for multi-node environments or headless installations.
 * 🐧 **[Linux Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**
   Clean, containerized version for Ubuntu.
 
-* 🪟 **[Windows Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/WindowsDockerCollectorLatest2.md)**
-  Works with Docker Desktop on Windows 10/11.
-
-  ---
-
 ## 🐧 Linux Collector (Ubuntu 22.04.4+)
 
 👉 **[Collector Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorLinux.md)**  
@@ -57,3 +52,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 Have a fix or idea for improvement? Pull requests are welcome!  
 For larger changes, please [open an issue](https://discord.com/channels/946982023245992006/1179427377844068493) to discuss it with us first.
+

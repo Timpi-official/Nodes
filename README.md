@@ -21,8 +21,6 @@ This applies to:
 - Collector
 - Geocore
 
-Collectors are linked directly via wallet address and **do not** require registration.
-
 👉 See the [Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) for full instructions and screenshots.
 
 ---

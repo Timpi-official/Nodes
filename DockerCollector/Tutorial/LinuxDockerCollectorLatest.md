@@ -109,10 +109,6 @@ Let’s say you already have your first one running on port **5015**.
 sudo docker run -d \
   --name timpi_collector_5016 \
   --restart unless-stopped \
-  --ulimit nofile=65536:65536 \
-  --cpus="2" \
-  --memory="2g" \
-  --memory-swap="4g" \
   -p 5016:5015 \
   -v /etc/localtime:/etc/localtime:ro \
   timpiltd/timpi-collector:latest

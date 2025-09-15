@@ -9,7 +9,7 @@ Use this guide to register your **Timpi Node Access NFT** and receive a unique `
 
 - ✅ [Keplr Wallet](https://www.keplr.app/) installed and unlocked  
 - ✅ At least one **Timpi Node Access NFT** in your wallet  
-  _(e.g. Synaptron Hero, Guardian Hero — **not** Collector Hero, Collector Champion)_
+  _(e.g. Synaptron, Guardian, Collector, Geocore_
 
 ---
 
@@ -47,9 +47,9 @@ It will look similiar to this:
 
 ## 🧩 Example NFT Types That Require Registration
 
-- Synaptron Hero Node Access  
-- Guardian Hero Node Access  
-
-💡 Only the **Collector Hero, Collector Champion** is excluded from this process.
+- Collector Node Access
+- Synaptron Node Access  
+- Guardian Node Access  
+- Geocore Node Access
 
 ---

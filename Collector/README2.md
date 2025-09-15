@@ -22,7 +22,7 @@ They do not expose any services to the internet, helping maintain high security 
 
 ## 🐧 Linux Collector (Ubuntu 22.04.4+ – v1)
 
-* **[Linux Guide v1](Collector/Tutorial/CollectorLinuxGuide-1v.md)**  
+* **[Linux Guide v1](https://github.com/Timpi-official/Nodes/blob/main/Collector/Tutorial/CollectorLinuxGuide-1v.md)**  
   One-command install + automatic updates.
 
 ---

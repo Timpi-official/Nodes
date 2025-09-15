@@ -29,7 +29,7 @@ They do not expose any services to the internet, helping maintain high security 
 
 ## 🪟 Windows Collector (Windows 10/11 – v1)
 
-* **[Windows Guide v1](Collector/Tutorial/CollectorWindowsGuide-1v.md)**  
+* **[Windows Guide v1](https://github.com/Timpi-official/Nodes/edit/main/Collector/Tutorial/CollectorWindowsGuide-1v.md)**  
   .exe installer + full system integration.
 
 ---

@@ -37,18 +37,18 @@ http://localhost:5015/collector
 
 ---
 
-### Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
+## Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
 
 ### quick installation command for the latest collector
 ```shell
 sudo apt-get install -y dos2unix curl && sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && sudo dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
 ```
-
-## If you need to remove timpi.config file for some reason
+---
+### If you need to remove timpi.config file for some reason
 ```shell
 sudo systemctl stop collector; sudo rm -f /opt/timpi/timpi.config; sudo systemctl start collector
 ```
-
+---
 **Here's what happens:**
 
 1. **Prepares your system**: Installs `dos2unix` and essential tools to ensure smooth script execution.

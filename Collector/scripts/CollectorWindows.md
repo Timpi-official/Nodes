@@ -5,7 +5,7 @@
 📦 **Installer type:** Native `.exe` (Windows Program)
 
 🔗 **Download:**
-👉 [TimpiCollectorSetup\_0.10.0.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-0.10.0-A.rar)
+👉 [TimpiCollectorSetup\_0.10.0-A.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-0.10.0-A.rar)
 
 ---
 

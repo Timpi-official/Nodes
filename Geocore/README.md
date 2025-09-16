@@ -10,6 +10,25 @@ Fast. Distributed. Privacy-focused.
 
 ---
 
+# 📑 Table of Contents
+
+* [What is a GeoCore Node?](#-what-is-a-geocore-node)
+* [System Requirements](#-system-requirements)
+* [Step 0 – Register Your GUID](#-step-0--register-your-guid)
+* [Step 1 – Install Docker](#step-1-install-docker)
+* [Step 1B – Automatic GeoCore Installation](#step-1b-automatic-geocore-installation)
+
+  * [What happens under the hood?](#-what-happens-under-the-hood)
+* [Step 2 – Open Required Ports](#-step-2--open-required-ports)
+* [Step 3 – Manual Installation (Production Mode)](#-step-3--manual-installation---run-in-production-mode-background)
+* [Step 4 – Monitor Logs](#-step-4--monitor-logs)
+* [Run a Second GeoCore (Optional)](#-run-a-second-geocore-optional)
+* [Docker Parameters Reference](#-docker-parameters-reference)
+* [Upcoming Feature](#upcoming-feature)
+* [Community & Support](#-community--support)
+
+---
+
 ## 📌 What is a GeoCore Node?
 
 A **GeoCore Node** enhances Timpi’s network by routing traffic based on geographic proximity. Each node announces its location, connects to the TAP (Timpi Access Point), and strengthens the decentralized infrastructure.
@@ -48,7 +67,7 @@ Once registered, you’ll receive a **GUID** like:
 
 ---
 
-## 🛠️ Step 1 – Install Docker
+## Step 1 install docker
 
 Run these one by one on your Ubuntu 22.04 server:
 
@@ -101,7 +120,7 @@ Then log out and log back in to apply the permissions.
 🧠 This step ensures your user can run Docker without sudo and helps avoid permission issues.
 
 ---
-## 🛠️ Step 1B – Automatic GeoCore Installation
+## Step 1B Automatic GeoCore Installation
 
 ### ⚠️ NOTE: Install docker before running script below if it fails go to manual step 3!
 

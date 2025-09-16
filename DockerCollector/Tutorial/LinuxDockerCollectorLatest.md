@@ -2,28 +2,6 @@
 Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
 ---
 
-# Table Contents
-* [Minimum System Requirements](#-minimum-system-requirements)
-* [Don't have Docker installed yet?](#-dont-have-docker-installed-yet)
-* [Quick Start (if Docker is already installed)](#-quick-start-if-docker-is-already-installed)
-* [Script Will Detect Your System Resources](#-script-will-detect-your-system-resources)
-* [Important Tip](#-important-tip)
-* [Updating to a New Version](#-updating-to-a-new-version)
-* [Want to Run More Than One Collector?](#-want-to-run-more-than-one-collector)
-  * [Step-by-Step to Run More Collectors](#-step-by-step-to-run-more-collectors)
-  * [Example: 3 Collectors on One Machine](#-example-3-collectors-on-one-machine)
-* [Open the Web UI](#-open-the-web-ui-paste-your-wallet-key-under-settings)
-* [Most Useful Docker Commands](#-most-useful-docker-commands-for-timpi-users)
-* [Inside the Container](#-inside-the-container-important-commands)
-* [Advanced Commands](#-advanced-commands-optional-for-advanced-users-only)
-  * [View Collector Data Every 2 Seconds](#-view-collector-data-every-2-seconds-with-jq)
-  * [View Logs with More Detail](#-view-logs-with-more-detail)
-  * [Update Wallet Key](#-update-wallet-key)
-* [Fun Command: Timpi Monitor](#-fun-command-timpi-monitor-with-ascii-art--colors)
-```
-
----
-
 
 ## ✅ Minimum System Requirements
 

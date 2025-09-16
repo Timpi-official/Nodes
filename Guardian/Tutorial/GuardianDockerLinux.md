@@ -12,6 +12,22 @@ Secure. Distributed. Community-powered.
 
 A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and serves web search results in the Timpi network. Guardians work together to ensure the web remains free and censorship-resistant.
 
+# 📑 Table of Contents
+
+* [What is a Guardian Node?](#-what-is-a-guardian-node)
+* [Supported Systems & Requirements](#-supported-systems--requirements)
+* [Step 0 – Install Docker & Java](#️-step-0--install-docker--java-required-for-all-methods)
+* [Step 1 – Quick Start (Automatic Script)](#-step-1--quick-start-automatic-script)
+
+  * [What You’ll See](#-what-youll-see)
+  * [What to Do After the Script](#-what-to-do-after-the-script)
+* [Remove Previous Guardian (for updates)](#-remove-previous-guardian-for-updates)
+* [Manual Setup Guide](#-manual-setup-guide)
+
+* [Run a Second Guardian Node](#-run-a-second-guardian-node)
+* [Docker Parameters Explained](#-docker-parameters-explained)
+* [Support](#-support)
+
 ---
 
 ## ✅ Supported Systems & Requirements
@@ -33,25 +49,6 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 
 ---
 
-# 📑 Table of Contents
-
-* [What is a Guardian Node?](#-what-is-a-guardian-node)
-* [Supported Systems & Requirements](#-supported-systems--requirements)
-* [Step 0 – Install Docker & Java](#️-step-0--install-docker--java-required-for-all-methods)
-* [Step 1 – Quick Start (Automatic Script)](#-step-1--quick-start-automatic-script)
-
-  * [What You’ll See](#-what-youll-see)
-  * [What to Do After the Script](#-what-to-do-after-the-script)
-* [Remove Previous Guardian (for updates)](#-remove-previous-guardian-for-updates)
-* [Manual Setup Guide](#-manual-setup-guide)
-
-  * [Create Data Folder](#-2-create-data-folder)
-  * [Run the Guardian Manually](#-3-run-the-guardian-manually)
-  * [Open Firewall Ports](#-4-open-firewall-ports)
-  * [View Logs](#-5-view-logs)
-* [Run a Second Guardian Node](#-run-a-second-guardian-node)
-* [Docker Parameters Explained](#-docker-parameters-explained)
-* [Support](#-support)
 
 ### 🛠️ Step 0 – Install Docker & Java (Required for All Methods)
 

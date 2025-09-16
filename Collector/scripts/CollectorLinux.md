@@ -6,7 +6,7 @@
 
 * [⚠️ Important Notice – Resource Usage](#️-important-notice--resource-usage-in-timpi-collector-v0100-a)
 * [Minimum System Requirements](#-minimum-system-requirements)
-* [Quick Installation (One Command)](-#-setup-the-timpi-collector-on-your-linux-system-with-this-one-command-installation)
+* [Quick Installation (One Command)](#-setup-the-timpi-collector-on-your-linux-system-with-this-one-command-installation)
 * [Remove timpi.config file](#if-you-need-to-remove-timpiconfig-file-for-some-reason)
 * [Updating to a New Version](#-updating-to-a-new-version)
 * [Reset Config](#-reset-config)
@@ -58,7 +58,7 @@ http://localhost:5015/collector
 
 ### Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
 
-**Quick Installation Command For The Latest Collector:**
+### Quick Installation Command For The Latest Collector:
 ```shell
 sudo apt-get install -y dos2unix curl && sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && sudo dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
 ```

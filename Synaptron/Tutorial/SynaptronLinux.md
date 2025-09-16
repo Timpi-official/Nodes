@@ -7,6 +7,31 @@
 
 ![Timpi Logo](https://nft.timpi.io/assets/timpi_image/synaptron-hero.jpg)
 
+# 📑 Table of Contents
+
+* [Minimum System Requirements](#-minimum-system-requirements)
+* [Supported GPUs (Examples)](#-supported-gpus-examples)
+* [Step 1 – Install NVIDIA GPU Drivers](#step-1-install-nvidia-gpu-drivers)
+
+  * [Install Drivers](#-install-drivers)
+  * [Verify Installation](#-verify-installation)
+* [Step 2 – Install Docker + NVIDIA Docker](#-step-2--install-docker--nvidia-docker)
+
+  * [Install Docker](#-install-docker)
+  * [Install NVIDIA Docker](#-install-nvidia-docker)
+* [Step 3 – Choose Your Installation Method](#-step-3--choose-your-installation-method)
+
+  * [Option A: Automatic Installation](#-option-a-automatic-installation)
+  * [Option B: Manual Setup](#-option-b-manual-setup)
+
+    * [Deploy the Synaptron Node Manually](#deploy-the-synaptron-node-manually)
+* [How to Update Synaptron](#-how-to-update-synaptron)
+* [Monitoring & Troubleshooting](#-monitoring--troubleshooting)
+* [Video Walkthrough](#-video-walkthrough)
+* [Support](#-support)
+
+---
+
 ## 📌 Minimum System Requirements
 
 | Component    | Minimum                                                     |
@@ -33,7 +58,7 @@
 
 ---
 
-## ⚙️ Step 1 – Install NVIDIA GPU Drivers
+## Step 1 install nvidia gpu drivers
 
 You **must install** official NVIDIA drivers **before proceeding**.
 
@@ -147,7 +172,7 @@ chmod +x Synaptron_setup.sh
 
 > Use this method if you prefer full control or to learn how it works behind the scenes.
 
-### 🛠️ Deploy the Synaptron Node Manually
+### Deploy the Synaptron Node Manually
 
 Paste this entire block into your terminal. It will:
 

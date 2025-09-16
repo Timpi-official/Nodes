@@ -19,12 +19,13 @@ http://localhost:5015/collector
 ---
 
 # ✅ Minimum System Requirements
-	•	OS: Ubuntu 22.04.4 LTS (64-bit) or newer
-	•	CPU: 2 cores
-	•	RAM: 2 GB
-	•	Storage: 1 GB free (for app files + logs; Collector does not store large datasets)
-	•	Internet: Stable & unlimited
+*	OS: Ubuntu 22.04.4 LTS (64-bit) or newer
+*	CPU: 2 cores
+*	RAM: 2 GB
+*	Storage: 1 GB free (for app files + logs; Collector does not store large datasets)
+*	Internet: Stable & unlimited
 
+---
 
 ### Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
 
@@ -66,15 +67,19 @@ Just copy, paste, and press Enter
 # 🔁 Updating to a New Version
 
 When a new Collector release comes out:
-	1.	Run the same quick installation command again (above).
+
+### 1.	Run the same quick installation command again (above).
  
  ### 2.	The script will:
- 
-	•   Stop the running Collector
-	•	Remove old files
-	•	Install the new version
-	•	Apply memory limits
-	•	Restart the services
+•   Stop the running Collector
+
+•	Remove old files
+
+•	Install the new version
+
+•	Apply memory limits
+
+•	Restart the services
 
 ### 👉 You do not need to manually uninstall before upgrading.
 

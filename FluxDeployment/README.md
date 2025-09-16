@@ -2,9 +2,6 @@
 
 This guide covers two separate methods for deploying Timpi Nodes:
 
-* 🟢 **FluxCloud** – Simplified and affordable deployment of **Collector** and **Geocore** Nodes via the Flux Marketplace.
-* 🔵 **FluxEdge** – Advanced and customizable infrastructure for deploying **Synaptron** and **Collector** Nodes.
-
 ---
 
 * 🟢 [FluxCloud](#-part-1-deploying-a-timpi-collector-or-geocore-node-via-fluxcloud) – Simplified and affordable deployment of **Collector** and **Geocore** Nodes via the Flux Marketplace.
@@ -22,8 +19,6 @@ This guide covers two separate methods for deploying Timpi Nodes:
   * [Step 2: Add Collector Nodes (Same Machine)](#-step-2-add-collector-nodes-same-machine)
 
 * 🙋 [Community & Support](#-community--support)
-
----
 
 ---
 

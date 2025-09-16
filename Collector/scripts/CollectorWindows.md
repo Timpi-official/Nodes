@@ -1,5 +1,7 @@
 # 🪟 Timpi Collector for Windows 10 & 11
+
 ---
+
 ### 📑 Table of Contents
 
 * [Installation Guide](#-installation-guide)

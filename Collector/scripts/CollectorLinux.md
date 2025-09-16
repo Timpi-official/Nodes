@@ -18,6 +18,14 @@ http://localhost:5015/collector
 
 ---
 
+# ✅ Minimum System Requirements
+	•	OS: Ubuntu 22.04.4 LTS (64-bit) or newer
+	•	CPU: 2 cores
+	•	RAM: 2 GB
+	•	Storage: 1 GB free (for app files + logs; Collector does not store large datasets)
+	•	Internet: Stable & unlimited
+
+
 ### Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
 
 **Quick Installation Command For The Latest Collector:**
@@ -52,6 +60,52 @@ sudo systemctl stop collector; sudo rm -f /opt/timpi/timpi.config; sudo systemct
 - Check the status of the collector and UI using `sudo systemctl status collector` and `sudo systemctl status collector_ui`.
 
 Just copy, paste, and press Enter
+
+---
+
+# 🔁 Updating to a New Version
+
+When a new Collector release comes out:
+	1.	Run the same quick installation command again (above).
+ 
+ ### 2.	The script will:
+ 
+	•   Stop the running Collector
+	•	Remove old files
+	•	Install the new version
+	•	Apply memory limits
+	•	Restart the services
+
+### 👉 You do not need to manually uninstall before upgrading.
+
+⸻
+
+# 🧹 Reset Config
+
+### If you need to reset your wallet key:
+
+```shell
+sudo systemctl stop collector
+sudo rm -f /opt/timpi/timpi.config
+sudo systemctl start collector
+```
+
+⸻
+
+# ❌ Uninstall Collector
+
+### To completely remove the Collector:
+
+```shell
+sudo systemctl stop collector collector_ui || true
+sudo systemctl disable collector collector_ui || true
+sudo rm -rf /opt/timpi
+sudo rm -f /etc/systemd/system/collector.service /etc/systemd/system/collector_ui.service
+sudo systemctl daemon-reload
+echo "Collector has been removed successfully."
+```
+
+⸻
 
 
 **Here´s a Quick Removal command Of The Collector:**

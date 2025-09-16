@@ -1,35 +1,5 @@
 *Only Support for Ubuntu +22.04.4 LTS*
 
----
-
-# 📑 Table of Contents
-
-* [⚠️ Important Notice – Resource Usage](#️-important-notice--resource-usage-in-timpi-collector-v0100-a)
-* [Minimum System Requirements](#-minimum-system-requirements)
-* [Quick Installation (One Command)](#-setup-the-timpi-collector-on-your-linux-system-with-this-one-command-installation)
-* [Remove timpi.config file](#if-you-need-to-remove-timpiconfig-file-for-some-reason)
-* [Updating to a New Version](#-updating-to-a-new-version)
-* [Reset Config](#-reset-config)
-* [Uninstall Collector](#-uninstall-collector)
-* [Linux Collector Manual Guide](#-linux-collector-manual-guide)
-  * [Step 1: Remove Old Version](#-step-1-remove-old-version)
-  * [Step 2: Update System](#-step-2-update-system)
-  * [Step 3: Create Installation Folder](#-step-3-create-installation-folder)
-  * [Step 4: Install Unrar](#-step-4-install-unrar)
-  * [Step 5: Download Collector](#-step-5-download-collector)
-  * [Step 6: Extract Files](#-step-6-extract-files)
-  * [Step 7: Move Files (if needed)](#-step-7-move-files-if-needed)
-  * [Step 8: Set Permissions](#-step-8-set-permissions)
-  * [Step 9: Create Collector Service](#-step-9-create-collector-service)
-  * [Step 10: Create UI Service](#-step-10-create-ui-service)
-  * [Step 11: Cleanup](#-step-11-cleanup)
-  * [Step 12: Reload & Enable Services](#-step-12-reload--enable-services)
-  * [Step 13: Start Services](#-step-13-start-services)
-  * [Step 14: Check Status](#-step-14-check-status)
-  * [Step 15: Access UI](#-step-15-access-ui)
-  * [Troubleshoot](#-troubleshoot)
-  * [Uninstall](#-uninstall)
-* [Source](#source)
 
 ## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.10.0-A
 

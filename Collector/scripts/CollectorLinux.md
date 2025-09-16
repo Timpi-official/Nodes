@@ -6,7 +6,7 @@
 
 * [⚠️ Important Notice – Resource Usage](#️-important-notice--resource-usage-in-timpi-collector-v0100-a)
 * [Minimum System Requirements](#-minimum-system-requirements)
-* [Quick Installation (One Command)](#setup-the-timpi-collector-on-your-linux-system-with-this-one-command-installation)
+* [Quick Installation (One Command)](#-setup-the-timpi-collector-on-your-linux-system-with-this-one-command-installation)
 * [Remove timpi.config file](#if-you-need-to-remove-timpiconfig-file-for-some-reason)
 * [Updating to a New Version](#-updating-to-a-new-version)
 * [Reset Config](#-reset-config)

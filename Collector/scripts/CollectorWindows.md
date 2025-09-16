@@ -80,7 +80,7 @@ The Timpi Collector can be uninstalled **just like any other Windows app**.
 1. Open **Start Menu** → **Settings**
 2. Go to **Apps** → **Apps & Features**
 3. Search for: `Timpi`
-4. Click on **Timpi Collector version 0.10.0**
+4. Click on **Timpi Collector version 0.XX.0**
 5. Click **Uninstall** and confirm
 
 ---

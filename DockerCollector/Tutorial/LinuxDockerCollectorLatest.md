@@ -90,6 +90,27 @@ You will be asked:
 **Recommended:** Use max 75–80% of total available resources.
 
 
+# 🔁 Updating to a New Version
+
+When a new version is released:
+###	1.	Pull the latest image
+
+```shell
+sudo docker pull timpiltd/timpi-collector:latest
+```
+
+###	2.	Stop & remove your old container
+
+```shell
+sudo docker stop timpi_collector
+sudo docker rm timpi_collector
+```
+
+
+###	3.	Re-run your original docker run command (or re-run the setup script).
+
+👉 After update, just open the web UI and re-enter your wallet key.
+
 ---
 
 ## 🧱 Want to Run More Than One Collector?

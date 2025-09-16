@@ -1,4 +1,22 @@
 # 🪟 Timpi Collector for Windows 10 & 11
+---
+### 📑 Table of Contents
+
+* [Installation Guide](#-installation-guide)
+
+  * [1. Download the Installer](#-1-download-the-installer)
+  * [2. Run the Installer](#-2-run-the-installer)
+  * [3. What the Installer Does Automatically](#-3-what-the-installer-does-automatically)
+* [Using Timpi Collector](#-using-timpi-collector)
+
+  * [4. Start the Collector](#-4-start-the-collector)
+  * [5. Access the Dashboard](#-5-access-the-dashboard)
+* [Uninstallation Guide](#-uninstallation-guide)
+
+  * [Method 1 – Apps & Features](#-method-1--apps--features)
+  * [Method 2 – Control Panel](#-method-2--control-panel)
+
+  ---
 
 **Version:** `0.10.0-A`
 
@@ -43,7 +61,7 @@
 
 ---
 
-## 🖥️ Using Timpi Collector
+## 🖥 using timpi collector
 
 ### 🔹 4. Start the Collector
 
@@ -71,7 +89,7 @@ Right-click the tray icon to:
 
 ---
 
-## 🗑️ Uninstallation Guide
+## 🗑 Uninstallation Guide
 
 The Timpi Collector can be uninstalled **just like any other Windows app**.
 

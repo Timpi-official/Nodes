@@ -7,11 +7,6 @@ Secure. Distributed. Community-powered.
 <img width="1509" height="850" alt="Screenshot_2025-07-23_182936_upscayl_3x_realesrgan-x4plus-anime" src="https://github.com/user-attachments/assets/f11e358c-15cc-4618-bca0-cfcdb615a65d" />
 
 ---
-
-## 📌 What is a Guardian Node?
-
-A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and serves web search results in the Timpi network. Guardians work together to ensure the web remains free and censorship-resistant.
-
 # 📑 Table of Contents
 
 * [What is a Guardian Node?](#-what-is-a-guardian-node)
@@ -27,6 +22,10 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 * [Run a Second Guardian Node](#-run-a-second-guardian-node)
 * [Docker Parameters Explained](#-docker-parameters-explained)
 * [Support](#-support)
+---
+## 📌 What is a Guardian Node?
+
+A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and serves web search results in the Timpi network. Guardians work together to ensure the web remains free and censorship-resistant.
 
 ---
 

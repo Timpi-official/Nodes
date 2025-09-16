@@ -105,6 +105,46 @@ This guide covers two separate methods for deploying Timpi Nodes:
 
 ---
 
+### 🔄 Updates on Flux (Watchtower & Redeploy)
+
+When you run your Collector or Geocore node on **Flux Cloud**, you do **not** need to manually update the container.
+
+Flux includes a built-in tool called **Watchtower**, which:
+
+* Monitors your running containers
+* Detects when a new image is available
+* Automatically restarts your container with the updated version
+
+📌 This means your node will always stay up to date without you doing anything.
+
+⚠️ Because Flux runs across thousands of decentralized servers worldwide, the update rollout can take **up to 10 hours** before all instances refresh.
+
+If you want to update faster, you can trigger a redeploy:
+
+1. Log in to [home.runonflux.io](https://home.runonflux.io) with your ZelID
+2. Go to **Apps → Global Apps → My Apps**
+3. Select your app → **Manage → Manage App**
+4. In the left menu, click **Global Control**
+5. Under **Redeploy**, choose:
+
+   * **Soft Redeploy** → redeploy with data preserved
+   * **Hard Redeploy** → redeploy from scratch (container data wiped)
+
+More info:
+👉 [Flux Cloud Watchtower Docs](https://help.runonflux.io/docs/the-flux-cloud-watchtower/)
+
+---
+
+### 🔁 Updating Your App Subscription
+
+Log in to [home.runonflux.com](https://home.runonflux.com)
+
+Go to **Applications → Management → My Active Apps** → Click **Manage**
+
+... *(and your existing steps follow here)*
+
+---
+
 ### 🔁 Updating Your App Subscription
 
 1. Log in to [home.runonflux.com](https://home.runonflux.com)

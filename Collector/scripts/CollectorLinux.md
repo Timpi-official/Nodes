@@ -1,6 +1,17 @@
 *Only Support for Ubuntu +22.04.4 LTS*
 
+---
+# 📑 Table of Contents
 
+* [Minimum System Requirements](#-minimum-system-requirements)
+* [Quick Installation Command](#quick-installation-command-for-the-latest-collector)
+* [Remove timpi.config](#if-you-need-to-remove-timpiconfig-file-for-some-reason)
+* [Updating to a New Version](#-updating-to-a-new-version)
+* [Reset Config](#-reset-config)
+* [Uninstall Collector](#-uninstall-collector)
+* [Linux Collector Manual Guide](#linux-collector-manual-guide)
+
+---
 ## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.10.0-A
 
 **Timpi Collector v0.10.0-A** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
@@ -28,7 +39,7 @@ http://localhost:5015/collector
 
 ### Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
 
-### Quick Installation Command For The Latest Collector:
+### quick installation command for the latest collector
 ```shell
 sudo apt-get install -y dos2unix curl && sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && sudo dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
 ```

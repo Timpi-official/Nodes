@@ -120,7 +120,7 @@ sudo systemctl stop collector collector_ui || true; sudo systemctl disable colle
 
 ---
 # Linux Collector Manual Guide
-### **Quick Guide Ubuntu 22.04: Installing Timpi Collector**
+### **Quick Guide Ubuntu 22.04: Installing/Uninstalling Timpi Collector**
 
 ### **Step 1: Remove Old Version**
 ```shell

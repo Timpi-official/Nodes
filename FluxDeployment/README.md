@@ -8,6 +8,8 @@ This guide covers two separate methods for deploying Timpi Nodes:
 
   * [Step 1: Install the TimpiCollector App](#-step-1-install-the-timpicollector-app)
   * [App Configuration](#-app-configuration)
+
+
   * [Sign & Register](#-sign--register)
   * [Step 2: Configure Your Collector Node](#-step-2-configure-your-collector-node)
   * [Updates on Flux (Watchtower & Redeploy)](#-updates-on-flux-watchtower--redeploy)

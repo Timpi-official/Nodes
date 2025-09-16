@@ -78,7 +78,7 @@ Just copy, paste, and press Enter
 
 When a new Collector release comes out:
 
-### 1.	Run the same quick installation command again (above).
+### 1.	Run the same [Quick Installation Command](#quick-installation-command-for-the-latest-collector) command again (above).
  
  ### 2.	The script will:
 •   Stop the running Collector

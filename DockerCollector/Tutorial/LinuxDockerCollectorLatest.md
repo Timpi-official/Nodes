@@ -10,7 +10,7 @@ Our Collectors are decentralized “workers” crawling the web collecting infor
 * OS: Ubuntu 22.04.4 LTS (64-bit) or newer
 * CPU: 2 cores
 * RAM: 2 GB
-* Storage: 1 GB free
+* Storage: Storage: 1 GB free (for Docker image, logs, and temp files — Collector does not store large datasets)
 * Internet: Stable & unlimited connection
 
 

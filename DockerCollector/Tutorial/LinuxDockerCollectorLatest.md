@@ -2,6 +2,26 @@
 Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
 ---
 
+# 📑 Table of Contents
+
+* [Minimum System Requirements](#-minimum-system-requirements)
+* [Install Docker (if not installed)](#dont-have-docker-installed-yet)
+* [Quick Start (if Docker is already installed)](#quick-start-if-docker-is-already-installed)
+* [Script Will Detect Your System Resources](#script-will-detect-your-system-resources)
+* [Important Tip](#important-tip)
+* [Updating to a New Version](#-updating-to-a-new-version)
+* [Want to Run More Than One Collector?](#-want-to-run-more-than-one-collector)
+
+  * [Step-by-Step to Run More Collectors](#-step-by-step-to-run-more-collectors)
+  * [Important Tips](#important-tips)
+  * [Example: 3 Collectors on One Machine](#-example-3-collectors-on-one-machine)
+* [Open the Web UI](#open-the-web-ui-paste-your-wallet-key-under-settings)
+* [Most Useful Docker Commands](#most-useful-docker-commands-for-timpi-users)
+* [Inside the Container: Important Commands](#inside-the-container-important-commands)
+* [Advanced Commands (Optional)](#advanced-commands-optional-for-advanced-users-only)
+* [Fun Command: Timpi Monitor](#fun-command-timpi-monitor-with-ascii-art--colors)
+---
+
 
 ## ✅ Minimum System Requirements
 
@@ -12,7 +32,7 @@ Our Collectors are decentralized “workers” crawling the web collecting infor
 * Internet: Stable & unlimited connection
 
 
-### :exclamation: **Don't have Docker installed yet?**
+### Don't have Docker installed yet
 
 Run these commands first:
 
@@ -34,7 +54,7 @@ https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
 sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-Then install Docker:
+**Then install docker:**
 
 ```shell
 sudo apt update
@@ -49,7 +69,7 @@ sudo systemctl status docker
 
 
 
-### :rocket: **Quick Start (if Docker is already installed)**
+### Quick Start if Docker is already installed
 
 Paste this in your terminal to install and launch Timpi Collector:
 
@@ -57,7 +77,7 @@ Paste this in your terminal to install and launch Timpi Collector:
 mkdir -p ~/timpi_collector_docker && cd ~/timpi_collector_docker && curl -O https://raw.githubusercontent.com/Timpi-official/Nodes/main/DockerCollector/LinuxDockerCollectorLatest.sh && mv LinuxDockerCollectorLatest.sh setup_timpi.sh && chmod +x setup_timpi.sh && ./setup_timpi.sh
 ```
 
-### :brain: **Script Will Detect Your System Resources**
+### Script Will Detect Your System Resources
 
 When the script runs, it will:
 
@@ -80,7 +100,7 @@ You will be asked:
 🛠️ Swap in GB? [Enter for default: 4]:
 ```
 
-### :warning: **Important Tip!**
+### important tip
 
 * Do **not** allocate 100% of your system’s CPU or RAM.
 * Leave room for your operating system and background tasks.
@@ -166,7 +186,7 @@ Each collector still uses **port 5015 inside the container**, but Docker maps it
 
 ---
 
-### ⚠️ Important Tips
+### important tips
 
 * Always pick a **unique container name** (e.g., `timpi_collector_5016`, `timpi_collector_5017`)
 * Always map to a **new external port**
@@ -186,12 +206,12 @@ Each collector still uses **port 5015 inside the container**, but Docker maps it
 
 
 
-### :globe_with_meridians: **Open the Web UI, paste your wallet key under settings:**
+### Open the Web UI paste your wallet key under settings
 
 http://localhost:5015/collector
 
 
-### :toolbox: **Most Useful Docker Commands for Timpi Users**
+### Most Useful Docker Commands for Timpi Users
 
 
 ### :mag: **1. View Container Logs (Live):**
@@ -256,7 +276,7 @@ sudo docker stats timpi_collector
 sudo docker pull timpiltd/timpi-collector:latest
 ```
 
-## 🛠️ **Inside the Container: Important Commands**
+## Inside the Container Important Commands
 
 Before accessing the container, install essential tools:
 
@@ -290,7 +310,7 @@ vim /opt/timpi/CollectorSettings.json
 tail -f /opt/timpi/TimpiCollectorLogs.log
 ```
 
-## :fire: **Advanced Commands (Optional, for Advanced Users Only)**
+## Advanced Commands Optional for Advanced Users Only
 
 ### 🛠️ **View Collector Data Every 2 Seconds with jq:**
 
@@ -355,7 +375,7 @@ Locate and update the `Wallet` parameter:
 "Wallet": "YOUR_NEUTARO_WALLET_ADDRESS"
 ```
 
-## :tada: **Fun Command: Timpi Monitor with ASCII Art & Colors**
+## Fun Command Timpi Monitor with ASCII Art & Colors
 
 For those who want to add some fun to their monitoring, run this one-liner to install some fancy tools and create a `timpi-monitor` command:
 

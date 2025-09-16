@@ -7,6 +7,26 @@ This guide covers two separate methods for deploying Timpi Nodes:
 
 ---
 
+* 🟢 [FluxCloud](#-part-1-deploying-a-timpi-collector-or-geocore-node-via-fluxcloud) – Simplified and affordable deployment of **Collector** and **Geocore** Nodes via the Flux Marketplace.
+
+  * [Step 1: Install the TimpiCollector App](#-step-1-install-the-timpicollector-app)
+  * [App Configuration](#-app-configuration)
+  * [Sign & Register](#-sign--register)
+  * [Step 2: Configure Your Collector Node](#-step-2-configure-your-collector-node)
+  * [Updates on Flux (Watchtower & Redeploy)](#-updates-on-flux-watchtower--redeploy)
+  * [Updating Your App Subscription](#-updating-your-app-subscription)
+
+* 🔵 [FluxEdge](#-part-2-deploying-timpi-node-via-fluxedge) – Advanced and customizable infrastructure for deploying **Synaptron** and **Collector** Nodes.
+
+  * [Step 1: Deploy a Synaptron Node](#-step-1-deploy-a-synaptron-node)
+  * [Step 2: Add Collector Nodes (Same Machine)](#-step-2-add-collector-nodes-same-machine)
+
+* 🙋 [Community & Support](#-community--support)
+
+---
+
+---
+
 ## 🚀 Part 1: Deploying a Timpi Collector or Geocore Node via FluxCloud
 
 ### 🧩 Step 1: Install the TimpiCollector App

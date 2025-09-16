@@ -2,9 +2,9 @@
 
 ---
 
-## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.10.0
+## ⚠️ Important Notice – Resource Usage in Timpi Collector v0.10.0-A
 
-**Timpi Collector v0.10.0** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
+**Timpi Collector v0.10.0-A** introduces important changes to how **worker and thread settings** affect your system. They now have a **direct impact on CPU, RAM, and bandwidth usage**.
 
 > ⚠️ If you set worker/thread values too high, **your Collector can consume 100% of your internet bandwidth** — potentially choking your entire connection and affecting other nodes or services (e.g., Guardian, Validator, Synaptron).
 
@@ -18,7 +18,7 @@ http://localhost:5015/collector
 
 ---
 
-### Setup the Timpi Collector on your Linux system with this one-command installation. This install version 0.10.0 of the Collector and then automatically upgrade it, overwriting any previous files.
+### Setup the Timpi Collector on your Linux system with this one-command installation. This install version of the Collector and then automatically upgrade it, overwriting any previous files.
 
 **Quick Installation Command For The Latest Collector:**
 ```shell
@@ -61,7 +61,7 @@ sudo systemctl stop collector collector_ui || true; sudo systemctl disable colle
 
 ---
 # Linux Collector Manual Guide
-### **Quick Guide Ubuntu 22.04: Installing Timpi Collector 0.10.0**
+### **Quick Guide Ubuntu 22.04: Installing Timpi Collector**
 
 ### **Step 1: Remove Old Version**
 ```shell

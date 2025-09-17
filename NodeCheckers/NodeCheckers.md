@@ -1,5 +1,3 @@
----
-
 # 🔎 Timpi Node Checkers
 
 We provide simple **Discord slash commands** to check the status of your Timpi nodes.

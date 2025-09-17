@@ -43,7 +43,7 @@ http://localhost:5015/collector
 ```shell
 sudo apt-get install -y dos2unix curl && sudo curl -o Automated_collector_script.sh https://raw.githubusercontent.com/Timpi-official/Nodes/main/Collector/Automated_collector_script.sh && sudo dos2unix Automated_collector_script.sh && bash Automated_collector_script.sh
 ```
-### Note: the quick command is only tested on native Linux installtion Ubuntu (Not Proxmox). if not working jump down to [Linux Collector Manual Guide](#linux-collector-manual-guide).
+### Note: the quick command is only tested on native Linux installation Ubuntu (Not Proxmox and others). if not working jump down to [Linux Collector Manual Guide](#linux-collector-manual-guide).
 ---
 ### If you need to remove timpi.config file for some reason
 ```shell

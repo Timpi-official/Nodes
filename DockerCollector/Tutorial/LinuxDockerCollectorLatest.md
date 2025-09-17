@@ -127,6 +127,16 @@ sudo docker rm timpi_collector
 
 ###	3.	Re-run your original docker run command (or re-run the setup script).
 
+Original docker run command:
+```shell
+sudo docker run -d \
+  --name timpi_collector \
+  --restart unless-stopped \
+  -p 5015:5015 \
+  -v /etc/localtime:/etc/localtime:ro \
+  timpiltd/timpi-collector:latest
+```
+
 👉 After update, just open the web UI and re-enter your wallet key.
 
 ---

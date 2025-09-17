@@ -25,6 +25,15 @@ This applies to:
 
 ---
 
+## 🔍 [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md)
+
+Want to quickly verify if your **Synaptron, Guardian, or GeoCore** node is online?
+We provide official **Discord Slash Commands** (`/synaptronchecker`, `/guardianchecker`, `/geocore`) that let you check your node status privately.
+
+👉 See the [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md) for usage instructions, screenshots, and example outputs.
+
+---
+
 ## 🗂 Node Types
 
 1. 🔄 [Collector](https://github.com/Timpi-official/Nodes/tree/main/Collector)  

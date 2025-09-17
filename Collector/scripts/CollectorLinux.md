@@ -32,7 +32,7 @@ http://localhost:5015/collector
 *	OS: Ubuntu 22.04.4 LTS (64-bit) or newer
 *	CPU: 2 cores
 *	RAM: 2 GB
-*	Storage: 1 GB free (for app files + logs; Collector does not store large datasets)
+*	Storage: 1 GB
 *	Internet: Stable & unlimited
 
 ---

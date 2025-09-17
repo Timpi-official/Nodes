@@ -4,6 +4,17 @@
 
 We provide simple **Discord slash commands** to check the status of your Timpi nodes.
 
+---
+
+# 📑 Table of Contents
+
+* [🧠 Synaptron Checker](#-synaptron-checker)
+* [🛡 Guardian Checker](#-guardian-checker)
+* [🌐 GeoCore Checker](#-geocore-checker)
+* [🙋 FAQ](#-faq)
+
+---
+
 ### ✅ How It Works
 
 1. Type the command in **any channel** (you must have the **Verified Human** role).

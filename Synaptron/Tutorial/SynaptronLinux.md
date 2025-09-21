@@ -202,12 +202,42 @@ sudo docker run --pull=always --restart always -d \
 
 When a new release is announced:
 
-```shell
-sudo docker stop <container_id>
-sudo docker rm <container_id>
-```
+1. **Check running containers**
 
-Then re-run the [Deploy the Synaptron Node Manually](#deploy-the-synaptron-node-manually) command above with the same `node_name` and `guid`.
+   ```bash
+   sudo docker ps
+   ```
+
+2. **Stop and remove the old container**
+
+   ```bash
+   sudo docker stop <container_id>
+   sudo docker rm <container_id>
+   ```
+
+3. **(Optional) Clean up old images**
+   List all images:
+
+   ```bash
+   sudo docker images
+   ```
+
+   Remove old Synaptron images:
+
+   ```bash
+   sudo docker rmi <image_id>
+   ```
+
+   > ✅ Make sure the image says `synaptron` before removing.
+
+4. **Check for old containers (cleanup)**
+
+   ```bash
+   sudo docker ps -a
+   ```
+
+5. **Redeploy the Synaptron Node**
+   Run the same [Deploy the Synaptron Node Manually](#deploy-the-synaptron-node-manually) command as before with your **node\_name** and **guid**.
 
 ---
 

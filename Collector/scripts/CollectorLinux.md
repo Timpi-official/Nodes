@@ -1,6 +1,11 @@
 *Only Support for Ubuntu +22.04.4 LTS*
 
 ---
+
+<img width="1024" height="576" alt="ad8a3f9fbdba425e9334aa4f_upscayl_2x_digital-art-4x" src="https://github.com/user-attachments/assets/8dcd810f-fa30-4912-ac11-c63417ec15bc" />
+
+---
+
 # 📑 Table of Contents
 
 * [Minimum System Requirements](#-minimum-system-requirements)

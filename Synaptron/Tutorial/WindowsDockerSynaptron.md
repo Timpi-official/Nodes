@@ -1,6 +1,7 @@
 # 🧊 Timpi Synaptron Setup (Windows 10 & 11)
 ---
 <img width="1480" height="862" alt="Screenshot_2025-07-23_183112_upscayl_3x_realesrgan-x4plus-anime" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3" />
+
 ---
 
 💪 With NVIDIA GPU support, login fix, `.wslconfig` config, and Windows Firewall instructions.

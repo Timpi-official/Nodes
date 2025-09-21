@@ -207,7 +207,7 @@ sudo docker stop <container_id>
 sudo docker rm <container_id>
 ```
 
-Then re-run the **docker run** command above with the same `node_name` and `guid`.
+Then re-run the [Deploy the Synaptron Node Manually](#deploy-the-synaptron-node-manually) command above with the same `node_name` and `guid`.
 
 ---
 

@@ -51,7 +51,20 @@ GeoCore nodes are lightweight and easy to run — perfect for individuals who wa
 | Docker      | ✅ Required                             |
 | Ports       | `4100/tcp` (default) — open in firewall and router |
 
-> ⚠️ Not officially supported: WSL, Proxmox LXC, Windows/macOS, or limited VMs
+---
+
+## ⚠️ Important Support Notice
+
+Timpi GeoCore nodes are supported on:
+
+* ✅ **Linux Ubuntu 22.04 LTS (native) with Docker**
+* ✅ **FluxOS** (Flux Marketplace deployment)
+
+❌ **Not Supported**: Windows (10/11), macOS, WSL (Linux on Windows), Proxmox LXC, or other non-Ubuntu Linux distributions.
+
+👉 If you choose to run on **any other Linux distribution**, you are welcome to try — but we **do not provide technical support in tickets** for non-Ubuntu setups. You must be able to troubleshoot and guide yourself.
+
+👉 Timpi support is limited to the **GeoCore software** (Ubuntu Docker + Flux) and the **official installation guides**. Network, firewall, router, and host configuration remain the responsibility of the operator.
 
 ---
 

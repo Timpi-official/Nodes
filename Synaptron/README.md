@@ -5,6 +5,34 @@
 Welcome to the official repository for **Timpi Synaptron installations**.  
 Here you'll find everything you need to run your Timpi Synaptron node on **Linux** or **Windows**, including setup instructions and system requirements.
 
+---
+
+## ⚠️ Important Support Notice
+
+Timpi Synaptrons are supported on the following environments:
+
+* ✅ **Linux Ubuntu 22.04.4+ with Docker** (requires NVIDIA GPU + CUDA drivers)
+* ✅ **Windows 10/11 (native installer)**
+
+❌ **Not Supported**: macOS, WSL (Linux on Windows), Proxmox LXC, or other non-Ubuntu Linux distributions.
+
+❌ **Not Supported**: Systems without a supported NVIDIA GPU (CUDA-capable).
+
+👉 If you choose to run on **any other Linux distribution**, you are welcome to try — but we **do not provide technical support in tickets** for non-Ubuntu setups. You must be able to troubleshoot and guide yourself.
+
+👉 Timpi support is limited to the **Synaptron software**, GPU setup instructions, and the **official installation guides**. Network, firewall, and host-system configuration remain the operator’s responsibility.
+
+---
+
+### 🔎 Check Your GPU First!
+
+Before installing, confirm that your NVIDIA GPU supports CUDA:
+👉 [List of CUDA-Compatible GPUs](https://developer.nvidia.com/cuda-gpus)
+
+If your GPU is **not listed**, you cannot run a Synaptron node.
+
+---
+
 
 We provide:
 

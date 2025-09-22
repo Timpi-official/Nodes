@@ -44,10 +44,17 @@ A Guardian Node hosts a portion of Timpi’s decentralized index using Solr and 
 
 
 
->  ⚠️ Timpi does **not officially support** WSL, Proxmox LXC, Windows, macOS, or VM-limited environments.
-
 ---
 
+⚠️ **Important Support Notice**
+
+* Guardians are **only supported on Ubuntu 22.04.x with Docker and Flux platform**.
+* If you choose to run on **another Linux distribution**, you must be able to troubleshoot and guide yourself — community support will be limited.
+* We **do not support** Windows, macOS, WSL, Proxmox LXC, or VM-limited environments.
+* We **do not provide support** for router, firewall, or port-forwarding issues. That’s the operator’s responsibility.
+* Timpi support is limited to the **Guardian software** and the **official installation guide**.
+
+---
 
 ### 🛠️ Step 0 – Install Docker & Java (Required for All Methods)
 

@@ -30,9 +30,6 @@ Docker setups are ideal for multi-node environments or headless installations.
 👉 **[Synaptron Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronLinux.md)**  
 Includes full instructions for GPU driver setup, Docker/NVIDIA Docker installation, and node deployment.
 
-👉 🪟 **[Windows Docker Synaptron Guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/WindowsDockerSynaptron.md)**
-  Works with Docker Desktop on Windows 10/11.
-
 ---
 
 ## 🪟 Windows Synaptron - Native (Windows 10/11)

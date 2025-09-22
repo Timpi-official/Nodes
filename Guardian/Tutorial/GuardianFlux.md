@@ -8,12 +8,29 @@ This guide walks you through two ways of deploying Timpi nodes:
 🔵 **FluxEdge** – Customizable, advanced deployment for Synaptron Nodes and additional Collector Nodes
 
 
+# 📑 Table of Contents
 
-# 🟢 Method 1: Deploy a Timpi Collector Node via FluxCloud
+* [⚡ Timpi Node Deployment Guide](#-timpi-node-deployment-guide)
 
-1. Install the TimpiCollector App
+  * [🟢 Method 1: Deploy a Timpi Collector Node via FluxCloud](#-method-1-deploy-a-timpi-collector-node-via-fluxcloud)
+
+    * [Step 1: Install the TimpiCollector App](#install-the-timpicollector-app)
+    * [Step 2: Configure Your Node](#step-2-configure-your-node)
+    * [Updating Your App Subscription](#updating-your-app-subscription)
+  * [🔵 Method 2: Deploy a Timpi Node via FluxEdge](#step-1-deploy-a-timpi-synaptron-node)
+
+    * [Step 1: Deploy a Timpi Synaptron Node](#step-1-deploy-a-timpi-synaptron-node)
+    * [Step 2: Add Timpi Collector Nodes (Same Machine)](#step-2-add-timpi-collector-nodes-same-machine)
+
+---
+
+
+# 🟢 Method 1: deploy a timpi collector node via fluxcloud
+
+### Install the timpicollector App
+
 Visit https://cloud.runonflux.com/
-2. Click Sign In and sign in or up using
+3. Click Sign In and sign in or up using
     
 Google Account
  
@@ -97,9 +114,9 @@ and Flux. Paying in Flux gives a 5% discount.
 
 <img width="605" height="359" alt="Screenshot 2025-07-22 182008" src="https://github.com/user-attachments/assets/b090df6b-ef38-4488-a6cd-d613f8fa1fd4" />
 
-## 2. Deploying a Timpi Node via FluxEdge
+## 2 deploying a timpi node via fluxedge
 
-**Step 1: Deploy a Timpi Synaptron Node**
+### Step 1 deploy a timpi synaptron node
 1. Visit https://console.fluxedge.ai/
 2. Sign in or sign up.
 

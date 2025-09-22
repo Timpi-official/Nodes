@@ -10,8 +10,6 @@ This guide walks you through two ways of deploying Timpi nodes:
 
 # 📑 Table of Contents
 
-* [⚡ Timpi Node Deployment Guide](#-timpi-node-deployment-guide)
-
   * [🟢 Method 1: Deploy a Timpi Collector Node via FluxCloud](#-method-1-deploy-a-timpi-collector-node-via-fluxcloud)
 
     * [Step 1: Install the TimpiCollector App](#install-the-timpicollector-app)

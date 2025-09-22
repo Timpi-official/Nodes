@@ -58,7 +58,7 @@ GeoCore nodes are lightweight and easy to run — perfect for individuals who wa
 Timpi GeoCore nodes are supported on:
 
 * ✅ **Linux Ubuntu 22.04 LTS (native) with Docker**
-* ✅ **FluxOS** (Flux Marketplace deployment)
+* ✅ [ **FluxOS** Flux Marketplace deployment](https://github.com/Timpi-official/Nodes/tree/main/FluxDeployment)
 
 ❌ **Not Supported**: Windows (10/11), macOS, WSL (Linux on Windows), Proxmox LXC, or other non-Ubuntu Linux distributions.
 

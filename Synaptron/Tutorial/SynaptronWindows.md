@@ -35,13 +35,17 @@ As you can see here it tells you that you are on a previous version and you need
 If you are running an older version and need to update, you must perform a clean reinstall:
 
 ## 🔁 Update Steps:
-	1.	Remove the previous version:
-	•	Open Add or Remove Programs in Windows.
-	•	Search for Synaptron.
-	•	Click Uninstall and follow the steps to remove it completely.
-	2.	Download the new installer
-	3.	Extract it using WinRAR if it’s compressed.
-	4.	Install the new version by double-clicking the .exe installer.
+1.	Remove the previous version:
+
+•	Open Add or Remove Programs in Windows.
+
+•	Search for Synaptron.
+
+•	Click Uninstall and follow the steps to remove it completely.
+
+4.	Download the new installer
+5.	Extract it using WinRAR if it’s compressed.
+6.	Install the new version by double-clicking the .exe installer.
 
 🧠 Note: Your node’s GUID stays the same — there’s no need to generate a new on.
 

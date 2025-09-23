@@ -59,7 +59,7 @@ If you are running an older version and need to update, you must perform a clean
 
 ### :mag: Troubleshooting & FAQ:
 For common issues and solutions, check the Support & FAQ in the PDF guide:
-:arrow_right: Read the Troubleshooting Guide [Click Here](https://timpi.io/wp-content/uploads/2025/02/Synaptron-Guide-v1.pdf)
+Read the Troubleshooting Guide [Click Here](https://timpi.io/wp-content/uploads/2025/02/Synaptron-Guide-v1.pdf)
 
 ### :pushpin: Follow these steps carefully, and your Synaptron node will be up and running in no time! :rocket:
 

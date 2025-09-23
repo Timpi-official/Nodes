@@ -14,7 +14,7 @@ This guide will walk you through installing and setting up Synaptron on Windows,
 
 ## ⚠️ Important Note About Synaptron Version Display
 
-🛠️ **Heads up:** Latest version is `1_1_35`
+🛠️ **Heads up:** Latest version is `1_1_36`
 
 ✅ To check your actual running version, use the `/synaptronchecker` command in Discord with your GUID, like this
 

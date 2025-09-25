@@ -71,13 +71,13 @@
 
 Timpi now maintains **two Windows installers** depending on your GPU family:
 
-* **`1_1_35 : synaptron:latest`**
+* **`1_1_36 : synaptron:latest`**
   👉 Use this for **Tier 1 & Tier 2 GPUs** (GTX 1060, RTX 2060, RTX 3060, RTX 4060, RTX 3090).
   📥 [Download synaptron\_win\_latest.zip](https://timpi.io/applications/windows/synaptron_win_latest.zip)
 
 * **`1_2_7 : synaptron-t3-blackwell`**
-  👉 Use this if you have a **Tier 3 Ada Lovelace (RTX 4090)** or **Blackwell (RTX 5090)** GPU.
-  📥 [Download synaptron\_win\_latest\_blackwell.zip](https://timpi.io/applications/windows/synaptron_win_latest_blackwell.zip)
+  👉 Use this if you have a **Ada Lovelace (RTX 4090)** or **Blackwell (RTX 5090)** GPU.
+  please start a ticket in discord for further instructions.
 
 > ℹ️ **Not sure which GPU you have?**
 >

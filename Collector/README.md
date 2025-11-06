@@ -40,14 +40,14 @@ Docker setups are ideal for multi-node environments or headless installations.
 ## 🐧 Linux Collector (Ubuntu 22.04.4+)
 
 👉 **[Collector Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorLinux.md)**  
-Supports one-command install and automatic upgrades to the latest version (currently `0.10.0-A`).
+Supports one-command install and automatic upgrades to the latest version.
 
 ---
 
 ## 🪟 Windows Collector (Windows 10/11)
 
 👉 **[Collector Windows Guide & Installer](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorWindows.md)**  
-Includes a clean .exe installer for a native Windows setup with full system integration (currently `0.10.0-A`).
+Includes a clean .exe installer for a native Windows setup with full system integration.
 
 ---
 
@@ -62,6 +62,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 Have a fix or idea for improvement? Pull requests are welcome!  
 For larger changes, please [open an issue](https://discord.com/channels/946982023245992006/1179427377844068493) to discuss it with us first.
+
 
 
 

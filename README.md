@@ -25,7 +25,7 @@ This applies to:
 
 ---
 
-## 🔍 [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md)
+## 🔍 [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md) - Coming SOON
 
 Want to quickly verify if your **Synaptron, Guardian, or GeoCore** node is online?
 We provide official **Discord Slash Commands** (`/synaptronchecker`, `/guardianchecker`, `/geocore`) that let you check your node status privately.

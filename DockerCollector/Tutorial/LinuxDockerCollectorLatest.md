@@ -134,9 +134,22 @@ sudo systemctl status docker
 
 > ⚠️ **Replace** <span style="color:red; font-weight:bold">YOUR-GUID-HERE</span> **with your actual GUID from your Timpi dashboard https://timpi.com/node/v2/management before running the command below.**
 
+Before starting, we **remove any old container AND the old cached image**, so Docker **must** pull the newest version:
+
+## 1) Remove old container (if it exists)
 ```bash
 sudo docker rm -f timpi-collector 2>/dev/null || true
-
+```
+## 2) Remove old cached image (forces Docker to download the new one)
+```bash
+sudo docker rmi -f timpiltd/timpi-collector:latest 2>/dev/null || true
+```
+## 3) Pull the newest Timpi Collector image
+```bash
+sudo docker pull timpiltd/timpi-collector:latest
+```
+## 4) Start the Collector with your GUID
+```bash
 sudo docker run -d --name timpi-collector \
   --restart unless-stopped \
   -e GUID=YOUR-GUID-HERE \

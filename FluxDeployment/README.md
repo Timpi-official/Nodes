@@ -7,7 +7,7 @@ Timpi currently supports the following node types on Flux:
 
 * 🔄 **Collectors**
 * 🌍 **Geo-Core nodes** *(Coming soon)*
-* 🧬 **Synaptron nodes** *(Coming soon)*
+* 🧬 **Synaptron nodes**
 
 Each node has its own dedicated deployment guide with screenshots and step-by-step instructions.
 

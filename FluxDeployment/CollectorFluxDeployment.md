@@ -1,4 +1,4 @@
-# 🚀 Timpi Collector — FluxCloud Deployment Guide (2025 Edition)
+# 🚀 Timpi Collector — FluxCloud Deployment
 
 Deploy and run your **Timpi Collector Node** easily using **FluxCloud** — the decentralized cloud infrastructure powered by Flux.
 This guide walks through the full process from selecting the app in the marketplace to confirming deployment via ZelCore.

@@ -1,5 +1,7 @@
 # 📘 Timpi Synaptron — Deployment Guide (FluxEdge • GPU)
 
+<img width="1509" height="850" alt="Screenshot_2025-07-23_183112_upscayl_3x_realesrgan-x4plus-anime" src="https://github.com/user-attachments/assets/14e85fef-e61b-4828-998b-884d81ad0b0f" />
+
 Deploy the **Synaptron** (AI/GPU) node on **FluxEdge**, then optionally add **Collector** nodes on the same machine.
 
 > ✅ Requirements  

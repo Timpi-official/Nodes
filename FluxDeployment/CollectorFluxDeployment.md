@@ -216,6 +216,7 @@ To configure or monitor your Collector:
 ## Support
 
 🟦 **Timpi Discord:** [https://discord.gg/timpi](https://discord.gg/timpi)
+
 🟩 **Flux Support:** [https://support.runonflux.io](https://support.runonflux.io)
 
 ---

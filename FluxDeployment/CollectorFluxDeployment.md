@@ -213,6 +213,91 @@ To configure or monitor your Collector:
 
 ---
 
+
+# ✅ Step 11 – Update Your Collector (Add or Fix Your GUID)
+
+If you need to update your Collector after deployment — for example, to re-add your GUID — you must use the Subscription → Update section inside your running app.
+
+Follow these steps:
+
+
+1. Open Your Collector App
+
+Go to:
+
+Applications → Management → My Active Apps → Manage
+
+Then click the Subscription tab at the top.
+
+You will now see the screen with the blue Update button.
+
+---
+
+2. Click the Blue “Update” Button
+
+This unlocks the configuration editor.
+
+Important:
+This button must be pressed before you can access Components → Environment Variables.
+
+---
+
+3. Open the Components Tab
+
+After clicking Update:
+
+	1.	Select Components
+  
+	2.	Open your Timpi Collector component
+  
+	3.	Scroll down to Environment Variables
+
+---
+
+4. Add or Edit the GUID Variable
+
+Click the Environment Variables box and add:
+
+GUID=your-guid-here
+
+Example:
+
+GUID=f0b8c8c5-d59e-445d-aa68-87d8354b8d81
+
+✔ Only add or update the GUID variable.
+
+---
+
+5. Save and Apply the Update
+
+Click:
+	•	Save (inside the Environment Variables pop-up)
+	•	Then click the green Update button on the right side of the screen
+
+Flux will:
+	•	Apply the new configuration
+	•	Restart your 3 instances
+	•	Load the new GUID into the container
+
+This usually takes 2–5 minutes.
+
+---
+
+6. Verify the Change
+
+Return to:
+
+Applications → Management → My Active Apps → Manage
+
+Check:
+	•	Status = Running
+	•	Instances = 3
+	•	Under Components → Environment, GUID is visible
+
+Your Collector is now fully updated and synced with your Timpi NFT.
+
+---
+
 ## Support
 
 🟦 **Timpi Discord:** [https://discord.gg/timpi](https://discord.gg/timpi)

@@ -56,7 +56,8 @@ sudo docker rm watchtower 2>/dev/null
 
 ```bash
 sudo docker images | grep timpi
-sudo docker rmi timpiltd/timpi-synaptron-universal:latest 2>/dev/null
+sudo docker rmi -f timpiltd/timpi-synaptron-universal:cuda28
+sudo docker rmi -f timpiltd/timpi-synaptron-universal:cuda24
 sudo docker rmi timpiltd/timpi-synaptron:latest 2>/dev/null
 ```
 

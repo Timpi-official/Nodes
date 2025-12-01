@@ -19,7 +19,7 @@ set -euo pipefail
 # NAME and GUID are handled in install.sh (not here).
 ###########################################################
 
-REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron"
+REPO_BASE="https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron"
 YML_FILE="docker-compose.yml"
 
 echo "===== Timpi Synaptron – Linux Installer ====="

@@ -55,7 +55,7 @@ They require a compatible NVIDIA GPU and serve as the "brains" of the Timpi ecos
 Timpi also supports Docker for advanced users who want an isolated container setup.
 Docker setups are ideal for multi-node environments or headless installations.
 
-👉 **[Synaptron Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronLinux.md)**  
+👉 **[Synaptron Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/SynaptronLinux.md)**  
 Includes full instructions for GPU driver setup, Docker/NVIDIA Docker installation, and node deployment.
 
 ---

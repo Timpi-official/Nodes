@@ -387,8 +387,13 @@ docker logs -f synaptron_universal
 Ready when you see:
 
 ```
-Connected to Wilson...
-Waiting for tasks...
+NAME has been written to .name
+GUID has been written to .wilson
+Running the initial setup script...
+ARCH provided from environment: t3_cuda28
+Final ARCH selection in entrypoint: t3_cuda28
+Running synappip_t3_cuda28 AARCHITECTURE VARIANT...
+Defaulting to user installation because normal site-packages is not writeable
 ```
 
 ---

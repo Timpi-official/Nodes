@@ -1,0 +1,66 @@
+##  docker-compose up -d  OR  docker compose up -d  interactive = docker compose up
+## noe only  docker compose up -d neo4j
+## DONT use docker snap :  Snap version of Docker. Snap packages are confined and use strict AppArmor permissions, which often interfere with operations that require signaling or special runtime privileges
+
+x-synaptron-vars: &synaptron-vars
+  TORCHMIRROR: "http://example.com/torchmirror"
+  NAME: <YOUR NODE NAME>
+  GUID: <YOUR GUID>
+  ARCH: t3_cuda28    # t3_cuda28 (5090) or t3_cuda26 or t3_cuda24  (determime level by looking at nvidia-smi output)
+  
+services:
+  watchtower:
+    # network_mode: "host"  (need in some cases to be able to have access tointernet.. default is bridge for isolation)
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 300 --stop-timeout 60s --cleanup synaptron_universal
+    environment:
+      - DOCKER_API_VERSION=1.44    #Note may need this if use diff version...
+
+  neo4j:
+    # network_mode: "host"  (need in some cases to be able to have access tointernet.. default is bridge for isolation)
+    image: neo4j:5-community
+    container_name: neo4jtest
+    restart: unless-stopped
+    ports:
+      - "7475:7474"
+      - "7688:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/min8-imfree
+    volumes:
+      - neo4jtest_data:/data
+      - neo4jtest_logs:/logs
+      - neo4jtest_plugins:/plugins
+
+  synaptron:
+    #  network_mode: "host"  (need in some cases to be able to have access tointernet.. default is bridge for isolation)
+    image: timpiltd/timpi-synaptron-universal:cuda28  ## timpiltd/timpi-synaptron:beta  
+    pull_policy: always     ## added to check docker hub every time not rely on cache...
+    restart: always
+    container_name: synaptron_universal
+    dns:
+      - 100.42.180.29   # ns1.timpi.com
+      - 100.42.180.99   # ns2.timpi.com
+      - 8.8.8.8         # Google
+      - 1.1.1.1         # Cloudflare
+    ports:
+      - "8000:8000"
+    environment: *synaptron-vars
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+    stdin_open: true
+    tty: true
+    runtime: nvidia
+    command: ./entrypoint.sh   # runs the same entrypoint as your Dockerfile
+
+volumes:
+  neo4jtest_data:
+  neo4jtest_logs:
+  neo4jtest_plugins:

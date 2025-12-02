@@ -329,7 +329,7 @@ NVIDIA-SMI table appears **inside Docker**.
 Run as normal user:
 
 ```bash
-https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/install.sh
+curl -s https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/install.sh | bash
 ```
 
 Installer asks:

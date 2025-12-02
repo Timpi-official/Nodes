@@ -39,12 +39,12 @@ They strengthen network security and improve global query performance.
 
 ---
 
-## 🧬 **Synaptron Node**
+## 🧬 **Synaptron Node** - Coming soon
 
 Synaptron nodes form the backbone of Timpi’s AI architecture.
 They enable high-speed knowledge exchange, support model inference, and power intelligent data processing.
 
-### 📘 Synaptron Flux Guide - Coming Soon
+### 📘 Synaptron Flux Guide - Coming soon
 
 👉 **[Deploy a Timpi Synaptron on FluxEdge](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/SynaptronFluxDeployment.md)**
 

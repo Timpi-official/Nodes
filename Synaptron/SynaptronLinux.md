@@ -74,6 +74,8 @@ sudo docker rm timpi-synaptron synaptron_universal neo4jtest watchtower 2>/dev/n
 
 ```bash
 sudo docker rmi timpiltd/timpi-synaptron-universal:latest 2>/dev/null
+sudo docker rmi -f timpiltd/timpi-synaptron-universal:cuda24 2>/dev/null
+sudo docker rmi -f timpiltd/timpi-synaptron-universal:cuda28 2>/dev/null
 sudo docker rmi timpiltd/timpi-synaptron:latest 2>/dev/null
 ```
 

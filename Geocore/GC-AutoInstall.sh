@@ -3,9 +3,9 @@
 echo -e "\n🌐 Timpi GeoCore Setup 
 
 # 🔌 Prompt for GeoCore Port
-echo -e "\n➡️ Enter the port for GeoCore (Default: 4100)"
+echo -e "\n➡️ Enter the port for GeoCore (Default: 4013)"
 read -p "GeoCore Port: " GEOCORE_PORT
-GEOCORE_PORT=${GEOCORE_PORT:-4100}
+GEOCORE_PORT=${GEOCORE_PORT:-4013}
 
 # 🆔 Prompt for GUID
 echo -e "\n🆔 Enter your GUID (Found in your Timpi dashboard)"

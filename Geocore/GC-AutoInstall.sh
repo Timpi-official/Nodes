@@ -1,6 +1,7 @@
 #!/bin/bash
 
-echo -e "\n🌐 Timpi GeoCore Setup 
+echo -e "\n🌐 Timpi GeoCore Setup Script"
+
 
 # 🔌 Prompt for GeoCore Port
 echo -e "\n➡️ Enter the port for GeoCore (Default: 4013)"
@@ -29,7 +30,7 @@ CONTAINER_ID=$(sudo docker run -d --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
   -p ${GEOCORE_PORT}:${GEOCORE_PORT} \
   -v /var/timpi:/var/timpi \
-  -e CONPORT=${GEOCORE_PORT} \
+  -e COMPORT=${GEOCORE_PORT} \
   -e GUID="${GUID}" \
   -e LOCATION="${LOCATION}" \
   timpiltd/timpi-geocore:latest)

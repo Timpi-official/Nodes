@@ -485,7 +485,7 @@ If your GeoCore runs on **4013**:
 sudo docker logs -f $(sudo docker ps --filter "publish=4013" -q)
 ```
 
-If it runs on **another port**, e.g. **4015**:
+If it runs on **another port**, e.g. **4014**:
 
 ```bash
 sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)

@@ -584,7 +584,6 @@ timpi@timpi-timpicore:/var/timpi/GeoCore/logs$ sudo tail -n 50 -f $(ls -t /var/t
 2025-12-08 08:10:04.449 +00:00 [INF] The GeoCore is trying to start on port:4013 with GUID YOUR-GUID.
 2025-12-08 08:10:04.450 +00:00 [INF] GeoCore Node information received from TAP. NA - USEC
 2025-12-08 08:10:04.450 +00:00 [INF] ---------------------- GeoCore: TAP Connection test done ---------------------------
-2025-12-08 10:40:33.968 +00:00 [INF] Running remote command on Guardian - 12/08/2025 10:40:33
 ```
 
 Nice alias (optional):

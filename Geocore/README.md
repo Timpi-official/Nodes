@@ -545,7 +545,7 @@ sudo docker logs -f $(sudo docker ps --filter "publish=<PORT>" -q)
 Follow the latest GeoCore log file:
 
 ```bash
-sudo tail -f $(ls -t /var/timpi/GeoCore/logs/GeoCore-log*.txt | head -n 1)
+sudo tail -n 50 -f $(ls -t /var/timpi/GeoCore/logs/GeoCore-log*.txt | head -n 1)
 ```
 
 Nice alias (optional):

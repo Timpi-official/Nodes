@@ -278,6 +278,22 @@ sudo journalctl -u collector -f
 sudo journalctl -u collector-updater -f
 ```
 
+**Change Collector Log Level**
+
+### ➡️ **Set log level to ERROR**
+
+```bash
+sudo sed -i 's/"LogLevel":"[A-Za-z]*"/"LogLevel":"Error"/' /opt/timpi/CollectorSettings.json
+sudo systemctl restart collector
+```
+
+### ➡️ **Set log level to VERBOSE**
+
+```bash
+sudo sed -i 's/"LogLevel":"[A-Za-z]*"/"LogLevel":"Verbose"/' /opt/timpi/CollectorSettings.json
+sudo systemctl restart collector
+```
+
 **Timer schedule:**
 
 ```bash

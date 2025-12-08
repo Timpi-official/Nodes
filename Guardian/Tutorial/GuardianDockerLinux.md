@@ -59,6 +59,7 @@ Guardians:
 | Network   | Stable 24/7                        |
 | Docker    | Required                           |
 | Ports     | Solr + Guardian ports must be open |
+| Ports     | 4005/8983 (Default) |
 
 ⚠️ Official support: **Ubuntu 22.04 LTS + Docker**  
 ⚠️ Unsupported but may work: WSL, macOS, Windows, Proxmox LXC, etc.

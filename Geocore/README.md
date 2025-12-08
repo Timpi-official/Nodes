@@ -548,6 +548,45 @@ Follow the latest GeoCore log file:
 sudo tail -n 50 -f $(ls -t /var/timpi/GeoCore/logs/GeoCore-log*.txt | head -n 1)
 ```
 
+Example of expected output:
+```
+timpi@timpi-timpicore:/var/timpi/GeoCore/logs$ sudo tail -n 50 -f $(ls -t /var/timpi/GeoCore/logs/GeoCore-log*.txt | head -n 1)
+2025-12-08 08:10:04.150 +00:00 [INF] Logger started at 12/08/2025 08:10:04.
+2025-12-08 08:10:04.164 +00:00 [INF] GeoCore: DEBUG_LEVEL 1 found.
+2025-12-08 08:10:04.164 +00:00 [INF] ----------------------------- PreLogger messages START -----------------------------
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore is running on the main network.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: IsDirectDeployment is not set, using default value 0.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: Production mode detected.
+2025-12-08 08:10:04.165 +00:00 [WRN] GeoCore: DEBUG_LEVEL missing, trying to get it from appsettings.json
+2025-12-08 08:10:04.165 +00:00 [WRN] DEBUG_LEVEL missing, assume Warning level.
+2025-12-08 08:10:04.165 +00:00 [ERR] GeoCore: Log_Folder missing,  trying to get it from appsettings.json
+2025-12-08 08:10:04.165 +00:00 [ERR] GeoCore: Log_Folder found: /var/timpi/GeoCore/logs.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: Log folder /var/timpi/GeoCore/logs exists.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: Environment variable 'GUID' found - YOUR-GUID.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: ConnectionPort port = 4013.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: Environment variable 'LOCATION' found - Sweden/Norrkoping.
+2025-12-08 08:10:04.165 +00:00 [INF] ----------------------------- PreLogger messages END ------------------------------
+2025-12-08 08:10:04.165 +00:00 [INF] ------------------------------ GeoCore: System test ------------------------------
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: CPU Count: 32 cores detected.
+2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: Memory Limit: 64 MB detected. Usable: 56
+2025-12-08 08:10:04.166 +00:00 [INF] GeoCore: Harddisk Size: 1832 GB detected.
+2025-12-08 08:10:04.166 +00:00 [INF] GeoCore: Free Space: 1418 GB detected.
+2025-12-08 08:10:04.166 +00:00 [INF] Collector: Found Version 1.0.0
+2025-12-08 08:10:04.166 +00:00 [INF] GeoCore: Found Version X.X.XX
+2025-12-08 08:10:04.166 +00:00 [INF] ---------------------------- GeoCore: System test done ----------------------------
+2025-12-08 08:10:04.166 +00:00 [INF] ---------------------------- GeoCore: Version check --------------------------------
+2025-12-08 08:10:04.166 +00:00 [INF] INFO: Checking Version of the GeoCore from the TAP.
+2025-12-08 08:10:04.310 +00:00 [INF] INFO: GeoCore is up to date (X.X.XX).
+2025-12-08 08:10:04.310 +00:00 [INF] ------------------------- GeoCore: Version check done ------------------------------
+2025-12-08 08:10:04.310 +00:00 [INF] ------------------------ GeoCore: TAP Connection test ------------------------------
+2025-12-08 08:10:04.449 +00:00 [INF] The response was successful: Geocore found on http://tapcore1.timpi.network:4014/
+2025-12-08 08:10:04.449 +00:00 [INF] Getting GeoCore Object from Coordinator was True, GUID=YOUR-GUID
+2025-12-08 08:10:04.449 +00:00 [INF] The GeoCore is trying to start on port:4013 with GUID YOUR-GUID.
+2025-12-08 08:10:04.450 +00:00 [INF] GeoCore Node information received from TAP. NA - USEC
+2025-12-08 08:10:04.450 +00:00 [INF] ---------------------- GeoCore: TAP Connection test done ---------------------------
+2025-12-08 10:40:33.968 +00:00 [INF] Running remote command on Guardian - 12/08/2025 10:40:33
+```
+
 Nice alias (optional):
 
 ```bash

@@ -287,7 +287,7 @@ sudo sed -i 's/"LogLevel":"[A-Za-z]*"/"LogLevel":"Error"/' /opt/timpi/CollectorS
 sudo systemctl restart collector
 ```
 
-### ➡️ **Set log level to VERBOSE**
+### ➡️ **Set log level to VERBOSE (Troubleshooting)**
 
 ```bash
 sudo sed -i 's/"LogLevel":"[A-Za-z]*"/"LogLevel":"Verbose"/' /opt/timpi/CollectorSettings.json

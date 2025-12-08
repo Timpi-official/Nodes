@@ -42,7 +42,7 @@ echo -e "🧾 Container ID: ${CONTAINER_ID}"
 echo -e "\n📡 To view logs:\n"
 
 echo -e "1️⃣  Real-time log file:"
-echo -e "    \033[1msudo tail -f \$(ls -t /var/timpi/GeoCore-log*.txt | head -n 1)\033[0m"
+echo -e "    \033[1msudo tail -f \$(ls -t /var/timpi/GeoCore/logs/GeoCore-log*.txt | head -n 1)\033[0m"
 
 echo -e "\n2️⃣  Docker logs:"
 echo -e "    \033[1msudo docker logs -f --tail 50 ${CONTAINER_ID}\033[0m"

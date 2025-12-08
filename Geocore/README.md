@@ -442,8 +442,11 @@ sudo docker stop $(sudo docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
 ### 2️⃣ Remove container
 
 ```bash
-sudo docker rm $(sudo docker ps --filter "ancestor=timpiltd/timpi-geocore" -q)
+sudo docker rm $(sudo docker ps -a --filter "ancestor=timpiltd/timpi-geocore" -q)
 ```
+### *(Optional Note for Beginners)*
+
+> If Docker says **“requires at least 1 argument”**, it simply means no old GeoCore container exists. This is normal — continue to the next step.
 
 ### 3️⃣ Pull new version
 

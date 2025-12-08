@@ -456,7 +456,7 @@ sudo docker pull timpiltd/timpi-geocore:latest
 
 ### 4️⃣ Re-run your GeoCore
 
-(Example using port 4014)
+(Example using port 4013)
 
 ```bash
 sudo docker run -d \

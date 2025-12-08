@@ -62,7 +62,7 @@ GeoCore is lightweight, Docker-based, and ideal for 24/7 operation.
 | Storage   | 3 GB                          |
 | Bandwidth | 50 Mbps                       |
 | Uptime    | 95%+                          |
-| Port      | **4014/TCP (default)**        |
+| Port      | **4013/TCP (default)**        |
 | Docker    | Required                      |
 
 ---
@@ -387,17 +387,17 @@ INFO: Starting Processor 1 with 0 files in the InboundFolder folder
 
 ## 3.3 **Manual Install (Any Port)**
 
-GeoCore does not require port **4014** even if it’s the default.
-You may use any free port — here is a working example using **4014**:
+GeoCore does not require port **4013** even if it’s the default.
+You may use any free port — here is a working example using **4013**:
 
 ```bash
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4014:4014 \
+  -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e COMPORT=4014 \
+  -e COMPORT=4013 \
   -e GUID="your-guid-here" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -410,13 +410,13 @@ sudo docker run -d \
 ## 3.4 **Open Your Port**
 
 ```bash
-sudo ufw allow 4014/tcp
+sudo ufw allow 4013/tcp
 ```
 
 Router:
 
 ```text
-External:4014 → Internal:4014 (TCP)
+External:4014 → Internal:4013 (TCP)
 ```
 
 ---
@@ -463,9 +463,9 @@ sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
-  -p 4014:4014 \
+  -p 4013:4013 \
   -v /var/timpi:/var/timpi \
-  -e COMPORT=4014 \
+  -e COMPORT=4013 \
   -e GUID="your-guid" \
   -e LOCATION="Sweden/Stockholm" \
   timpiltd/timpi-geocore:latest
@@ -479,16 +479,16 @@ sudo docker run -d \
 
 Because `docker logs` only accepts **one container**, and many users run multiple GeoCores, verify logs **per port**:
 
-If your GeoCore runs on **4014**:
+If your GeoCore runs on **4013**:
 
 ```bash
-sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4013" -q)
 ```
 
 If it runs on **another port**, e.g. **4015**:
 
 ```bash
-sudo docker logs -f $(sudo docker ps --filter "publish=4015" -q)
+sudo docker logs -f $(sudo docker ps --filter "publish=4014" -q)
 ```
 
 Look for lines like:

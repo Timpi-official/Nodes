@@ -172,18 +172,34 @@ Expected:
 timpi-collector   Up (healthy)
 ```
 
+# 🐳 **2. Docker: Change Collector Log Level**
+
+### ➡️ **Set log level to ERROR**
+
+```bash
+sudo docker exec timpi-collector sh -c 'sed -i "s/\"LogLevel\":\"[A-Za-z]*\"/\"LogLevel\":\"Error\"/" /opt/timpi/CollectorSettings.json'
+sudo docker restart timpi-collector
+```
+
+### ➡️ **Set log level to VERBOSE**
+
+```bash
+sudo docker exec timpi-collector sh -c 'sed -i "s/\"LogLevel\":\"[A-Za-z]*\"/\"LogLevel\":\"Verbose\"/" /opt/timpi/CollectorSettings.json'
+sudo docker restart timpi-collector
+```
+
 View logs:
 
 ```bash
-sudo docker logs -f timpi-collector
+sudo docker logs --tail 50 -f timpi-collector
+
 ```
 
 You should see:
 
 ```
 [INF] Starting Timpi Collector (GUID=xxxx)
-[INF] The response was successful: Collector found on ...
-[INF] Currently on version 1.0.1
+[INF] Collector started with PID=8
 ```
 
 ---

@@ -571,7 +571,7 @@ timpi@timpi-timpicore:/var/timpi/GeoCore/logs$ sudo tail -n 50 -f $(ls -t /var/t
 2025-12-08 08:10:04.165 +00:00 [INF] GeoCore: Memory Limit: 64 MB detected. Usable: 56
 2025-12-08 08:10:04.166 +00:00 [INF] GeoCore: Harddisk Size: 1832 GB detected.
 2025-12-08 08:10:04.166 +00:00 [INF] GeoCore: Free Space: 1418 GB detected.
-2025-12-08 08:10:04.166 +00:00 [INF] Collector: Found Version 1.0.0
+2025-12-08 08:10:04.166 +00:00 [INF] Collector: Found Version X.X.X
 2025-12-08 08:10:04.166 +00:00 [INF] GeoCore: Found Version X.X.XX
 2025-12-08 08:10:04.166 +00:00 [INF] ---------------------------- GeoCore: System test done ----------------------------
 2025-12-08 08:10:04.166 +00:00 [INF] ---------------------------- GeoCore: Version check --------------------------------

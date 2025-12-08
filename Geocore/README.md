@@ -90,11 +90,11 @@ Not supported (community-only):
 # 4. **Two Paths: New Install & Upgrade Flow**
 
 ### ✔ Path A – New Install
-
+7. [NEW INSTALL PATH](#3-new-install-path)
 For brand-new users.
 
 ### ✔ Path B – Upgrade
-
+8. [UPGRADE PATH](#4-upgrade-path)
 For existing operators who want to update safely.
 
 ---

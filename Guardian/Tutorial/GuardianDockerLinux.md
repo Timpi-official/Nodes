@@ -88,7 +88,7 @@ Use this if you have never run a Guardian on this machine.
 Remove old container:
 
 ```bash
-sudo docker rm -f $(sudo docker ps -aq --filter "ancestor=timpiltd/timpi-guardian")
+sudo docker rm -f $(sudo docker ps -a -aq --filter "ancestor=timpiltd/timpi-guardian")
 ````
 
 Remove old image:

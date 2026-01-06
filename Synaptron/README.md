@@ -62,7 +62,7 @@ Includes full instructions for GPU driver setup, Docker/NVIDIA Docker installati
 
 ## 🪟 Windows Synaptron - Native (Windows 10/11) - Coming soon
 
-👉 **[Synaptron Windows Guide & Instructions](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/Tutorial/SynaptronWindows.md)**
+👉 **[Synaptron Windows Guide & Instructions](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/SynaptronWindows.md)**
 Covers installation, node registration, and troubleshooting in an easy-to-follow format.
 
 ---

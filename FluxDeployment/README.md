@@ -35,7 +35,7 @@ They strengthen network security and improve global query performance.
 
 ### 📘 Geo-Core Flux Guide
 
-👉 *Guide coming soon*
+👉 **[Deploy a Timpi Geocore on Fluxcloud](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/GeocoreFluxDeployment.md)**
 
 ---
 

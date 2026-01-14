@@ -28,7 +28,7 @@ They run invisibly behind Timpi’s front-end systems, protecting user privacy a
 
 ---
 
-## 🌍 **Geo-Core Node** *(Coming soon)*
+## 🌍 **Geo-Core Node**
 
 Geo-Core nodes are globally distributed and ensure fast, location-aware routing for Timpi’s AI search.
 They strengthen network security and improve global query performance.

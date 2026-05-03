@@ -35,7 +35,7 @@ sudo mkdir -p "${HOME}/var/solrdocker/data"
 # 6) Run the Docker container (latest Guardian, new Solr settings)
 echo -e "\n🚀 Starting Timpi Guardian container (timpiltd/timpi-guardian:latest)..."
 CONTAINER_ID=$(sudo docker run -d --pull=always --restart unless-stopped \
-  --dns=100.42.180.116 --dns=8.8.8.8 \
+  --dns=100.42.180.116 --dns=1.1.1.1 \
   -p ${SOLR_PORT}:${SOLR_PORT} \
   -p ${GUARDIAN_PORT}:${GUARDIAN_PORT} \
   -v ${HOME}/var/solrdocker:/var/solr \

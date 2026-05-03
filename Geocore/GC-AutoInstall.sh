@@ -27,7 +27,7 @@ echo -e "\n✅ Location set to: $LOCATION"
 # 🐳 Run GeoCore Docker container
 echo -e "\n🚀 Launching GeoCore container..."
 CONTAINER_ID=$(sudo docker run -d --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p ${GEOCORE_PORT}:${GEOCORE_PORT} \
   -v /var/timpi:/var/timpi \
   -e COMPORT=${GEOCORE_PORT} \

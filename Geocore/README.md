@@ -394,7 +394,7 @@ You may use any free port — here is a working example using **4013**:
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4013:4013 \
   -v /var/timpi:/var/timpi \
   -e COMPORT=4013 \
@@ -462,7 +462,7 @@ sudo docker pull timpiltd/timpi-geocore:latest
 sudo docker run -d \
   --name geocore \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4013:4013 \
   -v /var/timpi:/var/timpi \
   -e COMPORT=4013 \
@@ -680,7 +680,7 @@ Each node needs:
 sudo docker run -d \
   --name geocore2 \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4015:4015 \
   -v /var/timpi2:/var/timpi \
   -e COMPORT=4015 \
@@ -697,7 +697,7 @@ sudo docker run -d \
 sudo docker run -d \
   --name geocore3 \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4016:4016 \
   -v /var/timpi3:/var/timpi \
   -e COMPORT=4016 \
@@ -714,7 +714,7 @@ sudo docker run -d \
 sudo docker run -d \
   --name geocore4 \
   --pull=always --restart unless-stopped \
-  --dns=100.42.180.29 --dns=100.42.180.99 --dns=8.8.8.8 \
+  --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4017:4017 \
   -v /var/timpi4:/var/timpi \
   -e COMPORT=4017 \

@@ -185,7 +185,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Gu
 
 * `SOLR_HOME=/var/solr`
 * `SOLR_DATA=/var/solr/data`
-* Correct DNS: 100.42.180.116 + 8.8.8.8
+* Correct DNS: 100.42.180.116 + 1.1.1.1
 * Image: `timpiltd/timpi-guardian:latest`
 
 ---
@@ -263,7 +263,7 @@ mkdir -p ${HOME}/var/solrdocker/logs
 ```bash
 sudo docker run -d --pull=always --restart unless-stopped \
   --name guardian1 \
-  --dns=100.42.180.116 --dns=8.8.8.8 \
+  --dns=100.42.180.116 --dns=1.1.1.1 \
   -p 8983:8983 \
   -p 4005:4005 \
   -v ${HOME}/var/solrdocker:/var/solr \
@@ -313,7 +313,7 @@ mkdir -p ${HOME}/var/solrdocker2/logs
 ```bash
 sudo docker run -d --pull=always --restart unless-stopped \
   --name guardian2 \
-  --dns=100.42.180.116 --dns=8.8.8.8 \
+  --dns=100.42.180.116 --dns=1.1.1.1 \
   -p 8984:8984 \
   -p 4006:4006 \
   -v ${HOME}/var/solrdocker2:/var/solr \
@@ -406,7 +406,7 @@ tail -n 50 ${HOME}/var/solrdocker2/logs/guardian-log*.txt
 | ------------------------------- | -------------------------- |
 | `--pull=always`                 | Always update image        |
 | `--restart unless-stopped`      | Auto restart               |
-| `--dns=`                        | Use Timpi DNS + Google DNS |
+| `--dns=`                        | Timpi DNS+CloudFlare DNS   |
 | `-v ~/var/solrdocker:/var/solr` | Persistent storage         |
 | `SOLR_HOME`                     | Solr root folder           |
 | `SOLR_DATA`                     | Solr index folder          |

@@ -1,7 +1,6 @@
 ##  docker-compose up -d  OR  docker compose up -d  interactive = docker compose up
 ## noe only  docker compose up -d neo4j
 ## DONT use docker snap :  Snap version of Docker. Snap packages are confined and use strict AppArmor permissions, which often interfere with operations that require signaling or special runtime privileges
-
 x-synaptron-vars: &synaptron-vars
   TORCHMIRROR: "http://example.com/torchmirror"
   NAME: <YOUR NODE NAME>
@@ -20,7 +19,6 @@ services:
     command: --interval 300 --stop-timeout 60s --cleanup synaptron_universal
     environment:
       - DOCKER_API_VERSION=1.44    #Note may need this if use diff version...
-
   neo4j:
     # network_mode: "host"  (need in some cases to be able to have access tointernet.. default is bridge for isolation)
     image: neo4j:5-community
@@ -35,7 +33,6 @@ services:
       - neo4jtest_data:/data
       - neo4jtest_logs:/logs
       - neo4jtest_plugins:/plugins
-
   synaptron:
     #  network_mode: "host"  (need in some cases to be able to have access tointernet.. default is bridge for isolation)
     image: timpiltd/timpi-synaptron-universal:cuda28  ## timpiltd/timpi-synaptron:beta  
@@ -43,10 +40,9 @@ services:
     restart: always
     container_name: synaptron_universal
     dns:
-      - 100.42.180.29   # ns1.timpi.com
-      - 100.42.180.99   # ns2.timpi.com
-      - 8.8.8.8         # Google
-      - 1.1.1.1         # Cloudflare
+      - 100.42.180.29   # ns1.timpi.com (required — TAP / Timpi services)
+      - 100.42.180.99   # ns2.timpi.com (required — TAP / Timpi services)
+      - 1.1.1.1         # Cloudflare (fallback for general DNS lookups)
     ports:
       - "8000:8000"
     environment: *synaptron-vars
@@ -59,7 +55,6 @@ services:
     tty: true
     runtime: nvidia
     command: ./entrypoint.sh   # runs the same entrypoint as your Dockerfile
-
 volumes:
   neo4jtest_data:
   neo4jtest_logs:

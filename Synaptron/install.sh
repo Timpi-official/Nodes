@@ -13,7 +13,7 @@ set -euo pipefail
 # - Runs run_synaptron.sh
 ###########################################################
 
-REPO_BASE="https://raw.githubusercontent.com/johnolofs/timpi/main/Synaptron/scripts"
+REPO_BASE="https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron"
 INSTALL_DIR="${HOME}/Synaptron"
 YML_FILE="docker-compose.yml"
 RUN_FILE="run_synaptron.sh"

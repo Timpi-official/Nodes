@@ -56,7 +56,7 @@ Guardians:
 | CPU       | 8+ cores                           |
 | RAM       | 12+ GB                             |
 | Storage   | **1 TB free** (Solr index)         |
-| Network   | Stable 24/7                        |
+| Network   | Stable 24/7 (300mbs-1Gbps)          |
 | Docker    | Required                           |
 | Ports     | Solr + Guardian ports must be open |
 | Ports     | 4005/8983 (Default) |

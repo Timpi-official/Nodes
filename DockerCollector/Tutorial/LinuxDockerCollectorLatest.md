@@ -4,7 +4,7 @@
 
 Timpi Collectors are decentralized “workers” that crawl and index websites for the **Timpi Search Engine** — privately, securely, and without ads or tracking.
 
-This Docker edition runs completely in the background and **auto-updates itself** every 6 hours using the built-in `CollectorAutoUpdater`.
+This Docker edition runs completely in the background. It does **not** update itself — add **Watchtower** ([§8](#autoupdate)) and every Timpi node on the machine stays current automatically.
 No scripts. No manual updates. Fully automated and verified by logs.
 
 ---
@@ -54,7 +54,7 @@ No scripts. No manual updates. Fully automated and verified by logs.
 The **Timpi Collector v2 (Docker Edition)** contains:
 
 * 🧠 `TimpiCollector` — main worker process
-* 🔄 `CollectorAutoUpdater` — checks and installs updates automatically
+* 🔄 Updates are handled by **Watchtower** ([§8](#autoupdate)), not by the Collector itself
 
 Everything runs **inside** the container — no external scripts or manual work needed.
 
@@ -78,7 +78,7 @@ Here you can register and copy your **Collector GUID**, manage workers & threads
 | Feature              | Description                                                                 |
 | :------------------- | :------------------------------------------------------                     |
 | 🧩 Headless          | Managed entirely from the Timpi Dashboard                                   |
-| 🔄 Auto-Updating     | Internal loop runs `CollectorAutoUpdater` every 6 hours                     |
+| 🔄 Auto-Updating     | Via **Watchtower** ([§8](#autoupdate)) — the Collector does not self-update |
 | ⚙️ Self-Healing      | Restarts automatically after updates                                        |
 | 🧠 Dashboard Managed | All settings handled in the dashboard                                       |
 | 🪶 Persistent Logs     | `/opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log` keeps update history        |
@@ -366,18 +366,29 @@ and optionally map different external ports if you need to view network metrics.
 
 ## 📊 13️⃣ Monitoring and Health Check
 
+**1. Is it running?**
+
 ```bash
-sudo docker ps
-sudo docker logs timpi-collector | grep "Auto-Updater tick"
+sudo docker ps --filter name=timpi-collector
 ```
 
-Expected:
+**2. What version?**
 
+```bash
+sudo docker logs timpi-collector --tail 50 | grep -i "currently on version"
 ```
-[INF] Auto-Updater tick: stopping collector for update...
-[INF] CollectorAutoUpdater completed successfully.
-[INF] Currently on version 1.0.1
 ```
+[INF] Currently on version 2.0.0
+```
+
+**3. Is it actually crawling?** — the one that matters. Counts the domains finished in the last hour:
+
+```bash
+sudo docker logs timpi-collector --since 1h | grep -c "finished ok"
+```
+
+Any number above 0 means it's working. `0` on a Collector that has been up for a while is worth
+investigating (see [§14](#troubleshooting)) — a Collector can be "running" and still crawl nothing.
 
 ---
 

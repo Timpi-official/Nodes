@@ -272,18 +272,37 @@ abc123def456   timpiltd/timpi-geocore:latest   geocore
 
 Here the name is `geocore`. Yours might be `geocore` or a random name like `epic_satoshi` — note it for Step 2.
 
-**Step 2 — start Watchtower** (change **only the last word** to your name from Step 1):
+**Step 2 — start Watchtower** (paste it exactly as-is — nothing to edit):
 
 ```bash
+sudo docker rm -f watchtower 2>/dev/null
+
 sudo docker run -d \
   --name watchtower \
   --restart unless-stopped \
   -e DOCKER_API_VERSION=1.44 \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  containrrr/watchtower --interval 3600 --cleanup geocore
+  containrrr/watchtower --interval 3600 --cleanup \
+  geocore geocore2 geocore3 guardian1 guardian2 \
+  timpi-collector timpi-collector-1 timpi-collector-2
 ```
 
-* Run this **once**. From now on GeoCore updates itself automatically.
+* Run this **once**. From now on every Timpi node on this machine updates itself automatically.
+* It covers **all** your nodes — GeoCores, Guardians and Collectors. Names you don't run are ignored,
+  so there is nothing to change. Only add a name if `docker ps` shows one that isn't in the list
+  (e.g. a random name like `epic_satoshi` from an older install).
+* The first line removes any Watchtower you already have: Docker won't start a second one called
+  `watchtower`, and an older one likely watches only a single node.
+* Check what it covers — `Scanned` should equal your node count:
+  ```bash
+  sudo docker run --rm -e DOCKER_API_VERSION=1.44 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    containrrr/watchtower --run-once --cleanup \
+    geocore geocore2 geocore3 guardian1 guardian2 \
+    timpi-collector timpi-collector-1 timpi-collector-2
+  ```
+  This also pulls any pending update immediately. The background Watchtower's own first check is an
+  hour after you start it, so `docker logs watchtower` stays quiet until then — that's normal.
 * The `-e DOCKER_API_VERSION=1.44` line is **required** — without it Watchtower won't start on modern Docker.
 * Leave `--name watchtower` (line 2) alone — that's Watchtower's own name, not your node.
 * Running **several GeoCores** (see [§9](#s9-multiple))? One Watchtower covers all — list each name at the end:

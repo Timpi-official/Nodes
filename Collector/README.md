@@ -29,18 +29,21 @@ They do not expose any services to the internet, helping maintain high security 
 
 ---
 
-## 🐳 Docker-Based Collectors v2
+## 🐳 Docker Collector v2 — recommended
 
-Timpi also supports Docker for advanced users who want an isolated container setup.
-Docker setups are ideal for multi-node environments or headless installations.
+**Docker is the supported way to run a Collector on Linux.** It is the only Collector build that receives
+updates: with **Watchtower** (§8 of the guide) your node moves to each new version automatically, and one
+Watchtower covers every Timpi node on the machine.
 
 * 🐧 **[Linux Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**
-  Clean, containerized version for Ubuntu.
+  Clean, containerized setup for Ubuntu. Works for single or multiple Collectors.
 
-## 🐧 Linux Collector (Ubuntu 22.04.4+) v2
+## 🐧 Linux Collector (native / systemd) — ⚠️ retired
 
-👉 **[Collector Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorLinux.md)**  
-Supports one-command install and automatic upgrades to the latest version.
+The native Linux build is **being retired** and its download is no longer updated. Don't start here, and if
+you already run it, please migrate — a Collector installed this way cannot reach the current version.
+
+👉 **[Migration notice & old instructions](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorLinux.md)**
 
 ---
 

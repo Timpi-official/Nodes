@@ -1,3 +1,50 @@
+# ⚠️ Retired — the Linux (systemd) Collector has been replaced by Docker
+
+**Do not use this installation method for a new Collector.** The native Linux build is being retired and
+its download is no longer updated — the package on `timpi.io` has not changed since **13 November 2025**, so
+a Collector installed this way cannot reach the current version.
+
+## 👉 Use the Docker Collector instead
+
+**[Linux Docker Collector Guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**
+
+It runs on the same Ubuntu machine, keeps your GUID, and — with **Watchtower** (§8 of that guide) — stays on
+the latest version automatically. That is the only Collector path that receives updates.
+
+## Already running the Linux (systemd) Collector?
+
+**Please migrate.** Your node still crawls, but it is stuck on the November 2025 build and will not receive
+new versions, including anything required for reward eligibility.
+
+Migrating is short — your **GUID stays the same**:
+
+```bash
+# 1) Note your GUID first — it's in the old service file (you'll paste it into the Docker guide)
+grep -oE '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' \
+  /etc/systemd/system/collector.service
+
+# 2) Stop and disable the old services (names as created by the guide below)
+sudo systemctl disable --now collector-updater.timer 2>/dev/null || true
+sudo systemctl disable --now collector-updater.service 2>/dev/null || true
+sudo systemctl disable --now collector.service 2>/dev/null || true
+sudo systemctl daemon-reload
+```
+
+> If step 1 prints nothing, your unit may be named differently — find it with
+> `systemctl list-units --all | grep -i collector`, then read the GUID from
+> `systemctl cat <unit> | grep ExecStart`.
+
+Then follow the **[Docker guide](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**
+from §5 (Install Docker) onward, using that same GUID. The old files under `/opt/timpi` can be deleted once
+the Docker Collector is running and crawling.
+
+> 💡 Running Windows? A new Windows Collector is on the way — keep an eye on the announcements channel.
+
+---
+
+<details>
+<summary>Old instructions (kept for reference only — no longer maintained)</summary>
+
 # 🔄 **Timpi Collector v2 — Linux Installation Guide**
 
 *(Auto-Updating Systemd Edition — 6 Hour Cycle)*
@@ -432,3 +479,6 @@ For urgent patches, simply run:
 ```bash
 sudo systemctl start collector-updater.service
 ```
+
+
+</details>

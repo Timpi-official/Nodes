@@ -26,6 +26,7 @@ Secure. Distributed. Community-powered.
   * [7.2 Run the Guardian Manually](#72-run-the-guardian-manually)
   * [7.3 Open Required Ports](#73-open-required-ports)
   * [7.4 Deep Checks – Inside Docker Container](#74-deep-checks--inside-docker-container)
+  * [7.5 Enable Auto-Updates (Recommended)](#75-enable-auto-updates)
 * [8. Run a Second Guardian Node](#8-run-a-second-guardian-node)
 * [9. Verification & Quick Troubleshooting](#9-verification--quick-troubleshooting)
 * [10. Docker Parameters Explained](#10-docker-parameters-explained)
@@ -297,6 +298,67 @@ sudo ufw allow 4005/tcp
 sudo docker exec -it guardian1 bash
 env | grep SOLR
 ls -la /var/solr
+```
+
+---
+
+<a id="75-enable-auto-updates"></a>
+
+## 7.5 Enable Auto-Updates (Recommended)
+
+> ℹ️ **Used the Quick Start script (§6)?** Watchtower is already set up — skip this section. This is for
+> **manual installs (§7)** or for adding auto-updates to a Guardian you already run.
+
+One **Watchtower** container keeps every Timpi node on this machine on the latest version. Paste it exactly
+as-is — there is nothing to edit:
+
+```bash
+sudo docker rm -f watchtower 2>/dev/null
+
+sudo docker run -d \
+  --name watchtower \
+  --restart unless-stopped \
+  -e DOCKER_API_VERSION=1.44 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower --interval 3600 --cleanup \
+  geocore geocore2 geocore3 guardian1 guardian2 \
+  timpi-collector timpi-collector-1 timpi-collector-2
+```
+
+* It covers **all** your Timpi nodes — both Guardians (§8), plus any GeoCore or Collector on the same
+  machine. Names you don't run are simply ignored, so the list is safe to paste as-is. Only add a name if
+  `sudo docker ps` shows one that isn't listed.
+* The **first line** removes any Watchtower you already have. Docker won't start a second container called
+  `watchtower`, and an older one likely watches only a single node — this replaces it with one that covers
+  everything.
+* `-e DOCKER_API_VERSION=1.44` is **required** — without it Watchtower crash-loops on modern Docker.
+* Your GUID, ports and Solr data are kept across updates.
+
+**Check what it covers:**
+
+```bash
+sudo docker logs watchtower --tail 20
+```
+
+```text
+Only checking containers which name matches "geocore" or "guardian1" or ...
+Scheduling first run: 2026-07-16 23:06:45 +0000 UTC
+```
+
+* The **first** line must include your Guardian's name.
+* The **second** shows the first check is an hour away — so the log stays quiet until then. That's normal,
+  **not** a failure.
+
+**Want the update now** instead of waiting the hour? Run the same list once. Its last line reports what it
+covered — `Scanned` should equal the number of Timpi nodes you run:
+
+```bash
+sudo docker run --rm \
+  -e DOCKER_API_VERSION=1.44 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower --run-once --cleanup \
+  geocore geocore2 geocore3 guardian1 guardian2 \
+  timpi-collector timpi-collector-1 timpi-collector-2
 ```
 
 ---

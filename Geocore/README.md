@@ -305,8 +305,9 @@ sudo docker run -d \
   hour after you start it, so `docker logs watchtower` stays quiet until then — that's normal.
 * The `-e DOCKER_API_VERSION=1.44` line is **required** — without it Watchtower won't start on modern Docker.
 * Leave `--name watchtower` (line 2) alone — that's Watchtower's own name, not your node.
-* Running **several GeoCores** (see [§9](#s9-multiple))? One Watchtower covers all — list each name at the end:
-  `... --cleanup geocore geocore2 geocore3` (or omit the names to watch every container on the machine).
+* Running **several GeoCores** (see [§9](#s9-multiple))? They're already covered — the list above includes
+  `geocore2` and `geocore3`. To watch *every* container on the machine instead (including non-Timpi ones),
+  omit the names entirely.
 
 ---
 
@@ -319,7 +320,16 @@ sudo docker ps --filter name=watchtower
 sudo docker logs watchtower --tail 20
 ```
 
-You should see Watchtower running and a line like `Scheduling first run …`.
+Two lines tell you it's set up correctly:
+
+```text
+Only checking containers which name matches "geocore" or "geocore2" or ...
+Scheduling first run: 2026-07-16 23:06:45 +0000 UTC
+```
+
+* The **first** line lists what it will update — your node's name must be in it.
+* The **second** shows the first check is an hour away. That's why the log stays quiet until then; it is
+  **not** a failure. To update right now instead, use the one-time run in [7.1](#s7-1-existing).
 
 ---
 

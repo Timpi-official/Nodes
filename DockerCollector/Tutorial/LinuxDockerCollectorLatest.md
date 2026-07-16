@@ -23,8 +23,8 @@ No scripts. No manual updates. Fully automated and verified by logs.
 6. [Run the Collector Container](#run)
 7. [Verify It’s Running](#verify)
 8. [How Auto-Updating Works](#autoupdate)
-9. [View Update History and Version Checks](#verifyupdate)
-10. [Force an Immediate Update (Optional)](#forceupdate)
+9. [Verify Auto-Updates and Check Your Version](#verifyupdate)
+10. [Update Right Now (Optional)](#forceupdate)
 11. [⚙️ Advanced Options](#advanced)
 12. [🧩 Running Multiple Collectors (for multiple NFTs / GUIDs)](#multi)
 13. [Monitoring and Health Check](#monitoring)
@@ -208,66 +208,95 @@ You should see:
 
 ## 8️⃣ How Auto-Updating Works
 
-1. Waits 6 hours (default 21 600 s).
-2. Stops all `TimpiCollector` processes.
-3. Runs `CollectorAutoUpdater`.
-4. Restarts collector with the same GUID.
-5. Logs version and update status to both console and `TimpiCollectorLogsxxxx-xx-xx.log`.
+The Collector does **not** update itself. The old in-container auto-updater has been removed, so a Collector
+started with the command in §6 keeps running the image it was pulled with — forever — until you update it.
 
-✅ Container itself never stops.
-✅ Only the collector process restarts.
+To get automatic updates, run **one Watchtower container**. It watches Docker Hub and replaces your
+Collector whenever a new version ships (your GUID and data are kept). One Watchtower covers **every** Timpi
+node on the machine. Paste it exactly as-is — there is nothing to edit:
+
+```bash
+sudo docker rm -f watchtower 2>/dev/null
+
+sudo docker run -d \
+  --name watchtower \
+  --restart unless-stopped \
+  -e DOCKER_API_VERSION=1.44 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower --interval 3600 --cleanup \
+  geocore geocore2 geocore3 guardian1 guardian2 \
+  timpi-collector timpi-collector-1 timpi-collector-2
+```
+
+* It covers every Collector (§12), plus any GeoCore or Guardian on the same machine. Names you don't run are
+  simply ignored, so the list is safe to paste as-is. Only add a name if `sudo docker ps` shows one that
+  isn't listed.
+* The **first line** removes any Watchtower you already have — Docker won't start a second container called
+  `watchtower`, and an older one likely watches only a single node.
+* `-e DOCKER_API_VERSION=1.44` is **required** — without it Watchtower crash-loops on modern Docker.
+* ✅ Your GUID and crawl data survive updates. ✅ Nothing to clean up — Watchtower removes the old image.
 
 ---
 
 <a name="verifyupdate"></a>
 
-## 9️⃣ View Update History and Version Checks
+## 9️⃣ Verify Auto-Updates and Check Your Version
 
-Check if the auto-updater loop is active:
-
-```bash
-sudo docker logs timpi-collector | grep "Auto-Updater loop"
-```
-
-Example:
-
-```
-[INF] Auto-Updater loop started (interval: 21600s)...
-```
-
-Show recent update ticks and versions:
+**Is Watchtower covering this Collector?**
 
 ```bash
-sudo docker logs timpi-collector | grep -E "Auto-Updater tick|Currently on version"
+sudo docker logs watchtower --tail 20
 ```
 
-Example output:
-
-```
-[INF] Auto-Updater tick: stopping collector for update...
-[INF] CollectorAutoUpdater completed successfully.
-[INF] Verifying collector version...
-[INF] Currently on version 1.0.1
+```text
+Only checking containers which name matches "geocore" or "timpi-collector" or ...
+Scheduling first run: 2026-07-16 23:06:45 +0000 UTC
 ```
 
-View persistent history file:
+* The **first** line must include your Collector's name.
+* The **second** shows the first check is an hour away — the log stays quiet until then. That's normal,
+  **not** a failure.
+
+**What version am I on?**
 
 ```bash
-sudo docker exec timpi-collector cat /opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log
+sudo docker logs timpi-collector --tail 50 | grep -i "currently on version"
+```
+
+```text
+[INF] Currently on version 2.0.0
+```
+
+**Persistent log file** (inside the container):
+
+```bash
+sudo docker exec timpi-collector sh -c 'ls /opt/timpi/TimpiCollectorLogs*.log'
+sudo docker exec timpi-collector sh -c 'tail -20 /opt/timpi/TimpiCollectorLogs*.log'
 ```
 
 ---
 
 <a name="forceupdate"></a>
 
-## 🔁 10️⃣ Force an Immediate Update (Optional)
+## 🔁 🔟 Update Right Now (Optional)
+
+Don't want to wait up to an hour for Watchtower's next check? Run the same list once. It updates immediately
+and its last line reports what it covered — `Scanned` should equal the number of Timpi nodes you run:
 
 ```bash
-sudo docker exec -it timpi-collector bash
-./CollectorAutoUpdater
-exit
-sudo docker restart timpi-collector
+sudo docker run --rm \
+  -e DOCKER_API_VERSION=1.44 \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower --run-once --cleanup \
+  geocore geocore2 geocore3 guardian1 guardian2 \
+  timpi-collector timpi-collector-1 timpi-collector-2
 ```
+
+```text
+Session done   Failed=0 Scanned=1 Updated=1
+```
+
+This works whether or not you run Watchtower in the background.
 
 ---
 

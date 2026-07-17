@@ -163,14 +163,18 @@ sudo docker run -d --name timpi-collector \
 ## 7️⃣ Verify It’s Running
 
 ```bash
-sudo docker ps
+sudo docker ps --filter name=timpi-collector
 ```
 
-Expected:
+Expected — the container is up:
 
 ```
-timpi-collector   Up (healthy)
+CONTAINER ID   IMAGE                             STATUS        NAMES
+3348866e699d   timpiltd/timpi-collector:latest   Up 2 hours    timpi-collector
 ```
+
+> ℹ️ `Up` is all you get — the image has no healthcheck, so it never reports `(healthy)`. And `Up` only means
+> the container is running: see [§13](#monitoring) to confirm it is actually **crawling**.
 
 # 🐳 **2. Docker: Change Collector Log Level**
 
@@ -195,12 +199,22 @@ sudo docker logs --tail 50 -f timpi-collector
 
 ```
 
-You should see:
+You should see it start and reach a coordinator:
 
 ```
-[INF] Starting Timpi Collector (GUID=xxxx)
-[INF] Collector started with PID=8
+Starting TimpiCollector with GUID xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+[INF] Currently on version 2.0.0
+[WRN] Collector was started
+[INF] The response was successful: Collector found on http://tapcore1.timpi.network:4014/
 ```
+
+Then, once it has work, a metrics line per domain:
+
+```
+[WRN] [metrics] example.com finished ok=10 soft=0 hard=0 skipped=0 ... fail%=0.0
+```
+
+`ok=` is pages fetched — that's the number that matters.
 
 ---
 

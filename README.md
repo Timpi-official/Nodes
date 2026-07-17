@@ -14,12 +14,10 @@ We provide:
 
 ## 📝 [Node Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
-Before you can run a Timpi node (except Collectors), you must **register your Node Access NFT** and receive your unique `GUID`.  
-This applies to:
-- Synaptron
-- Guardian
-- Collector
-- Geocore
+Before you can run a Timpi node you must **register your Node Access NFT** and receive your unique `GUID`.  
+This applies to **Collector**, **Guardian**, **Geocore** and **Synaptron** Node Access NFTs.
+
+> ℹ️ **Exception:** *Collector Hero* and *Collector Champion* NFTs don't need registration.
 
 👉 See the [Registration Guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) for full instructions and screenshots.
 
@@ -27,10 +25,17 @@ This applies to:
 
 ## 🔍 [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md)
 
-Want to quickly verify if your **Synaptron, Guardian, or GeoCore** node is online?
-We provide official **Discord Slash Commands** (`/synaptronchecker`, `/guardianchecker`, `/geocore`) that let you check your node status privately.
+Want to know whether your node is online **and earning**? Type a Discord slash command, paste your GUID, and
+the bot answers in seconds — no login, no SSH. Only you see the reply.
 
-👉 See the [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md) for usage instructions, screenshots, and example outputs.
+| Command | Node | You provide |
+|---|---|---|
+| `/geocore` | GeoCore | GUID + port |
+| `/guardian` | Guardian | GUID + port |
+| `/collector` | Collector | GUID |
+| `/synaptronchecker` | Synaptron | GUID |
+
+👉 See the [Node Checker Guide](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md) for what each reply means, and what to do when it isn't green.
 
 ---
 
@@ -52,53 +57,13 @@ Geo-Core Nodes are strategically located worldwide, enhancing security and enabl
    Use **FluxCloud** and **FluxEdge** to deploy Collector or Synaptron nodes in just a few clicks.
 ---
 
-## 📊 Node Reward Structures
+## 📊 [Node Reward Structures](https://github.com/Timpi-official/Nodes/blob/main/Rewards/RewardStructures.md)
 
-Timpi provides guaranteed minimum reward pools for different node types over fixed periods.  
-Rewards beyond the guaranteed period will continue, with values depending on the strength of the Timpi business.
+Guaranteed minimum reward pools per node type, by period.
 
-### 🛠️ Collectors
-| Reward Period                     | $NTMPI per Node / Month |
-|----------------------------------|--------------------------|
-| Till Aug 2025                     | 375                      |
-| Sep 2025 – Aug 2026               | 250                      |
-| Sep 2026 – Aug 2027               | 210                      |
-
-**Nodes on sale in July:** 150
+👉 See the [Reward Structures](https://github.com/Timpi-official/Nodes/blob/main/Rewards/RewardStructures.md) page for the full tables.
 
 ---
-
-### 🛡️ Guardians
-| Reward Period                     | $NTMPI per Node / Month |
-|----------------------------------|--------------------------|
-| Till Aug 2025                     | 667                      |
-| Sep 2025 – Aug 2026               | 500                      |
-| Sep 2026 – Aug 2027               | 375                      |
-
-**Nodes on sale in July:** 200
-
----
-
-### 🧠 Synaptrons
-| Reward Period                     | Tier 1 ($NTMPI) | Tier 2 ($NTMPI) |
-|----------------------------------|----------------|----------------|
-| Till Dec 2025                     | 1400           | 1600           |
-| Jan 2026 – Dec 2026               | 800            | 1000           |
-| Jan 2027 – Dec 2027               | 500            | 700            |
-
----
-
-### 🌍 Geo-Cores
-| Reward Period                     | $NTMPI per Node / Month |
-|----------------------------------|--------------------------|
-| Till Aug 2026                     | 800                      |
-| Sep 2026 – Aug 2027               | 400                      |
-| Sep 2027 – Aug 2028               | 300                      |
-
-**Nodes on sale in July:** 500
-
----
-
 
 ## 📜 License
 

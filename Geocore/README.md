@@ -456,11 +456,16 @@ Environment variable 'GUID' found - <YOUR-GUID>.
 GeoCore: ConnectionPort port = 4013
 Environment variable 'LOCATION' found - Sweden/Stockholm.
 ---------------------------- GeoCore: System test done ----------------------------
-INFO: Got version 1.2.0 from core - Own version: 1.2.0
+INFO: Got version 1.2.0 from core - Own version: 2.0.0
 INFO: GeoCore Node information received from TAP. NA - USEC
       Now listening on: http://[::]:4013
       Application started. Press Ctrl+C to shut down.
 ```
+
+> 💡 **That version line has two different numbers in it — this is normal.**
+> **`Own version`** is *your* GeoCore. **`Got version … from core`** is the network's current **minimum**,
+> which is often lower. So `Got version 1.2.0 from core - Own version: 2.0.0` means you're up to date and
+> ahead of the minimum — exactly what you want. Only `Own version` tells you what you're running.
 
 **Guardian scan** (numbers vary):
 

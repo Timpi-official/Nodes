@@ -197,19 +197,44 @@ bash <(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Gu
 
 ```text
 ===== Timpi Guardian – Quick Setup =====
-➡️ Solr Port: 8983
-➡️ Guardian Port: 4005
-➡️ GUID: xxxx
-📍 Country: Sweden
-🏙️ City: Stockholm
+➡️ Enter the port for Solr (Default: 8983)
+SOLR Port:
+➡️ Enter the port for Guardian (Default: 4005)
+Guardian Port:
+➡️ Enter your GUID (Find it in your Timpi dashboard)
+GUID:
+📍 Now, let's enter your location details step by step!
+🌍 Country (Example: Sweden, Germany, US): Sweden
+🏙️ City (Example: Norrkoping, Berlin, NewYork): Stockholm
 
-📂 Creating data folder...
+✅ Location set to: Sweden/Stockholm
 
-🚀 Starting Timpi Guardian container...
-Status: Downloaded newer image...
+🔄 Automatic updates keep your Guardian on the latest version — no manual upgrades.
+Enable automatic updates? [Y/n]: Y
+
+📂 Creating data folder at: /home/you/var/solrdocker/data (if needed)...
+
+🚀 Starting Timpi Guardian container (timpiltd/timpi-guardian:latest)...
+Status: Downloaded newer image for timpiltd/timpi-guardian:latest
 
 ✅ Guardian started successfully!
+   Container ID: 6b3fc611824b...
+
+📜 To watch it, read the Guardian's OWN log — 'docker logs' shows only Solr's output:
+   sudo docker exec guardian1 sh -c 'tail -f /var/solr/logs/guardian-log*.txt'
+   A healthy Guardian repeats: 'Periodic Guardian update to CO succeeded'
+
+🔄 Enabling automatic updates (Watchtower)...
+✅ Watchtower active — this Guardian and every other Timpi node on this machine will auto-update on new releases.
+
+────────────────────────────────────────────
+📦 Guardian setup complete (container: guardian1, Solr 8983 / Guardian 4005).
+🔄 Auto-updates: ON. ...
+────────────────────────────────────────────
 ```
+
+> If it instead prints **"❌ The Guardian did NOT start"**, nothing is running — the Docker error above it
+> says why (usually a port already in use). Fix that and re-run; your GUID and data are untouched.
 
 ---
 
@@ -220,10 +245,13 @@ Status: Downloaded newer image...
 ```text
 INFO: Guardian is running on the main network
 Guardian: Production mode detected.
-Guardian port = 4005
+Guardian: Guardian port = 4005
 Starting Solr instance...
-Started Solr on port 8983. Happy searching!
+Started Solr server on port 8983 (pid=120). Happy searching!
 ```
+
+> ℹ️ `docker logs` shows **Solr's** output plus a few Guardian startup lines. The Guardian's own work —
+> triangulation, version, updates to the coordinator — goes to its log file instead ([6.4](#64-expected-persistent-guardian-logs)).
 
 ---
 

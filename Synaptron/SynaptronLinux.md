@@ -36,6 +36,27 @@
 
 # 1. **Overview**
 
+## What a Synaptron is
+
+The Synaptron is Timpi's **AI node**. Where Collectors crawl the web and Guardians store it, a Synaptron is
+the layer that *reasons* over that data — running local AI models to generate and refine answers. It is the
+most demanding node type: it needs an **NVIDIA GPU**, and its first start-up downloads several gigabytes of
+models and builds a full PyTorch + CUDA Python environment. That's why the install is heavier than the other
+nodes, and why the first boot takes **20–40 minutes**.
+
+## What actually gets installed
+
+The installer sets up a small **stack of three containers**, managed together with Docker Compose:
+
+| Container | What it does |
+|---|---|
+| `synaptron_universal` | The Synaptron itself — the AI worker (GPU). |
+| `neo4jtest` | A local Neo4j graph database the Synaptron uses as its knowledge graph. |
+| `watchtower` | Keeps the Synaptron image up to date automatically (checks every few minutes). |
+
+So **auto-updates are built in** — you don't set up Watchtower separately for a Synaptron; the installer does
+it as part of the stack.
+
 This guide provides the **official, stable, GPU-verified** installation method for:
 
 * **Ubuntu 22.04 LTS**
@@ -358,9 +379,19 @@ Installer asks:
 
 ---
 
+## What happens next (and why it's slow)
+
+You won't be asked anything else. From here the installer:
+
+1. **Detects your GPU** and picks the matching image automatically — a Blackwell card (RTX 50-series) gets
+   the `cuda28` build, every other NVIDIA GPU gets `cuda24`. You don't choose this.
+2. **Checks** that Docker can see your GPU, then starts the three-container stack.
+3. On the **first run only**, downloads the AI models and builds the PyTorch + CUDA Python environment.
+
 ## ⏳ Important Note
 
-Model downloads & OLLAMA setup may take **20–40 minutes** depending on system speed.
+That first-run build downloads several GB and can take **20–40 minutes** depending on your connection and
+disk speed. This only happens once — later starts are quick.
 
 Do **not** interrupt it.
 

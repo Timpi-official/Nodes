@@ -3,6 +3,10 @@
 Check any Timpi node straight from Discord — **no login, no SSH, nothing to install**. Type a slash command,
 paste your GUID, and the bot answers in seconds. Only you see the reply.
 
+> 🌐 **Prefer a web page?** [**Node Monitor**](https://timpi.se/node-monitor.html) on the Timpi Explorer runs
+> the same checks and shows them on one page instead of in a chat reply. Same data, same verdicts — pick
+> whichever you like.
+
 The checkers answer the question that actually matters: **is my node earning, and if not, what do I fix?**
 
 ---

@@ -41,20 +41,55 @@ the bot answers in seconds — no login, no SSH. Only you see the reply.
 
 ## 🗂 Node Types
 
-1. 🔄 [Collector](https://github.com/Timpi-official/Nodes/tree/main/Collector)  
-   Our Collectors are decentralized “workers” crawling the web collecting information about websites and their pages. This system remains invisible from front-end services, safeguarding the security of our Collectors.
+Each link goes straight to that node's install guide.
 
-2. 🛡️ [Guardian](https://github.com/Timpi-official/Nodes/tree/main/Guardian)  
-   Guardians are distributed storage nodes that archive the web, safeguarding data collected by Collectors. Guardians ensure data privacy and security without needing a static IP address or open ports.
+1. 🔄 **[Collector](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**  
+   Collectors are decentralized "workers" that crawl the web, collecting information about websites and their
+   pages. They stay invisible to front-end services, which keeps them secure.
+   *Docker is the supported install. The [native Linux build](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorLinux.md)
+   is retired; [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorWindows.md) is separate.*
 
-3. 🧬 [Synaptron](https://github.com/Timpi-official/Nodes/tree/main/Synaptron)  
-   At the forefront of AI advancement is the Synaptron node. This revolutionary architecture facilitates rapid information exchange, enabling AI models to learn, adapt, and generate responses with remarkable agility.
+2. 🛡️ **[Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/Tutorial/GuardianDockerLinux.md)**  
+   Guardians are distributed storage nodes that archive the web, safeguarding what Collectors gather. They need
+   no static IP, and rewards are based on uptime.
 
-4. 🌍 [Geo-Core](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md)
-Geo-Core Nodes are strategically located worldwide, enhancing security and enabling fast, location-aware routing for accurate and efficient data queries. They serve as a backbone for global indexing and intelligent query distribution.
+3. 🧬 **[Synaptron](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/SynaptronLinux.md)**  
+   Timpi's AI node. It reasons over the data the network gathers — running local AI models to generate and
+   refine answers. Needs an NVIDIA GPU.
+   *([Windows guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/SynaptronWindows.md))*
 
-5. ☁️ [Flux Deployment](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/README.md)
-   Use **FluxCloud** and **FluxEdge** to deploy Collector or Synaptron nodes in just a few clicks.
+4. 🌍 **[Geo-Core](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md)**  
+   Geo-Cores sit worldwide, enabling fast, location-aware routing for accurate and efficient data queries. They
+   are the backbone for global indexing and query distribution.
+
+5. ☁️ **[Flux Deployment](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/README.md)**  
+   Use **FluxCloud** and **FluxEdge** to deploy Collector or Synaptron nodes in a few clicks.
+
+---
+
+## 🌐 Timpi Explorer — [timpi.se](https://timpi.se)
+
+A web dashboard for the Timpi network and the Neutaro chain. Nothing to install — just open it.
+
+**For node operators:** 👉 **[Node Monitor](https://timpi.se/node-monitor.html)** is the web version of the
+Discord [Node Checkers](https://github.com/Timpi-official/Nodes/blob/main/NodeCheckers/NodeCheckers.md).
+Paste your GUID and it shows the same checks — reachability, ports, DNS, hardware, version and whether you're
+earning — laid out on one page instead of in a chat reply.
+
+The rest of the explorer:
+
+| Page | What it shows |
+|---|---|
+| [Dashboard](https://timpi.se/index.html) | Network overview at a glance |
+| [Validators](https://timpi.se/validator.html) | Validator list, details and [uptime](https://timpi.se/validator-uptime.html) |
+| [Governance](https://timpi.se/governance.html) | Proposals and voting |
+| [Params](https://timpi.se/param.html) | Live chain parameters |
+| [Transactions](https://timpi.se/transaction.html) | Search and inspect transactions |
+| [Wallet Explorer](https://timpi.se/wallet.html) | Look up any address |
+| [Portfolio](https://timpi.se/portfolio.html) | Your holdings across the network |
+| [Send](https://timpi.se/send.html) · [Stake](https://timpi.se/stake.html) | Transfer and stake $NTMPI |
+| [Marketplace](https://timpi.se/marketplace.html) | Node NFT marketplace |
+
 ---
 
 ## 📊 [Node Reward Structures](https://github.com/Timpi-official/Nodes/blob/main/Rewards/RewardStructures.md)

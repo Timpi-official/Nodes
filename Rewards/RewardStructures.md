@@ -52,8 +52,8 @@ Rewards depend on your node being **online and reachable**. Two things to keep r
 * **Keep your node current.** Turn on auto-updates so you never fall behind — see the auto-update section of
   your node's guide:
   [GeoCore](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md#s7-autoupdate) ·
-  [Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/Tutorial/GuardianDockerLinux.md#75-enable-auto-updates) ·
-  [Collector](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md#autoupdate).
+  [Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/guides/LinuxDocker.md#75-enable-auto-updates) ·
+  [Collector](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/LinuxDocker.md#autoupdate).
 
 ---
 

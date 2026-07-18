@@ -21,7 +21,7 @@ They ensure **data privacy**, **durability**, and **availability**, even across 
 
 ## 🐧 Guardian for Linux (Ubuntu 22.04.4+)
 
-👉 **[Guardian Linux Install & Script Guide](https://github.com/Timpi-official/Nodes/blob/main/Guardian/Tutorial/GuardianDockerLinux.md)**  
+👉 **[Guardian Linux Install & Script Guide](https://github.com/Timpi-official/Nodes/blob/main/Guardian/guides/LinuxDocker.md)**  
 Includes commands for Docker setup, Guardian data folder creation, manual port configuration, and persistent logging.
 
 ---

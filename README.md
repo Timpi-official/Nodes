@@ -43,20 +43,20 @@ the bot answers in seconds — no login, no SSH. Only you see the reply.
 
 Each link goes straight to that node's install guide.
 
-1. 🔄 **[Collector](https://github.com/Timpi-official/Nodes/blob/main/DockerCollector/Tutorial/LinuxDockerCollectorLatest.md)**  
+1. 🔄 **[Collector](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/LinuxDocker.md)**  
    Collectors are decentralized "workers" that crawl the web, collecting information about websites and their
    pages. They stay invisible to front-end services, which keeps them secure.
-   *Docker is the supported install. The [native Linux build](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorLinux.md)
-   is retired; [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/scripts/CollectorWindows.md) is separate.*
+   *Docker is the supported install. The [native Linux build](https://github.com/Timpi-official/Nodes/blob/main/Collector/legacy/LinuxNative-retired.md)
+   is retired; [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md) is separate.*
 
-2. 🛡️ **[Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/Tutorial/GuardianDockerLinux.md)**  
+2. 🛡️ **[Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/guides/LinuxDocker.md)**  
    Guardians are distributed storage nodes that archive the web, safeguarding what Collectors gather. They need
    no static IP, and rewards are based on uptime.
 
-3. 🧬 **[Synaptron](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/SynaptronLinux.md)**  
+3. 🧬 **[Synaptron](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md)**  
    Timpi's AI node. It reasons over the data the network gathers — running local AI models to generate and
    refine answers. Needs an NVIDIA GPU.
-   *([Windows guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/SynaptronWindows.md))*
+   *([Windows guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md))*
 
 4. 🌍 **[Geo-Core](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md)**  
    Geo-Cores sit worldwide, enabling fast, location-aware routing for accurate and efficient data queries. They

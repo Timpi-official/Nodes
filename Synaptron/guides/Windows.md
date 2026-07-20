@@ -1,5 +1,13 @@
 # Synaptron — Windows 10/11 Installation Guide
 
+> ## ⏳ Coming soon — do not install from this page yet
+>
+> The Windows Synaptron download is not published yet — the current link returns **404**. A rewritten
+> guide will follow once the build is available.
+>
+> Installing from the steps below will not work.
+
+
 <img width="1480" height="862" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3"/>
 
 A clean, click-by-click setup for **Timpi Synaptron** nodes.

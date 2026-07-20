@@ -38,7 +38,7 @@ Watchtower covers every Timpi node on the machine. See
 ## Other install paths
 
 * **[Native Linux (systemd)](https://github.com/Timpi-official/Nodes/blob/main/Collector/legacy/LinuxNative-retired.md)** — ⚠️ retired, no longer updated. Migrate to Docker.
-* **[Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md)** — separate installer.
+* **[Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md)** — ⏳ coming soon; the current download predates the latest version and won't qualify for rewards.
 * **[Flux](https://github.com/Timpi-official/Nodes/blob/main/FluxDeployment/CollectorFluxDeployment.md)** — deploy on FluxCloud/FluxEdge.
 
 ---

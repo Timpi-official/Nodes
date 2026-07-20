@@ -47,16 +47,20 @@ Each link goes straight to that node's install guide.
    Collectors are decentralized "workers" that crawl the web, collecting information about websites and their
    pages. They stay invisible to front-end services, which keeps them secure.
    *Docker is the supported install. The [native Linux build](https://github.com/Timpi-official/Nodes/blob/main/Collector/legacy/LinuxNative-retired.md)
-   is retired; [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md) is separate.*
+   is retired; [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md) is
+   **⏳ coming soon** — its download has not been rebuilt since November and cannot reach the current version.*
 
 2. 🛡️ **[Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/guides/LinuxDocker.md)**  
    Guardians are distributed storage nodes that archive the web, safeguarding what Collectors gather. They need
    no static IP, and rewards are based on uptime.
 
-3. 🧬 **[Synaptron](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md)**  
+3. 🧬 **Synaptron** — ⏳ **coming soon**  
    Timpi's AI node. It reasons over the data the network gathers — running local AI models to generate and
    refine answers. Needs an NVIDIA GPU.
-   *([Windows guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md))*
+   *Synaptron has moved to a native node runner; the rewritten
+   [Linux](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md) and
+   [Windows](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md) guides are being
+   finalised. The pages there still describe the retired Docker install — don't install from them yet.*
 
 4. 🌍 **[Geo-Core](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md)**  
    Geo-Cores sit worldwide, enabling fast, location-aware routing for accurate and efficient data queries. They

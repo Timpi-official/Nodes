@@ -1,5 +1,13 @@
 # 🧬 **TIMPI SYNAPTRON — OFFICIAL INSTALLATION GUIDE**
 
+> ## ⏳ Coming soon — do not install from this page yet
+>
+> This page still describes the Docker/compose install, which has been **retired**. Synaptron now ships
+> as a native node runner, and a rewritten guide is being finalised with the maintainer.
+>
+> Installing from the steps below will set up a stack that is no longer supported.
+
+
 <img width="1480" height="862" src="https://github.com/user-attachments/assets/b0749433-3720-4422-a14d-26c4dec067c3"/>
 
 ---

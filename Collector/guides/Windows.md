@@ -1,5 +1,19 @@
 # 🌐 Timpi Collector Node for Windows 10 & 11 (v2)
 
+> ## ⏳ Coming soon — do not install from this page yet
+>
+> The Windows Collector download has not been rebuilt since **10 November 2025** and cannot reach the
+> current node version, so a node installed from it will not qualify for rewards. A new Windows build
+> is on the way.
+>
+> ⚠️ The file named `...-v2.rar` is **not** version 2 — the "v2" refers to the packaging and it dates
+> from November too.
+>
+> **Run the Collector in Docker for now** — [Linux (Docker)](LinuxDocker.md). Your GUID stays the same.
+>
+> The steps below are kept for reference and will be updated when the new build ships.
+
+
 ### The Timpi Collector is part of the decentralized Timpi search network — it crawls and indexes the web, helping to build the world’s first community-powered search engine.
 
 By running a Collector, you help Timpi grow its decentralized data network — privately, securely, and without ads or tracking.

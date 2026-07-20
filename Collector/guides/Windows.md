@@ -1,22 +1,10 @@
 # 🌐 Timpi Collector Node for Windows 10 & 11 (v2)
 
-> ## ⏳ Coming soon — do not install from this page yet
->
-> The Windows Collector download has not been rebuilt since **10 November 2025** and cannot reach the
-> current node version, so a node installed from it will not qualify for rewards. A new Windows build
-> is on the way.
->
-> ⚠️ The file named `...-v2.rar` is **not** version 2 — the "v2" refers to the packaging and it dates
-> from November too.
->
-> **Run the Collector in Docker for now** — [Linux (Docker)](LinuxDocker.md). Your GUID stays the same.
->
-> The steps below are kept for reference and will be updated when the new build ships.
-
-
-### The Timpi Collector is part of the decentralized Timpi search network — it crawls and indexes the web, helping to build the world’s first community-powered search engine.
+### The Timpi Collector is part of the decentralized Timpi search network — it crawls and indexes the web, helping to build the world's first community-powered search engine.
 
 By running a Collector, you help Timpi grow its decentralized data network — privately, securely, and without ads or tracking.
+
+This build is a **native Windows program**. It installs a background **Windows service** that starts automatically at boot, restarts itself if it ever crashes, and keeps crawling whether or not you are signed in. A small **Collector window** (operator UI) is included so you can start/stop the node, save your GUID, and watch the live log — but you don't need to keep it open for the node to run.
 
 ---
 
@@ -33,35 +21,42 @@ By running a Collector, you help Timpi grow its decentralized data network — p
   * [3. What the Installer Does Automatically](#-3-what-the-installer-does-automatically)
 * [Using Timpi Collector](#-using-timpi-collector)
 
-  * [4. Viewing Collector Logs](#-4-viewing-collector-logs)
-  * [5. Checking for Updates (Auto-Updater)](#-5-checking-for-updates-auto-updater)
-  * [How to Start, Restart, or Stop the Collector Service](#-how-to-start-restart-or-stop-the-collector-service)
-  * [6. Access the Management Dashboard](#-6-access-the-management-dashboard)
-  * [7. Register or Retrieve Your GUID](#-7-register-or-retrieve-your-guid)
+  * [4. The Collector Window (Operator UI)](#-4-the-collector-window-operator-ui)
+  * [5. Viewing Collector Logs](#-5-viewing-collector-logs)
+  * [6. Expected Logs — what a healthy node looks like](#-6-expected-logs--what-a-healthy-node-looks-like)
+  * [7. Start, Restart, or Stop the Collector Service](#-7-start-restart-or-stop-the-collector-service)
+  * [8. Access the Management Dashboard](#-8-access-the-management-dashboard)
+  * [9. Register or Retrieve Your GUID](#-9-register-or-retrieve-your-guid)
+  * [10. Updating the Collector](#-10-updating-the-collector)
+* [Troubleshooting](#-troubleshooting)
 * [Uninstallation Guide](#-uninstallation-guide)
 
   * [Method 1 – Apps & Features](#-method-1--apps--features)
   * [Method 2 – Control Panel](#-method-2--control-panel)
-
+* [Summary of Key Changes](#-summary-of-key-changes)
 
 ---
 
 > ⚠️ **Support Policy**
 >
-> Timpi officially supports installations on **Windows 10/11**, **native Linux (Ubuntu)**, and **Docker running on native Linux**.  
->  
-> Other environments — including **Proxmox**, **LXC containers**, **nested virtualization**, or **emulated systems** — are considered **unsupported**.  
->  
-> You are free to experiment with these setups, but please note that **technical support and helpdesk tickets are only available for supported platforms**.  
+> Timpi officially supports installations on **Windows 10/11**, **native Linux (Ubuntu)**, and **Docker running on native Linux**.
+>
+> Other environments — including **Proxmox**, **LXC containers**, **nested virtualization**, or **emulated systems** — are considered **unsupported**.
+>
+> You are free to experiment with these setups, but please note that **technical support and helpdesk tickets are only available for supported platforms**.
 > For the best performance and reliability, always use a fully supported operating system.
 
 ---
 
-**Version:** `v2`
+**Version:** `v2` (native Windows build)
 
-📦 **Installer type:** Native `.exe` (Windows Program)
+📦 **Installer type:** Native `.exe` (Windows Program) — installs a Windows service, no Docker required
+
+🖥 **Requirements:** Windows 10 / 11 (64-bit) or Windows Server 2019 / 2022 / 2025 · 2 CPU cores · 2 GB RAM · local administrator rights · outbound HTTPS to the Timpi network and the open web
 
 🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
+
+> 💡 The download is a compressed `.rar`. Inside is a single Windows installer, e.g. `TimpiCollectorSetup-2.0.0.exe`. The .NET runtime is bundled — you do **not** need to install .NET or anything else first.
 
 ---
 
@@ -69,229 +64,321 @@ By running a Collector, you help Timpi grow its decentralized data network — p
 
 ### 🔹 1. Download the Installer
 
-* Click the link above to download the compressed `.rar` file.
+* Click the download link above to save the `.rar` file.
 
-* Extract it using [7-Zip](https://www.7-zip.org/) or Windows’ built-in tool.
+* Extract it using [7-Zip](https://www.7-zip.org/) or Windows' built-in extractor (right-click → **Extract All…**).
 
-* Inside the folder, you’ll see:
+* Inside the extracted folder you'll see the installer, for example:
 
   ```
-  TimpiCollectorWindowsLatest-v2.exe
+  TimpiCollectorSetup-2.0.0.exe
   ```
 
-  <img width="709" height="204" alt="image" src="https://github.com/user-attachments/assets/d8688ced-0e98-4dd9-b47a-b3e310d5b8fc" />
-
-* Extract to (example: Desktop)
-
-<img width="709" height="262" alt="image" src="https://github.com/user-attachments/assets/d2f9a988-b2ce-4c12-86ab-56dd23eb422c" />
+> 📸 _Screenshot placeholder: the extracted folder showing the setup `.exe`._
 
 ---
 
 ### 🔹 2. Run the Installer
 
-1. **Right-click** on `TimpiCollectorWindowsLatest-v2.exe`
+1. **Double-click** the installer (e.g. `TimpiCollectorSetup-2.0.0.exe`).
 
-2. Select **Run as Administrator** (required)
+2. Windows will show a **User Account Control (UAC)** prompt asking if you want to allow the app to make changes — click **Yes**. Administrator rights are required because the installer registers a Windows service.
 
-<img width="511" height="573" alt="image" src="https://github.com/user-attachments/assets/3e9b3b87-84a3-4086-9b43-869571bc883e" />
+   > 🛡️ If Windows SmartScreen shows a "Windows protected your PC" notice on the unsigned installer, click **More info → Run anyway**. See [Troubleshooting](#-troubleshooting) if your antivirus flags it.
 
-4. When prompted, **paste or type your GUID**
+3. Accept the license / defaults. The default install location is:
 
-<img width="496" height="391" alt="image" src="https://github.com/user-attachments/assets/46313d5e-923a-4b04-b0a6-f732144d4559" />
+   ```
+   C:\Program Files\Timpi\Collector
+   ```
 
-   *Your GUID connects this Collector to your Timpi account.*
+4. On the **System ID** page, **paste or type your GUID**.
 
-7. Wait for the installer to complete — usually under one minute.
+   *Your GUID connects this Collector to your Timpi account. You can get it from the [Node Management Dashboard](#-8-access-the-management-dashboard).*
+   *On a reinstall/upgrade, your existing GUID is pre-filled automatically. If you leave it blank, the service will install but won't start until you provide a GUID (via the Collector window, or by putting it in `guid.txt` — see below).*
+
+   > 📸 _Screenshot placeholder: the installer's GUID entry page._
+
+5. Optionally tick **Create a desktop shortcut**.
+
+6. Click **Install** and wait — it usually finishes in well under a minute.
+
+7. Leave **Launch Timpi Collector** checked on the final page and click **Finish**. The service starts and the Collector window opens.
 
 ---
 
 ### 🔹 3. What the Installer Does Automatically
 
 ✅ Installs the Timpi Collector to
-`C:\Program Files\Timpi Intl. LTD`
+`C:\Program Files\Timpi\Collector`
 
-✅ Creates a **Windows background service**
-that runs automatically at startup and restarts if it ever crashes.
+✅ Registers a **Windows background service** named **`Timpi Collector`** that:
 
-✅ Saves your **GUID** in
-`C:\Program Files\Timpi Intl. LTD\guid.txt`
+* starts automatically at Windows startup (`start= auto`),
+* is watchdogged — the worker is automatically relaunched if it crashes, and Windows' Service Control Manager restarts the host itself on failure (restart after 60 s for the first two failures, then every 5 minutes),
+* can be started/stopped by standard (non-admin) tooling thanks to a service permission grant.
 
-✅ Creates **two desktop shortcuts**:
+✅ Saves your **GUID** to
+`C:\Program Files\Timpi\Collector\guid.txt`
 
-1. **Timpi Collector Logs** – View live logs.
-2. **Timpi Collector – Check for Updates** – Runs the Auto-Updater manually.
+✅ Installs the **Collector window** (operator UI) and Start Menu shortcuts:
 
-✅ Adds Timpi Collector to Windows “Apps & Features” for easy uninstallation.
+| Shortcut | Purpose |
+| --- | --- |
+| **Timpi Collector** | Opens the operator window (status, Start/Stop, live log) |
+| **Open Log Folder** | Opens the install folder where logs are written |
+| **Uninstall Timpi Collector** | Removes the program |
 
-🧩 *Note:* This version **does not** include the old *Timpi Manager* or system tray icon — it runs completely in the background for improved stability and performance.
+*(A desktop shortcut for **Timpi Collector** is also created if you ticked that option.)*
+
+✅ Adds Timpi Collector to Windows **"Apps & Features"** for easy uninstallation.
+
+🧩 *Note:* This native build runs entirely as a background **Windows service**. The Collector window is optional — closing it does **not** stop crawling. There is **no auto-updater** in this build; see [Updating the Collector](#-10-updating-the-collector).
 
 ---
 
 ## 🖥 Using Timpi Collector
 
-### 🔹 4. Viewing Collector Logs
+### 🔹 4. The Collector Window (Operator UI)
 
-The Collector runs silently in the background.
-You can verify that it’s working by checking the logs.
+Open **Timpi Collector** from the Start Menu (or the desktop shortcut). Because it manages a Windows service, it launches elevated — accept the one UAC prompt.
 
-#### 🪟 Option 1 – Desktop Shortcut (Recommended)
+The window gives you everything you need at a glance:
 
-<img width="634" height="195" alt="image" src="https://github.com/user-attachments/assets/e2b12908-8b92-4ef2-b7c7-45f57bf5e371" />
+* **Status indicator** — a colored dot and label showing **Stopped / Starting / Running / Stopping**, plus an uptime counter. It polls the real Windows service every ~2 seconds, so it stays accurate even if you start/stop the service elsewhere (e.g. `services.msc`).
+* **GUID field** with **Save** and **Paste** buttons — paste your GUID and click **Save** to write it to `guid.txt`. If you change the GUID while the node is running, clicking **Start** transparently restarts the service so the new GUID takes effect.
+* **Start** / **Stop** buttons — these drive the Windows service directly.
+* **Open Log Folder** — opens the folder where the logs live.
+* **Live log** pane — streams the worker's log in real time.
+* **Checkboxes:**
+  * *Start collector when launcher opens* — auto-start the node whenever you open the window.
+  * *Minimize to tray on close* — clicking **X** hides the window to the system tray instead of closing it.
+* **System tray icon** — right-click for **Show / Start / Stop / Open Log Folder / Quit**.
 
-Simply double-click the **“Timpi Collector Logs”** icon on your desktop.
-This opens a PowerShell window that continuously displays live log entries.
-**Verbose mode** shows detailed information, while your settings might only display errors or basic info.
+> 💡 **Closing the window does not stop your node.** The Windows service keeps running in the background. To actually stop crawling, use the **Stop** button, the tray menu's **Stop**, or `services.msc`.
 
-<img width="1235" height="128" alt="image" src="https://github.com/user-attachments/assets/96f1fe6f-3f0d-492e-90d0-c6be41a929d4" />
+> 📸 _Screenshot placeholder: the Collector window showing "Running" with live log._
 
-#### 🧑‍💻 Option 2 – Manually in PowerShell
+---
 
-Run this command:
+### 🔹 5. Viewing Collector Logs
+
+The Collector runs silently as a service. You can confirm it's working in any of these ways.
+
+#### 🪟 Option 1 – The Collector Window (Recommended)
+
+Open **Timpi Collector** and watch the **Live log** pane. New lines stream in as the node crawls.
+
+#### 📂 Option 2 – Open the log files directly
+
+Click **Open Log Folder** in the window (or the **Open Log Folder** Start Menu shortcut) to open:
+
+```
+C:\Program Files\Timpi\Collector\
+```
+
+Log files:
+
+```
+C:\Program Files\Timpi\Collector\
+ ├── TimpiCollectorLogs<date>.log     ← Main worker log (normal activity + metrics)
+ └── logs\
+      └── collector.err<date>.log     ← Crash backstop (only meaningful if something goes wrong)
+```
+
+* **`TimpiCollectorLogs<date>.log`** (e.g. `TimpiCollectorLogs20260720.log`) is the primary log — daily-rolling, capped at 50 MB with 7 files retained.
+* **`logs\collector.err<date>.log`** captures raw error output from the service host. On a healthy node it usually contains only a single "Collector host starting collector process." line.
+
+Logs self-prune (roughly ~420 MB worst case across both streams) — no cleanup task is needed.
+
+#### 🧑‍💻 Option 3 – Tail the log in PowerShell
 
 ```powershell
-Get-Content "C:\Program Files\Timpi Intl. LTD\logs\collector.out.log" -Tail 50 -Wait
+Get-Content "C:\Program Files\Timpi\Collector\TimpiCollectorLogs$(Get-Date -Format yyyyMMdd).log" -Tail 50 -Wait
 ```
 
-📂 **Log location:**
-
-```
-C:\Program Files\Timpi Intl. LTD\logs\
- ├── collector.out.log  ← Main log (shows normal activity)
- └── collector.err.log  ← Error log (only if issues occur)
-```
-
-To stop viewing logs, press **Ctrl + C**.
+Press **Ctrl + C** to stop watching.
 
 ---
 
-### 🔹 5. Checking for Updates (Auto-Updater)
+### 🔹 6. Expected Logs — what a healthy node looks like
 
-During installation, a second shortcut is created on your desktop:
-**🪄 Timpi Collector – Check for Updates**
-<img width="634" height="128" alt="image" src="https://github.com/user-attachments/assets/c4daeacd-f421-4209-8121-416faf339394" />
-
-When launched, it manually runs the **Auto-Updater** and displays its progress:
-
-<img width="978" height="323" alt="image" src="https://github.com/user-attachments/assets/c7c8ad01-db4f-4593-953c-1cf3373e1567" />
-
-
-
-Example output:
+When the service starts, the worker registers with a Coordinator, receives its domain list, and begins crawling. A healthy startup looks like this (your GUID and the coordinator node addresses will differ):
 
 ```
-Killing TimpiCollector (PID: 10784)...
-Stopping Windows service: Timpi Collector
-Service stopped.
-Downloading TimpiCollector from: https://timpi.io/applications/windows/TimpiCollectorWindowsLatestExecutable.zip
-Download completed. Extracting...
-Extraction completed.
-Starting service again...
-
+2026-07-20 15:07:10 [WRN] Collector was started
+2026-07-20 15:07:11 [INF] The response was successful: Collector found on http://tapcore1.timpi.network:4014/
+2026-07-20 15:07:11 [INF] Currently on version 2.0.0
+2026-07-20 15:07:11 [INF] Logging level: Information
+2026-07-20 15:07:11 [INF] Trying to send keep alive to http://tap28.timpi.network:4014
+2026-07-20 15:07:12 [INF] Successfully send alive to Coordinator http://tap28.timpi.network:4014
+2026-07-20 15:07:12 [WRN] Coordinator updated workers: 1 -> 10
+2026-07-20 15:07:12 [WRN] Coordinator updated connections: 5 -> 2
+2026-07-20 15:07:12 [INF] http://<coordinator-node>.timpi.network:4013, ... (GeoCore / node list)
+2026-07-20 15:07:12 [WRN] Updated public suffix list (10206 -> 10259 entries)
+2026-07-20 15:07:53 [INF] Got domains from http://<coordinator-node>.timpi.network:4013
 ```
 
-🧠 **What this does:**
-The updater stops the Collector service, downloads the latest build, updates the executable, and restarts the Collector automatically.
+> ℹ️ **About the version number.** The `Currently on version 2.0.0` line is the Timpi **network version** your collector reports to the coordinator — the network uses it to confirm your node is on a reward-eligible build. It matches your installed package version (`2.0.0`), so seeing `2.0.0` here is correct and expected.
 
-🔁 **Automatic on reboot:**
-The Auto-Updater also runs automatically whenever your computer restarts, ensuring your Collector always stays up to date even if you never open this shortcut manually.
+Then the node settles into a steady stream of per-domain crawl activity:
 
-✅ **In summary:**
-The installer creates two helpful desktop shortcuts:
+```
+2026-07-20 15:07:59 [WRN] [metrics] viktos.com progress ok=1 soft=0 hard=0 skipped=0 elapsed=0.9s pages/s=1.09 fail%=0.0 avgLatencyMs=301 crawlDelayMs=500
+2026-07-20 15:08:01 [WRN] [metrics] agoetzfilm.com finished ok=1 soft=0 hard=0 skipped=0 elapsed=3.0s pages/s=0.34 fail%=0.0 avgLatencyMs=340 crawlDelayMs=500
+2026-07-20 15:08:12 [WRN] [metrics] viktos.com progress ok=10 soft=0 hard=0 skipped=0 elapsed=13.8s pages/s=0.72 fail%=0.0 avgLatencyMs=2211 crawlDelayMs=3316
+2026-07-20 15:08:22 [WRN] [dns] mississauga-gasoline-prices.example.com: DNS pre-resolution failed; skipping domain.
+2026-07-20 15:08:27 [INF] Got domains from http://<coordinator-node>.timpi.network:4107
+```
 
-| Shortcut                                | Purpose                                  |
-| --------------------------------------- | ---------------------------------------- |
-| **Timpi Collector Logs**                | Opens live logs to view current activity |
-| **Timpi Collector – Check for Updates** | Runs the manual Auto-Updater             |
+**How to read the `[metrics]` line** — one is emitted per domain as it progresses and again when it finishes:
+
+| Field | Meaning |
+| --- | --- |
+| `ok` | Pages fetched successfully |
+| `soft` | Soft failures (per-URL HTTP errors like 404) |
+| `hard` | Hard failures (DNS / SSL / connection / timeout) |
+| `skipped` | URLs skipped (robots.txt, `noindex`, or duplicate content) |
+| `elapsed` | Time spent on this domain |
+| `pages/s` | Crawl rate for the domain |
+| `fail%` | Percentage of attempts that failed |
+| `avgLatencyMs` | Average page response time |
+| `crawlDelayMs` | Current adaptive per-host delay (rises automatically on slower sites, capped at 5 s) |
+
+**Other normal lines you'll see:**
+
+* `[dns] <domain>: DNS pre-resolution failed; skipping domain.` — a dead, parked, or non-existent domain caught quickly (in ~1.5 s) instead of hanging. This is expected and healthy.
+* `Coordinator updated workers` / `Coordinator updated connections` — the network is tuning how hard your node works. Normal.
+* `Successfully send alive to Coordinator` — your regular keep-alive/heartbeat. Normal.
+
+**What you should NOT see on a healthy node:** repeated `[ERR]`/`[FATAL]` lines, or a `[host] FATAL: installation is corrupt` line in `collector.err`. If you do, see [Troubleshooting](#-troubleshooting).
+
+> ℹ️ On some systems numbers use a comma as the decimal separator (e.g. `elapsed=0,9s`) — that's just your Windows regional format and is harmless.
 
 ---
 
-### 🔹 How to Start, Restart, or Stop the Collector Service
+### 🔹 7. Start, Restart, or Stop the Collector Service
 
-1. Press **Start → Search → Services** and open the **Services** app
+You have three equivalent ways to control the node.
 
-<img width="296" height="628" alt="image" src="https://github.com/user-attachments/assets/0a5b3980-575d-4e16-9ff3-f9189135258c" />
+**A. From the Collector window** — use the **Start** / **Stop** buttons, or the tray icon menu.
 
-3. Find **Timpi Collector** in the list
+**B. From the Services app:**
 
-<img width="1229" height="214" alt="image" src="https://github.com/user-attachments/assets/90a37183-0893-4dd4-a934-4867503ec4b3" />
+1. Press **Start**, type **Services**, and open the **Services** app.
+2. Find **Timpi Collector** in the list.
+3. Right-click to **Start**, **Stop**, or **Restart** it.
 
-Here you can **Start**, **Stop**, **Restart**, or **Pause** the Collector service.
+> 📸 _Screenshot placeholder: services.msc with "Timpi Collector" selected._
 
-🧩 *Tip:* “Verbose” log level is ideal for troubleshooting, but switch back to “Info” afterward to minimize log size.
+**C. From an elevated Command Prompt / PowerShell:**
+
+```cmd
+sc start "Timpi Collector"
+sc stop  "Timpi Collector"
+sc query "Timpi Collector"
+```
+
+A running node reports `STATE : 4  RUNNING`.
+
+🧩 *Tip:* Set the log level to `Verbose` in `CollectorSettings.json` (or from the Management Dashboard) when troubleshooting, then switch back to `Information` afterward to keep log size down.
 
 ---
 
-### 🔹 6. Access the Management Dashboard
+### 🔹 8. Access the Management Dashboard
 
-You can manage your node directly from your browser:
+You can manage your node from your browser:
 
 👉 [https://timpi.com/node/v2/management](https://timpi.com/node/v2/management)
 
 From here you can:
 
 * Monitor performance and uptime
-* Adjust worker/thread settings
+* Adjust worker / thread / connection settings
 * View logs and node statistics
 
-<img width="461" height="653" alt="Dashboard" src="https://github.com/user-attachments/assets/9cb31038-1707-4edf-8499-bc686e23a9be" />
+> 📸 _Screenshot placeholder: the Node Management Dashboard._
 
 ---
 
-### 🔹 7. Register or Retrieve Your GUID
+### 🔹 9. Register or Retrieve Your GUID
 
-If you haven’t set up your node yet, register to get your GUID here:
+If you haven't set up your node yet, register to get your GUID here:
 
 📘 **Guide:** [Register Your Timpi Node (GUID Setup)](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)
 
-Your GUID will appear under your profile on the **Timpi Node Management Dashboard**.
-You only need to enter it once during installation — it’s saved automatically.
+Your GUID appears under your profile on the **Timpi Node Management Dashboard**. You normally enter it once during installation and it's saved automatically to `guid.txt`.
+
+**To change the GUID later:** open the Collector window, paste the new GUID, and click **Save** (then **Start**/**Restart**). Alternatively, edit `C:\Program Files\Timpi\Collector\guid.txt` and restart the **Timpi Collector** service.
+
+---
+
+### 🔹 10. Updating the Collector
+
+This build does **not** include an automatic updater. To update to a newer release:
+
+1. Download the latest installer from the [download link](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar).
+2. Run it. The installer detects your existing installation, stops the old service, replaces the files, and re-registers the service.
+3. Your **GUID is preserved** — it's pre-filled on the GUID page, so just click through.
+
+You do not need to uninstall first; installing over the top performs a clean in-place upgrade. Your worker logs are kept across upgrades.
+
+---
+
+## 🧯 Troubleshooting
+
+**Antivirus / Windows Defender flags the installer or `TimpiCollector.exe`.**
+The executables are single-file, self-contained .NET binaries and are currently **unsigned**, which some antivirus engines (including Defender's `idp.helu.*` heuristic) flag as a false positive. If you trust this download, allow the file, or add an exclusion for the install folder `C:\Program Files\Timpi\Collector`. Code-signing is planned to remove this friction.
+
+**The Collector window won't open / closes immediately.**
+The window requires administrator rights. Approve the UAC prompt when it appears. If you launched it without elevation and nothing happened, right-click the shortcut → **Run as administrator**.
+
+**Service is installed but won't stay running / status stays "Stopped".**
+Check `C:\Program Files\Timpi\Collector\logs\collector.err<date>.log`. A line like `[host] FATAL: installation is corrupt — TimpiCollector.exe is missing` means the install is incomplete — re-run the installer to repair it. Also make sure a valid GUID is present in `guid.txt`; without one the worker exits.
+
+**Node runs but shows no rewards / doesn't appear online.**
+Confirm the GUID in `guid.txt` matches the one on your Management Dashboard, and that outbound HTTPS to the Timpi network isn't blocked by a firewall. The log should show `Successfully send alive to Coordinator`.
+
+**Lots of `[dns] ... skipping domain` lines.**
+This is normal — those are dead/parked domains being skipped quickly. It is not an error.
 
 ---
 
 ## 🗑 Uninstallation Guide
 
-You can uninstall the Timpi Collector just like any other Windows app.
+You can uninstall the Timpi Collector just like any other Windows app. Uninstalling stops and removes the Windows service, deletes the program files, and removes the shortcuts.
 
 ### 🔹 Method 1 – Apps & Features
 
 1. Open **Start → Settings → Apps → Installed Apps**
 2. Search for **Timpi**
-3. Click **Uninstall** next to **Timpi Collector**
-
----
+3. Click **⋯ → Uninstall** next to **Timpi Collector**
 
 ### 🔹 Method 2 – Control Panel
 
 1. Press `Windows + R` → type `control` → press **Enter**
-
-<img width="393" height="203" alt="image" src="https://github.com/user-attachments/assets/8c57851c-cd32-41be-ad3a-85526ee4c491" />
-
-3. Go to **Programs → Uninstall a Program**
-
-<img width="1125" height="440" alt="Screenshot 2025-10-29 172710" src="https://github.com/user-attachments/assets/f190b96e-3f86-4c17-bc28-32bb8ef2ad7c" />
-5. Find **Timpi Collector**
-
-<img width="916" height="82" alt="image" src="https://github.com/user-attachments/assets/c54f2944-9e83-458f-a91c-eee4596d35d1" />
-
-6. Right-click → **Uninstall**
-
-<img width="1123" height="246" alt="image" src="https://github.com/user-attachments/assets/f47507c4-20e9-484f-a2ef-e30741482717" />
+2. Go to **Programs → Uninstall a Program**
+3. Find **Timpi Collector**
+4. Right-click → **Uninstall**
 
 ✅ This removes:
 
 * All installed files
-* The background service
-* Both desktop shortcuts
+* The background **Timpi Collector** service
+* The Start Menu (and desktop) shortcuts
 
 ---
 
-### 🧠 Summary of Key Changes (v2.0.0)
+## 🧠 Summary of Key Changes
 
-| Feature                  | Description                                                                                                                        |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| 🧩 **No UI / Tray**      | Runs fully headless — no Timpi Manager or tray icon                                                                                |
-| 🧾 **GUID Prompt**       | You enter or paste your GUID during installation                                                                                   |
-| 🔄 **Auto-Updater**      | Updates automatically on reboot and can also be triggered manually                                                                 |
-| 💻 **Web Dashboard**     | Manage workers, threads, and performance online                                                                                    |
+| Feature | Description |
+| --- | --- |
+| 🪟 **Native Windows service** | Runs headless in the background via the Windows Service Control Manager; auto-starts at boot and self-restarts on crash |
+| 🖥 **Collector window** | Optional operator UI to Start/Stop, save your GUID, and watch the live log — closing it does not stop the node |
+| 🧾 **GUID prompt** | Enter or paste your GUID during installation; changeable later from the window or `guid.txt` |
+| 📦 **Self-contained** | .NET 10 runtime bundled — no separate .NET install required |
+| 🚫 **No auto-updater** | Update by downloading and re-running the latest installer (GUID preserved) |
+| 📂 **Install path** | `C:\Program Files\Timpi\Collector` |
+| 📝 **Logs** | `TimpiCollectorLogs<date>.log` in the install folder; crash backstop in `logs\collector.err<date>.log` |
+| 💻 **Web Dashboard** | Manage workers, threads, and performance online |
 | 🌐 **GUID Registration** | Register and view your GUID at [RegisterNodes.md](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md) |
-

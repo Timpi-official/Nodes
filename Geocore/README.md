@@ -283,8 +283,10 @@ sudo docker run -d \
   -e DOCKER_API_VERSION=1.44 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   containrrr/watchtower --interval 3600 --cleanup \
-  geocore geocore2 geocore3 guardian1 guardian2 \
-  timpi-collector timpi-collector-1 timpi-collector-2
+  geocore geocore2 geocore3 geocore4 \
+  guardian1 guardian2 guardian3 guardian4 \
+  timpi-collector timpi-collector-1 timpi-collector-2 timpi-collector-3 \
+  timpi-collector-4 timpi-collector-5 timpi-collector-test
 ```
 
 * Run this **once**. From now on every Timpi node on this machine updates itself automatically.
@@ -298,8 +300,10 @@ sudo docker run -d \
   sudo docker run --rm -e DOCKER_API_VERSION=1.44 \
     -v /var/run/docker.sock:/var/run/docker.sock \
     containrrr/watchtower --run-once --cleanup \
-    geocore geocore2 geocore3 guardian1 guardian2 \
-    timpi-collector timpi-collector-1 timpi-collector-2
+    geocore geocore2 geocore3 geocore4 \
+    guardian1 guardian2 guardian3 guardian4 \
+    timpi-collector timpi-collector-1 timpi-collector-2 timpi-collector-3 \
+    timpi-collector-4 timpi-collector-5 timpi-collector-test
   ```
   This also pulls any pending update immediately. The background Watchtower's own first check is an
   hour after you start it, so `docker logs watchtower` stays quiet until then — that's normal.

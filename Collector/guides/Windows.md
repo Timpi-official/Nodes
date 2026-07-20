@@ -52,7 +52,7 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 📦 **Installer type:** Native `.exe` (Windows Program) — installs a Windows service, no Docker required
 
-🖥 **Requirements:** Windows 10 / 11 (64-bit) or Windows Server 2019 / 2022 / 2025 · 2 CPU cores · 2 GB RAM · local administrator rights · outbound HTTPS to the Timpi network and the open web
+🖥 **Requirements:** Windows 10 / 11 (64-bit) · 2 CPU cores · 2 GB RAM · local administrator rights · outbound HTTPS to the Timpi network and the open web
 
 🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
 
@@ -73,8 +73,6 @@ This build is a **native Windows program**. It installs a background **Windows s
   ```
   TimpiCollectorSetup-2.0.0.exe
   ```
-
-> 📸 _Screenshot placeholder: the extracted folder showing the setup `.exe`._
 
 ---
 
@@ -97,8 +95,7 @@ This build is a **native Windows program**. It installs a background **Windows s
    *Your GUID connects this Collector to your Timpi account. You can get it from the [Node Management Dashboard](#-8-access-the-management-dashboard).*
    *On a reinstall/upgrade, your existing GUID is pre-filled automatically. If you leave it blank, the service will install but won't start until you provide a GUID (via the Collector window, or by putting it in `guid.txt` — see below).*
 
-   > 📸 _Screenshot placeholder: the installer's GUID entry page._
-
+   
 5. Optionally tick **Create a desktop shortcut**.
 
 6. Click **Install** and wait — it usually finishes in well under a minute.
@@ -116,7 +113,7 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 * starts automatically at Windows startup (`start= auto`),
 * is watchdogged — the worker is automatically relaunched if it crashes, and Windows' Service Control Manager restarts the host itself on failure (restart after 60 s for the first two failures, then every 5 minutes),
-* can be started/stopped by standard (non-admin) tooling thanks to a service permission grant.
+* can be started and stopped from the Collector window or `services.msc` (both require administrator rights).
 
 ✅ Saves your **GUID** to
 `C:\Program Files\Timpi\Collector\guid.txt`
@@ -156,8 +153,6 @@ The window gives you everything you need at a glance:
 * **System tray icon** — right-click for **Show / Start / Stop / Open Log Folder / Quit**.
 
 > 💡 **Closing the window does not stop your node.** The Windows service keeps running in the background. To actually stop crawling, use the **Stop** button, the tray menu's **Stop**, or `services.msc`.
-
-> 📸 _Screenshot placeholder: the Collector window showing "Running" with live log._
 
 ---
 
@@ -269,8 +264,6 @@ You have three equivalent ways to control the node.
 2. Find **Timpi Collector** in the list.
 3. Right-click to **Start**, **Stop**, or **Restart** it.
 
-> 📸 _Screenshot placeholder: services.msc with "Timpi Collector" selected._
-
 **C. From an elevated Command Prompt / PowerShell:**
 
 ```cmd
@@ -281,7 +274,19 @@ sc query "Timpi Collector"
 
 A running node reports `STATE : 4  RUNNING`.
 
-🧩 *Tip:* Set the log level to `Verbose` in `CollectorSettings.json` (or from the Management Dashboard) when troubleshooting, then switch back to `Information` afterward to keep log size down.
+🧩 *Tip — turning up the logging.* `C:\Program Files\Timpi\Collector\CollectorSettings.json` holds a
+single setting, the log level:
+
+```json
+{"LogLevel":"Information"}
+```
+
+Valid values, quietest to noisiest: `Error`, `Warning`, `Information` (default), `Debug`, `Verbose`.
+Set it to `Verbose` while troubleshooting, restart the service, and put it back to `Information`
+afterwards — `Verbose` fills the log quickly. You can also change it from the Management Dashboard.
+
+⚠️ Don't delete this file or leave it invalid. If the Collector cannot read it, it falls back to
+`Error`, which hides the normal `[metrics]` crawl lines and makes a healthy node look silent.
 
 ---
 
@@ -296,8 +301,6 @@ From here you can:
 * Monitor performance and uptime
 * Adjust worker / thread / connection settings
 * View logs and node statistics
-
-> 📸 _Screenshot placeholder: the Node Management Dashboard._
 
 ---
 

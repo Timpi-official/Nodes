@@ -46,9 +46,9 @@ Each link goes straight to that node's install guide.
 1. 🔄 **[Collector](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/LinuxDocker.md)**  
    Collectors are decentralized "workers" that crawl the web, collecting information about websites and their
    pages. They stay invisible to front-end services, which keeps them secure.
-   *Docker is the supported install. The [native Linux build](https://github.com/Timpi-official/Nodes/blob/main/Collector/legacy/LinuxNative-retired.md)
-   is retired; [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md) is
-   **⏳ coming soon** — its download has not been rebuilt since November and cannot reach the current version.*
+   *Docker is the supported install, and [Windows](https://github.com/Timpi-official/Nodes/blob/main/Collector/guides/Windows.md)
+   has a native v2 build. The [native Linux build](https://github.com/Timpi-official/Nodes/blob/main/Collector/legacy/LinuxNative-retired.md)
+   is retired — migrate to Docker.*
 
 2. 🛡️ **[Guardian](https://github.com/Timpi-official/Nodes/blob/main/Guardian/guides/LinuxDocker.md)**  
    Guardians are distributed storage nodes that archive the web, safeguarding what Collectors gather. They need

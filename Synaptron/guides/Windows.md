@@ -21,6 +21,11 @@ The node makes only **outbound** connections. You do not need to open any inboun
 | **Time** | **10–20 minutes** on a typical connection, up to 45 on a slow one. Almost all of it is a multi-GB PyTorch/CUDA download. |
 | **Your node GUID** | Required — this is what you paste in when you install, and the node refuses to start without it. You get it by registering your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management); see the [registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md). |
 
+> **Where to get the driver.** Download it from [NVIDIA's driver downloads](https://www.nvidia.com/en-us/drivers/)
+> (select your GPU and Windows 64-bit), or use the [NVIDIA App](https://www.nvidia.com/en-us/software/nvidia-app/)
+> to install it and keep it updated. Confirm your card is CUDA-capable first:
+> [CUDA-compatible GPUs](https://developer.nvidia.com/cuda-gpus).
+
 > **Your node GUID is not a plain UUID.** It may contain letters, numbers, dots, colons, underscores
 > and hyphens in any arrangement, for example `1a5737d8-example-node-a05f-ee3aba76548b`. Use exactly
 > the string you were given.

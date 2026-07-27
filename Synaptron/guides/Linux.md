@@ -31,6 +31,12 @@ If that prints a name and a version, you are ready. **Reboot first** if any of t
 command reports a **driver/library version mismatch**, `nvidia-smi` fails to talk to the driver, or
 `/var/run/reboot-required` exists — the installer will refuse to run otherwise.
 
+> **Where to get the driver.** If `nvidia-smi` isn't installed yet, the simplest route on Ubuntu is
+> `sudo ubuntu-drivers autoinstall`, then reboot — it picks a driver that matches your card. To choose
+> a specific version instead, download it from [NVIDIA's driver downloads](https://www.nvidia.com/en-us/drivers/)
+> (select your GPU and Linux 64-bit) and follow NVIDIA's own install steps. Confirm your card is
+> CUDA-capable first: [CUDA-compatible GPUs](https://developer.nvidia.com/cuda-gpus).
+
 > **Your node GUID is not a plain UUID.** It may contain letters and hyphens in any arrangement, for
 > example `1a5737d8-example-node-a05f-ee3aba76548b`. Use exactly the string you were given.
 

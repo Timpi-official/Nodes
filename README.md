@@ -54,13 +54,12 @@ Each link goes straight to that node's install guide.
    Guardians are distributed storage nodes that archive the web, safeguarding what Collectors gather. They need
    no static IP, and rewards are based on uptime.
 
-3. 🧬 **Synaptron** — ⏳ **coming soon**  
+3. 🧬 **[Synaptron](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/README.md)**  
    Timpi's AI node. It reasons over the data the network gathers — running local AI models to generate and
    refine answers. Needs an NVIDIA GPU.
-   *Synaptron has moved to a native node runner; the rewritten
+   *Runs as a native node runner — see the
    [Linux](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md) and
-   [Windows](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md) guides are being
-   finalised. The pages there still describe the retired Docker install — don't install from them yet.*
+   [Windows](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md) guides.*
 
 4. 🌍 **[Geo-Core](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md)**  
    Geo-Cores sit worldwide, enabling fast, location-aware routing for accurate and efficient data queries. They

@@ -11,8 +11,8 @@ Here you'll find everything you need to run your Timpi Synaptron node on **Linux
 
 Timpi Synaptrons are supported on the following environments:
 
-* ✅ **Linux Ubuntu 22.04.4+ with Docker** (requires NVIDIA GPU + CUDA drivers)
-* ✅ **Windows 10/11 (native installer)**
+* ✅ **Linux Ubuntu 22.04 / 24.04 LTS** — native runner (requires NVIDIA GPU + CUDA-capable driver)
+* ✅ **Windows 10/11** — native desktop app
 
 ❌ **Not Supported**: macOS, WSL (Linux on Windows), Proxmox LXC, or other non-Ubuntu Linux distributions.
 
@@ -50,24 +50,23 @@ They require a compatible NVIDIA GPU and serve as the "brains" of the Timpi ecos
 
 ---
 
-## 🐳 Docker-Based Synaptron
+## 🐧 Linux Synaptron (Ubuntu 22.04 / 24.04)
 
-Timpi also supports Docker for advanced users who want an isolated container setup.
-Docker setups are ideal for multi-node environments or headless installations.
+The Synaptron runs as a **native node runner** — download the runner, run one installer command, and
+it registers with the Controller and keeps itself running as a systemd service.
 
-⏳ **Coming soon** — the page below still describes the retired Docker install; a native guide is being finalised.
-
-👉 **[Synaptron Linux Guide & Scripts](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md)**  
-Includes full instructions for GPU driver setup, Docker/NVIDIA Docker installation, and node deployment.
+👉 **[Synaptron Linux Guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md)**  
+Requirements, download, install, verifying your node, updating, and troubleshooting.
 
 ---
 
-## 🪟 Windows Synaptron - Native (Windows 10/11)
+## 🪟 Windows Synaptron (Windows 10/11)
 
-⏳ **Coming soon** — the Windows build is not published yet.
+The Synaptron installs from a **desktop app** — extract the runner, double-click, enter your node
+GUID, and click install.
 
-👉 **[Synaptron Windows Guide & Instructions](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md)**
-Covers installation, node registration, and troubleshooting in an easy-to-follow format.
+👉 **[Synaptron Windows Guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md)**
+Requirements, download, the desktop-app install, verifying your node, and troubleshooting.
 
 ---
 

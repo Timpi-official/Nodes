@@ -1,9 +1,9 @@
-# 🧬 Timpi – Synaptron Installers for Linux & Windows
+# 🧬 Timpi – Synaptron Installers for Linux, Windows & Docker
 
 <img width="1509" height="850" alt="Screenshot_2025-07-23_183112_upscayl_3x_realesrgan-x4plus-anime" src="https://github.com/user-attachments/assets/14e85fef-e61b-4828-998b-884d81ad0b0f" />
 
 Welcome to the official repository for **Timpi Synaptron installations**.  
-Here you'll find everything you need to run your Timpi Synaptron node on **Linux** or **Windows**, including setup instructions and system requirements.
+Here you'll find everything you need to run your Timpi Synaptron node on **Linux**, **Windows**, or **Docker**, including setup instructions and system requirements.
 
 ---
 
@@ -13,6 +13,7 @@ Timpi Synaptrons are supported on the following environments:
 
 * ✅ **Linux Ubuntu 22.04 / 24.04 LTS** — native runner (requires NVIDIA GPU + CUDA-capable driver)
 * ✅ **Windows 10/11** — native desktop app
+* ✅ **Docker (Linux + NVIDIA)** — containerized runner (requires the NVIDIA Container Toolkit)
 
 ❌ **Not Supported**: macOS, WSL (Linux on Windows), Proxmox LXC, or other non-Ubuntu Linux distributions.
 
@@ -67,6 +68,17 @@ GUID, and click install.
 
 👉 **[Synaptron Windows Guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md)**
 Requirements, download, the desktop-app install, verifying your node, and troubleshooting.
+
+---
+
+## 🐳 Docker (Linux + NVIDIA)
+
+Run the Synaptron as a **Docker container** — the entire runtime is baked into one image. Pull it, run
+one command with your node GUID, and keep it updated automatically with **Watchtower**. Requires the
+**NVIDIA Container Toolkit** on the host.
+
+👉 **[Synaptron Docker Guide](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Docker.md)**  
+Requirements, pull, run, verifying your node, Watchtower auto-updates, and troubleshooting.
 
 ---
 

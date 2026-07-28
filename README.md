@@ -57,9 +57,10 @@ Each link goes straight to that node's install guide.
 3. 🧬 **[Synaptron](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/README.md)**  
    Timpi's AI node. It reasons over the data the network gathers — running local AI models to generate and
    refine answers. Needs an NVIDIA GPU.
-   *Runs as a native node runner — see the
-   [Linux](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md) and
-   [Windows](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md) guides.*
+   *Runs natively or in Docker — see the
+   [Linux](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Linux.md),
+   [Windows](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Windows.md) and
+   [Docker](https://github.com/Timpi-official/Nodes/blob/main/Synaptron/guides/Docker.md) guides.*
 
 4. 🌍 **[Geo-Core](https://github.com/Timpi-official/Nodes/blob/main/Geocore/README.md)**  
    Geo-Cores sit worldwide, enabling fast, location-aware routing for accurate and efficient data queries. They

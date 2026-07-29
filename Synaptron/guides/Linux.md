@@ -234,6 +234,54 @@ Everything else lives inside the folder, including the virtual environment and t
 | Node runs but `isOnline` is false | Check outbound HTTPS to `orcacontroller.timpi.network` is not blocked. The node only makes outbound connections. |
 | Service keeps restarting | `journalctl -u synaptron-node -n 50` — the supervisor restarts on failure, so a loop means the node itself is exiting. |
 
+## Running more than one GPU
+
+Three cases, and only one of them works — the distinction is what usually trips people up:
+
+| Setup | Supported |
+|---|---|
+| **One node per GPU**, several cards in one machine | ✅ Yes — run one instance per card |
+| One node spanning **several GPUs** | ❌ No |
+| **Several nodes on one GPU** | ❌ No — both report the same GPU UUID and the network flags the duplicate |
+
+> **"But my node only uses ~2 GB of VRAM."** True, and a bigger card is still used fully — just not by
+> running more nodes on it. The Controller loads *larger* models on RTX 40/50-class cards, or several
+> smaller models onto the same node, so the capacity is used through **more models on one node**, not
+> more node identities.
+>
+> The only real exception is hardware partitioning with **NVIDIA MIG** (A100, A30, H100/H200,
+> B200/GB200, RTX PRO Blackwell 6000/5000/4500). Consumer cards — RTX 2060–5090, 3090, 4090, 5090 and
+> the GTX 10-series — **do not support MIG**, so on those it is strictly one node per card.
+
+For a machine with several cards, give each instance its own folder, node GUID, ports, service name
+and GPU UUID. List your GPUs:
+
+```bash
+nvidia-smi --query-gpu=index,name,uuid --format=csv,noheader
+```
+
+Then for the second card:
+
+```bash
+cd ~/SynaptronNode-Gpu2
+bash ./Initialise.sh \
+  --controller-url https://orcacontroller.timpi.network \
+  --node-guid SECOND-NODE-GUID \
+  --gpu-uuid GPU-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
+  --port 8093 \
+  --dashboard-port 8094 \
+  --service-name synaptron-node-gpu2 \
+  --install-production-deps \
+  --install-autostart
+```
+
+> Do not reuse a node GUID on a second machine or a second GPU. Each instance needs its own.
+>
+> If you expose a dashboard on a LAN address it has no authentication or TLS — use a trusted network
+> or a VPN only.
+
+---
+
 ---
 
 *Tested on Ubuntu, RTX 3060 12 GB, driver 580.173.02, runner 2.0.2 build 20260725-162849.*

@@ -25,6 +25,23 @@ Timpi Synaptrons are supported on the following environments:
 
 ---
 
+## 🧾 Minimum System Requirements
+
+| | |
+|---|---|
+| **OS** | Windows 10 or above · Linux 64-bit (Ubuntu 22.04) |
+| **CPU** | 4 cores |
+| **RAM** | 12 GB |
+| **GPU** | CUDA-compatible NVIDIA, compute capability **6.1+**, **4 GB VRAM minimum** — check yours on the [NVIDIA Compute Capability index](https://developer.nvidia.com/cuda-gpus) |
+| **Storage** | 250 GB free, SSD or NVMe |
+| **Network** | A good, unlimited internet connection |
+
+> **One GPU per node.** Running a Synaptron across **multiple GPUs is not supported**, and a single
+> GPU can back only one node — two nodes on one card report the same GPU and the network flags the
+> duplicate.
+
+---
+
 ### 🔎 Check Your GPU First!
 
 Before installing, confirm that your NVIDIA GPU supports CUDA:

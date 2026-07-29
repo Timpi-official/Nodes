@@ -236,35 +236,4 @@ Everything else lives inside the folder, including the virtual environment and t
 
 ---
 
-## Running more than one GPU
-
-One installation folder and one service per GPU. Each needs its own node GUID, ports, service name and
-GPU UUID. List your GPUs:
-
-```bash
-nvidia-smi --query-gpu=index,name,uuid --format=csv,noheader
-```
-
-Then for the second card:
-
-```bash
-cd ~/SynaptronNode-Gpu2
-bash ./Initialise.sh \
-  --controller-url https://orcacontroller.timpi.network \
-  --node-guid SECOND-NODE-GUID \
-  --gpu-uuid GPU-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx \
-  --port 8093 \
-  --dashboard-port 8094 \
-  --service-name synaptron-node-gpu2 \
-  --install-production-deps \
-  --install-autostart
-```
-
-> Do not reuse a node GUID on a second machine or a second GPU. Each instance needs its own.
->
-> If you expose a dashboard on a LAN address it has no authentication or TLS — use a trusted network
-> or a VPN only.
-
----
-
 *Tested on Ubuntu, RTX 3060 12 GB, driver 580.173.02, runner 2.0.2 build 20260725-162849.*

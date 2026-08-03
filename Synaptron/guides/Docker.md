@@ -85,9 +85,11 @@ docker run -d --name synaptron --gpus all --restart unless-stopped \
 - `-v synaptron-cache:/app/.cache` keeps downloaded models between restarts.
 - `--restart unless-stopped` brings the node back after a crash or host reboot.
 
-> **One node per GPU.** A GPU can back only one Synaptron node — two nodes sharing a card report the
-> same GPU and the network flags the duplicate. For a second node you need a second GPU (and its own
-> GUID, container name, and cache volume).
+> **One node per GPU.** A GPU can back only one Synaptron node — two nodes on the same card report
+> the same GPU and the network flags the duplicate. `--gpus all` gives the container **every** card in
+> the machine, which is what you want for a single node. If you have several cards and want a node on
+> each, do **not** start them all with `--gpus all` — see
+> [Running more than one GPU](#running-more-than-one-gpu) below.
 
 ---
 
@@ -193,6 +195,83 @@ started it — so `docker logs watchtower` stays quiet until then. That's normal
 
 ---
 
+## Running more than one GPU
+
+Three cases, and only one of them works — the distinction is what usually trips people up:
+
+| Setup | Supported |
+|---|---|
+| **One node per GPU**, several cards in one machine | ✅ Yes — one container per card |
+| One node spanning **several GPUs** | ❌ No |
+| **Several nodes on one GPU** | ❌ No — both report the same GPU and the network flags the duplicate |
+
+**The part that catches people out:** `--gpus all` gives *every* container *every* card. A node reports
+whatever GPUs it can see, so two containers started with `--gpus all` both claim both cards — even
+though each is only computing on one. The network sees two nodes claiming the same GPU, blocks one of
+them, and because both keep re-registering they can end up blocking each other. Nothing in the
+container logs says so: the node looks perfectly healthy from the inside.
+
+So give each container **one specific card**. List your GPUs:
+
+```bash
+nvidia-smi --query-gpu=index,name,uuid --format=csv,noheader
+```
+
+```
+0, NVIDIA GeForce RTX 4060 Ti, GPU-51fe9889-a57c-61c2-159f-f0d8a811a1a0
+1, NVIDIA GeForce RTX 3060, GPU-7da0df14-79ba-67cd-6372-45709da2b74e
+```
+
+Then run one container per card, each with its own node GUID, container name and cache volume:
+
+```bash
+# first card
+docker run -d --name synaptron-gpu0 --restart unless-stopped \
+  --gpus '"device=GPU-51fe9889-a57c-61c2-159f-f0d8a811a1a0"' \
+  -e SYNAPTRON_NODE_GUID=FIRST-NODE-GUID \
+  -e SYNAPTRON_FRIENDLY_NAME="My Synaptron GPU0" \
+  -v synaptron-cache-gpu0:/app/.cache \
+  timpiltd/timpi-synaptron:latest
+
+# second card
+docker run -d --name synaptron-gpu1 --restart unless-stopped \
+  --gpus '"device=GPU-7da0df14-79ba-67cd-6372-45709da2b74e"' \
+  -e SYNAPTRON_NODE_GUID=SECOND-NODE-GUID \
+  -e SYNAPTRON_FRIENDLY_NAME="My Synaptron GPU1" \
+  -v synaptron-cache-gpu1:/app/.cache \
+  timpiltd/timpi-synaptron:latest
+```
+
+**Mind the quoting.** `--gpus '"device=GPU-..."'` needs the inner double quotes, wrapped in single
+quotes for the shell. `--gpus '"device=0"'` also works and selects by index, but the UUID form cannot
+be thrown off by a card being re-ordered after a reboot.
+
+**Check each container sees exactly one card** — this is the step that confirms it worked:
+
+```bash
+docker exec synaptron-gpu0 nvidia-smi -L
+docker exec synaptron-gpu1 nvidia-smi -L
+```
+
+Each must list a **single** GPU, and they must be different ones. If either lists both cards, that
+container is still running with `--gpus all` — remove it and re-run with the `device=` form.
+
+> Do not reuse a node GUID on a second machine or a second GPU. Each instance needs its own.
+>
+> Running Watchtower? List every container name on its command line, e.g.
+> `containrrr/watchtower --interval 3600 --cleanup synaptron-gpu0 synaptron-gpu1`.
+
+> **"But my node only uses ~2 GB of VRAM."** True, and a bigger card is still used fully — just not by
+> running more nodes on it. The Controller loads *larger* models on RTX 40/50-class cards, or several
+> smaller models onto the same node, so the capacity is used through **more models on one node**, not
+> more node identities.
+>
+> The only real exception is hardware partitioning with **NVIDIA MIG** (A100, A30, H100/H200,
+> B200/GB200, RTX PRO Blackwell 6000/5000/4500). Consumer cards — RTX 2060–5090, 3090, 4090, 5090 and
+> the GTX 10-series — **do not support MIG**, so on those it is strictly one node per card.
+
+---
+
 ## Managing the node
 
 ```bash
@@ -213,6 +292,7 @@ docker rm -f synaptron              # remove (your GUID is in the run command; m
 | `nvidia-smi` fails inside the container | Host driver problem or a driver update without a reboot. Run `nvidia-smi` on the host; reboot if it reports a version mismatch. |
 | Log never shows `Connected to ... SignalR hub` | Outbound HTTPS to `orcacontroller.timpi.network` is blocked (firewall/VPN). The node only makes outbound connections. |
 | `isOnline` is false but the container is up | Same as above — check outbound HTTPS; give it a minute after start for the first ping. |
+| Node looks healthy but the network says offline, and a **second node** runs on the same machine | Both containers were started with `--gpus all`, so both claim every card and the network blocks the duplicate. Give each container one card — see [Running more than one GPU](#running-more-than-one-gpu). |
 | Node runs but stays idle for a long time | **Normal.** Work comes from the Controller; a healthy node can idle with 0 models loaded. Don't reinstall. |
 | `A Timpi node ID is required` on start | You didn't pass `-e SYNAPTRON_NODE_GUID=...`. Add it to the `docker run` command. |
 | Watchtower `run-once` shows `Scanned=0` | The container name after `--cleanup` doesn't match a running container. Check `docker ps` (NAMES column) and use that exact name. |

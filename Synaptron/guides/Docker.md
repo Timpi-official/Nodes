@@ -13,6 +13,20 @@ work — use the native Windows guide there.)
 
 ---
 
+## Contents
+
+- [Before you start](#before-you-start)
+- [1. Verify Docker can use your GPU](#1-verify-docker-can-use-your-gpu)
+- [2. Pull the image](#2-pull-the-image)
+- [3. Run it — just add your node GUID](#3-run-it--just-add-your-node-guid)
+- [4. Check it's working](#4-check-its-working)
+- [5. Keep it updated automatically — Watchtower](#5-keep-it-updated-automatically--watchtower)
+- [Running more than one GPU](#running-more-than-one-gpu)
+- [Managing the node](#managing-the-node)
+- [If something goes wrong](#if-something-goes-wrong)
+- [Uninstall](#uninstall)
+
+---
 ## Before you start
 
 | | |

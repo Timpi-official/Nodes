@@ -54,9 +54,9 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 🖥 **Requirements:** Windows 10 / 11 (64-bit) · 2 CPU cores · 2 GB RAM · local administrator rights · outbound HTTPS to the Timpi network and the open web
 
-🔗 **Download:** [TimpiCollectorWindowsLatest-v2.rar](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar)
+🔗 **Download:** [timpiwindowscollector-latest.zip](https://github.com/Timpi-official/Nodes/releases/download/collector-2.0.0/timpiwindowscollector-latest.zip) — from the [collector-2.0.0 release](https://github.com/Timpi-official/Nodes/releases/tag/collector-2.0.0)
 
-> 💡 The download is a compressed `.rar`. Inside is a single Windows installer, e.g. `TimpiCollectorSetup-2.0.0.exe`. The .NET runtime is bundled — you do **not** need to install .NET or anything else first.
+> 💡 The download is a `.zip`. Inside is a single Windows installer, `TimpiCollectorSetup-2.0.0.exe`. The .NET runtime is bundled — you do **not** need to install .NET or anything else first.
 
 ---
 
@@ -64,15 +64,33 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 ### 🔹 1. Download the Installer
 
-* Click the download link above to save the `.rar` file.
+* Click the download link above to save `timpiwindowscollector-latest.zip`.
 
-* Extract it using [7-Zip](https://www.7-zip.org/) or Windows' built-in extractor (right-click → **Extract All…**).
+* **Verify the download before running it.** Open PowerShell in the folder where the file was saved and run:
 
-* Inside the extracted folder you'll see the installer, for example:
+  ```powershell
+  Get-FileHash .\timpiwindowscollector-latest.zip -Algorithm SHA256
+  ```
+
+  The result must match exactly:
+
+  ```
+  da29bc8f7ffa31790a44b3f38b3bee970159a29dbc1f3bf0c4caa8843c6df0c1
+  ```
+
+  If it does not match, delete the file and download it again — do not run it. A mismatch means the
+  download was incomplete or the file is not the one we published.
+
+* Extract it using Windows' built-in extractor (right-click → **Extract All…**) or [7-Zip](https://www.7-zip.org/).
+
+* Inside the extracted folder you'll see the installer:
 
   ```
   TimpiCollectorSetup-2.0.0.exe
   ```
+
+  Its own SHA256, if you want to check it too:
+  `b9d03c7e4d87555533bff76585cf6dff4cb21937e7bd8e7a7fc6eea5d808a51a`
 
 ---
 
@@ -320,7 +338,7 @@ Your GUID appears under your profile on the **Timpi Node Management Dashboard**.
 
 This build does **not** include an automatic updater. To update to a newer release:
 
-1. Download the latest installer from the [download link](https://timpi.io/applications/windows/TimpiCollectorWindowsLatest-v2.rar).
+1. Download the latest installer from the [Releases page](https://github.com/Timpi-official/Nodes/releases) — always take the newest `collector-*` release, and verify its SHA256 as in step 1.
 2. Run it. The installer detects your existing installation, stops the old service, replaces the files, and re-registers the service.
 3. Your **GUID is preserved** — it's pre-filled on the GUID page, so just click through.
 

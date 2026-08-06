@@ -28,8 +28,9 @@ No scripts. No manual updates. Fully automated and verified by logs.
 11. [⚙️ Advanced Options](#advanced)
 12. [🧩 Running Multiple Collectors (for multiple NFTs / GUIDs)](#multi)
 13. [Monitoring and Health Check](#monitoring)
-14. [Troubleshooting](#troubleshooting)
-15. [Command Reference](#commands)
+14. [📊 Statistics, Workers and Threads](#cli)
+15. [Troubleshooting](#troubleshooting)
+16. [Command Reference](#commands)
 
 ---
 
@@ -406,13 +407,82 @@ sudo docker logs timpi-collector --since 1h | grep -c "finished ok"
 ```
 
 Any number above 0 means it's working. `0` on a Collector that has been up for a while is worth
-investigating (see [§14](#troubleshooting)) — a Collector can be "running" and still crawl nothing.
+investigating (see [§15](#troubleshooting)) — a Collector can be "running" and still crawl nothing.
+
+---
+
+<a name="cli"></a>
+
+## 📊 14️⃣ Statistics, Workers and Threads
+
+The Collector has a small set of commands you can run **against a container that is already running** —
+they read and write the same two files the Collector itself uses, so nothing needs restarting.
+
+> ℹ️ Requires the image published **2026-08-06 or later**. Check with
+> `sudo docker exec -w /opt/timpi timpi-collector ./TimpiCollector help` — if you get the help text,
+> you have it.
+
+### ➡️ See how much your node has crawled
+
+```bash
+sudo docker exec -w /opt/timpi timpi-collector ./TimpiCollector stats
+```
+
+```
+Timpi Collector — statistics
+  Pages crawled : 279,601
+  Lifetime total: 279,601
+  Last updated  : 2026-08-06 08:15:22  (12 s ago)
+```
+
+**Pages crawled** is the visible counter, **Lifetime total** is everything the node has ever done.
+To start the visible counter over without losing the lifetime total:
+
+```bash
+sudo docker exec -w /opt/timpi timpi-collector ./TimpiCollector stats reset
+```
+
+### ➡️ Set your own worker and thread limits
+
+By default the coordinator decides how many workers your node runs. If you want your machine to stay
+below a certain load — for example on a small VPS or a machine you also use for something else — set
+your own ceiling:
+
+```bash
+# show current limits
+sudo docker exec -w /opt/timpi timpi-collector ./TimpiCollector limits
+
+# set a ceiling: max 20 workers, max 4 threads per worker
+sudo docker exec -w /opt/timpi timpi-collector ./TimpiCollector limits 20 4
+
+# back to automatic (coordinator decides)
+sudo docker exec -w /opt/timpi timpi-collector ./TimpiCollector limits 0 0
+```
+
+* **Workers** = how many domains the node crawls at the same time. **Threads** = how many pages it
+  fetches at the same time within one domain.
+* `0` means **auto** — no limit of your own, the coordinator decides.
+* Hard caps are **75 workers** and **10 threads**; higher values are reduced to those.
+* A running Collector picks up a change **within about 2 minutes** — no restart needed. You will see
+  it in the log:
+
+  ```
+  [WRN] Worker limit: clamping workers 69 -> 20 (operator limit)
+  ```
+
+* Setting a limit does **not** increase your rewards or reduce them — Timpi's reward is based on
+  uptime, not on how much you crawl. Size it to your hardware.
+
+> ⚠️ **These settings reset when the image updates.** Limits and the statistics counter live inside
+> the container, so when Watchtower installs a new version the container is recreated and both go back
+> to their defaults (limits = auto, counter = 0). This is expected. If you rely on a specific limit,
+> set it again after an update.
 
 ---
 
 <a name="troubleshooting"></a>
 
-## 🧰 14️⃣ Troubleshooting
+## 🧰 15️⃣ Troubleshooting
 
 | Issue                       | Cause                                         | Fix                                                |
 | :-------------------------- | :-------------------------------------------- | :------------------------------------------------- |
@@ -426,7 +496,7 @@ investigating (see [§14](#troubleshooting)) — a Collector can be "running" an
 
 <a name="commands"></a>
 
-## 🧾 15️⃣ Command Reference
+## 🧾 16️⃣ Command Reference
 
 | Command                                       | Purpose               |
 | :-------------------------------------------- | :-------------------- |
@@ -437,6 +507,9 @@ investigating (see [§14](#troubleshooting)) — a Collector can be "running" an
 | `docker pull timpiltd/timpi-collector:latest` | Update image manually |
 | `docker stats timpi-collector`                | Live CPU/RAM usage    |
 | `docker inspect timpi-collector`              | Inspect details       |
+| `docker exec -w /opt/timpi timpi-collector ./TimpiCollector stats` | Pages crawled ([§14](#cli)) |
+| `docker exec -w /opt/timpi timpi-collector ./TimpiCollector limits` | Show worker/thread limits |
+| `docker exec -w /opt/timpi timpi-collector ./TimpiCollector limits 20 4` | Set limits (0 = auto) |
 
 ---
 

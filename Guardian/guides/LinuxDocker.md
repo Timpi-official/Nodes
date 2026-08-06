@@ -46,23 +46,56 @@ Guardians:
 ✔ Improve regional latency  
 ✔ Strengthen decentralization  
 
+Your Guardian holds part of the index on your own hardware, replicated across several other
+Guardians so no single machine — or single operator — is a point of failure. Storage is the job;
+being reliably online is what makes that storage worth anything.
+
 ---
 
 <a id="supported-systems--requirements"></a>
 ## 2. Supported Systems & Requirements
 
-| Component | Recommended Minimum                |
-| --------- | ---------------------------------- |
-| OS        | **Ubuntu 22.04.x LTS (native)**    |
-| CPU       | 8+ cores                           |
-| RAM       | 12+ GB                             |
-| Storage   | **1 TB free** (Solr index)         |
-| Network   | Stable 24/7 (300mbs-1Gbps)          |
-| Docker    | Required                           |
-| Ports     | Solr + Guardian ports must be open |
-| Ports     | 4005/8983 (Default) |
+| Component | Recommended Minimum |
+| --------- | ------------------- |
+| OS        | **Ubuntu 22.04 LTS or newer** (24.04 recommended) |
+| CPU       | **8+ cores** |
+| RAM       | **12+ GB** (Solr uses a fixed 8 GB heap) |
+| Storage   | **1 TB free** — a normal SATA/HDD disk is fine, NVMe is not required |
+| Network   | Stable 24/7, 300 Mbps–1 Gbps |
+| **Public IP** | **Required.** See the CGNAT note below — this is the most common reason a Guardian never starts. |
+| Docker    | Required |
+| Ports     | **4005 + 8983** inbound (or your custom pair), open through router and firewall |
 
-⚠️ Official support: **Ubuntu 22.04 LTS + Docker**  
+### 🔴 Carrier-grade NAT (CGNAT) will not work
+
+Your Guardian is only accepted once the Coordinator can **reach back to it** from the outside. If
+your connection is behind CGNAT — standard on most **4G/5G and many fibre/cable ISPs** — inbound
+connections never arrive, and the node stops itself after ~15 minutes with:
+
+```
+Guardian is not reachable from outside. The Coordinator could not reach back to <host>:<port>
+```
+
+"Ports are open in my router" is not enough if your ISP hands you a shared address. If you are
+unsure, check whether your router's WAN address matches what a site like `ifconfig.me` reports —
+if they differ, you are behind CGNAT. Ask your ISP for a public IP, or run the Guardian somewhere
+that has one.
+
+### On the RAM figure
+
+Solr runs with a **fixed 8 GB heap**, so 12 GB total leaves roughly 3 GB for the operating system
+and disk cache. That is deliberate and it is enough for a Guardian's job — storing index data and
+serving occasional queries. It is *not* sized for heavy interactive search on a large index; if you
+want to run a Guardian that is queried hard, more RAM helps far more than more cores do.
+
+### Uptime matters more than specs
+
+A Guardian is judged on being **reachable**, not fast. Index data is replicated across several
+Guardians, and a node that disappears often forces the network to rebuild its share elsewhere. A
+modest machine that is up all the time is worth more to the network — and to your rewards — than a
+powerful one that comes and goes.
+
+⚠️ Official support: **Ubuntu 22.04 LTS or newer + Docker**  
 ⚠️ Unsupported but may work: WSL, macOS, Windows, Proxmox LXC, etc.
 
 ---

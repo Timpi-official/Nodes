@@ -54,7 +54,7 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 🖥 **Requirements:** Windows 10 / 11 (64-bit) · 2 CPU cores · 2 GB RAM · local administrator rights · outbound HTTPS to the Timpi network and the open web
 
-🔗 **Download:** [timpiwindowscollector-latest.zip](https://github.com/Timpi-official/Nodes/releases/download/collector-2.0.0/timpiwindowscollector-latest.zip) — from the [collector-2.0.0 release](https://github.com/Timpi-official/Nodes/releases/tag/collector-2.0.0)
+🔗 **Download:** [timpiwindowscollector-latest.zip](https://github.com/Timpi-official/Nodes/releases/latest/download/timpiwindowscollector-latest.zip) — always the newest release
 
 > 💡 The download is a `.zip`. Inside is a single Windows installer, `TimpiCollectorSetup-2.0.0.exe`. The .NET runtime is bundled — you do **not** need to install .NET or anything else first.
 
@@ -72,13 +72,10 @@ This build is a **native Windows program**. It installs a background **Windows s
   Get-FileHash .\timpiwindowscollector-latest.zip -Algorithm SHA256
   ```
 
-  The result must match exactly:
+  Compare the result with the **SHA256 published in the release notes** on the
+  [latest release page](https://github.com/Timpi-official/Nodes/releases/latest). They must match exactly.
 
-  ```
-  da29bc8f7ffa31790a44b3f38b3bee970159a29dbc1f3bf0c4caa8843c6df0c1
-  ```
-
-  If it does not match, delete the file and download it again — do not run it. A mismatch means the
+  If they do not match, delete the file and download it again — do not run it. A mismatch means the
   download was incomplete or the file is not the one we published.
 
 * Extract it using Windows' built-in extractor (right-click → **Extract All…**) or [7-Zip](https://www.7-zip.org/).
@@ -89,8 +86,7 @@ This build is a **native Windows program**. It installs a background **Windows s
   TimpiCollectorSetup-2.0.0.exe
   ```
 
-  Its own SHA256, if you want to check it too:
-  `b9d03c7e4d87555533bff76585cf6dff4cb21937e7bd8e7a7fc6eea5d808a51a`
+  The release notes also list this installer's own SHA256, if you want to check it too.
 
 ---
 

@@ -204,7 +204,7 @@ You should see it start and reach a coordinator:
 
 ```
 Starting TimpiCollector with GUID xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-[INF] Currently on version 2.0.0
+[INF] Currently on version 2.0.1
 [WRN] Collector was started
 [INF] The response was successful: Collector found on http://tapcore1.timpi.network:4014/
 ```
@@ -281,7 +281,7 @@ sudo docker logs timpi-collector --tail 50 | grep -i "currently on version"
 ```
 
 ```text
-[INF] Currently on version 2.0.0
+[INF] Currently on version 2.0.1
 ```
 
 **Persistent log file** (inside the container):
@@ -397,7 +397,7 @@ sudo docker ps --filter name=timpi-collector
 sudo docker logs timpi-collector --tail 50 | grep -i "currently on version"
 ```
 ```
-[INF] Currently on version 2.0.0
+[INF] Currently on version 2.0.1
 ```
 
 **3. Is it actually crawling?** — the one that matters. Counts the domains finished in the last hour:

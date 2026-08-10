@@ -56,7 +56,7 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 🔗 **Download:** [timpiwindowscollector-latest.zip](https://github.com/Timpi-official/Nodes/releases/latest/download/timpiwindowscollector-latest.zip) — always the newest release
 
-> 💡 The download is a `.zip`. Inside is a single Windows installer, `TimpiCollectorSetup-2.0.0.exe`. The .NET runtime is bundled — you do **not** need to install .NET or anything else first.
+> 💡 The download is a `.zip`. Inside is a single Windows installer, `TimpiCollectorSetup-2.0.1.exe`. The .NET runtime is bundled — you do **not** need to install .NET or anything else first.
 
 ---
 
@@ -83,7 +83,7 @@ This build is a **native Windows program**. It installs a background **Windows s
 * Inside the extracted folder you'll see the installer:
 
   ```
-  TimpiCollectorSetup-2.0.0.exe
+  TimpiCollectorSetup-2.0.1.exe
   ```
 
   The release notes also list this installer's own SHA256, if you want to check it too.
@@ -92,7 +92,7 @@ This build is a **native Windows program**. It installs a background **Windows s
 
 ### 🔹 2. Run the Installer
 
-1. **Double-click** the installer (e.g. `TimpiCollectorSetup-2.0.0.exe`).
+1. **Double-click** the installer (e.g. `TimpiCollectorSetup-2.0.1.exe`).
 
 2. Windows will show a **User Account Control (UAC)** prompt asking if you want to allow the app to make changes — click **Yes**. Administrator rights are required because the installer registers a Windows service.
 
@@ -217,7 +217,7 @@ When the service starts, the worker registers with a Coordinator, receives its d
 ```
 2026-07-20 15:07:10 [WRN] Collector was started
 2026-07-20 15:07:11 [INF] The response was successful: Collector found on http://tapcore1.timpi.network:4014/
-2026-07-20 15:07:11 [INF] Currently on version 2.0.0
+2026-07-20 15:07:11 [INF] Currently on version 2.0.1
 2026-07-20 15:07:11 [INF] Logging level: Information
 2026-07-20 15:07:11 [INF] Trying to send keep alive to http://tap28.timpi.network:4014
 2026-07-20 15:07:12 [INF] Successfully send alive to Coordinator http://tap28.timpi.network:4014
@@ -228,7 +228,7 @@ When the service starts, the worker registers with a Coordinator, receives its d
 2026-07-20 15:07:53 [INF] Got domains from http://<coordinator-node>.timpi.network:4013
 ```
 
-> ℹ️ **About the version number.** The `Currently on version 2.0.0` line is the Timpi **network version** your collector reports to the coordinator — the network uses it to confirm your node is on a reward-eligible build. It matches your installed package version (`2.0.0`), so seeing `2.0.0` here is correct and expected.
+> ℹ️ **About the version number.** The `Currently on version 2.0.1` line is the Timpi **network version** your collector reports to the coordinator — the network uses it to confirm your node is on a reward-eligible build. It matches your installed package version (`2.0.1`), so seeing `2.0.1` here is correct and expected.
 
 Then the node settles into a steady stream of per-domain crawl activity:
 

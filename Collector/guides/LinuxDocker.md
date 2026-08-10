@@ -1,11 +1,10 @@
 # 🔄 **Timpi Collector v2 — Docker Installation Guide**
 
-*(Auto-Updating Edition — 6-Hour Cycle)*
 
 Timpi Collectors are decentralized “workers” that crawl and index websites for the **Timpi Search Engine** — privately, securely, and without ads or tracking.
 
 This Docker edition runs completely in the background. It does **not** update itself — add **Watchtower** ([§8](#autoupdate)) and every Timpi node on the machine stays current automatically.
-No scripts. No manual updates. Fully automated and verified by logs.
+No scripts, and nothing to remember — or update by hand whenever you choose ([§8](#autoupdate)).
 
 ---
 
@@ -22,7 +21,7 @@ No scripts. No manual updates. Fully automated and verified by logs.
 5. [Install Docker](#dockerinstall)
 6. [Run the Collector Container](#run)
 7. [Verify It’s Running](#verify)
-8. [How Auto-Updating Works](#autoupdate)
+8. [Keeping Your Collector Updated](#autoupdate)
 9. [Verify Auto-Updates and Check Your Version](#verifyupdate)
 10. [Update Right Now (Optional)](#forceupdate)
 11. [⚙️ Advanced Options](#advanced)
@@ -221,7 +220,7 @@ Then, once it has work, a metrics line per domain:
 
 <a name="autoupdate"></a>
 
-## 8️⃣ How Auto-Updating Works
+## 8️⃣ Keeping Your Collector Updated
 
 The Collector does **not** update itself. The old in-container auto-updater has been removed, so a Collector
 started with the command in §6 keeps running the image it was pulled with — forever — until you update it.
@@ -252,6 +251,36 @@ sudo docker run -d \
   `watchtower`, and an older one likely watches only a single node.
 * `-e DOCKER_API_VERSION=1.44` is **required** — without it Watchtower crash-loops on modern Docker.
 * ✅ Your GUID and crawl data survive updates. ✅ Nothing to clean up — Watchtower removes the old image.
+
+---
+
+### Updating without Watchtower
+
+If you'd rather not run Watchtower, you can update by hand — but note your GUID **first**. It is
+passed in when the container is created and is not stored anywhere else, so you need it to recreate
+the container:
+
+```bash
+sudo docker inspect timpi-collector --format '{{range .Config.Env}}{{println .}}{{end}}' | grep GUID
+```
+
+Then pull the new image and recreate the Collector with that same GUID:
+
+```bash
+sudo docker pull timpiltd/timpi-collector:latest
+sudo docker rm -f timpi-collector
+sudo docker run -d --name timpi-collector \
+  --restart unless-stopped \
+  -e GUID=YOUR-GUID-HERE \
+  timpiltd/timpi-collector:latest
+```
+
+Confirm the new version with the checks in [§9](#verifyupdate).
+
+* Running several Collectors ([§12](#multi))? Repeat this per container, using each one's own name
+  and GUID — `timpi-collector-1`, `timpi-collector-2`, and so on.
+* `docker pull` on its own changes nothing. The container keeps running the image it was created
+  with until you recreate it, which is what the `rm -f` and `run` lines above do.
 
 ---
 

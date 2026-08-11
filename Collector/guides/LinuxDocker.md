@@ -151,6 +151,7 @@ sudo docker pull timpiltd/timpi-collector:latest
 ## 4) Start the Collector with your GUID
 ```bash
 sudo docker run -d --name timpi-collector \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --restart unless-stopped \
   -e GUID=YOUR-GUID-HERE \
   timpiltd/timpi-collector:latest
@@ -233,6 +234,7 @@ node on the machine. Paste it exactly as-is — there is nothing to edit:
 sudo docker rm -f watchtower 2>/dev/null
 
 sudo docker run -d \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name watchtower \
   --restart unless-stopped \
   -e DOCKER_API_VERSION=1.44 \
@@ -270,6 +272,7 @@ Then pull the new image and recreate the Collector with that same GUID:
 sudo docker pull timpiltd/timpi-collector:latest
 sudo docker rm -f timpi-collector
 sudo docker run -d --name timpi-collector \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --restart unless-stopped \
   -e GUID=YOUR-GUID-HERE \
   timpiltd/timpi-collector:latest
@@ -383,16 +386,19 @@ Commands:
 
 ```bash
 sudo docker run -d --name timpi-collector-1 \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --restart unless-stopped \
   -e GUID=GUID1-xxxx \
   timpiltd/timpi-collector:latest
 
 sudo docker run -d --name timpi-collector-2 \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --restart unless-stopped \
   -e GUID=GUID2-yyyy \
   timpiltd/timpi-collector:latest
 
 sudo docker run -d --name timpi-collector-3 \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --restart unless-stopped \
   -e GUID=GUID3-zzzz \
   timpiltd/timpi-collector:latest

@@ -204,6 +204,7 @@ GeoCore can use any free port (default `4013`). Example:
 
 ```bash
 sudo docker run -d \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
@@ -278,6 +279,7 @@ Here the name is `geocore`. Yours might be `geocore` or a random name like `epic
 sudo docker rm -f watchtower 2>/dev/null
 
 sudo docker run -d \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name watchtower \
   --restart unless-stopped \
   -e DOCKER_API_VERSION=1.44 \
@@ -354,6 +356,7 @@ sudo docker pull timpiltd/timpi-geocore:latest
 
 # 3) Re-run (same GUID, port, volume, location as before)
 sudo docker run -d \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name geocore \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
@@ -382,6 +385,7 @@ Only change the **host** side of `-v` (left of the colon) — keep the container
 ```bash
 # GeoCore #2
 sudo docker run -d --name geocore2 \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4015:4015 -v /var/timpi2:/var/timpi \
@@ -390,6 +394,7 @@ sudo docker run -d --name geocore2 \
 
 # GeoCore #3
 sudo docker run -d --name geocore3 \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --pull=always --restart unless-stopped \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 4016:4016 -v /var/timpi3:/var/timpi \
@@ -460,7 +465,7 @@ Environment variable 'GUID' found - <YOUR-GUID>.
 GeoCore: ConnectionPort port = 4013
 Environment variable 'LOCATION' found - Sweden/Stockholm.
 ---------------------------- GeoCore: System test done ----------------------------
-INFO: Got version 1.2.0 from core - Own version: 2.0.0
+INFO: Got version 1.2.0 from core - Own version: 2.0.1
 INFO: GeoCore Node information received from TAP. NA - USEC
       Now listening on: http://[::]:4013
       Application started. Press Ctrl+C to shut down.
@@ -468,7 +473,7 @@ INFO: GeoCore Node information received from TAP. NA - USEC
 
 > 💡 **That version line has two different numbers in it — this is normal.**
 > **`Own version`** is *your* GeoCore. **`Got version … from core`** is the network's current **minimum**,
-> which is often lower. So `Got version 1.2.0 from core - Own version: 2.0.0` means you're up to date and
+> which is often lower. So `Got version 1.2.0 from core - Own version: 2.0.1` means you're up to date and
 > ahead of the minimum — exactly what you want. Only `Own version` tells you what you're running.
 
 **Guardian scan** (numbers vary):

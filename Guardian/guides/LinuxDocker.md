@@ -324,6 +324,7 @@ mkdir -p ${HOME}/var/solrdocker/logs
 
 ```bash
 sudo docker run -d --pull=always --restart unless-stopped \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name guardian1 \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 8983:8983 \
@@ -377,6 +378,7 @@ as-is — there is nothing to edit:
 sudo docker rm -f watchtower 2>/dev/null
 
 sudo docker run -d \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name watchtower \
   --restart unless-stopped \
   -e DOCKER_API_VERSION=1.44 \
@@ -439,6 +441,7 @@ mkdir -p ${HOME}/var/solrdocker2/logs
 
 ```bash
 sudo docker run -d --pull=always --restart unless-stopped \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name guardian2 \
   --dns=100.42.180.29 --dns=100.42.180.99 --dns=1.1.1.1 \
   -p 8984:8984 \

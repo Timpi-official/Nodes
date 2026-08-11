@@ -85,6 +85,7 @@ Replace `YOUR-NODE-GUID` with the GUID assigned to this machine:
 
 ```bash
 docker run -d --name synaptron --gpus all --restart unless-stopped \
+  --log-opt max-size=10m --log-opt max-file=3 \
   -e SYNAPTRON_NODE_GUID=YOUR-NODE-GUID \
   -e SYNAPTRON_FRIENDLY_NAME="My Synaptron" \
   -v synaptron-cache:/app/.cache \
@@ -170,6 +171,7 @@ reconnects on its own.
 sudo docker rm -f watchtower 2>/dev/null
 
 sudo docker run -d \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --name watchtower \
   --restart unless-stopped \
   -e DOCKER_API_VERSION=1.44 \
@@ -241,6 +243,7 @@ Then run one container per card, each with its own node GUID, container name and
 ```bash
 # first card
 docker run -d --name synaptron-gpu0 --restart unless-stopped \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --gpus '"device=GPU-51fe9889-a57c-61c2-159f-f0d8a811a1a0"' \
   -e SYNAPTRON_NODE_GUID=FIRST-NODE-GUID \
   -e SYNAPTRON_FRIENDLY_NAME="My Synaptron GPU0" \
@@ -249,6 +252,7 @@ docker run -d --name synaptron-gpu0 --restart unless-stopped \
 
 # second card
 docker run -d --name synaptron-gpu1 --restart unless-stopped \
+  --log-opt max-size=10m --log-opt max-file=3 \
   --gpus '"device=GPU-7da0df14-79ba-67cd-6372-45709da2b74e"' \
   -e SYNAPTRON_NODE_GUID=SECOND-NODE-GUID \
   -e SYNAPTRON_FRIENDLY_NAME="My Synaptron GPU1" \

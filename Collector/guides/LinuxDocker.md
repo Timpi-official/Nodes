@@ -555,7 +555,7 @@ Your **Timpi Collector v2 (Docker Edition)** now runs:
 * 📡 Always active with `--restart unless-stopped`
 * 🔄 Self-updating every 6 hours
 * 🧾 Logging update history to `/opt/timpi/TimpiCollectorLogsxxxx-xx-xx.log`
-* 🧠 Managed via [Timpi Dashboard](https://timpi.com/node/v2/management)
+* 🧠 Managed via [Timpi Dashboard](https://timpi.se/my-nodes.html)
 * 🧩 Scalable for multiple NFTs — run one container per GUID
 
 ---

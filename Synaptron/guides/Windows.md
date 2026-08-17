@@ -46,11 +46,22 @@ Get the Windows runner from the official release:
 > [github.com/Timpi-official/Nodes/releases](https://github.com/Timpi-official/Nodes/releases) —
 > always take the latest **Windows x64** zip.
 
-**2. Extract the whole ZIP**
+**2. Unblock the ZIP, then extract it**
 
-Right-click the ZIP → **Extract All** → a writable folder such as `C:\SynaptronNode`.
+Right-click the ZIP → **Properties** → tick **Unblock** at the bottom → **OK**. Windows marks
+everything inside a downloaded archive as internet content, and the app will not start until that
+mark is cleared. Unblocking the ZIP first clears it for every file inside in one step.
+
+Then right-click the ZIP → **Extract All** → a writable folder such as `C:\SynaptronNode`.
 (Do **not** run it from inside the ZIP viewer, and avoid `C:\Program Files` — it needs a writable
 folder.)
+
+> Already extracted without unblocking? You do not have to start over. Open **Windows PowerShell**
+> and run:
+>
+> ```powershell
+> Get-ChildItem C:\SynaptronNode -Recurse -File | Unblock-File
+> ```
 
 **3. Start the desktop app**
 
@@ -59,6 +70,9 @@ Double-click **`Start-SynaptronNode.vbs`**. It opens the Synaptron Node desktop 
 > **Windows SmartScreen** may show *"Windows protected your PC"*. Click **More info → Run anyway** —
 > the app isn't code-signed yet. If you see a **User Account Control** prompt, approve it; the
 > installer needs it to repair the NVIDIA driver, Visual C++ Redistributable, Python or .NET.
+>
+> A box titled **"Open File – Security Warning"** is a different thing and has no *Run anyway*: it
+> means the files are still marked as downloaded. Close it and unblock them as in step 2.
 
 **4. Fill in and install**
 
@@ -201,9 +215,12 @@ download page and stops rather than falling back to CPU. The bootstrap dashboard
 ## Updating to a new release
 
 Grab the newer **Windows x64** zip from
-[github.com/Timpi-official/Nodes/releases](https://github.com/Timpi-official/Nodes/releases). Stop
-the node from the **tray menu** (or run `Stop-SynaptronNode.ps1`), extract the new ZIP over your
-`C:\SynaptronNode` folder, then start it again with `Start-SynaptronNode.vbs`.
+[github.com/Timpi-official/Nodes/releases](https://github.com/Timpi-official/Nodes/releases).
+**Unblock it the same way as a first install** — right-click the ZIP → **Properties** → tick
+**Unblock** → **OK** — because a freshly downloaded update arrives marked as internet content even
+though the folder you are extracting over is not. Then stop the node from the **tray menu** (or run
+`Stop-SynaptronNode.ps1`), extract the new ZIP over your `C:\SynaptronNode` folder, and start it
+again with `Start-SynaptronNode.vbs`.
 
 If the new release ships the same `requirements.txt`, your virtual environment and model cache are
 reused and this is quick. Your node GUID (`config\node-guid.txt`) survives the extract.
@@ -230,6 +247,7 @@ reused and this is quick. Your node GUID (`config\node-guid.txt`) survives the e
 | Symptom | Cause and fix |
 |---|---|
 | SmartScreen *"Windows protected your PC"* | The app isn't code-signed yet. **More info → Run anyway.** |
+| `Start-SynaptronNode.vbs` fails with **`800704C7`**, *"The operation was canceled by the user"* | The files are still marked as downloaded, so Windows asked before launching and the prompt was dismissed. Unblock them: `Get-ChildItem C:\SynaptronNode -Recurse -File | Unblock-File`, then double-click the .vbs again. |
 | The desktop app doesn't open / "desktop app was not found" | You ran it from inside the ZIP or the extract is incomplete. Extract the **whole** ZIP to a folder, then double-click `Start-SynaptronNode.vbs`. |
 | `Failed to initialize NVML` / driver mismatch, or nvidia-smi errors | The NVIDIA driver was updated without a reboot. **Reboot**, then start again. |
 | Torch fails to load `c10.dll` / DLL load errors | The **Microsoft Visual C++ Redistributable 2015–2022 x64** is missing. The installer normally repairs it; if not, install it and restart the node. |

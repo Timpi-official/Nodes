@@ -30,6 +30,26 @@ sudo systemctl disable --now collector.service 2>/dev/null || true
 sudo systemctl daemon-reload
 ```
 
+or
+
+```bash
+sudo systemctl stop collector.service
+sudo systemctl disable collector.service
+
+sudo systemctl stop collector-updater.timer
+sudo systemctl disable collector-updater.timer
+
+sudo systemctl stop collector-updater.service
+sudo systemctl disable collector-updater.service
+
+sudo rm -f /etc/systemd/system/collector.service
+sudo rm -f /etc/systemd/system/collector-updater.service
+sudo rm -f /etc/systemd/system/collector-updater.timer
+
+sudo systemctl daemon-reload
+sudo systemctl reset-failed
+```
+
 > If step 1 prints nothing, your unit may be named differently — find it with
 > `systemctl list-units --all | grep -i collector`, then read the GUID from
 > `systemctl cat <unit> | grep ExecStart`.

@@ -60,7 +60,7 @@ being reliably online is what makes that storage worth anything.
 | OS        | **Ubuntu 22.04 LTS or newer** (24.04 recommended) |
 | CPU       | **8+ cores** |
 | RAM       | **12+ GB** (Solr uses a fixed 8 GB heap) |
-| Storage   | **1 TB free** — a normal SATA/HDD disk is fine, NVMe is not required |
+| Storage   | **1 TB free** — a normal SSD/NVME |
 | Network   | Stable 24/7, 300 Mbps–1 Gbps |
 | **Public IP** | **Required.** See the CGNAT note below — this is the most common reason a Guardian never starts. |
 | Docker    | Required |

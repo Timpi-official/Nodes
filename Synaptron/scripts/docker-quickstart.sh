@@ -176,7 +176,8 @@ ARGS=( -d --name "${CNAME}" --restart unless-stopped
 # NVIDIA's documented mitigation, reproduced and proved on eight nodes the same day.
 # awk must read nvidia-smi's whole report, not `exit` on the first match: exiting early closes the
 # pipe while nvidia-smi is still writing, and under `set -o pipefail` that SIGPIPE (exit 141) aborts
-# the whole quickstart before `docker run` — the node never starts. Take the first Minor Number, print at END.
+# the whole quickstart before `docker run` -- the node never starts. Take the first Minor Number, print
+# at END. Found by JohnO running the published 2.1.7 guide end to end (SynWork #87).
 minor="$(nvidia-smi -q -i "${GPU_UUID}" 2>/dev/null | awk '/Minor Number/ && m=="" { m=$NF } END { print m }')"
 [[ -n "${minor}" || ${#ROWS[@]} -ne 1 ]] || minor=0
 if [[ -n "${minor}" && -e "/dev/nvidia${minor}" ]]; then

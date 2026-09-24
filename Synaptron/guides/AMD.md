@@ -16,7 +16,7 @@ The node makes only **outbound** connections. You do not need to open any inboun
 > **Docker: no AMD image.** `--gpus` and the NVIDIA Container Toolkit are NVIDIA-only, and no ROCm
 > image is published. The native Linux runner below is the whole of it.
 
-Other cards: **[NVIDIA](NVIDIA.md)** (Windows, Linux, Docker) · **[Intel](Intel.md)** (not supported).
+Other cards: **[NVIDIA](NVIDIA.md)** (Windows, Linux, Docker) · **Intel** (not supported).
 
 ---
 
@@ -89,7 +89,7 @@ short, stable file name you can paste straight into a terminal:
 
 ```bash
 cd ~
-curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.7/synaptron-linux.zip
+curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.9/synaptron-linux.zip
 unzip synaptron-linux.zip -d ~/SynaptronNode
 cd ~/SynaptronNode
 ```
@@ -314,24 +314,32 @@ Set `VER` to the newest `synaptron-<version>` release on the
 [releases page](https://github.com/Timpi-official/Nodes/releases) (that repository also publishes the
 Timpi Collector, so its "Latest" release is not necessarily a Synaptron one):
 
+**1. Download, and check whether the Python packages changed** (nothing is replaced yet):
+
 ```bash
-VER=2.1.7
-sudo systemctl stop synaptron-node
+VER=2.1.9
 cd ~ && curl -fLO "https://github.com/Timpi-official/Nodes/releases/download/synaptron-$VER/synaptron-linux.zip"
+for f in requirements.txt $(unzip -Z1 synaptron-linux.zip 'constraints/*.txt'); do
+  [ -f ~/SynaptronNode/"$f" ] || continue
+  unzip -p synaptron-linux.zip "$f" | cmp -s - ~/SynaptronNode/"$f" || echo "changed: $f"
+done
+```
+
+**No output** means the new release pins the same packages as your install (`requirements.txt` and every
+file in `constraints/`, `torch-rocm.txt` included), so your virtual environment and model cache are
+reused and step 2 takes seconds. That is the case from 2.1.6, the first AMD release, through 2.1.9.
+
+**2. Replace the files and restart:**
+
+```bash
+sudo systemctl stop synaptron-node
 unzip -o synaptron-linux.zip -d ~/SynaptronNode
 sudo systemctl start synaptron-node
 ```
 
-If the new release ships the same `requirements.txt` and the same `constraints/torch-rocm.txt`, your
-virtual environment and model cache are reused and this takes seconds. Compare first:
-
-```bash
-diff ~/SynaptronNode/constraints/torch-rocm.txt /path/to/new/constraints/torch-rocm.txt
-```
-
-If either file differs, run `bash scripts/install-node-amd.sh` again on a machine whose node you first
-removed, or rerun the by-hand `Initialise.sh` command with the AMD opt-in. Your node GUID lives in the
-systemd service, so it survives the unzip either way.
+If step 1 printed a `changed:` line, run `bash scripts/install-node-amd.sh` again on a machine whose node
+you first removed, or rerun the by-hand `Initialise.sh` command with the AMD opt-in. Your node GUID
+lives in the systemd service, so it survives the unzip either way.
 
 ---
 
@@ -370,7 +378,8 @@ ROCm itself is untouched by this; remove it with AMD's own instructions if you n
 
 ---
 
-*AMD support arrived in 2.1.6 and is **opt-in**; 2.1.7 changes nothing on this page. Measured end to
+*AMD support arrived in 2.1.6 and is **opt-in**; 2.1.9 changes nothing in the install on this page, and
+its input rules and 2.1.8's task fixes were run on the same card. Measured end to
 end on a **Radeon RX 7600** (`gfx1102`,
 RDNA 3, 8 GB) under ROCm 7.x on Ubuntu 24.04: install from the release ZIP, ROCm preflight,
 `verify-install.py` with the 4-bit path measured on the card, `workload-test.py --quick` 6/6,

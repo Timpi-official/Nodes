@@ -11,7 +11,7 @@ The node makes only **outbound** connections. You do not need to open any inboun
 
 > **Windows is NVIDIA-only.** An AMD or Intel card cannot run the node on Windows and the installer
 > will say so. AMD runs on Linux through ROCm — see the [AMD guide](AMD.md). Intel is not supported at
-> all — see the [Intel page](Intel.md).
+> all.
 
 ---
 
@@ -42,16 +42,16 @@ setup checks for them and installs or repairs what's missing.
 
 **1. Download the installer**
 
-Get **`SynaptronNodeSetup-2.1.7.exe`** and its **`SHA256SUMS`** from the latest release:
+Get **`SynaptronNodeSetup-2.1.9.exe`** and its **`SHA256SUMS`** from the latest release:
 [github.com/Timpi-official/Nodes/releases](https://github.com/Timpi-official/Nodes/releases).
 
 > **Verify the download (optional).** In PowerShell in your Downloads folder:
-> `Get-FileHash .\SynaptronNodeSetup-2.1.7.exe -Algorithm SHA256` — compare it to the matching line in
+> `Get-FileHash .\SynaptronNodeSetup-2.1.9.exe -Algorithm SHA256` — compare it to the matching line in
 > `SHA256SUMS`.
 
 **2. Run it**
 
-Double-click **`SynaptronNodeSetup-2.1.7.exe`**. It installs to a fixed location, **`C:\Synaptron`** —
+Double-click **`SynaptronNodeSetup-2.1.9.exe`**. It installs to a fixed location, **`C:\Synaptron`** —
 there is no folder-choice page — and registers its own entry in **Add/Remove Programs**.
 
 > **Windows SmartScreen** may show *"Windows protected your PC"* — the installer isn't code-signed yet.
@@ -96,10 +96,10 @@ This is the path tested on every release — clean install, upgrade over a runni
 The release carries a short, stable name:
 
 ```
-https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.7/synaptron-windows.zip
+https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.9/synaptron-windows.zip
 ```
 
-The same bytes are also published as `synaptron-node-runner-win-x64-2.1.7.zip`, and both names appear
+The same bytes are also published as `synaptron-node-runner-win-x64-2.1.9.zip`, and both names appear
 in `SHA256SUMS` with the same digest.
 
 **2. Unblock the ZIP, then extract it**
@@ -217,7 +217,7 @@ Orca is fully live. **You do not need to reinstall, restart, or reconfigure anyt
   worker, running `uvicorn app.main`); two `python.exe` entries are normal, the venv launcher and the
   interpreter it starts. This works for both install paths (`C:\Synaptron` and `C:\SynaptronNode`).
 - The startup log contains `Connected to Synaptron Controller SignalR hub`.
-- `Invoke-RestMethod http://127.0.0.1:8092/api/capabilities` returns `torchCudaSupported : true`.
+- `Invoke-RestMethod http://127.0.0.1:8092/api/capabilities` reports the GPU under `hardware.gpus`, each with `torchCudaSupported : true` — it is nested there, not a top-level field.
 
 **Signs something is actually wrong:** the status says `failed:`; `dotnet.exe` or `python.exe` is
 missing from that list; `/api/capabilities` doesn't respond; or the dashboard says no node GUID is
@@ -312,8 +312,10 @@ backed up before you choose **Install anyway**.
 node from the **tray menu** (or `Stop-SynaptronNode.ps1`), extract the new ZIP over your
 `C:\SynaptronNode` folder, and start it again with `Start-SynaptronNode.vbs`.
 
-If the new release ships the same `requirements.txt`, your venv and model cache are reused and this is
-quick. Your node GUID (`config\node-guid.txt`) survives the extract.
+Your venv and model cache are reused, and your node GUID (`config\node-guid.txt`) survives the extract.
+Each release's notes say whether its Python packages changed; 2.1.3 through 2.1.9 pin the same ones. If
+a release says they changed, run step 1 of [Advanced: PowerShell](#advanced-powershell-instead-of-the-desktop-app)
+once after extracting and before starting the node. The installer path needs nothing extra.
 
 ---
 
@@ -353,8 +355,14 @@ Add/Remove Programs). That runs the bundled uninstaller and removes `C:\Synaptro
 
 ---
 
-*2.1.7 — the Windows paths are unchanged from 2.1.6 apart from the installer's version and the
-short download name; the AMD work in this release touched no Windows file. Verified on Windows 11,
+*2.1.9 — the Windows paths are unchanged apart from the installer's version. 2.1.9 stops an image or
+audio job from making the node read a local file or authenticate to a network share. Since 2.1.8,
+speech-to-text and audio classification work without `ffmpeg`, which a Windows node does not have.
+Measured on an RTX 3080 Ti: the 2.1.9 installer upgraded a running 2.1.8 node in place (node ID kept,
+back on the Controller) and `check219.py` passed 10/10 with no `ffmpeg`, the refusals included; before
+that, the 2.1.8 installer upgraded a running 2.1.7 node in place (node ID kept, back on the Controller,
+`workload-test.py --quick` 6/6), and on that machine, with no `ffmpeg` installed, text-to-speech into
+Whisper, audio classification and an image sent as a data URL all worked. Earlier: verified on Windows 11,
 RTX 3060 (12 GB) at 2.1.2 and unchanged since: the PowerShell path ran the full install (torch
 2.6.0+cu124, transformers 5.13.1, 4-bit measured on-GPU), started the node, reached the SignalR hub,
 and the Controller reported it **ONLINE**; the installer → desktop-app flow was verified end-to-end,

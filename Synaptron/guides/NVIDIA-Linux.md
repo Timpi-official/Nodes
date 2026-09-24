@@ -55,11 +55,11 @@ The release carries a short, stable file name you can paste straight into a term
 
 ```bash
 cd ~
-curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.7/synaptron-linux.zip
+curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.9/synaptron-linux.zip
 ```
 
 > **Why the short name.** The release also publishes the same ZIP under its full, timestamped name
-> (`synaptron-node-runner-linux-x64-2.1.7-<date>.zip`). That name wraps onto two lines in an 80-column
+> (`synaptron-node-runner-linux-x64-2.1.9-<date>.zip`). That name wraps onto two lines in an 80-column
 > terminal, and a `curl` command pasted across the wrap runs **with no URL at all** and sits there
 > looking like a hang. Use the short name; if you prefer the versioned asset, copy its URL from the
 > [releases page](https://github.com/Timpi-official/Nodes/releases) and paste it as a single line.
@@ -229,18 +229,31 @@ Set `VER` to the newest `synaptron-<version>` release on the
 [releases page](https://github.com/Timpi-official/Nodes/releases) (that repository also publishes the
 Timpi Collector, so its "Latest" release is not necessarily a Synaptron one):
 
+**1. Download, and check whether the Python packages changed** (nothing is replaced yet):
+
 ```bash
-VER=2.1.7
-sudo systemctl stop synaptron-node
+VER=2.1.9
 cd ~ && curl -fLO "https://github.com/Timpi-official/Nodes/releases/download/synaptron-$VER/synaptron-linux.zip"
+for f in requirements.txt $(unzip -Z1 synaptron-linux.zip 'constraints/*.txt'); do
+  [ -f ~/SynaptronNode/"$f" ] || continue
+  unzip -p synaptron-linux.zip "$f" | cmp -s - ~/SynaptronNode/"$f" || echo "changed: $f"
+done
+```
+
+**No output** means the new release pins the same packages as your install, so your venv and model
+cache are reused and step 2 takes seconds. That is the case from 2.1.3 through 2.1.9. A `changed:` line
+means it pins different ones: do step 2, then run the full `Initialise.sh` command again before relying
+on the node.
+
+**2. Replace the files and restart:**
+
+```bash
+sudo systemctl stop synaptron-node
 unzip -o synaptron-linux.zip -d ~/SynaptronNode
 sudo systemctl start synaptron-node
 ```
 
-If the new release ships the same `requirements.txt`, your venv and model cache are reused and this
-takes seconds. Compare first: `diff ~/SynaptronNode/requirements.txt /path/to/new/requirements.txt`. If
-they differ, run the full `Initialise.sh` command again. Your node GUID lives in the systemd service,
-so it survives the unzip either way.
+Your node GUID lives in the systemd service, so it survives the unzip either way.
 
 ---
 
@@ -311,7 +324,8 @@ bash ./Initialise.sh \
 
 ---
 
-*2.1.7 — the native Linux path is unchanged from 2.1.6. Verified on the
+*2.1.9 — the native Linux steps are unchanged; 2.1.9 limits what an image or audio job's input can make
+a node read, and 2.1.8 fixed how a node serves several task types (see the set's README). Verified on the
 rig, Ubuntu, RTX 4060 Ti (cu124): `Initialise.sh` built the venv (torch 2.6.0+cu124, transformers
 5.13.1), the host reached the Controller's SignalR hub, loaded the catalog, and served every task type
 (embedding, translation, chat, summarization, question-answering).*

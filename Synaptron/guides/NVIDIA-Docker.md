@@ -120,7 +120,7 @@ Useful options:
 | Option | What it does |
 |---|---|
 | `--publish-dashboard` | Expose the node dashboard on host port 8092 (`http://127.0.0.1:8092/dashboard`). Leave it off if you don't want the port opened. |
-| `--version 2.1.7` | Pin to the immutable release tag (`2.1.7-cu124`) instead of the moving one. |
+| `--version 2.1.9` | Pin to the immutable release tag (`2.1.9-cu124`) instead of the moving one. |
 | `--gpu <uuid\|index>` | Which card, on a multi-GPU machine. |
 | `--container-name <n>` | Default `synaptron`; the model-cache volume is `<n>-cache`. |
 | `--dashboard-port <n>` | Host port for the dashboard, for a second node on the same machine. |
@@ -141,7 +141,7 @@ docker logs -f synaptron
 
 ```
 Synaptron image variant: cu124
-First start on this GPU: measuring the 4-bit path once.
+Measuring the 4-bit path on this GPU.
 quantization_4bit=ok, nf4 forward pass on cuda
       Now listening on: http://127.0.0.1:8092
       Application started. Press Ctrl+C to shut down.
@@ -158,16 +158,17 @@ Press `Ctrl+C` to stop following the log (the container keeps running).
   path works, so the node can run quantized models. It runs only once per card.
 - `Connected to … SignalR hub` is the line that proves the node reached the Controller.
 
-**Confirm the node is using the card you pinned it to** — these two must name the same GPU:
+**Confirm the node is on the card you pinned it to** — these two must name the same GPU:
 
 ```bash
-docker logs synaptron | grep "GPU detected"
 docker exec synaptron nvidia-smi -L
+docker logs synaptron 2>&1 | grep "GPU detected"
 ```
 
-The first line is what the node reported to the Controller, with the UUID and which setting pinned
-it. If they disagree, the container is not on the card you think it is — restart it, and see the
-troubleshooting table below.
+The first should list a **single** GPU: the UUID you passed to `--gpu`, or the machine's only card.
+The second is what the node reported to the Controller, with the same UUID and which setting pinned
+it. If they disagree, or the first names more than one card, the container is not pinned the way you
+think: restart it, and see the troubleshooting table below.
 
 **Confirm the GPU is visible inside the container:**
 
@@ -194,9 +195,14 @@ Controller loads models onto your node when work needs them; you don't load anyt
 
 Run one small **Watchtower** container and your Synaptron stays on the latest image automatically.
 
-> **Pin to your variant.** Watchtower follows the tag your container was started with. The quickstart
-> uses the **moving `cu124` / `cu128` tag**, so Watchtower keeps you on the newest build for your card.
-> If you pinned an immutable tag with `--version` (e.g. `2.1.7-cu124`), that tag never moves — a new
+> **Watch a card-specific tag, never `:latest`.** Watchtower re-pulls whatever tag your container was
+> started with. The quickstart starts you on the **moving `cu124` / `cu128` tag**, so Watchtower keeps
+> you on the newest build for your card — that is the setup to use.
+> ⚠️ **Do not watch a container started from the bare or `:latest` tag.** `:latest` is the `cu124`
+> image, so the next update pulls cu124 onto your card, and a Blackwell (50-series) card then refuses to
+> start and restart-loops. If your node is on `:latest`, re-run the quickstart (or start it on
+> `cu124`/`cu128`) **before** adding Watchtower.
+> If you pinned an immutable tag with `--version` (e.g. `2.1.9-cu128`), that tag never moves — a new
 > release gets a new tag, so update by re-running the quickstart with `--replace` instead.
 
 **Step 1 — start Watchtower** (paste it exactly as-is):
@@ -233,6 +239,18 @@ Session done   Failed=0 Scanned=1 Updated=0
 👉 **`Scanned` must equal the number of Timpi containers you listed.** `Updated=0` just means you were
 already on the latest — that's fine.
 
+**Updating without Watchtower.** Run the quickstart again with `--replace`. It always pulls first, so on
+`cu124` / `cu128` you get the newest build for your card; it keeps the model cache (the volume is
+separate from the container) and asks for your node GUID again, so have it from
+[timpi.com/node/v2/management](https://timpi.com/node/v2/management). If you started the node with a
+hand-written `docker run` instead, pull your tag, remove the container, and run the same command again:
+
+```bash
+docker pull timpiltd/timpi-synaptron:cu124     # cu128 on a Blackwell card
+docker rm -f synaptron                         # the model cache volume is kept
+# then your original docker run command, unchanged
+```
+
 ---
 
 ## Which tag to use
@@ -253,15 +271,18 @@ Each release publishes four tags:
 
 | Tag | What it is |
 |---|---|
-| `timpiltd/timpi-synaptron:2.1.7-cu124` | Immutable — this exact release, for the cu124 wheel set. What a node should be pinned to if you want no surprises. |
+| `timpiltd/timpi-synaptron:2.1.9-cu124` | Immutable — this exact release, for the cu124 wheel set. What a node should be pinned to if you want no surprises. |
 | `timpiltd/timpi-synaptron:cu124` | Moving — the newest build for that wheel set. What the quickstart and Watchtower use. |
-| `timpiltd/timpi-synaptron:2.1.7-cu128` | Immutable, Blackwell. |
+| `timpiltd/timpi-synaptron:2.1.9-cu128` | Immutable, Blackwell. |
 | `timpiltd/timpi-synaptron:cu128` | Moving, Blackwell. |
 
-> **A bare pull with no tag gives you `cu124`.** That is deliberate — it covers most of the fleet — but
-> it is wrong for a Blackwell card. The container's start-time guard catches a card/image mismatch and
-> refuses to start while naming the tag to pull instead, so you will not get a silently broken node;
-> still, pull the right tag from the start.
+> **Always pull `cu124` or `cu128` — never a bare tag or `:latest`.** A bare `docker pull` (or `:latest`)
+> resolves to the **cu124** image. That is fine on a cu124 card but **wrong on a Blackwell (50-series)
+> card**, and `:latest` is a **legacy tag kept only for older installs** — it is not card-aware and is
+> being retired. Point Watchtower at a container started from `:latest`/bare and a later update pulls
+> cu124 onto whatever card you have; a Blackwell card then refuses to start (its start-time guard catches
+> the mismatch and names the right tag). So pin your card's tag from the start, and if an existing node
+> is on `:latest`, move it to `cu124`/`cu128` before it auto-updates.
 
 ---
 
@@ -365,6 +386,7 @@ docker rm -f synaptron              # remove (models survive in the volume)
 |---|---|
 | `docker: Error response ... could not select device driver ... [[gpu]]` | NVIDIA Container Toolkit isn't installed/configured. Install it (Before-you-start table), then re-run. |
 | Container refuses to start naming a **different tag to pull** | You pulled the wrong image for the card (e.g. `cu124` on a Blackwell 50-series). Pull the tag it names, or use the quickstart which picks automatically. |
+| After a **Watchtower or manual update** the node restart-loops with `Refusing to start … Synaptron image variant: cu124` on a **50-series / Blackwell** card | Watchtower was following the bare / `:latest` tag (which is `cu124`) and pulled it onto a card that needs `cu128`. Nothing is wrong with the card — the start-time guard is refusing the wrong image. Switch to cu128: `docker rm -f <name>; docker pull timpiltd/timpi-synaptron:cu128; docker run … timpiltd/timpi-synaptron:cu128`, then re-point Watchtower at the new container. |
 | `manifest unknown` / `not found` when pulling `cu124` or `cu128` | That tag has not been published yet for this release. Check the [releases page](https://github.com/Timpi-official/Nodes/releases) for which image tags the current release carries. |
 | `nvidia-smi` fails inside the container | Host driver problem or a driver update without a reboot. Run `nvidia-smi` on the host; reboot if it reports a version mismatch. |
 | The container was serving, then **lost its GPU while running** — `docker exec synaptron nvidia-smi` says `Failed to initialize NVML: Unknown Error` even though `nvidia-smi` on the host still works | A `systemctl daemon-reload` on the host revoked the GPU. On cgroup v2 with the systemd cgroup driver (Docker's default on Ubuntu), a daemon-reload makes systemd re-apply each container's device rules from its own spec and drop the card the NVIDIA hook granted outside that spec. Any package update that ships a systemd unit — including unattended-upgrades — runs a daemon-reload, so this is not rare. **Recover now:** `docker restart synaptron`. **Prevent it:** name the card's device nodes explicitly alongside `--gpus`: `--device /dev/nvidia0 --device /dev/nvidiactl --device /dev/nvidia-uvm --device /dev/nvidia-uvm-tools` (use the card's minor number for `/dev/nvidiaN` — `nvidia-smi -q -i <uuid> \| grep 'Minor Number'`). The **quickstart already does this**; add the flags to a manual `docker run`. |
@@ -388,8 +410,11 @@ docker rmi timpiltd/timpi-synaptron:cu124      # remove the image (optional; cu1
 
 ---
 
-*2.1.7 — the Docker path is unchanged by this release: the AMD work touched no Dockerfile and no
-image-build script. Verified on Ubuntu + RTX 4060 Ti (cu124) at 2.1.2 and re-verified on an RTX 5090
+*2.1.9 — the Docker steps are unchanged. 2.1.9 limits what an image or audio job's input can make a node
+read (no local files, public URLs only). Since 2.1.8 the node code in the image fixes several task types, among
+them speech-to-text and audio classification, which needed an `ffmpeg` the image does not carry; every
+catalogued model the card can hold was run through the Controller on an RTX 5060 in the cu128 image
+(51 of 51 passed across the two test cards). Verified on Ubuntu + RTX 4060 Ti (cu124) at 2.1.2 and re-verified on an RTX 5090
 (cu128 image, built and run, start-time card check accepted, kernel, matmul and 4-bit NF4 all passing,
 node registered with the Controller). Which image tags exist for a given release is a publishing step —
 see the [releases page](https://github.com/Timpi-official/Nodes/releases).*

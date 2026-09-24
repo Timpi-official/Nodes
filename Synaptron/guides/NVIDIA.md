@@ -15,7 +15,7 @@ The node makes only **outbound** connections. You do not need to open any inboun
 | **Ubuntu Linux** | **[Linux](NVIDIA-Linux.md)** | `Initialise.sh`, one command, systemd service. |
 | **Linux + Docker** | **[Docker](NVIDIA-Docker.md)** | One image, one command; the simplest path if you already run containers. |
 
-Other cards: **[AMD](AMD.md)** (Linux only, through ROCm) · **[Intel](Intel.md)** (not supported).
+Other cards: **[AMD](AMD.md)** (Linux only, through ROCm) · **Intel** (not supported).
 
 ---
 
@@ -77,7 +77,7 @@ pulled, rather than registering and failing every job.
 
 ---
 
-*2.1.7 — NVIDIA behaviour is unchanged in this release. The AMD support added here touches no Docker
-file, no PowerShell, no installer and nothing Windows, so every path on this page behaves exactly as it
-did in 2.1.6; the only visible difference is the installer's version number.
-download name for the runner ZIPs.*
+*2.1.9 — nothing on this page changes: choosing a path, and the steps on each, are as in 2.1.7. 2.1.9
+limits what an image or audio job's input can make a node read (no local files, public URLs only);
+2.1.8 before it fixed how a node serves several task types (image and audio input, speech without
+`ffmpeg`, question-answering and planning on chat models, image generation). See the set's README.*

@@ -83,10 +83,12 @@ If it prints your card, you're ready. If it errors on `--gpus`, install the **NV
 The quickstart reads your card, picks the right image (**cu124** or **cu128**), pulls it, and starts the
 node. It asks for your GUID and a name if you don't pass them.
 
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/scripts/docker-quickstart.sh) \
-  --guid __YOUR-NODE-GUID__ --name "My Synaptron" --publish-dashboard
-```
+Run this command, replacing the bold values with your own:
+
+<pre>
+bash &lt;(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/scripts/docker-quickstart.sh) \
+  --guid <b>YOUR-NODE-GUID</b> --name "<b>My Synaptron</b>" --publish-dashboard
+</pre>
 
 **What you should see** — it detects the card, resolves the image, pulls and starts, then waits for the
 Controller:

@@ -87,7 +87,7 @@ Run this command, replacing the bold values with your own:
 
 <pre>
 bash &lt;(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/scripts/docker-quickstart.sh) \
-  --guid <b>YOUR-NODE-GUID</b> --name "<b>My Synaptron</b>" --publish-dashboard
+  --guid <ins><b>YOUR-NODE-GUID</b></ins> --name "<ins><b>My Synaptron</b></ins>" --publish-dashboard
 </pre>
 
 **What you should see** — it detects the card, resolves the image, pulls and starts, then waits for the

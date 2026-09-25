@@ -84,10 +84,7 @@ The quickstart reads your card, picks the right image (**cu124** or **cu128**), 
 node. It asks for your GUID and a name if you don't pass them.
 
 ```bash
-<pre>
-bash &lt;(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/scripts/docker-quickstart.sh) \
-  --guid <b>__YOUR-NODE-GUID__</b> --name "<b>My Synaptron</b>" --publish-dashboard
-</pre>
+<pre> &lt;pre&gt; bash &amp;lt;(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/scripts/docker-quickstart.sh) \ --guid &lt;b&gt;__YOUR-NODE-GUID__&lt;/b&gt; --name "&lt;b&gt;My Synaptron&lt;/b&gt;" --publish-dashboard &lt;/pre&gt; </pre>
 ```
 
 **What you should see** — it detects the card, resolves the image, pulls and starts, then waits for the

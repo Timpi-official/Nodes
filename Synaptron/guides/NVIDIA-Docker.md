@@ -85,7 +85,7 @@ node. It asks for your GUID and a name if you don't pass them.
 
 ```bash
 bash <(curl -fsSL https://raw.githubusercontent.com/Timpi-official/Nodes/main/Synaptron/scripts/docker-quickstart.sh) \
-  --guid **YOUR-NODE-GUID** --name "My Synaptron" --publish-dashboard
+  --guid __YOUR-NODE-GUID__ --name "My Synaptron" --publish-dashboard
 ```
 
 **What you should see** — it detects the card, resolves the image, pulls and starts, then waits for the

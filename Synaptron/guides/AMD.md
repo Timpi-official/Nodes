@@ -43,7 +43,7 @@ Other cards: **[NVIDIA](NVIDIA.md)** (Windows, Linux, Docker) · **Intel** (not 
 | **ROCm** | **Install it before you start** — **6.1 or newer**, working for the user who will run the node; the pinned PyTorch wheels are the **ROCm 7.2** build, so a current ROCm 7.x is the combination this was measured on. The node checks ROCm and names what is wrong, but it does not install or repair it. Follow AMD's own guide: [ROCm installation on Linux](https://rocm.docs.amd.com/projects/install-on-linux/). |
 | **Disk** | **100 GB free.** The runtime alone is ~8 GB; models are downloaded on demand and grow well beyond that. |
 | **Time** | **10–20 minutes** on a typical connection, up to 45 on a slow one. Almost all of it is a multi-GB PyTorch/ROCm download. |
-| **Your node GUID** | Required — the installer asks for it, and the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management); see the [registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md). |
+| **Your node GUID** | Required — the installer asks for it, and the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management) ([registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)), then find its GUID at [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) (connect the wallet that holds the NFT). |
 
 > **Your node GUID is not a plain UUID.** It may contain letters, numbers, dots, colons, underscores
 > and hyphens in any arrangement, for example `1a5737d8-example-node-a05f-ee3aba76548b`. Use exactly
@@ -89,7 +89,7 @@ short, stable file name you can paste straight into a terminal:
 
 ```bash
 cd ~
-curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.9/synaptron-linux.zip
+curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.11/synaptron-linux.zip
 unzip synaptron-linux.zip -d ~/SynaptronNode
 cd ~/SynaptronNode
 ```
@@ -220,6 +220,8 @@ Installed systemd service synaptron-node for user <you>.
 **Is my node online?** This is the one that matters — it reads the Controller directly and needs no
 login:
 
+**Replace `YOUR-NODE-GUID` with your own GUID here too.** With the example ID left in, this reports someone else's node, which can show online.
+
 ```bash
 curl -s https://orcacontroller.timpi.network/api/coordinator/nodes/YOUR-NODE-GUID/status/month
 ```
@@ -317,7 +319,7 @@ Timpi Collector, so its "Latest" release is not necessarily a Synaptron one):
 **1. Download, and check whether the Python packages changed** (nothing is replaced yet):
 
 ```bash
-VER=2.1.9
+VER=2.1.11
 cd ~ && curl -fLO "https://github.com/Timpi-official/Nodes/releases/download/synaptron-$VER/synaptron-linux.zip"
 for f in requirements.txt $(unzip -Z1 synaptron-linux.zip 'constraints/*.txt'); do
   [ -f ~/SynaptronNode/"$f" ] || continue
@@ -327,7 +329,7 @@ done
 
 **No output** means the new release pins the same packages as your install (`requirements.txt` and every
 file in `constraints/`, `torch-rocm.txt` included), so your virtual environment and model cache are
-reused and step 2 takes seconds. That is the case from 2.1.6, the first AMD release, through 2.1.9.
+reused and step 2 takes seconds. That is the case from 2.1.6, the first AMD release, through 2.1.11.
 
 **2. Replace the files and restart:**
 
@@ -374,12 +376,15 @@ ROCm itself is untouched by this; remove it with AMD's own instructions if you n
 | `torchvision` installs and then fails at import | A non-`+rocm` wheel got in. Delete `.venv` and reinstall; do not edit `constraints/torch-rocm.txt`. |
 | The node registers but is offered no models | The Controller's catalog has not been told your card is welcome. Report it — the node side is fine. |
 | Node runs but `isOnline` is false | Check outbound HTTPS to `orcacontroller.timpi.network` is not blocked. The node only makes outbound connections. |
+| The log says `will not connect: The node ID is an example value from a guide`, and `http://127.0.0.1:8092/` says **Not connecting** | You installed with the guide's example (`YOUR-NODE-GUID`). Copy your node's ID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) and run `bash scripts/install-node-amd.sh --guid <that id>` again. Before 2.1.10 the node accepted the example and its work was credited to nobody. |
+| `not in the usual form of a Timpi node ID` (a warning; the node still starts) | Your ID is not 8-4-4-4-12 hex digits. Check it character by character against [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html): a mistyped ID registers as a different node, and your own shows offline. |
 | Several AMD nodes, and one keeps dropping off | Two of them are advertising the same card. Pin each with `ROCR_VISIBLE_DEVICES` and reinstall its service. |
 
 ---
 
-*AMD support arrived in 2.1.6 and is **opt-in**; 2.1.9 changes nothing in the install on this page, and
-its input rules and 2.1.8's task fixes were run on the same card. Measured end to
+*AMD support arrived in 2.1.6 and is **opt-in**; 2.1.11 changes nothing in the install on this page (it only moves the link for finding your node GUID;
+2.1.10 refuses the guide's example node ID,
+measured on the same card), and 2.1.9's input rules and 2.1.8's task fixes were run on the same card. Measured end to
 end on a **Radeon RX 7600** (`gfx1102`,
 RDNA 3, 8 GB) under ROCm 7.x on Ubuntu 24.04: install from the release ZIP, ROCm preflight,
 `verify-install.py` with the 4-bit path measured on the card, `workload-test.py --quick` 6/6,

@@ -21,10 +21,10 @@ The node makes only **outbound** connections. You do not need to open any inboun
 | | |
 |---|---|
 | **GPU** | NVIDIA, RTX 20-series (Turing) or newer for LLM and image work. GTX 10-series and Tesla P4 (Pascal) join **on the GPU** as a lower tier with a limited task set — support is planned to be phased out in a future release, announced in advance. Minimum compute capability **6.0**. RTX 50-series / Blackwell is supported. |
-| **Driver** | **Install it before you start.** 560.94 or newer; RTX 50-series / Blackwell needs **570+ reporting CUDA 12.8**. Studio Driver preferred over Game Ready. |
+| **Driver** | **Install it before you start.** A driver reporting **CUDA 12.0 or newer** (560.35 passes; 560.94 or newer recommended). RTX 50-series / Blackwell needs **570+ reporting CUDA 12.8**. Studio Driver preferred over Game Ready. |
 | **Disk** | **100 GB free.** The runtime alone is ~8 GB; models are downloaded on demand and grow well beyond that. |
 | **Time** | **10–20 minutes** on a typical connection, up to 45 on a slow one. Almost all of it is a multi-GB PyTorch/CUDA download. |
-| **Your node GUID** | Required — you pass it with `--node-guid`, and the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management); see the [registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md). |
+| **Your node GUID** | Required — you pass it with `--node-guid`, and the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management) ([registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)), then find its GUID at [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) (connect the wallet that holds the NFT). |
 
 Check your driver before anything else:
 
@@ -55,11 +55,11 @@ The release carries a short, stable file name you can paste straight into a term
 
 ```bash
 cd ~
-curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.9/synaptron-linux.zip
+curl -fLO https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.11/synaptron-linux.zip
 ```
 
 > **Why the short name.** The release also publishes the same ZIP under its full, timestamped name
-> (`synaptron-node-runner-linux-x64-2.1.9-<date>.zip`). That name wraps onto two lines in an 80-column
+> (`synaptron-node-runner-linux-x64-2.1.11-<date>.zip`). That name wraps onto two lines in an 80-column
 > terminal, and a `curl` command pasted across the wrap runs **with no URL at all** and sits there
 > looking like a hang. Use the short name; if you prefer the versioned asset, copy its URL from the
 > [releases page](https://github.com/Timpi-official/Nodes/releases) and paste it as a single line.
@@ -76,12 +76,16 @@ cd ~/SynaptronNode
 
 **3. Run the installer**
 
-Replace `YOUR-NODE-GUID` with the node GUID assigned to this machine:
+> [!IMPORTANT]
+> **NOTE: add your own node GUID and name to this command before you run it.**
+> Replace **`YOUR-NODE-GUID`** with your node GUID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), and **`My Synaptron`** with a name for
+> this node. Pasted unchanged, the node joins the network under the example ID, not yours: its work is not credited to you, and it collides with everyone else who pasted the same example.
 
 ```bash
 bash ./Initialise.sh \
   --controller-url https://orcacontroller.timpi.network \
   --node-guid YOUR-NODE-GUID \
+  --friendly-name "My Synaptron" \
   --install-gpu-dependencies \
   --install-production-deps \
   --install-autostart
@@ -184,6 +188,8 @@ That is expected. Reboot, run the **same command again**, and it continues from 
 
 **Is my node online?** This is the one that matters — it reads the Controller directly, needs no login:
 
+**Replace `YOUR-NODE-GUID` with your own GUID here too.** With the example ID left in, this reports someone else's node, which can show online.
+
 ```bash
 curl -s https://orcacontroller.timpi.network/api/coordinator/nodes/YOUR-NODE-GUID/status/month
 ```
@@ -232,7 +238,7 @@ Timpi Collector, so its "Latest" release is not necessarily a Synaptron one):
 **1. Download, and check whether the Python packages changed** (nothing is replaced yet):
 
 ```bash
-VER=2.1.9
+VER=2.1.11
 cd ~ && curl -fLO "https://github.com/Timpi-official/Nodes/releases/download/synaptron-$VER/synaptron-linux.zip"
 for f in requirements.txt $(unzip -Z1 synaptron-linux.zip 'constraints/*.txt'); do
   [ -f ~/SynaptronNode/"$f" ] || continue
@@ -241,7 +247,7 @@ done
 ```
 
 **No output** means the new release pins the same packages as your install, so your venv and model
-cache are reused and step 2 takes seconds. That is the case from 2.1.3 through 2.1.9. A `changed:` line
+cache are reused and step 2 takes seconds. That is the case from 2.1.3 through 2.1.11. A `changed:` line
 means it pins different ones: do step 2, then run the full `Initialise.sh` command again before relying
 on the node.
 
@@ -286,6 +292,8 @@ cd ~ && rm -rf ~/SynaptronNode
 | `Address already in use` on 8091 or 8092 | The service is already running. `sudo systemctl stop synaptron-node` first. |
 | Node runs but `isOnline` is false | Check outbound HTTPS to `orcacontroller.timpi.network` is not blocked. The node only makes outbound connections. |
 | Service keeps restarting | `journalctl -u synaptron-node -n 50` — a loop means the node itself is exiting. |
+| The log says `will not connect: The node ID is an example value from a guide`, and `http://127.0.0.1:8092/` says **Not connecting** | You started it with the guide's example (`YOUR-NODE-GUID`). Copy your node's ID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), then run `Initialise.sh` again with `--node-guid <that id>` (or fix `SYNAPTRON_NODE_GUID` in the service's environment and restart it). Before 2.1.10 the node accepted the example and its work was credited to nobody. |
+| `not in the usual form of a Timpi node ID` (a warning; the node still starts) | Your ID is not 8-4-4-4-12 hex digits. Check it character by character against [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html): a mistyped ID registers as a different node, and your own shows offline. |
 
 ---
 
@@ -324,7 +332,9 @@ bash ./Initialise.sh \
 
 ---
 
-*2.1.9 — the native Linux steps are unchanged; 2.1.9 limits what an image or audio job's input can make
+*2.1.11 — the native Linux steps are unchanged; 2.1.11 only moves the link for finding your node GUID to
+[timpi.se/my-nodes.html](https://timpi.se/my-nodes.html); 2.1.10 refuses the guide's example node ID and says why (the log,
+`runtime/supervisor-status.json`, the local dashboard), measured on an RX 7600 install; 2.1.9 limits what an image or audio job's input can make
 a node read, and 2.1.8 fixed how a node serves several task types (see the set's README). Verified on the
 rig, Ubuntu, RTX 4060 Ti (cu124): `Initialise.sh` built the venv (torch 2.6.0+cu124, transformers
 5.13.1), the host reached the Controller's SignalR hub, loaded the catalog, and served every task type

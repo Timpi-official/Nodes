@@ -23,7 +23,7 @@ The node makes only **outbound** connections. You do not need to open any inboun
 | **Driver** | **Install it before you start.** RTX 20/30/40 (Turing/Ampere/Ada): **560.94 or newer**. RTX 50 / Blackwell: **570.00 or newer** (reporting CUDA 12.8). Studio Driver preferred over Game Ready. |
 | **Disk** | **100 GB free.** The runtime alone is ~8 GB; models are downloaded on demand and grow well beyond that. |
 | **Time** | **10–20 minutes** on a typical connection, up to 45 on a slow one. Almost all of it is a multi-GB PyTorch/CUDA download. |
-| **Your node GUID** | Required — you paste it in when you install, and the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management); see the [registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md). |
+| **Your node GUID** | Required — you paste it in when you install, and the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management) ([registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)), then find its GUID at [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) (connect the wallet that holds the NFT). |
 
 > **Where to get the driver.** Download it from [NVIDIA's driver downloads](https://www.nvidia.com/en-us/drivers/)
 > (select your GPU and Windows 64-bit), or use the [NVIDIA App](https://www.nvidia.com/en-us/software/nvidia-app/).
@@ -42,16 +42,16 @@ setup checks for them and installs or repairs what's missing.
 
 **1. Download the installer**
 
-Get **`SynaptronNodeSetup-2.1.9.exe`** and its **`SHA256SUMS`** from the latest release:
+Get **`SynaptronNodeSetup-2.1.11.exe`** and its **`SHA256SUMS`** from the latest release:
 [github.com/Timpi-official/Nodes/releases](https://github.com/Timpi-official/Nodes/releases).
 
 > **Verify the download (optional).** In PowerShell in your Downloads folder:
-> `Get-FileHash .\SynaptronNodeSetup-2.1.9.exe -Algorithm SHA256` — compare it to the matching line in
+> `Get-FileHash .\SynaptronNodeSetup-2.1.11.exe -Algorithm SHA256` — compare it to the matching line in
 > `SHA256SUMS`.
 
 **2. Run it**
 
-Double-click **`SynaptronNodeSetup-2.1.9.exe`**. It installs to a fixed location, **`C:\Synaptron`** —
+Double-click **`SynaptronNodeSetup-2.1.11.exe`**. It installs to a fixed location, **`C:\Synaptron`** —
 there is no folder-choice page — and registers its own entry in **Add/Remove Programs**.
 
 > **Windows SmartScreen** may show *"Windows protected your PC"* — the installer isn't code-signed yet.
@@ -96,10 +96,10 @@ This is the path tested on every release — clean install, upgrade over a runni
 The release carries a short, stable name:
 
 ```
-https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.9/synaptron-windows.zip
+https://github.com/Timpi-official/Nodes/releases/download/synaptron-2.1.11/synaptron-windows.zip
 ```
 
-The same bytes are also published as `synaptron-node-runner-win-x64-2.1.9.zip`, and both names appear
+The same bytes are also published as `synaptron-node-runner-win-x64-2.1.11.zip`, and both names appear
 in `SHA256SUMS` with the same digest.
 
 **2. Unblock the ZIP, then extract it**
@@ -163,10 +163,16 @@ Once you've confirmed the node starts correctly, enable start-at-logon. Open **P
 Administrator** in the runner folder and run — it installs a **scheduled task** named
 `Timpi Synaptron Node` that starts the node when you log in:
 
+> [!IMPORTANT]
+> **NOTE: add your own node GUID and name to this command before you run it.**
+> Replace **`YOUR-NODE-GUID`** with your node GUID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), and **`My Synaptron`** with a name for
+> this node. Pasted unchanged, the node joins the network under the example ID, not yours: its work is not credited to you, and it collides with everyone else who pasted the same example.
+
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\Initialise.ps1 `
   -ControllerUrl https://orcacontroller.timpi.network `
   -NodeGuid YOUR-NODE-GUID `
+  -FriendlyName "My Synaptron" `
   -InstallGpuDependencies -InstallProductionDeps -InstallAutostart
 ```
 
@@ -188,6 +194,7 @@ Controller can see you).
 
 > **Advanced (optional):** from PowerShell query the Controller directly —
 > `(Invoke-RestMethod "https://orcacontroller.timpi.network/api/coordinator/nodes/YOUR-NODE-GUID/status/month").isOnline`
+> — **replace `YOUR-NODE-GUID` with your own GUID**; with the example ID left in, this reports someone else's node.
 > should return `True`.
 
 > **An empty model cache on a fresh node is correct.** Models are not downloaded at install — the
@@ -234,11 +241,17 @@ you start the node. Open **PowerShell** in the runner folder.
 
 **1. Install and verify** (first run downloads a multi-GB PyTorch/CUDA stack):
 
+> [!IMPORTANT]
+> **NOTE: add your own node GUID and name to this command before you run it.**
+> Replace **`YOUR-NODE-GUID`** with your node GUID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), and **`My Synaptron`** with a name for
+> this node. Pasted unchanged, the node joins the network under the example ID, not yours: its work is not credited to you, and it collides with everyone else who pasted the same example.
+
 ```powershell
 cd C:\SynaptronNode
 powershell -ExecutionPolicy Bypass -File .\scripts\start-node-bootstrap-windows.ps1 `
   -ControllerUrl https://orcacontroller.timpi.network `
   -NodeGuid YOUR-NODE-GUID `
+  -FriendlyName "My Synaptron" `
   -InstallGpuDependencies
 ```
 
@@ -267,13 +280,13 @@ SynaptronNode Python environment is ready.
 On an RTX 50-series / Blackwell card that first line reads `torch=2.11.0+cu128` instead — the
 installer picks the cu128 stack from the card's compute capability.
 
-**2. Start the node:**
+**2. Start the node** — with **the same GUID and name as step 1** in place of **`YOUR-NODE-GUID`** and **`My Synaptron`**:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\run-node-host-windows.ps1 `
   -Port 8091 -HostName 127.0.0.1 `
   -ControllerUrl https://orcacontroller.timpi.network `
-  -NodeGuid YOUR-NODE-GUID -TransformersDevice Cuda
+  -NodeGuid YOUR-NODE-GUID -FriendlyName "My Synaptron" -TransformersDevice Cuda
 ```
 
 It starts the Python worker and the .NET supervisor, then reaches the Controller:
@@ -313,7 +326,7 @@ node from the **tray menu** (or `Stop-SynaptronNode.ps1`), extract the new ZIP o
 `C:\SynaptronNode` folder, and start it again with `Start-SynaptronNode.vbs`.
 
 Your venv and model cache are reused, and your node GUID (`config\node-guid.txt`) survives the extract.
-Each release's notes say whether its Python packages changed; 2.1.3 through 2.1.9 pin the same ones. If
+Each release's notes say whether its Python packages changed; 2.1.3 through 2.1.11 pin the same ones. If
 a release says they changed, run step 1 of [Advanced: PowerShell](#advanced-powershell-instead-of-the-desktop-app)
 once after extracting and before starting the node. The installer path needs nothing extra.
 
@@ -352,10 +365,18 @@ Add/Remove Programs). That runs the bundled uninstaller and removes `C:\Synaptro
 | Download seems stuck | It is a multi-GB download. Watch the dashboard/progress before killing it. |
 | `Address already in use` on 8091/8092/8093 | The node is already running. Stop it (tray → Stop) before starting a second copy. |
 | Node runs but `isOnline` is false | Check outbound HTTPS to `orcacontroller.timpi.network` isn't blocked by a firewall/VPN. |
+| The app says **Not connecting: The node ID is an example value from a guide** (red) | You entered the guide's example (`YOUR-NODE-GUID`) as the node ID. Put your own ID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) in the **Timpi node ID** box and press **Start** again. Before 2.1.10 the app showed such a node as online, and its work was credited to nobody. |
+| `not in the usual form of a Timpi node ID` (a warning; the node still starts) | Your ID is not 8-4-4-4-12 hex digits. Check it character by character against [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html): a mistyped ID registers as a different node, and your own shows offline. |
 
 ---
 
-*2.1.9 — the Windows paths are unchanged apart from the installer's version. 2.1.9 stops an image or
+*2.1.11 — the Windows paths are unchanged apart from the installer's version; 2.1.11 only moves the link for
+finding your node GUID to [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html); its installer upgraded a running
+2.1.10 node in place on an RTX 3080 Ti (node ID kept, back on the Controller, `check219.py` 10/10). 2.1.10 refuses the guide's example
+node ID (`YOUR-NODE-GUID`): the app says **Not connecting** with the reason, and so does the local dashboard,
+where 2.1.9's app showed such a node as online; measured on an RTX 3080 Ti beside a running node. The 2.1.10
+installer upgraded that running 2.1.9 node in place (node ID kept, back on the Controller) and `check219.py`
+passed 10/10 with no `ffmpeg`. 2.1.9 stops an image or
 audio job from making the node read a local file or authenticate to a network share. Since 2.1.8,
 speech-to-text and audio classification work without `ffmpeg`, which a Windows node does not have.
 Measured on an RTX 3080 Ti: the 2.1.9 installer upgraded a running 2.1.8 node in place (node ID kept,

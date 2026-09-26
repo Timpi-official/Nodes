@@ -44,11 +44,11 @@ The node makes only **outbound** connections. You do not need to open any inboun
 | | |
 |---|---|
 | **GPU** | NVIDIA, compute capability **6.0+**. RTX 20-series / Turing or newer for LLM and image work; GTX 10-series (Pascal) joins for lighter tasks. RTX 50-series / Blackwell is supported via the **cu128** image. |
-| **Driver** | A working NVIDIA driver on the **host** — `nvidia-smi` must run. RTX 20/30/40: 560.94+. RTX 50 / Blackwell: **570+ reporting CUDA 12.8**. Get it from [NVIDIA's driver downloads](https://www.nvidia.com/en-us/drivers/) or, on Ubuntu, `sudo ubuntu-drivers autoinstall`. |
+| **Driver** | A working NVIDIA driver on the **host** — `nvidia-smi` must run. RTX 20/30/40: a driver reporting **CUDA 12.0 or newer** (560.35 passes; 560.94+ recommended). RTX 50 / Blackwell: **570+ reporting CUDA 12.8**. Get it from [NVIDIA's driver downloads](https://www.nvidia.com/en-us/drivers/) or, on Ubuntu, `sudo ubuntu-drivers autoinstall`. |
 | **Docker** | Installed and running. |
 | **NVIDIA Container Toolkit** | **This is the one Docker-specific requirement** — it lets containers use the GPU. Install: [official guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). Step 1 below verifies it. |
 | **Disk** | about **15 GB** for the cu124 image once extracted (~5 GB compressed on the pull); about **20 GB** for cu128. Models are downloaded on demand into a volume and grow beyond that. |
-| **Your node GUID** | Required — the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management); see the [registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md). |
+| **Your node GUID** | Required — the node refuses to start without it. Register your Timpi Node Access NFT at [timpi.com/node/v2/management](https://timpi.com/node/v2/management) ([registration guide](https://github.com/Timpi-official/Nodes/blob/main/Registration/RegisterNodes.md)), then find its GUID at [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) (connect the wallet that holds the NFT). |
 
 > **Your node GUID is not a plain UUID.** It may contain letters, numbers, dots, colons, underscores
 > and hyphens in any arrangement, for example `1a5737d8-example-node-a05f-ee3aba76548b`. Use exactly
@@ -82,6 +82,12 @@ If it prints your card, you're ready. If it errors on `--gpus`, install the **NV
 
 The quickstart reads your card, picks the right image (**cu124** or **cu128**), pulls it, and starts the
 node. It asks for your GUID and a name if you don't pass them.
+
+> [!IMPORTANT]
+> **NOTE: add your own node GUID and name to this command before you run it.**
+> Replace **`YOUR-NODE-GUID`** with your node GUID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), and **`My Synaptron`** with a name for
+> this node. Pasted unchanged, the node joins the network under the example ID, not yours: its work is not credited to you, and it collides with everyone else who pasted the same example.
+> (Or leave out `--guid` and `--name` entirely: the quickstart then asks you for both.)
 
 Run this command, replacing the bold values with your own:
 
@@ -122,7 +128,7 @@ Useful options:
 | Option | What it does |
 |---|---|
 | `--publish-dashboard` | Expose the node dashboard on host port 8092 (`http://127.0.0.1:8092/dashboard`). Leave it off if you don't want the port opened. |
-| `--version 2.1.9` | Pin to the immutable release tag (`2.1.9-cu124`) instead of the moving one. |
+| `--version 2.1.11` | Pin to the immutable release tag (`2.1.11-cu124`) instead of the moving one. |
 | `--gpu <uuid\|index>` | Which card, on a multi-GPU machine. |
 | `--container-name <n>` | Default `synaptron`; the model-cache volume is `<n>-cache`. |
 | `--dashboard-port <n>` | Host port for the dashboard, for a second node on the same machine. |
@@ -184,6 +190,8 @@ True NVIDIA GeForce RTX 4060 Ti
 **Confirm the network sees you** — in **Discord** run `/synaptronchecker` with your node GUID (shows
 🟢 ONLINE), or from any machine:
 
+**Replace `YOUR-NODE-GUID` with your own GUID here too.** With the example ID left in, this reports someone else's node, which can show online.
+
 ```bash
 curl -s https://orcacontroller.timpi.network/api/coordinator/nodes/YOUR-NODE-GUID/status/month
 ```
@@ -204,7 +212,7 @@ Run one small **Watchtower** container and your Synaptron stays on the latest im
 > image, so the next update pulls cu124 onto your card, and a Blackwell (50-series) card then refuses to
 > start and restart-loops. If your node is on `:latest`, re-run the quickstart (or start it on
 > `cu124`/`cu128`) **before** adding Watchtower.
-> If you pinned an immutable tag with `--version` (e.g. `2.1.9-cu128`), that tag never moves — a new
+> If you pinned an immutable tag with `--version` (e.g. `2.1.11-cu128`), that tag never moves — a new
 > release gets a new tag, so update by re-running the quickstart with `--replace` instead.
 
 **Step 1 — start Watchtower** (paste it exactly as-is):
@@ -244,7 +252,7 @@ already on the latest — that's fine.
 **Updating without Watchtower.** Run the quickstart again with `--replace`. It always pulls first, so on
 `cu124` / `cu128` you get the newest build for your card; it keeps the model cache (the volume is
 separate from the container) and asks for your node GUID again, so have it from
-[timpi.com/node/v2/management](https://timpi.com/node/v2/management). If you started the node with a
+[timpi.se/my-nodes.html](https://timpi.se/my-nodes.html). If you started the node with a
 hand-written `docker run` instead, pull your tag, remove the container, and run the same command again:
 
 ```bash
@@ -269,13 +277,17 @@ nvidia-smi --query-gpu=name,compute_cap --format=csv
 | **6.0 – 9.x** | GTX 10-series, Tesla P4, RTX 20/30/40, A-series, Hopper | **`cu124`** |
 | Below 6.0 | — | Not supported by Synaptron at all |
 
+That table is which tag to pick. What each image can physically run is wider: `cu124` runs compute
+capability 5.0 – 9.9 and `cu128` runs 7.5 – 12.9. `cu128` also needs a driver reporting CUDA 12.8
+(570 or newer), so a card from 7.5 to 9.9 stays on `cu124`, and the quickstart picks it for you.
+
 Each release publishes four tags:
 
 | Tag | What it is |
 |---|---|
-| `timpiltd/timpi-synaptron:2.1.9-cu124` | Immutable — this exact release, for the cu124 wheel set. What a node should be pinned to if you want no surprises. |
+| `timpiltd/timpi-synaptron:2.1.11-cu124` | Immutable — this exact release, for the cu124 wheel set. What a node should be pinned to if you want no surprises. |
 | `timpiltd/timpi-synaptron:cu124` | Moving — the newest build for that wheel set. What the quickstart and Watchtower use. |
-| `timpiltd/timpi-synaptron:2.1.9-cu128` | Immutable, Blackwell. |
+| `timpiltd/timpi-synaptron:2.1.11-cu128` | Immutable, Blackwell. |
 | `timpiltd/timpi-synaptron:cu128` | Moving, Blackwell. |
 
 > **Always pull `cu124` or `cu128` — never a bare tag or `:latest`.** A bare `docker pull` (or `:latest`)
@@ -291,6 +303,11 @@ Each release publishes four tags:
 ## Manual install (choose the image yourself)
 
 If you'd rather not use the quickstart, pick the image from the table above and run it directly:
+
+> [!IMPORTANT]
+> **NOTE: add your own node GUID and name to this command before you run it.**
+> Replace **`YOUR-NODE-GUID`** with your node GUID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), and **`My Synaptron`** with a name for
+> this node. Pasted unchanged, the node joins the network under the example ID, not yours: its work is not credited to you, and it collides with everyone else who pasted the same example.
 
 ```bash
 docker pull timpiltd/timpi-synaptron:cu124
@@ -346,6 +363,10 @@ nvidia-smi --query-gpu=index,name,uuid --format=csv,noheader
 1, NVIDIA GeForce RTX 3060, GPU-7da0df14-79ba-67cd-6372-45709da2b74e
 ```
 
+> [!IMPORTANT]
+> **NOTE: each card needs its own node GUID and name.** Replace **`FIRST-NODE-GUID`** / **`SECOND-NODE-GUID`**
+> with two different GUIDs from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html), and the names with your own. Never reuse one GUID on two cards.
+
 ```bash
 docker run -d --name synaptron-gpu0 --restart unless-stopped \
   --log-opt max-size=10m --log-opt max-file=3 \
@@ -399,6 +420,8 @@ docker rm -f synaptron              # remove (models survive in the volume)
 | Node looks healthy but the network says offline, and a **second node** runs on the same machine | Both containers were started with `--gpus all`, so both claim every card and the network blocks the duplicate. Give each container one card. |
 | Node runs but stays idle for a long time | **Normal.** Work comes from the Controller; a healthy node can idle with 0 models loaded. Don't reinstall. |
 | `A Timpi node ID is required` on start | You didn't pass `-e SYNAPTRON_NODE_GUID=...` (or `--guid` to the quickstart). |
+| The quickstart stops with `The node GUID is an example value from a guide`, or the log says `will not connect: The node ID is an example value from a guide` | You used the guide's example (`YOUR-NODE-GUID`) instead of your own ID. Copy your node's ID from [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html) and run the quickstart again with `--guid <that id>`. Before 2.1.10 the node accepted the example, registered under it, and its work was credited to nobody. |
+| `Warning: the node GUID is not in the usual form` (quickstart) or `not in the usual form of a Timpi node ID` (a warning; the node still starts) | Your ID is not 8-4-4-4-12 hex digits. Check it character by character against [timpi.se/my-nodes.html](https://timpi.se/my-nodes.html): a mistyped ID registers as a different node, and your own shows offline. |
 
 ---
 
@@ -412,7 +435,9 @@ docker rmi timpiltd/timpi-synaptron:cu124      # remove the image (optional; cu1
 
 ---
 
-*2.1.9 — the Docker steps are unchanged. 2.1.9 limits what an image or audio job's input can make a node
+*2.1.11 — the Docker steps are unchanged; 2.1.11 only moves the link for finding your node GUID to
+[timpi.se/my-nodes.html](https://timpi.se/my-nodes.html). Since 2.1.10 the quickstart and the node refuse the guide's example node ID
+(`YOUR-NODE-GUID`) instead of registering under it, and warn on an ID that is not in the usual form. 2.1.9 limits what an image or audio job's input can make a node
 read (no local files, public URLs only). Since 2.1.8 the node code in the image fixes several task types, among
 them speech-to-text and audio classification, which needed an `ffmpeg` the image does not carry; every
 catalogued model the card can hold was run through the Controller on an RTX 5060 in the cu128 image

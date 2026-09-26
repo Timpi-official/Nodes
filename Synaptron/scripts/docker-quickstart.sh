@@ -123,24 +123,38 @@ echo "Image:  ${IMAGE}"
 say "Node identity"
 [[ -n "${NAME}" ]] || NAME="$(ask 'Name for this node on the dashboard [Synaptron '"$(hostname)"']: ')"
 [[ -n "${NAME}" ]] || NAME="Synaptron $(hostname)"
-[[ -n "${GUID}" ]] || { GUID="$(ask 'Your Timpi node GUID (from timpi.com/node/v2/management): ' silent)"; TTY_PENDING="$(pending_tty_line)"; }
+[[ -n "${GUID}" ]] || { GUID="$(ask 'Your Timpi node GUID (from timpi.se/my-nodes.html): ' silent)"; TTY_PENDING="$(pending_tty_line)"; }
 [[ -n "${GUID}" ]] || die "A node GUID is required. Pass --guid <id> or type it at the prompt."
+# The rule of config/node-id-placeholders.conf, copied because this script runs from a URL with no
+# config/ beside it; tests/test_node_identity.py fails if this list drifts from that file. Pasting a
+# guide's example unchanged registered nodes as YOUR-NODE-GUID for a month. The value is never printed.
+NODE_ID_PLACEHOLDER_WORDS=(YOUR GUID TIMPI NODE EXAMPLE PLACEHOLDER XXXX)
+GUID_UPPER="$(printf '%s' "${GUID}" | tr '[:lower:]' '[:upper:]')"
+NODE_ID_EXAMPLE="false"
+[[ "${GUID_UPPER}" == *'<'* || "${GUID_UPPER}" == *'>'* ]] && NODE_ID_EXAMPLE="true"
+for w in "${NODE_ID_PLACEHOLDER_WORDS[@]}"; do [[ "${GUID_UPPER}" == *"${w}"* ]] && NODE_ID_EXAMPLE="true"; done
+[[ "${NODE_ID_EXAMPLE}" == "true" ]] && die "The node GUID is an example value from a guide, not your node's ID. Copy your own from https://timpi.se/my-nodes.html and run this again with --guid <that id>."
+[[ "${GUID}" =~ ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$ ]] \
+  || echo "Warning: the node GUID is not in the usual form (8-4-4-4-12 hex digits). Check it character by character against https://timpi.se/my-nodes.html: a mistyped ID registers as a different node."
 echo "Node:   ${NAME}"
 
 # An existing container of this name. Replacing it keeps the model cache: the volume is separate.
+# It is only removed once the new image is on this machine (below): removing it first meant a pull
+# that failed -- Docker Hub unreachable, a mistyped --tag -- left the operator with no node at all.
+EXISTING="false"
 if docker ps -a --format '{{.Names}}' | grep -Fqx -- "${CNAME}"; then
+  EXISTING="true"
   cur="$(docker ps -a --filter "name=^${CNAME}$" --format '{{.Image}}  {{.Status}}')"
   say "A container called ${CNAME} already exists: ${cur}"
   if [[ "${REPLACE}" != "true" ]]; then
     a="$(ask 'Stop and replace it? Its model cache is kept. [y/N] ')"; TTY_PENDING=""
     [[ "${a}" =~ ^[Yy] ]] || die "Left as is. To do it by hand:  docker rm -f ${CNAME}   then run this again (or pass --replace)."
   fi
-  docker stop "${CNAME}" >/dev/null && docker rm "${CNAME}" >/dev/null && echo "Removed the old container. Volume ${CNAME}-cache kept."
 fi
 
 if [[ "${YES}" != "true" ]]; then
   a="$(ask "Pull ${IMAGE} and start ${CNAME} on ${GPU_NAME}? [Y/n] ")"; TTY_PENDING=""
-  [[ -z "${a}" || "${a}" =~ ^[Yy] ]] || die "Cancelled. Nothing was downloaded."
+  [[ -z "${a}" || "${a}" =~ ^[Yy] ]] || die "Cancelled. Nothing was downloaded$([[ "${EXISTING}" == "true" ]] && echo ", and ${CNAME} was left as it was")."
 fi
 
 say "Pulling ${IMAGE}"
@@ -155,8 +169,12 @@ if ! docker pull "${IMAGE}"; then
     echo "Could not pull ${IMAGE}, but that image is already on this machine, so it is used as it is."
     echo "It will not be refreshed until this machine can reach the registry again."
   else
-    die "Could not pull ${IMAGE}, and no copy of it is on this machine. Check --repo and --tag, and that this machine can reach Docker Hub."
+    die "Could not pull ${IMAGE}, and no copy of it is on this machine. Check --repo and --tag, and that this machine can reach Docker Hub.$([[ "${EXISTING}" == "true" ]] && echo " ${CNAME} was not touched and is still as it was.")"
   fi
+fi
+
+if [[ "${EXISTING}" == "true" ]]; then
+  docker stop "${CNAME}" >/dev/null && docker rm "${CNAME}" >/dev/null && echo "Removed the old container. Volume ${CNAME}-cache kept."
 fi
 
 say "Starting ${CNAME}"

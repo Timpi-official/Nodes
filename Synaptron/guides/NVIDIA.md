@@ -15,7 +15,7 @@ The node makes only **outbound** connections. You do not need to open any inboun
 | **Ubuntu Linux** | **[Linux](NVIDIA-Linux.md)** | `Initialise.sh`, one command, systemd service. |
 | **Linux + Docker** | **[Docker](NVIDIA-Docker.md)** | One image, one command; the simplest path if you already run containers. |
 
-Other cards: **[AMD](AMD.md)** (Linux only, through ROCm) · **Intel** (not supported).
+Other cards: **[AMD](AMD.md)** (Linux only, through ROCm).
 
 ---
 

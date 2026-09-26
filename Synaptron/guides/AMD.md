@@ -16,7 +16,7 @@ The node makes only **outbound** connections. You do not need to open any inboun
 > **Docker: no AMD image.** `--gpus` and the NVIDIA Container Toolkit are NVIDIA-only, and no ROCm
 > image is published. The native Linux runner below is the whole of it.
 
-Other cards: **[NVIDIA](NVIDIA.md)** (Windows, Linux, Docker) · **Intel** (not supported).
+Other cards: **[NVIDIA](NVIDIA.md)** (Windows, Linux, Docker).
 
 ---
 

@@ -9,9 +9,8 @@ The node makes only **outbound** connections. You do not need to open any inboun
 
 **Supported:** Windows 10 or Windows 11, 64-bit, with an NVIDIA GPU.
 
-> **Windows is NVIDIA-only.** An AMD or Intel card cannot run the node on Windows and the installer
-> will say so. AMD runs on Linux through ROCm — see the [AMD guide](AMD.md). Intel is not supported at
-> all.
+> **Windows is NVIDIA-only.** An AMD card cannot run the node on Windows and the installer
+> will say so. AMD runs on Linux through ROCm — see the [AMD guide](AMD.md).
 
 ---
 
@@ -361,7 +360,7 @@ Add/Remove Programs). That runs the bundled uninstaller and removes `C:\Synaptro
 | `Failed to initialize NVML` / driver mismatch, or nvidia-smi errors | The NVIDIA driver was updated without a reboot. **Reboot**, then start again. |
 | Torch fails to load `c10.dll` / DLL load errors | The **Microsoft Visual C++ Redistributable 2015–2022 x64** is missing. The installer normally repairs it; if not, install it and restart the node. |
 | Preflight says the GPU is below the minimum | The card is below compute capability 6.0. It cannot run Synaptron. |
-| Preflight says the GPU is an AMD or Intel card | Windows is NVIDIA-only. AMD runs on Linux only — see the [AMD guide](AMD.md). |
+| Preflight says the GPU is an AMD card | Windows is NVIDIA-only. AMD runs on Linux only — see the [AMD guide](AMD.md). |
 | Download seems stuck | It is a multi-GB download. Watch the dashboard/progress before killing it. |
 | `Address already in use` on 8091/8092/8093 | The node is already running. Stop it (tray → Stop) before starting a second copy. |
 | Node runs but `isOnline` is false | Check outbound HTTPS to `orcacontroller.timpi.network` isn't blocked by a firewall/VPN. |
